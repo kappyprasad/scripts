@@ -1,0 +1,26 @@
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:cgutk=&quot;http://CGUTK&quot; xmlns:ic=&quot;http://WMP2/ICC_SearchDocuments_WSDL.tws&quot;&gt;
+    &lt;SOAP-ENV:Header/&gt;
+    &lt;SOAP-ENV:Body&gt;
+        &lt;ic:searchDocuments&gt;
+            &lt;ic:request&gt;
+                &lt;cgutk:user&gt;sUSO11&lt;/cgutk:user&gt;
+                &lt;!--
+                &lt;cgutk:destination&gt;STRING&lt;/cgutk:destination&gt;
+                &lt;cgutk:transactionID&gt;STRING&lt;/cgutk:transactionID&gt;
+                &lt;cgutk:startDate&gt;DATETIME&lt;/cgutk:startDate&gt;
+                &lt;cgutk:endDate&gt;DATETIME&lt;/cgutk:endDate&gt;
+                --&gt;
+                &lt;cgutk:policyNumber&gt;SDF&lt;/cgutk:policyNumber&gt;
+                &lt;!--
+                &lt;cgutk:processID&gt;STRING&lt;/cgutk:processID&gt;
+                &lt;cgutk:documentType&gt;STRING&lt;/cgutk:documentType&gt;
+                &lt;cgutk:documentSubType&gt;STRING&lt;/cgutk:documentSubType&gt;
+                &lt;cgutk:referencesID&gt;STRING&lt;/cgutk:referencesID&gt;
+                &lt;cgutk:businessDomain&gt;STRING&lt;/cgutk:businessDomain&gt;
+                &lt;cgutk:quoteNumber&gt;STRING&lt;/cgutk:quoteNumber&gt;
+                --&gt;
+            &lt;/ic:request&gt;
+        &lt;/ic:searchDocuments&gt;
+    &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
+

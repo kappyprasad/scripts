@@ -1,0 +1,10 @@
+<json>
+
+    <bob>car</bob>
+
+    <fred>
+        <item>1</item>
+        <item>eight</item>
+        <item>True</item>
+    </fred>
+</json>

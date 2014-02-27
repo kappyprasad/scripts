@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<XMI xmi.version="1.2" xmlns:UML="org.omg.xmi.namespace.UML" timestamp="2013-12-19 13:27:57">
+	<XMI.header>
+		<XMI.documentation>
+			<XMI.exporter>Enterprise Architect</XMI.exporter>
+			<XMI.exporterVersion>4.1</XMI.exporterVersion>
+		</XMI.documentation>
+		<XMI.metamodel XMI.name="UML" XMI.version="1.4"/>
+	</XMI.header>
+	<XMI.content>
+		<UML:Model name="Argo" xmi.id="MX_EAID_AF23EB94_E77E_4f80_96E9_236B816947C7" isRoot="true" isLeaf="false" isAbstract="false" isSpecification="false" visibility="public">
+			<UML:Namespace.ownedElement>
+				<UML:Package name="Domain Model" xmi.id="EAPK_F2392ECF_E63F_4d92_A7FD_2DFCE9A01342" isRoot="true" isLeaf="false" isAbstract="false" visibility="public">
+					<UML:Namespace.ownedElement>
+						<UML:Package name="MyPackage" xmi.id="EAPK_6038BA03_ECCC_4b08_9CE2_2F1659C4E8F4" isRoot="true" isLeaf="false" isAbstract="false" visibility="public">
+							<UML:Namespace.ownedElement>
+								<UML:Class name="MyClass" xmi.id="EAID_F802BB65_4990_4cdc_870B_FAAB07F31373" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+							</UML:Namespace.ownedElement>
+						</UML:Package>
+					</UML:Namespace.ownedElement>
+				</UML:Package>
+				<UML:Package name="Use Case View" xmi.id="EAPK_965BA61C_BFC9_41b5_844B_D8C987A21AC5" isRoot="true" isLeaf="false" isAbstract="false" visibility="public">
+					<UML:Namespace.ownedElement>
+						<UML:UseCase name="MyUseCase" xmi.id="EAID_36D1744E_E3C1_45e1_BAB1_797749DFF557" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+						<UML:Association name="uses" xmi.id="EAID_CB85CAE8_6963_404f_ABBA_2FAC61BDA022" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
+							<UML:Association.connection>
+								<UML:AssociationEnd visibility="public" aggregation="none" isOrdered="false" targetScope="instance" isNavigable="true" type="EAID_36D1744E_E3C1_45e1_BAB1_797749DFF557">
+									<UML:AssociationEnd.multiplicity>
+										<UML:Multiplicity>
+											<UML:Multiplicity.range>
+												<UML:MultiplicityRange lower="0" upper="-1"/>
+											</UML:Multiplicity.range>
+										</UML:Multiplicity>
+									</UML:AssociationEnd.multiplicity>
+									<UML:AssociationEnd.participant>
+										<UML:UseCase xmi.idref="EAID_36D1744E_E3C1_45e1_BAB1_797749DFF557"/>
+									</UML:AssociationEnd.participant>
+								</UML:AssociationEnd>
+								<UML:AssociationEnd visibility="public" aggregation="none" isOrdered="false" targetScope="instance" isNavigable="true" type="EAID_8F97783C_5005_4d3a_8CA1_45F5FC15AA4E">
+									<UML:AssociationEnd.multiplicity>
+										<UML:Multiplicity>
+											<UML:Multiplicity.range>
+												<UML:MultiplicityRange lower="0" upper="-1"/>
+											</UML:Multiplicity.range>
+										</UML:Multiplicity>
+									</UML:AssociationEnd.multiplicity>
+									<UML:AssociationEnd.participant>
+										<UML:Actor xmi.idref="EAID_8F97783C_5005_4d3a_8CA1_45F5FC15AA4E"/>
+									</UML:AssociationEnd.participant>
+								</UML:AssociationEnd>
+							</UML:Association.connection>
+						</UML:Association>
+						<UML:Actor name="MyActor" xmi.id="EAID_8F97783C_5005_4d3a_8CA1_45F5FC15AA4E" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+					</UML:Namespace.ownedElement>
+				</UML:Package>
+			</UML:Namespace.ownedElement>
+		</UML:Model>
+	</XMI.content>
+	<XMI.extensions xmi.extender="Enterprise Architect 2.5"/>
+</XMI>

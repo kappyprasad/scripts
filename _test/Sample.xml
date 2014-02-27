@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prefix:root 
+    xmlns:prefix="http://www.mucken.com.au"
+    attr="bob &lt; &gt; &amp; &quot; &apos; char"
+>
+    <child>stuff &lt;inside&gt; &quot; &apos;</child>
+    <child>hello</child>
+
+    <child there="normal"/>
+
+
+    <daughter><![CDATA[<hello & ' " &amp; there/>]]></daughter>
+</prefix:root>

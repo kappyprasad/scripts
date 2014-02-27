@@ -1,0 +1,18 @@
+<LogRecord Code="|DEV PC|CGUTK|Subject 184" Duration="0" Level="INFO" When="2013-09-18T12:05:14.708+10:00" id="0">
+    <Message>successful tidy up</Message>
+    <Host id="0" ip="10.139.65.128" name="uadbpc01"/>
+    <User id="0" login="tw_admin" name="tw_admin"/>
+    <Application id="0" name="CGU_Toolkit" type="BPM" uuid="2066.b840d597-334b-4b95-aa6d-633955bacb00" version="Subject 184"/>
+    <Component id="0" name="OutboundCorrespondence" type="Process" uuid="25.a5a07a6a-59d3-498d-9693-7bad5a20647b" version="Subject 184"/>
+    <Instance id="0" name="OutboundCorrespondence:26088" type="ProcessInstance" uuid="2072.26088"/>
+    <Activity id="0" name="Step: Tidy Up" type="Tidy Up" uuid="2078.43673"/>
+    <Variables>
+        <Variable clasz="string" id="0" name="bodyPath">
+            <value>/cgu/dev1/was/profiles/Dev1CguPCN1/temp/ppid-26087-Body.html</value>
+        </Variable>
+        
+        <Variable clasz="string" id="0" name="attachmentsPaths">
+            <value/>
+        </Variable>
+    </Variables>
+</LogRecord>
