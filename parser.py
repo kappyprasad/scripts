@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2013-12-31 15:53:16 +1100 (Tue, 31 Dec 2013) $
-# $Revision: 7553 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/parser.py $
-# $Id: parser.py 7553 2013-12-31 04:53:16Z david.edson $
 
 import sys,os
 import argparse

@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2013-12-24 11:07:34 +1100 (Tue, 24 Dec 2013) $
-# $Revision: 7480 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/pyson.py $
-# $Id: pyson.py 7480 2013-12-24 00:07:34Z david.edson $
 
 import sys,os,re
 import argparse
