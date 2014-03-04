@@ -4,6 +4,7 @@
     attr="bob &lt; &gt; &amp; &quot; &apos; char"
 >
     <child>stuff &lt;inside&gt; &quot; &apos;</child>
+    <!-- this is a comment -->
     <child>hello</child>
 
     <child there="normal"/>
