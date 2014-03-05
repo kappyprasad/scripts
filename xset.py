@@ -1,74 +1,60 @@
 #!/usr/bin/python
 
-
 import sys, re, os, libxml2
+import argparse
 
+from _tools.colours import *
+from _tools.eddo import *
 from _tools.xpath import *
 
-pp = re.compile('^.*/([^/]*)$')
-pa = re.compile('^(.*)/@([^@]*)$')
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-?',             action='help',       help='show this help')
+parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
+parser.add_argument('-s','--show',    action='store_true', help='show changes')
+parser.add_argument('-t','--text',    action='store',      help='set value as text value')
+parser.add_argument('-a','--attr',    action='store',      help='set value as attribute value')
+parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
+parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
+parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
+
+args = parser.parse_args()
+
+if args.verbose:
+    nestPrint(vars(args), colour=True, output=sys.stderr)
 
 def main():
-    args = sys.argv[1:]
 
-    if '-s' in args:
-        s = args.index('-s')
-        del args[s]
-        stream = True
-    else:
-        stream = False
-
-    if '-t' in args:
-        t = args.index('-t')
-        text = args[t+1]
-        del args[t+1]
-        del args[t]
-    else:
-        text = None
-
-    if '-a' in args:
-        a = args.index('-a')
-        attr = True
-        value = args[a+1]
-        del args[a+1]
-        del args[a]
-    else:
-        attr = None
-
+    pn = re.compile('^xmlns:([^=]*)=(.*)$');
     ns = {}
-    pn = re.compile('^([^:]*):(.*)$');
-    while '-n' in args:
-        n = args.index('-n')
-        v = args[n+1]
-        del args[n+1]
-        del args[n]
-        m = pn.match(v)
+    if args.ns:
+        for nsp in args.ns:
+            m = pn.match(nsp)
+            if m:
+                ns[m.group(1)]=m.group(2)
+
+    if args.attr and args.xpath:
+        pa = re.compile('^(.*)/@([^@]*)$')
+        m = pa.match(args.xpath)
         if m:
-            ns[m.group(1)]=m.group(2)
-
-    if len(args) < 2:
-        m = pp.match(sys.argv[0])
-        print 'usage: %s <xpath> -[ta] <value> <files*>'%m.group(1)
-        return
-
-    xpath=args[0]
-
-    if attr:
-        m = pa.match(xpath)
-        xpath = m.group(1)
-        attr = m.group(2)
-
-    for f in args[1:]:
-        if stream:
-            b = f
+            xpath=m.group(1)
+            attr = m.group(2)
+            if args.verbose:
+                sys.stderr.write('attr name=%s\n'%attr)
         else:
-            b='%s.bak'%f
-            try:
-                os.remove(b)
-            except:
-                None
-            os.rename(f,b)
+            sys.stderr.write('can\'t match attr from xpath=%s'%args.xpath)
+    else:
+        xpath = args.xpath
 
+    for f in args.file:
+        if args.show:
+            sys.stderr.write('%s\n'%f)
+        b='%s.bak'%f
+        try:
+            os.remove(b)
+        except:
+            None
+        os.rename(f,b)
         
         (doc,ctx)=getContextFromFile(b)
         for p in ns.keys():
@@ -76,17 +62,20 @@ def main():
 
         res = ctx.xpathEval(xpath)
         for r in res:
-            if text:
-                r.setContent(text)
-            if attr:
-                r.setProp(attr,value)
-
-        if stream:
-            print '%s'%doc
-        else:
-            output = open(f,'w')
-            output.write('%s'%doc)
-            output.close()
+            if args.text:
+                if args.show:
+                    sys.stderr.write('%s- %s%s\n'%(colours['Red'],r.content,colours['Off']))
+                    sys.stderr.write('%s+ %s%s\n'%(colours['Green'],args.text,colours['Off']))
+                r.setContent(args.text)
+            if args.attr:
+                if args.show:
+                    sys.stderr.write('%s- %s%s\n'%(colours['Red'],r.prop(attr),colours['Off']))
+                    sys.stderr.write('%s+ %s%s\n'%(colours['Green'],args.attr,colours['Off']))
+                r.setProp(attr,args.attr)
+                
+        output = open(f,'w')
+        output.write('%s'%doc)
+        output.close()
     return
 
 if __name__ == '__main__' : main()
