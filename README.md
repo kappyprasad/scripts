@@ -6,32 +6,36 @@ this scripts library provides some unix tools based on python, perl and bash to 
 Each tool in python uses the argparse library and so supports the -h or -? command to get options and usage patterns.
 
 
-#XML# tools to parse, get & set values.
+**XML** tools to parse, get & set values.
 * parser.py
 * xpath.py
 * xset.py
 * cdata2xml.py
 * cdata2null.py
 
-JSON tool to parse
+**JSON** tool to parse
 * pyson.py
 * json2xml.py
 
-Logging filter and extractor
+**Logging** filter and extractor
 * log-tail.py
 
-Streaming syntax hilighters
+**Streaming** syntax hilighters
 * error.pl
 * xml.pl
 
-SVN prettifiers and helpers
+**SVN** prettifiers and helpers
 * svnlog.py
-* svn
+* svnstatus.py
+* svnadd.py
+* svnremove.py
+* svnrevert.py
+* svndelete.py
 
-MVN prettifiers and helpers
+**MVN** prettifiers and helpers
 * mvn.pl
 
-unix/cygwin prettifiers
+**unix/cygwin** prettifiers
 * du.pl
 * df.pl
 
