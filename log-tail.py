@@ -44,11 +44,6 @@ parser.add_argument('files',            action='store',      help='the files to 
 
 args = parser.parse_args()
 
-
-def usage(app):
-    print 'usage: %s \n\t[-f file] \n\t[-scha] \n\t[-e element] \n\t[-x xpath] \n\t[-r regex] \n\t[-t start:end] \n\t[-T]'%app
-    return
-
 def getElements(args):
     global elements
     elements = { 'start' : [] , 'end' : [] }
