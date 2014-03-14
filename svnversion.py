@@ -1,14 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2014-02-07 11:09:21 +1100 (Fri, 07 Feb 2014) $
-# $Revision: 8257 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/svnversion.py $
-# $Id: svnversion.py 8257 2014-02-07 00:09:21Z david.edson $
-
-
-
-
 import sys, re, os, copy
 import argparse
 
