@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# $Date: 2014-03-11 19:20:01 +1100 (Tue, 11 Mar 2014) $
-# $Revision: 9247 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/svnignore.sh $
-# $Id: svnignore.sh 9247 2014-03-11 08:20:01Z david.edson $
-
 args="$*"
 
 if [ "$args" = "" ]
