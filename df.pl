@@ -27,22 +27,13 @@ my $quiet = $OPTIONS{'q'};
 
 #die $USAGE unless scalar @ARGV;
 
-my %st;
-
-open(SUBST, "subst |") || die "Can't run subst, $!\n";
-while (<SUBST>) {
-  if (/^(\S:)(.*)$/) {
-    $st{$1}=$2;
-  }
-}
-close(SUBST);
-
 #for my $d (sort(keys(%st))) {
 #  print "\$st[$d]=$st{$d}\n";
 #}
 
 my $bits = join(" ", @ARGV);
 
+my $disk;
 my $drive;
 my $size;
 my $sizef;
@@ -53,28 +44,26 @@ my $avail;
 my $availf;
 
 format PsList =
-@< @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>
+@<<<<<<<<<<<<<< @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>
 $drive, $sizef, $usedf, $availf, $percent
 .
 
 $~ = "PsList";
 
 if (! $quiet) {
-  print "?:    size(kb)      used(kb)     avail(kb)   used\n";
-  print "-- ------------- ------------- ------------- ----\n";
+  print "mnt                  size(kb)      used(kb)     avail(kb) used\n";
+  print "--------------- ------------- ------------- ------------- ----\n";
 }
 
-open (IN, "df -t ntfs -t vfat -k $bits |") || die "Can't run df, $!\n";
+open (IN, "df -k $bits |") || die "Can't run df, $!\n";
 while (<IN>) {
   s/[\r\n]//g;
-  if (/^([a-z]:)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\%)\s+/i) {
-    ($drive, $size, $used, $avail, $percent) = ($1, $2, $3, $4, $5);
+  if (/^(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\%)\s+(\S+)/i) {
+    ($disk, $size, $used, $avail, $percent, $drive) = ($1, $2, $3, $4, $5, $6);
     $sizef = &libraries'num2commas($size);
     $usedf = &libraries'num2commas($used);
     $availf = &libraries'num2commas($avail);
-    if (! defined($st{$drive})) {
-      write;
-    }
+    write;
   }
 }
 close(IN);
