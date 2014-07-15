@@ -8,9 +8,11 @@
 
 
 
+
 import os,sys,re
 import argparse
 
+from _tools.pretty import *
 from _tools.eddo import *
 
 parser = argparse.ArgumentParser()
@@ -22,7 +24,7 @@ parser.add_argument('filename',action='store',help='the file name')
 
 args = parser.parse_args()
 
-nestPrint(vars(args),colour=True)
+prettyPrint(vars(args),colour=True)
 
 print 'verbose =',args.verbose
 print 'username=',args.username

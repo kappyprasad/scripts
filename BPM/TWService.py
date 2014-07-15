@@ -48,11 +48,13 @@ class TWService(TWProcess):
         self.xpathItemID   = 'processItemId'
         self.xpathItemType = 'tWComponentName'
         self.xpathImplType = None
+        self.xpathImplID   = 'TWComponent/attachedProcessRef'
         self.xpathLayout   = 'layoutData'
         
         self.xpathLink     = '/teamworks/process/link'
         self.xpathFrom     = 'fromProcessItemId'
         self.xpathTo       = 'toProcessItemId'
+        self.linkStyle     = None
 
         return
 

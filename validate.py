@@ -15,6 +15,8 @@
 import sys, re, os, libxml2
 import argparse
 
+from _tools.pretty import *
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose',action='store_true')
@@ -24,7 +26,7 @@ parser.add_argument('file',action='store',help='xml file')
 args = parser.parse_args()
 
 if args.verbose:
-        nestPrint(vars(args),colour=True)
+        prettyPrint(vars(args),colour=True)
 
 ctxt = libxml2.schemaNewParserCtxt(args.schema)
 schema = ctxt.schemaParse()

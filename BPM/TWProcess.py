@@ -40,11 +40,13 @@ class TWProcess(object):
     xpathItemID   = None
     xpathItemType = None
     xpathImplType = None
+    xpathImplID   = None
     xpathLayout   = None
 
     xpathLink     = None
     xpathFrom     = None
     xpathTo       = None
+    linkStyle     = None
 
     def __init__(self,xmi,doc,ctx,sid,package,interfaces):
         self.xmi = xmi
@@ -128,7 +130,8 @@ class TWProcess(object):
 
         sid = getElementText(self.ctx,self.xpathStartID)
         if sid in self.pids.keys():
-            self.xmi.makeTransition(startState,self.pids[sid],self.activityModel)
+            transition = self.xmi.makeTransition(startState,self.pids[sid],self.activityModel)
+            self.xmi.addDiagramElement(transition,self.activityDiagram,style=self.linkStyle)
 
         for link in getElements(self.ctx,self.xpathLink):
             name = link.prop('name')
@@ -144,7 +147,8 @@ class TWProcess(object):
                 tid = getElementText(self.ctx,self.xpathTo,link)
 
             if fid in self.pids.keys() and tid in self.pids.keys():
-                self.xmi.makeTransition(self.pids[fid],self.pids[tid],self.activityModel,name=name)
+                transition = self.xmi.makeTransition(self.pids[fid],self.pids[tid],self.activityModel,name=name)
+                self.xmi.addDiagramElement(transition,self.activityDiagram,style=self.linkStyle)
 
         return self.twProcess
 
@@ -154,7 +158,9 @@ class TWProcess(object):
             pid = item.prop(self.xpathItemID[1:])
         else:
             pid = getElementText(self.ctx,self.xpathItemID,item)
-        pid = fixTwxRef(self.sid,pid)
+        if pid != None and not 'bpdid:' in pid:
+            pid = fixTwxRef(self.sid,pid)
+
         type = getElementText(self.ctx,self.xpathItemType,item)
         if self.xpathImplType != None:
             impl = getElementText(self.ctx,self.xpathImplType,item)
@@ -170,10 +176,10 @@ class TWProcess(object):
             self.xmi.makeLocalTag('documentation',script,state)
         elif type == 'Switch':
             state = self.xmi.makeActivitySwitchState(name,self.activityModel)
-        elif type == 'SubProcess' or impl == '1':
+        elif type == 'SubProcess' or type == '1' or impl == '1':
             state = self.xmi.makeActivityNodeState(name,self.activityModel)
             sid = state.prop('xmi.id')
-            cref = getElementText(self.ctx,'TWComponent/attachedProcessRef',item)
+            cref = getElementText(self.ctx,self.xpathImplID,item)
             cref = fixTwxRef(self.sid,cref)
             self.xmi.makeAssociation(name,None,None,self.diagramPackage,sid=sid,tid=cref)
         else:

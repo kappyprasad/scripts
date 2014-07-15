@@ -24,7 +24,7 @@ def generateID():
 class XMI:
 
     exporter  = '$HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py $'
-    version   = '$Revision: 11882 $'
+    version   = '$Revision: 11983 $'
     timestamp = '%Y-%m-%d %H:%M:%S'
 
     classDiagramStyle = {
@@ -35,7 +35,7 @@ class XMI:
         'Locked' : '0',
         'Border' : '1',
         'HighlightForeign' : '1',
-        'PackageContents' : '0',
+        'PackageContents' : '1',
         'SequenceNotes' : '0',
         'ScalePrintImage' : '1',
         'PPgs.cx' : '1',

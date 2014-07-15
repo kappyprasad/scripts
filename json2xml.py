@@ -8,12 +8,14 @@
 
 
 
+
 import sys,os,re
 import argparse
 
 from _tools.eddo import *
 from _tools.eddoml import *
 from _tools.json import *
+from _tools.pretty import *
 
 parser = argparse.ArgumentParser()
 
@@ -26,7 +28,7 @@ def process(lines):
     try:
         json = parseJSON(lines)
         print '<json>'
-        nestPrintXML(json)
+        prettyPrintXML(json)
         print '</json>'
     except:
         print lines

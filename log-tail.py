@@ -8,6 +8,7 @@
 
 
 
+
 import sys, re, os, operator
 from datetime import *
 import argparse
@@ -35,16 +36,17 @@ tsp = '%H-%M-%S.%f'
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-v','--verbose',   action='store_true', help='versbose mode'                   )
-parser.add_argument('-b','--horizon',   action='store_true', help='horizontal bar between messages' )
-parser.add_argument('-c','--colour',    action='store_true', help='show in colour'                  )
-parser.add_argument('-s','--stubb',     action='store_true', help='stub out date time stamp'        )
-parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'           )
-parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                  )
-parser.add_argument('-t','--text',      action='store_true', help='text xpath output'               )
+parser.add_argument('-v','--verbose',   action='store_true', help='versbose mode'                            )
+parser.add_argument('-b','--horizon',   action='store_true', help='horizontal bar between messages'          )
+parser.add_argument('-c','--colour',    action='store_true', help='show in colour'                           )
+parser.add_argument('-s','--stubb',     action='store_true', help='stub out date time stamp'                 )
+parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'                    )
+parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                           )
+parser.add_argument('-t','--text',      action='store_true', help='text xpath output'                        )
 parser.add_argument('-e','--element',   action='store',      help='xml element match',              nargs='*')
-parser.add_argument('-x','--xpath',     action='store',      help='xpath on xml element'            )
-parser.add_argument('-d','--dump',      action='store',      help='dump to file suffix'             )
+parser.add_argument('-x','--xpath',     action='store',      help='xpath on xml element'                     )
+parser.add_argument('-d','--dir',       action='store',      help='dump to directory'                        )
+parser.add_argument('-f','--file',      action='store',      help='dump to file suffix'                      )
 parser.add_argument('-r','--regex',     action='store',      help='regex patter',                   nargs='*')
 parser.add_argument('-p','--pair',      action='store',      help='pair of start:end tags',         nargs='*')
 parser.add_argument('files',            action='store',      help='the files to log',               nargs='*')
@@ -171,19 +173,27 @@ def processLine(line):
 def printXML(xml):
     global xp, leader, horizon
     if xp:
-        (doc,ctx) = getContextFromString(xml)
-        for r in ctx.xpathEval(xp):
-            if text:
-                dumpIfDump(r.content)
-            else:
-                printSnippetXML('%s'%r)
+        try:
+            (doc,ctx) = getContextFromString(xml)
+            for r in ctx.xpathEval(xp):
+                if text:
+                    dumpIfDump(r.content)
+                else:
+                    printSnippetXML('%s'%r)
+        except:
+            None #print xml
     else:
         printSnippetXML(xml)
     return
 
 def getDumpFP():
     global dump
-    fn = '%s.%s'%(datetime.utcnow().strftime('%s.%s'%(dsp,tsp)),dump)
+    fn = ''
+    if args.dir:
+        fn += '%s/'%args.dir.rstrip('/')
+    fn += '%s'%datetime.utcnow().strftime('%s.%s'%(dsp,tsp))
+    if args.file:
+        fn += '.%s'%args.file
     print '%s'%fn
     fp = open(fn,'w')
     return fp
@@ -221,7 +231,7 @@ def printSnippetXML(xml):
         cdm = cdp.match(xml)
         if cdm:
             xml = cdm.group(1)
-        sys.stdout.write('%s\n'%xml)
+        sys.stdout.write('< %s\n'%xml)
     del myParser
     if dump:
         fp.close()
@@ -237,6 +247,9 @@ def main():
         horizon = buildHorizon()
 
     xp = args.xpath
+    if args.element and not args.xpath:
+        xp = '/'
+
     verbose = args.verbose
     colour = args.colour
     stubb = args.stubb
@@ -244,9 +257,13 @@ def main():
     usdate = args.usdate
     text = args.text
     
-    dump = args.dump
+    dump = (args.file or args.dir)
     if dump:
         colour = False
+
+    if args.dir:
+        if not os.path.isdir(args.dir):
+            os.mkdir(args.dir)
 
     files = args.files
 
@@ -262,7 +279,7 @@ def main():
     else:
         for f in files:
             if os.path.isfile(f):
-                sys.stderr.write('%s\n'%f)
+                sys.stderr.write('< %s\n'%f)
                 fp = open(f)
                 for line in fp.readlines():
                     processLine(line)

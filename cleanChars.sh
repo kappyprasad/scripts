@@ -7,5 +7,6 @@
 # $Id$
 
 
+
 perl -pe "s/[\x7F-\xFF]//g" -i "$*" 
 

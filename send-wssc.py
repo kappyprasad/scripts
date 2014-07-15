@@ -8,12 +8,14 @@
 
 
 
+
 import sys, re, os, urllib, urllib2, argparse, StringIO
 
 from _tools.parser import *
 from _tools.xpath import *
 from _tools.eddo import *
 from _tools.cdata import *
+from _tools.pretty import *
 
 parser = argparse.ArgumentParser()
 
@@ -28,11 +30,11 @@ parser.add_argument('param', action='store', nargs='*',     help='the wssc param
 args = parser.parse_args()
 
 if args.verbose:
-    nestPrint(vars(args),colour=True,output=sys.stderr)
+    prettyPrint(vars(args),colour=True,output=sys.stderr)
 
 def main():
     colour = args.colour
-    verbose = args.colour
+    verbose = args.verbose
     output = args.output
     horizon = buildHorizon()
 
@@ -49,7 +51,7 @@ def main():
     if soapBody:
         sbi = StringIO.StringIO(soapBody)
         sbo = StringIO.StringIO()
-        cdata2xml(sbi,sbo)
+        xml2cdata(sbi,sbo)
         soapBody = sbo.getvalue()
         sbo.close()
 
@@ -64,9 +66,9 @@ def main():
             sbh.append(line)
 
     if len(sbh) > 0:
-        print 'usage: %s'%sys.argv[0]
+        sys.stderr.write('usage: %s\n'%sys.argv[0])
         for line in sbh:
-            print line
+            sys.stderr.write('%s\n'%line)
         return
 
     headers = {
@@ -106,6 +108,12 @@ def main():
             colour=False
             fp = open(output,'w')
 
+        if verbose:
+            sys.stderr.write('%s\n'%horizon)
+            myParser = MyParser(colour=args.colour,rformat=True,output=sys.stderr)
+            myParser.parser.Parse(xml)
+            del myParser
+            
         myParser = MyParser(colour=colour,rformat=True,output=fp)
         myParser.parser.Parse(xml)
         del myParser

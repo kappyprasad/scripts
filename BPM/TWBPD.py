@@ -40,14 +40,16 @@ class TWBPD(TWProcess):
         self.xpathLane     = '/teamworks/bpd/BusinessProcessDiagram/pool/lane'
 
         self.xpathItem     = 'flowObject'
-        self.xpathItemID   = '@id'
+        self.xpathItemID   = 'inputPort/flow/@ref'
         self.xpathItemType = 'component/eventType'
         self.xpathImplType = 'component/implementationType'
+        self.xpathImplID   = 'component/implementation/attachedActivityId'
         self.xpathLayout   = 'position/location'
 
-        self.xpathLink     = '/teamworks/bpd/BusinessProcessDiagram/flow'
-        self.xpathFrom     = '@id'
-        self.xpathTo       = 'connection/condition/@id'
+        self.xpathLink     = '/teamworks/bpd/BusinessProcessDiagram/pool/lane/flowObject'
+        self.xpathFrom     = 'inputPort/flow/@ref'
+        self.xpathTo       = 'outputPort/flow/@ref'
+        self.linkStyle     = 'TREE=H'
 
         return
 

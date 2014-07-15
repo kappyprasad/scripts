@@ -7,12 +7,15 @@
 # $Id$
 
 
+
+
 import sys, re, os, libxml2
 import argparse
 
 from _tools.colours import *
 from _tools.eddo import *
 from _tools.xpath import *
+from _tools.pretty import *
 
 parser = argparse.ArgumentParser()
 
@@ -28,7 +31,7 @@ parser.add_argument('file',           action='store',      help='file to parse',
 args = parser.parse_args()
 
 if args.verbose:
-    nestPrint(vars(args), colour=True, output=sys.stderr)
+    prettyPrint(vars(args), colour=True, output=sys.stderr)
 
 def main():
 

@@ -7,6 +7,7 @@
 # $Id$
 
 
+
 if [ "$1" == "" ]
 then
     echo "usage: $0 <class>"
