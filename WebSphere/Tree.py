@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-17 10:28:54 +1000 (Tue, 17 Jun 2014) $
-# $Revision: 11745 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/WebSphere/Tree.py $
-# $Id: Tree.py 11745 2014-06-17 00:28:54Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 import sys,re,os,argparse,StringIO
 

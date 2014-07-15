@@ -1,5 +1,12 @@
 #!/usr/bin/python
 
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
 
 import sys, re, os, urllib, urllib2, argparse, StringIO
 

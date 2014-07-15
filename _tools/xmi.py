@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-24 18:48:37 +1000 (Tue, 24 Jun 2014) $
-# $Revision: 11882 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py $
-# $Id: xmi.py 11882 2014-06-24 08:48:37Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 
 ####################################################################################

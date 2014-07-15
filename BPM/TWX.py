@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-24 18:04:17 +1000 (Tue, 24 Jun 2014) $
-# $Revision: 11881 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/BPM/TWX.py $
-# $Id: TWX.py 11881 2014-06-24 08:04:17Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 
 import sys, re, os, urllib, urllib2, StringIO

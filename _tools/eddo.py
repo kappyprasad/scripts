@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-04 16:05:55 +1000 (Wed, 04 Jun 2014) $
-# $Revision: 11546 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/eddo.py $
-# $Id: eddo.py 11546 2014-06-04 06:05:55Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 import sys,os
 from _tools.colours import colours

@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-19 20:05:18 +1000 (Thu, 19 Jun 2014) $
-# $Revision: 11829 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/BPM/TWClass.py $
-# $Id: TWClass.py 11829 2014-06-19 10:05:18Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 
 

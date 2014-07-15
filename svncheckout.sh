@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
 file=$1
 
 if [ "$file" = "" ]

@@ -1,8 +1,32 @@
 #!/usr/bin/python
 
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
+
+
 import sys,re,os
+import argparse
+
+from subprocess import Popen, PIPE
 
 from _tools.eddo import *
+from _tools.colours import *
+
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-v','--verbose',  action='store_true', help='verbose mode')
+parser.add_argument('-r','--revision', action='store',      help='revision to log')
+parser.add_argument('file',            action='store',      help='the svn file name', nargs='*', default='.')
+
+args = parser.parse_args()
+
+mycolours = getColours()
 
 p=re.compile('(r\d+)\s\|\s([^\|]+)\s\|\s([^\|]+)\s\|\s(.*)')
 l=re.compile('-------')
@@ -13,15 +37,24 @@ if 'COLUMNS' in os.environ:
 
 def logFile(file):
     print '-'*columns
-    print file
+    print '%s%s%s'%(mycolours['Orange'],file,mycolours['Off'])
     print
 
     versions = {}
 
-    (fi,fo,fe) = os.popen3('svn log %s'%file)
-    fi.close();
+    options = ''
+    if args.revision:
+        options += ' -r %s'%args.revision
 
-    for line in fo.readlines(): 
+    cmd = 'svn log %s %s'%(options,file)
+
+    process = Popen(cmd,shell=True,stdout=PIPE)
+
+    while True:
+        line = process.stdout.readline()
+        if not line:
+            break
+
         m = p.match(line)
         line = line.rstrip()
         if m:
@@ -35,9 +68,6 @@ def logFile(file):
         elif not l.match(line):
             versions[timestamp]['body'] ='%s%s'%(versions[timestamp]['body'],line)
 
-    fo.close()
-    fe.close()
-
     for timestamp in sorted(versions.keys()):
         record = versions[timestamp]
         line = '%-10s %-20s %s     '%(record['version'],record['user'],timestamp[:19])
@@ -46,10 +76,10 @@ def logFile(file):
     return
 
 def main():
-    if len(sys.argv) == 1:
+    if len(args.file) == 0:
         logFile('')
     else:
-        for file in sys.argv[1:]:
+        for file in args.file:
             logFile('"%s"'%file)
     return
 

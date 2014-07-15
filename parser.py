@@ -1,47 +1,46 @@
 #!/usr/bin/python
 
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
+
+
+# http://mikekneller.com/kb/python/libxml2python/part1
 
 import sys,os
 import argparse
 import StringIO
 
+from _tools.eddo import *
 from _tools.parser import *
+from _tools.pretty import *
 
-horizon = ''
-if 'COLUMNS' in os.environ:
-    horizon = '-' * int(os.environ['COLUMNS'])
-else:
-    horizon = '-' * 80
+horizon = buildHorizon()
 
-def doit(colour,areturn,rformat,input,html,output,preserve):
-    myParser = MyParser(colour=colour, areturn=areturn, rformat=rformat, html=html, output=output, preserve=preserve)
-    try:
-        myParser.parser.ParseFile(input)
-    except:
-        sys.stderr.write('parse failed, rendering as text\n')
-        input.seek(0)
-        print '\n'.join(input.readlines())
-    del myParser
-    return
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-?',              action='help',       help='show this help')
+parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
+parser.add_argument('-c','--colour',   action='store_true', help='show output in colour')
+parser.add_argument('-b','--bar',      action='store_true', help='put horizontal bar inbetween')
+parser.add_argument('-n','--nobak',    action='store_true', help='when processing inplace, dont backup file')
+parser.add_argument('-i','--inplace',  action='store_true', help='format xml inplace')
+parser.add_argument('-r','--root',     action='store_true', help='indent root attributes')
+parser.add_argument('-a','--attr',     action='store_true', help='indent all attributes')
+parser.add_argument('-t','--title',    action='store_true', help='show title of document')
+parser.add_argument('-p','--preserve', action='store_true', help='preserve line spacing')
+parser.add_argument('-s','--strip',    action='store_true', help='strip comments')
+parser.add_argument('-o','--output',   action='store',      help='output to xml file')
+parser.add_argument('-H','--html',     action='store',      help='output in HTML file')
+parser.add_argument('file',            action='store',      help='files to format', nargs='*')
+
+args = parser.parse_args()
 
 def main():
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-?',              action='help',       help='show this help')
-    parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
-    parser.add_argument('-c','--colour',   action='store_true', help='show output in colour')
-    parser.add_argument('-b','--bar',      action='store_true', help='put horizontal bar inbetween')
-    parser.add_argument('-i','--inplace',  action='store_true', help='format xml inplace')
-    parser.add_argument('-r','--root',     action='store_true', help='indent root attributes')
-    parser.add_argument('-a','--attr',     action='store_true', help='indent all attributes')
-    parser.add_argument('-t','--title',    action='store_true', help='show title of document')
-    parser.add_argument('-p','--preserve', action='store_true', help='preserve line spacing')
-    parser.add_argument('-o','--output',   action='store',      help='output to xml file')
-    parser.add_argument('-H','--html',     action='store',      help='output in HTML file')
-    parser.add_argument('file',            action='store',      help='files to format', nargs='*')
-
-    args = parser.parse_args()
 
     colour = args.colour
     areturn = args.attr
@@ -72,6 +71,8 @@ def main():
 
     preserve = args.preserve
 
+    comments = not args.strip
+
     if args.file:
         for arg in args.file:
             f = arg
@@ -94,16 +95,18 @@ def main():
 
                 fp = open(arg)
 
-            doit(colour,areturn,rformat,fp,html,output,preserve)
+            doParse(colour,areturn,rformat,fp,html,output,preserve,comments)
 
             fp.close()
 
             if inplace:
                 output.close()
+                if args.nobak:
+                    os.unlink(b)
 
     else:
         fp = StringIO.StringIO('\n'.join(sys.stdin.readlines()))
-        doit(colour,areturn,rformat,fp,html,output,preserve)
+        doParse(colour,areturn,rformat,fp,html,output,preserve,comments)
         fp.close()
         
     if foutput:

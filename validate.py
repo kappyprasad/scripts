@@ -1,10 +1,12 @@
 #!/usr/bin/python
 
-# $Date: 2014-02-27 14:08:03 +1100 (Thu, 27 Feb 2014) $
-# $Revision: 8921 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/validate.py $
-# $Id: validate.py 8921 2014-02-27 03:08:03Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
 
 # inspired from the test suite file "xstc/xstc.py"
 # thanks to Kasimier Buchcik

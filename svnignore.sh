@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
+
 args="$*"
 
 if [ "$args" = "" ]
@@ -15,6 +22,7 @@ else
     svn propget svn:ignore > .svnignore
     for i in $*
     do
+        i=$(echo $i | perl -pe 's|/$||;')
         echo $i >> .svnignore
     done
     sort -u .svnignore -o .svnignore

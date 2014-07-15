@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-24 19:12:15 +1000 (Tue, 24 Jun 2014) $
-# $Revision: 11883 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/BPM/TWProcess.py $
-# $Id: TWProcess.py 11883 2014-06-24 09:12:15Z david.edson $
+# $Date$
+# $Revision$
+# $Author$
+# $HeadURL$
+# $Id$
+
 
 import sys, re, os, urllib, urllib2, StringIO
 import argparse
