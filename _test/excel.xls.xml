@@ -1,0 +1,45 @@
+
+<workbook>
+  <sheet>
+    <name><![CDATA[Sheet1]]></name>
+    <properties>
+      <columns>
+        <column number="0" width="10"/>
+        <column number="1" width="17"/>
+      </columns>
+    </properties>
+    <row number="0">
+      <col number="0" type="Label"><![CDATA[A1]]></col>
+      <col number="1" type="Label"><![CDATA[B1]]></col>
+    </row>
+    <row number="1">
+      <col number="0" type="Number"><![CDATA[1]]></col>
+      <col number="1" type="Numerical Formula" format="#0.###"><![CDATA[A2+5.0]]></col>
+    </row>
+    <row number="2">
+      <col number="0" type="Label"><![CDATA[A2]]></col>
+      <col number="1" type="String Formula"><![CDATA[A3&"_more"]]></col>
+    </row>
+    <row number="3">
+      <col number="0" type="Date" format="d/MM/yy"><![CDATA[2011-12-21 11:00:00 +1100]]></col>
+      <col number="1" type="Date Formula" format="dd-MMMM-yyyy"><![CDATA[A4]]></col>
+    </row>
+  </sheet>
+  <sheet>
+    <name><![CDATA[Sheet2]]></name>
+    <properties>
+      <columns>
+        <column number="0" width="8"/>
+      </columns>
+    </properties>
+    <row number="0">
+      <col number="0" type="Label"><![CDATA[no one here man]]></col>
+    </row>
+  </sheet>
+  <sheet>
+    <name><![CDATA[Sheet3]]></name>
+    <properties>
+      <columns/>
+    </properties>
+  </sheet>
+</workbook>

@@ -3,14 +3,13 @@
 # $Date: 2014-06-04 16:05:55 +1000 (Wed, 04 Jun 2014) $
 # $Revision: 11546 $
 # $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/parser.py $
-# $Id: parser.py 11546 2014-06-04 06:05:55Z david.edson $
+# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xml2json.py $
+# $Id: xml2json.py 11546 2014-06-04 06:05:55Z david.edson $
 
 import sys, re, os
 import xml.parsers.expat
 
 from xml.dom import minidom
-
 from _tools.pretty import *
 
 tokens = [
@@ -49,12 +48,12 @@ def escapeData(data):
         data = data.replace(token['from'],token['into'])
     return data
 
-def doParse(colour,areturn,rformat,input,html,output,preserve,comments):
-    myParser = MyParser(colour=colour, areturn=areturn, rformat=rformat, html=html, output=output, preserve=preserve, comments=comments)
+def doParse(colour,input,html,output):
+    myParser = MyParser(colour=colour, html=html, output=output)
     try:
         myParser.parser.ParseFile(input)
     except:
-        printer = PrettyPrinter(colour=True,output=sys.stderr)
+        printer = PrettyPrinter(colour=True)
         printer.prettify(sys.exc_info())
         del printer
         sys.stderr.write('rendering as text\n')
@@ -78,7 +77,7 @@ class MyParser:
 
     state = stateEndLast
 
-    def __init__(self, colour=False, areturn=False, rformat=False, html=False, output=sys.stdout, preserve=False, comments=True):
+    def __init__(self, colour=False, html=False, output=sys.stdout):
 
         self.output = output
         self.lt='<'
@@ -88,7 +87,6 @@ class MyParser:
         self.apos='\''
         self.lf='\n'
         self.indentChar = '    '
-        self.preserve = preserve
         
         if html:
             self.colOrange = '<font color="Orange">'
@@ -122,9 +120,6 @@ class MyParser:
             self.colRed = ''
             self.colOff = ''
 
-        self.areturn = areturn
-        self.rformat = rformat
-        
         self.parser = xml.parsers.expat.ParserCreate()
 
         self.parser.StartElementHandler          = self.startElementHandler
@@ -136,9 +131,6 @@ class MyParser:
         self.parser.StartDoctypeDeclHandler      = self.startDoctypeDeclHandler
         self.parser.EndDoctypeDeclHandler        = self.endDoctypeDeclHandler
         self.parser.ProcessingInstructionHandler = self.processingInstructionHandler
-
-        if comments:
-            self.parser.CommentHandler           = self.commentHandler
 
         #         Doctype => \&handle_doctype,
         #         Proc => => \&handle_proc,
@@ -168,17 +160,14 @@ class MyParser:
         return
         
     def startElementHandler(self, name, attrs):
-        if self.rformat:
-            self.areturn = True
-
         if self.state == self.stateStartLast:
             self.output.write(
                 self.colTeal + self.gt + self.colOff + self.lf
             )
 
-        if self.preserve and self.lfCount > 2 and self.state == self.stateEndLast:
-            self.output.write(self.lf)
-            #self.output.write(',%s'%self.state)
+        #if self.lfCount > 2 and self.state == self.stateEndLast:
+        #    self.output.write(self.lf)
+        #    #self.output.write(',%s'%self.state)
         self.lfCount =0
 
         self.output.write((self.indent) * self.indentChar)
@@ -187,24 +176,17 @@ class MyParser:
             self.colPurple + name + self.colOff
         )
         for attr in sorted(attrs.keys()):
-            if self.areturn:
-                self.output.write(self.lf)
-                self.output.write((self.indent+1) * self.indentChar)
-            else:
-                self.output.write(' ')
+            self.output.write(' ')
             self.output.write(
                 self.colRed + attr + self.colOff +
                 self.colTeal + '=' + self.colOff + self.quot +
                 self.colGreen + escapeData(attrs[attr]) + self.colOff + self.quot
             )
-        if len(attrs) > 0 and self.areturn:
+        if len(attrs) > 0:
             self.output.write(self.lf)
             self.output.write((self.indent) * self.indentChar)
         self.indent += 1
         self.state = self.stateStartLast
-        if self.rformat:
-            self.rformat = False
-            self.areturn = False
         return
             
     def endElementHandler(self, name):
