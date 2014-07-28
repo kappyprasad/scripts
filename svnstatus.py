@@ -6,9 +6,6 @@
 # $HeadURL$
 # $Id$
 
-
-
-
 import sys, re, os, copy
 import argparse
 
@@ -60,7 +57,7 @@ def main():
     if args.verbose:
         options += ' -v'
 
-    cmd='svn status %s %s'%(options,' '.join(args.file))
+    cmd='/usr/bin/svn status %s %s'%(options,' '.join(args.file))
 
     process = Popen(cmd,shell=True,stdout=PIPE)
     #prettyPrint(process)
