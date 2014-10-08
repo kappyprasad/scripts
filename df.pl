@@ -44,15 +44,15 @@ my $avail;
 my $availf;
 
 format PsList =
-@<<<<<<<<<<<<<< @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>
+@<<<<<<<<<<<<<<<<<<<<<<<< @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>>>>>>>>>> @>>>
 $drive, $sizef, $usedf, $availf, $percent
 .
 
 $~ = "PsList";
 
 if (! $quiet) {
-  print "mnt                  size(kb)      used(kb)     avail(kb) used\n";
-  print "--------------- ------------- ------------- ------------- ----\n";
+  print "mnt                            size(kb)      used(kb)     avail(kb) used\n";
+  print "------------------------- ------------- ------------- ------------- ----\n";
 }
 
 open (IN, "df -k $bits |") || die "Can't run df, $!\n";
