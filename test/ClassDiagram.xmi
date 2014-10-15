@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<XMI
+    timestamp="2014-06-24 18:47:31"
+    xmi.version="1.2"
+    xmlns:UML="org.omg.xmi.namespace.UML"
+>
+    <XMI.header>
+        <XMI.documentation>
+            <XMI.exporter>$HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py $</XMI.exporter>
+            <XMI.exporterVersion>$Revision: 11881 $</XMI.exporterVersion>
+        </XMI.documentation>
+        <XMI.metamodel xmi.name="UML" xmi.version="1.4"/>
+    </XMI.header>
+    <XMI.content>
+        <UML:Model isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="2014-06-24 18:47:31" visibility="public" xmi.id="EDDO_850f582b-50e9-4a92-9bfd-ad6fdbbb10e6">
+            <UML:Namespace.ownedElement>
+                <UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Classes" visibility="public" xmi.id="EDDO_61038db0-32df-48b4-b8b1-f720898ffa83">
+                    <UML:Namespace.ownedElement>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="String" visibility="public" xmi.id="EDDO_9c3ff407-1fcb-4bf6-9e47-0ac46d46d234">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_6b8bff8f-0d28-45a8-8161-3f430bddd147"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Parent" visibility="public" xmi.id="EDDO_7073f355-ad3e-4fdd-a7dd-1d30a9cc355c">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="child" visibility="private">
+                                    <UML:StructuralFeature.type>
+                                        <UML:Classifier xmi.idref="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                                    </UML:StructuralFeature.type>
+                                </UML:Attribute>
+                                <UML:Operation name="getChild" visibility="public">
+                                    <UML:BehavioralFeature.parameter>
+                                        <UML:Parameter kind="in" name="name" xmi.id="EDDO_4e753bb0-a7b1-48c6-b596-af8577ec0237">
+                                            <UML:Parameter.type>
+                                                <UML:Class xmi.idref="EDDO_9c3ff407-1fcb-4bf6-9e47-0ac46d46d234"/>
+                                            </UML:Parameter.type>
+                                        </UML:Parameter>
+                                        <UML:Parameter kind="in" name="child" xmi.id="EDDO_4bb4343c-8de6-405e-910a-57b8b348450a">
+                                            <UML:Parameter.type>
+                                                <UML:Class xmi.idref="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                                            </UML:Parameter.type>
+                                        </UML:Parameter>
+                                        <UML:Parameter kind="return" name="return" xmi.id="EDDO_2f091f0b-0431-4745-a510-92c7619f7e08">
+                                            <UML:Parameter.type>
+                                                <UML:Class xmi.idref="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                                            </UML:Parameter.type>
+                                        </UML:Parameter>
+                                    </UML:BehavioralFeature.parameter>
+                                </UML:Operation>
+                            </UML:Classifier.feature>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Child" visibility="public" xmi.id="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="names" visibility="private">
+                                    <UML:ModelElement.taggedValue>
+                                        <UML:TaggedValue tag="collection" value="true"/>
+                                        <UML:TaggedValue tag="container" value="[]"/>
+                                    </UML:ModelElement.taggedValue>
+                                    <UML:StructuralFeature.type>
+                                        <UML:Classifier xmi.idref="EDDO_9c3ff407-1fcb-4bf6-9e47-0ac46d46d234"/>
+                                    </UML:StructuralFeature.type>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                        </UML:Class>
+                        <UML:Association isAbstract="false" isLeaf="false" isRoot="false" name="names" visibility="public" xmi.id="EDDO_a0a9aff3-b617-48c3-8084-d8485b9eeb71">
+                            <UML:Association.connection>
+                                <UML:AssociationEnd aggregation="none" isNavigable="false" xmi.id="EDDO_c9cb199d-f361-4026-95ed-7f395aa77d5c">
+                                    <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                                    </UML:AssociationEnd.participant>
+                                </UML:AssociationEnd>
+                                <UML:AssociationEnd aggregation="none" isNavigable="true" xmi.id="EDDO_c5c491e1-72a6-49e9-b2a0-3509f77e7e50">
+                                    <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id="EDDO_11e972bf-1724-40e0-814d-2eadd41763a3">
+                                            <UML:Multiplicity.range>
+                                                <UML:MultiplicityRange lower="0" upper="-1" xmi.id="EDDO_7f68db84-7bd0-4e0b-bd01-a8437c3f13df"/>
+                                            </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                    </UML:AssociationEnd.multiplicity>
+                                    <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref="EDDO_9c3ff407-1fcb-4bf6-9e47-0ac46d46d234"/>
+                                    </UML:AssociationEnd.participant>
+                                </UML:AssociationEnd>
+                            </UML:Association.connection>
+                        </UML:Association>
+                        <UML:Association isAbstract="false" isLeaf="false" isRoot="false" name="child" visibility="public" xmi.id="EDDO_ede58107-42da-4941-ad2e-68d34abf86c8">
+                            <UML:Association.connection>
+                                <UML:AssociationEnd aggregation="none" isNavigable="false" xmi.id="EDDO_7dc8e748-1fd4-494b-a5ad-73b3aecee997">
+                                    <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref="EDDO_7073f355-ad3e-4fdd-a7dd-1d30a9cc355c"/>
+                                    </UML:AssociationEnd.participant>
+                                </UML:AssociationEnd>
+                                <UML:AssociationEnd aggregation="none" isNavigable="true" xmi.id="EDDO_ec28dbfa-ceb2-40c3-8099-f618319eb7c0">
+                                    <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                                    </UML:AssociationEnd.participant>
+                                </UML:AssociationEnd>
+                            </UML:Association.connection>
+                        </UML:Association>
+                    </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Stereotype name="hifi" xmi.id="EDDO_6b8bff8f-0d28-45a8-8161-3f430bddd147"/>
+            </UML:Namespace.ownedElement>
+        </UML:Model>
+        <UML:Diagram diagramType="ClassDiagram" name="Diagram" owner="EDDO_61038db0-32df-48b4-b8b1-f720898ffa83" toolName="Enterprise Architect 2.5" xmi.id="EDDO_b5932cc3-cd59-483e-93ba-196d42eab7d9">
+            <UML:ModelElement.taggedValue>
+                <UML:TaggedValue tag="package" value="EDDO_61038db0-32df-48b4-b8b1-f720898ffa83"/>
+                <UML:TaggedValue tag="type" value="Logical"/>
+                <UML:TaggedValue tag="EAStyle" value="DocSize.cx=1000;DocSize.cy=1000;PaperSize=1;HideParents=1;ShowNotes=0;HideRelationships=0;AdvancedFeatureProps=1;PPgs.cy=1;PackageContents=0;ShowPrivate=1;ShowDetails=0;ShowPublic=1;HighlightForeign=1;ShowTags=0;ShowAsList=0;CollabNums=1;HideProps=1;Orientation=P;PrintPageHeadFoot=0;ConnectorNotation=UML 2.1;OpParams=1;AdvancedElementProps=1;AdvancedConnectorProps=1;ShowOpRetType=1;UseAlias=0;SequenceNotes=0;HideOps=0;ShowIcons=1;ShowMaint=0;VisibleAttributeDetail=0;Locked=0;ShowTests=0;Zoom=100;HideStereo=0;ExplicitNavigability=0;HideAtts=0;HideElemStereo=0;PPgs.cx=1;SuppConnectorLabels=0;ShowReqs=0;SuppressBrackets=0;ScalePrintImage=1;ShowCons=0;ShowProtected=1;Border=1;"/>
+            </UML:ModelElement.taggedValue>
+            <UML:Diagram.element>
+                <UML:DiagramElement subject="EDDO_7073f355-ad3e-4fdd-a7dd-1d30a9cc355c"/>
+                <UML:DiagramElement subject="EDDO_1b336fb8-8be8-4a33-854d-4881ddc7efe3"/>
+                <UML:DiagramElement subject="EDDO_9c3ff407-1fcb-4bf6-9e47-0ac46d46d234"/>
+            </UML:Diagram.element>
+        </UML:Diagram>
+    </XMI.content>
+    <XMI.extensions xmi.extender="Enterprise Architect 2.5">
+        <EAModel.file/>
+    </XMI.extensions>
+</XMI>
