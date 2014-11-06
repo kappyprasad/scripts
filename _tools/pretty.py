@@ -267,8 +267,8 @@ class TestPrettyObject(Types.Object):
         del self.__children
 
 ########################################################################################################################
-def prettyPrint(object,output=sys.stdout,colour=True,align=True):
-    printer = PrettyPrinter(output=output,colour=colour,align=align)
+def prettyPrint(object,output=sys.stdout,colour=True,align=True,html=False):
+    printer = PrettyPrinter(output=output,colour=colour,align=align,html=html)
     printer.prettify(object)
     del printer
     return

@@ -6,16 +6,10 @@
 # $HeadURL$
 # $Id$
 
+import sys,os,re,argparse
 
-
-
-import sys,os,re
-import argparse
-
-from _tools.eddo import *
-from _tools.eddoml import *
 from _tools.json import *
-from _tools.pretty import *
+from _tools.eddoml import *
 
 parser = argparse.ArgumentParser()
 
@@ -28,7 +22,7 @@ def process(lines):
     try:
         json = parseJSON(lines)
         print '<json>'
-        prettyPrintXML(json)
+        prettyPrintXML(json,verbose=args.verbose)
         print '</json>'
     except:
         print lines
