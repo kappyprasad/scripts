@@ -41,11 +41,11 @@ args = parser.parse_args()
 if args.verbose:
     prettyPrint(vars(args))
 
-host="test-eid.auiag.corp"
-port=389
-baseDN="O=IAG,C=AU"
-username="uid=sys_BPM,OU=SystemUser,O=IAG,C=AU"
-password='BPMadmin'
+host='dynam150.clarence.sirca.org.au'
+port=50389
+baseDN='dc=openam,dc=forgerock,dc=org'
+username='cn=Directory Manager'
+password='password1'
 
 def col(output,name,value):
     if args.xml:
