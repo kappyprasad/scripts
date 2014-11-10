@@ -49,10 +49,11 @@ def main():
 
     diffgit = re.compile('^diff --git.*$')
     index      = re.compile('^index ([0-9a-f\.]*\s\d+)$')
-    lhs        = re.compile('^\-{3}\s[^\(]*\(([^\)]*)\)$')
-    rhs        = re.compile('^\+{3}\s[^\(]*\(([^\)]*)\)$')
+    lhs        = re.compile('^\-{3}\s(.*)$')
+    rhs        = re.compile('^\+{3}\s(.*)$')
     plus       = re.compile('^(\+.*)$')
     minus      = re.compile('^(\-.*)$')
+    atat       = re.compile('^(\@\@.*)$')
 
     for file in args.file:
 
@@ -75,11 +76,10 @@ def main():
             line = line.rstrip('\n')
             line = line.rstrip('\r')
             if diffgit.match(line):
-                sys.stdout.write('%s\n'%horizon)
                 continue
             m = index.match(line)
             if m:
-                fname = m.group(1)
+                iname = m.group(1)
                 continue
             m = lhs.match(line)
             if m:
@@ -93,7 +93,7 @@ def main():
                 else:
                     output.write('\n%s\n'%skyline)
                 output.write('%s%s%s : ( %s- %s%s) -> ( %s+ %s%s)%s'%(
-                    mycolours['Orange'], fname, mycolours['Off'], 
+                    mycolours['Orange'], iname, mycolours['Off'], 
                     mycolours['Purple'], old, mycolours['Off'], 
                     mycolours['Green'], new, mycolours['Off'], 
                     cr
@@ -104,6 +104,10 @@ def main():
                     output.write('%s\n'%horizon)
                 if old == 'revision 0' and args.ignore:
                     break
+                continue
+            m = atat.match(line)
+            if m:
+                output.write('%s%s%s\n'%(mycolours['Blue'],m.group(1),mycolours['Off']))
                 continue
             m = plus.match(line)
             if m:

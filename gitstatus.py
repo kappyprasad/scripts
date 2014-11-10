@@ -27,13 +27,13 @@ args = parser.parse_args()
 mycolours = getColours(args.html)
 
 tokens = {
-    ' A'  : 'Green',
-    ' M'  : 'Orange',
     'AM' : 'Orange',
+    ' M'  : 'Orange',
+    'A'  : 'Green',
     '\?\?' : 'Purple',
-    ' D'  : 'Red',
-    ' I'  : 'Teal',
-    ' C'  : 'Blue',
+    'D'  : 'Red',
+    'I'  : 'Teal',
+    'C'  : 'Blue',
 }
 
 def main():
@@ -50,7 +50,7 @@ def main():
     replacements = {} 
     for key in tokens.keys():
         colour = tokens[key]
-        p = re.compile('^(%s.*)$'%key)
+        p = re.compile('^(%s .*)$'%key)
         #print p.pattern
         replacements[p] = colour
 
