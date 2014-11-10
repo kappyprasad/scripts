@@ -68,7 +68,8 @@ def main():
         cmd='git diff %s %s'%(options,file)
 
         process = Popen(cmd,shell=True,stdout=PIPE)
-
+        
+        iname=''
         while process.stdout:
             line = process.stdout.readline()
             if not line:
