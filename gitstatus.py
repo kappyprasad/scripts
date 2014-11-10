@@ -27,9 +27,11 @@ args = parser.parse_args()
 mycolours = getColours(args.html)
 
 tokens = {
-    'AM' : 'Orange',
-    ' M'  : 'Orange',
-    'A'  : 'Green',
+    'AM' : 'Green',
+    'A '  : 'Green',
+    ' M'  : 'Teal',
+    'M '  : 'Orange',
+    'MM'  : 'Orange',
     '\?\?' : 'Purple',
     'D'  : 'Red',
     'I'  : 'Teal',
