@@ -6,12 +6,10 @@
 # $HeadURL$
 # $Id$
 
-
-
-
 import sys,os,re
 import argparse
 import StringIO
+import json
 
 from _tools.eddo import *
 from _tools.pyson import *
@@ -44,15 +42,15 @@ if inplace:
     colour = False
         
 def query(text):
-    json = cleanJSON(text)
+    object = json.loads(text)
     if args.dict:
         expression = dict2eval(args.dict)
         if args.verbose:
-            sys.stderr.write('expression=json%s\n'%expression)
-        json = eval('json%s'%expression)
+            sys.stderr.write('expression=object%s\n'%expression)
+        object = eval('object%s'%expression)
     if args.eval:
-        json = eval('json%s'%args.eval)
-    return json
+        object = eval('object%s'%args.eval)
+    return object
 
 def main():
     global colour, inplace, jpath
@@ -73,7 +71,7 @@ def main():
                 print horizon
                 fp = open(f)
             
-            json = query(''.join(fp.readlines()))
+            object = query(''.join(fp.readlines()))
             fp.close()
 
             if inplace:
@@ -81,14 +79,14 @@ def main():
             else:
                 fo = sys.stdout
                                 
-            prettyPrint(json,colour=colour,output=fo,align=args.align)
+            prettyPrint(object,colour=colour,output=fo,align=args.align)
 
             if inplace:
                 fo.close()
                 print f
     else:
-        json = query(''.join(sys.stdin.readlines()))
-        prettyPrint(json, colour=colour, align=args.align)
+        object = query(''.join(sys.stdin.readlines()))
+        prettyPrint(object, colour=colour, align=args.align)
 
     return
 

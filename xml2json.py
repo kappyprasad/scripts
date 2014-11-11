@@ -34,7 +34,7 @@ def main():
         for file in args.file:
             fp = open(file)
             if args.reverse:
-                object = json.load(fp)
+                object = json.loads(''.join(fp.readlines()))
                 xml = xmltodict.unparse(object)
                 output.write('%s'%xml)
             else:
@@ -43,7 +43,7 @@ def main():
             fp.close()
     else:
         if args.reverse:
-            object = json.loads('\n'.join(sys.stdin.readlines()))
+            object = json.loads(''.join(sys.stdin.readlines()))
             xml = xmltodict.unparse(object)
             output.write('%s'%xml)
             None

@@ -1,1 +1,9 @@
-{ 'bob' : 'car', 'fred' : [1,'eight',True] }
+{
+  "array" :  [
+    "value1",
+    "value2"
+  ],
+  "boolean" :  true,
+  "string" :  "value",
+  "number" :  0
+}
