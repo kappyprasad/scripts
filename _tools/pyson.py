@@ -31,5 +31,20 @@ def cleanJSON(lines):
     return eval(clean)
 
 def dict2eval(dictionary):
-    expression = ''.join(map(lambda x : '["%s"]'%x, dictionary.split('.')))
+    pattern = re.compile('^([0-9a-zA-Z]*)(\[[0-9]+\])$')
+    expression = ''
+    for exp in dictionary.split('.'):
+        m = pattern.match(exp)
+        if m:
+            expression += '["%s"]%s'%m.groups()
+        else:
+            expression += '["%s"]'%exp
     return expression
+
+def main():
+    dictionary = 'projects.project.modelType.objectType[0][2]'
+    print dictionary
+    print dict2eval(dictionary)
+    return
+
+if __name__ == '__main__': main()

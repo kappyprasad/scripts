@@ -17,6 +17,8 @@ import Cubetto
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
+parser.add_argument('-r','--raw',      action='store_true', help='no class diagrams')
+parser.add_argument('-i','--indent',   action='store_true', help='indent xml output')
 parser.add_argument('-o','--output',   action='store',      help='output file')
 
 group = parser.add_mutually_exclusive_group(required=True)
@@ -50,12 +52,11 @@ def main():
     object = xmltodict.parse('\n'.join(fp.readlines()))
     fp.close()
     
-    # construct XMI model here
-    project = Cubetto.Project(object['projects']['project'])
-    #done
-    
-    output.write(project.doc)
-        
+    factory = Cubetto.Factory(object, raw=args.raw, indent=args.indent)
+    factory.ingest()
+    factory.process()
+    factory.export(output)
+            
     output.close()
     
     return

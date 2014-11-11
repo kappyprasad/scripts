@@ -6,6 +6,8 @@
 # $HeadURL$
 # $Id$
 
+from Factory import Factory
+from FactoryWorker import FactoryWorker
 from Project import Project
 from ObjectType import ObjectType
 

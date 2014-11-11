@@ -1,0 +1,954 @@
+<?xml version="1.0"?>
+<XMI
+    timestamp="2014-11-11 16:42:05"
+    xmi.version="1.2"
+    xmlns:UML="org.omg.xmi.namespace.UML"
+>
+    <XMI.header>
+        <XMI.documentation>
+            <XMI.exporter>$HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py $</XMI.exporter>
+            <XMI.exporterVersion>$Revision: 11983 $</XMI.exporterVersion>
+        </XMI.documentation>
+        <XMI.metamodel xmi.name="UML" xmi.version="1.4"/>
+    </XMI.header>
+    <XMI.content>
+        <UML:Model isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="2014-11-11 16:42:05" visibility="public" xmi.id="EDDO_c151db9b-05d8-47b4-83e3-47c590db5ccb">
+            <UML:Namespace.ownedElement>
+                <UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Project" visibility="public" xmi.id="EDDO_54e7f0fa-652b-46c0-8814-f7ad6d2bf54f">
+                    <UML:Namespace.ownedElement>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="MyCubetto" visibility="public" xmi.id="EDDO_57757f24-c0e8-4c04-83e7-362bd1e0834a">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Project_p54"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="@name" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="MyCubetto"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_b230e1d2-936e-46c4-8d0c-1d6a3f93d7c2"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                    </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="ObjectType" visibility="public" xmi.id="EDDO_adb27d39-e173-4201-9f14-bb0e6fadddf0">
+                    <UML:Namespace.ownedElement>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Template Binding" visibility="public" xmi.id="EDDO_373b7c09-e94b-421a-b21e-ef441cdc41e2">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1215"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Template Binding"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Association Relationship Type" visibility="public" xmi.id="EDDO_6fecca18-9693-4d13-a082-3635ce404352">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1249"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Association Relationship Type"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Partition" visibility="public" xmi.id="EDDO_dbc7c20f-e999-4c4a-8cec-279c567283af">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1228"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Partition"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Extension" visibility="public" xmi.id="EDDO_d1df98d2-0a52-4c81-bf89-36928c1cd6e7">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1238"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Extension"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object" visibility="public" xmi.id="EDDO_01368c51-9220-46ce-a45a-1961ba0f8f37">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1227"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Object"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Start Node" visibility="public" xmi.id="EDDO_f436ee35-7b77-4a00-bbe2-ae0226545e4e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1233"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Start Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Use Case" visibility="public" xmi.id="EDDO_c5e53b02-8459-46f1-b1f2-13ceef9f5594">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1226"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Use Case"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Visibility" visibility="public" xmi.id="EDDO_d258ad30-2ee1-45c5-975c-5c479fdbd25d">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1247"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Visibility"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Dependent Classifier" visibility="public" xmi.id="EDDO_32e30c00-6457-4716-a404-44af679419d8">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1222"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Dependent Classifier"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Node State" visibility="public" xmi.id="EDDO_70b2ae14-6d09-4570-80ee-991b539a892a">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1248"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Object Node State"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Node" visibility="public" xmi.id="EDDO_0dc0fb95-33e3-4d5e-a7e9-682f6afb736e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1240"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Object Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="End Node" visibility="public" xmi.id="EDDO_dd15d98d-592f-483d-887d-87e87dcd58c5">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1246"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="End Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Partition Object" visibility="public" xmi.id="EDDO_f827e944-9985-4bdf-9fbc-2c238746a8a6">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1230"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Partition Object"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Relationship Edge Type" visibility="public" xmi.id="EDDO_31df0d57-ec72-4ff2-8f27-ba844e699726">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1234"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Relationship Edge Type"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Template Parameter" visibility="public" xmi.id="EDDO_09d76986-1732-41e9-9859-01806343be78">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1239"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Template Parameter"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Sender" visibility="public" xmi.id="EDDO_ef8425f4-c6bd-49dd-8e42-b401cc250271">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1253"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Sender"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Decision Node" visibility="public" xmi.id="EDDO_b9bb9047-b4d8-4d10-9b00-ca8c5fbea77f">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1221"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Decision Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Flow End" visibility="public" xmi.id="EDDO_ee070d27-eb35-4f34-a6df-a1d8101e94f4">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1251"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Flow End"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Realization" visibility="public" xmi.id="EDDO_b0eace2d-7e7e-4ebc-9f10-182d14f50740">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1229"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Realization"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Action" visibility="public" xmi.id="EDDO_fb051530-dea9-45ef-9df5-dd4ff459715d">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1214"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Action"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Parameter" visibility="public" xmi.id="EDDO_5a5d3d8e-4e18-4c4d-aa38-a0a137bbb8ed">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1216"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Parameter"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Dependency" visibility="public" xmi.id="EDDO_5a0102bd-b95b-46c7-88d5-b4268b99a442">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1219"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Dependency"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Region" visibility="public" xmi.id="EDDO_e925e9a5-b6af-4f68-860f-0f14d0bfd91f">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1231"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Region"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Stereotype" visibility="public" xmi.id="EDDO_e65a429b-a55b-420f-b6cf-6b1ceaacb878">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1235"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Stereotype"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Association" visibility="public" xmi.id="EDDO_d8a9497b-b92c-4e09-8e2e-4265a0775f76">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1252"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Association"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Range" visibility="public" xmi.id="EDDO_f73ae814-1b7b-460f-9767-76a9bc46684a">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1242"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Range"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Relationship Edge" visibility="public" xmi.id="EDDO_129cecdf-2277-4036-9487-f7e15dc53ea3">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1213"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Relationship Edge"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Flow" visibility="public" xmi.id="EDDO_dd561ee5-f932-4f24-9705-5cb48a72debb">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1224"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Object Flow"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Method" visibility="public" xmi.id="EDDO_1d39aa35-8aae-4799-bc0c-f95ef6e3f973">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1220"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Method"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Class" visibility="public" xmi.id="EDDO_499a5d74-2edd-4df6-8306-352f6ff2983a">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1243"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Class"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Region Execution Types" visibility="public" xmi.id="EDDO_9ffeb58b-d378-404d-a000-877b50b10f39">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1223"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Region Execution Types"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="System" visibility="public" xmi.id="EDDO_3762d975-edc7-4a8b-bf8e-0e018c63f51e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1244"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="System"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Package" visibility="public" xmi.id="EDDO_b403d6e1-fc35-4a17-9225-96226545b1e5">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1236"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Package"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Input Output Region Node" visibility="public" xmi.id="EDDO_e0f4c0be-5336-415d-bc89-c53d68de04c3">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1237"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Input Output Region Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Flow" visibility="public" xmi.id="EDDO_9c907d02-3d77-4a9c-b8d0-2b4a56532119">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1225"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Flow"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Independent Classifier" visibility="public" xmi.id="EDDO_0de5bd2d-2ecf-47b0-a0ef-04c3788c32aa">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1254"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Independent Classifier"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Inheritance" visibility="public" xmi.id="EDDO_ac4d8961-a457-4b94-b6b5-e53ae46e4b29">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1218"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Inheritance"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Actor" visibility="public" xmi.id="EDDO_b29243be-1ed2-47bf-99f4-f939c000123e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1217"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Actor"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Attribute" visibility="public" xmi.id="EDDO_90bfe5fb-d5bb-40b2-86f3-95226caf7fb8">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1232"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Attribute"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Annotation" visibility="public" xmi.id="EDDO_1f0041bf-218c-474d-b7e3-66dfa78813eb">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1245"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Annotation"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Annotateable" visibility="public" xmi.id="EDDO_6ffabca6-d25e-460c-8a05-d211f0683f63">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1250"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Annotateable"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Fork Node" visibility="public" xmi.id="EDDO_e9054ac1-9dca-4a9d-8ccd-eb28dc9ed323">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="ObjectType_p1241"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="name.@en" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Fork Node"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                    </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Stereotype name="Project" xmi.id="EDDO_b230e1d2-936e-46c4-8d0c-1d6a3f93d7c2"/>
+                <UML:Stereotype name="ObjectType" xmi.id="EDDO_98a8ba73-bf70-40be-8945-7b1ccc4cf56f"/>
+            </UML:Namespace.ownedElement>
+        </UML:Model>
+        <UML:Diagram diagramType="ClassDiagram" name="Project" owner="EDDO_54e7f0fa-652b-46c0-8814-f7ad6d2bf54f" toolName="Enterprise Architect 2.5" xmi.id="EDDO_68509fdd-688f-49a1-82da-60dac6758bb1">
+            <UML:ModelElement.taggedValue>
+                <UML:TaggedValue tag="package" value="EDDO_54e7f0fa-652b-46c0-8814-f7ad6d2bf54f"/>
+                <UML:TaggedValue tag="type" value="Logical"/>
+                <UML:TaggedValue tag="EAStyle" value="DocSize.cx=1000;DocSize.cy=1000;PaperSize=1;HideParents=1;ShowNotes=0;HideRelationships=0;AdvancedFeatureProps=1;PPgs.cy=1;PackageContents=1;ShowPrivate=1;ShowDetails=0;ShowPublic=1;HighlightForeign=1;ShowTags=0;ShowAsList=0;CollabNums=1;HideProps=1;Orientation=P;PrintPageHeadFoot=0;ConnectorNotation=UML 2.1;OpParams=1;AdvancedElementProps=1;AdvancedConnectorProps=1;ShowOpRetType=1;UseAlias=0;SequenceNotes=0;HideOps=0;ShowIcons=1;ShowMaint=0;VisibleAttributeDetail=0;Locked=0;ShowTests=0;Zoom=100;HideStereo=0;ExplicitNavigability=0;HideAtts=0;HideElemStereo=0;PPgs.cx=1;SuppConnectorLabels=0;ShowReqs=0;SuppressBrackets=0;ScalePrintImage=1;ShowCons=0;ShowProtected=1;Border=1;"/>
+            </UML:ModelElement.taggedValue>
+            <UML:Diagram.element>
+                <UML:DiagramElement subject="EDDO_57757f24-c0e8-4c04-83e7-362bd1e0834a"/>
+            </UML:Diagram.element>
+        </UML:Diagram>
+        <UML:Diagram diagramType="ClassDiagram" name="ObjectType" owner="EDDO_adb27d39-e173-4201-9f14-bb0e6fadddf0" toolName="Enterprise Architect 2.5" xmi.id="EDDO_82151711-ebee-4b3e-bbde-543c66380c6a">
+            <UML:ModelElement.taggedValue>
+                <UML:TaggedValue tag="package" value="EDDO_adb27d39-e173-4201-9f14-bb0e6fadddf0"/>
+                <UML:TaggedValue tag="type" value="Logical"/>
+                <UML:TaggedValue tag="EAStyle" value="DocSize.cx=1000;DocSize.cy=1000;PaperSize=1;HideParents=1;ShowNotes=0;HideRelationships=0;AdvancedFeatureProps=1;PPgs.cy=1;PackageContents=1;ShowPrivate=1;ShowDetails=0;ShowPublic=1;HighlightForeign=1;ShowTags=0;ShowAsList=0;CollabNums=1;HideProps=1;Orientation=P;PrintPageHeadFoot=0;ConnectorNotation=UML 2.1;OpParams=1;AdvancedElementProps=1;AdvancedConnectorProps=1;ShowOpRetType=1;UseAlias=0;SequenceNotes=0;HideOps=0;ShowIcons=1;ShowMaint=0;VisibleAttributeDetail=0;Locked=0;ShowTests=0;Zoom=100;HideStereo=0;ExplicitNavigability=0;HideAtts=0;HideElemStereo=0;PPgs.cx=1;SuppConnectorLabels=0;ShowReqs=0;SuppressBrackets=0;ScalePrintImage=1;ShowCons=0;ShowProtected=1;Border=1;"/>
+            </UML:ModelElement.taggedValue>
+            <UML:Diagram.element>
+                <UML:DiagramElement subject="EDDO_373b7c09-e94b-421a-b21e-ef441cdc41e2"/>
+                <UML:DiagramElement subject="EDDO_6fecca18-9693-4d13-a082-3635ce404352"/>
+                <UML:DiagramElement subject="EDDO_dbc7c20f-e999-4c4a-8cec-279c567283af"/>
+                <UML:DiagramElement subject="EDDO_d1df98d2-0a52-4c81-bf89-36928c1cd6e7"/>
+                <UML:DiagramElement subject="EDDO_01368c51-9220-46ce-a45a-1961ba0f8f37"/>
+                <UML:DiagramElement subject="EDDO_f436ee35-7b77-4a00-bbe2-ae0226545e4e"/>
+                <UML:DiagramElement subject="EDDO_c5e53b02-8459-46f1-b1f2-13ceef9f5594"/>
+                <UML:DiagramElement subject="EDDO_d258ad30-2ee1-45c5-975c-5c479fdbd25d"/>
+                <UML:DiagramElement subject="EDDO_32e30c00-6457-4716-a404-44af679419d8"/>
+                <UML:DiagramElement subject="EDDO_70b2ae14-6d09-4570-80ee-991b539a892a"/>
+                <UML:DiagramElement subject="EDDO_0dc0fb95-33e3-4d5e-a7e9-682f6afb736e"/>
+                <UML:DiagramElement subject="EDDO_dd15d98d-592f-483d-887d-87e87dcd58c5"/>
+                <UML:DiagramElement subject="EDDO_f827e944-9985-4bdf-9fbc-2c238746a8a6"/>
+                <UML:DiagramElement subject="EDDO_31df0d57-ec72-4ff2-8f27-ba844e699726"/>
+                <UML:DiagramElement subject="EDDO_09d76986-1732-41e9-9859-01806343be78"/>
+                <UML:DiagramElement subject="EDDO_ef8425f4-c6bd-49dd-8e42-b401cc250271"/>
+                <UML:DiagramElement subject="EDDO_b9bb9047-b4d8-4d10-9b00-ca8c5fbea77f"/>
+                <UML:DiagramElement subject="EDDO_ee070d27-eb35-4f34-a6df-a1d8101e94f4"/>
+                <UML:DiagramElement subject="EDDO_b0eace2d-7e7e-4ebc-9f10-182d14f50740"/>
+                <UML:DiagramElement subject="EDDO_fb051530-dea9-45ef-9df5-dd4ff459715d"/>
+                <UML:DiagramElement subject="EDDO_5a5d3d8e-4e18-4c4d-aa38-a0a137bbb8ed"/>
+                <UML:DiagramElement subject="EDDO_5a0102bd-b95b-46c7-88d5-b4268b99a442"/>
+                <UML:DiagramElement subject="EDDO_e925e9a5-b6af-4f68-860f-0f14d0bfd91f"/>
+                <UML:DiagramElement subject="EDDO_e65a429b-a55b-420f-b6cf-6b1ceaacb878"/>
+                <UML:DiagramElement subject="EDDO_d8a9497b-b92c-4e09-8e2e-4265a0775f76"/>
+                <UML:DiagramElement subject="EDDO_f73ae814-1b7b-460f-9767-76a9bc46684a"/>
+                <UML:DiagramElement subject="EDDO_129cecdf-2277-4036-9487-f7e15dc53ea3"/>
+                <UML:DiagramElement subject="EDDO_dd561ee5-f932-4f24-9705-5cb48a72debb"/>
+                <UML:DiagramElement subject="EDDO_1d39aa35-8aae-4799-bc0c-f95ef6e3f973"/>
+                <UML:DiagramElement subject="EDDO_499a5d74-2edd-4df6-8306-352f6ff2983a"/>
+                <UML:DiagramElement subject="EDDO_9ffeb58b-d378-404d-a000-877b50b10f39"/>
+                <UML:DiagramElement subject="EDDO_3762d975-edc7-4a8b-bf8e-0e018c63f51e"/>
+                <UML:DiagramElement subject="EDDO_b403d6e1-fc35-4a17-9225-96226545b1e5"/>
+                <UML:DiagramElement subject="EDDO_e0f4c0be-5336-415d-bc89-c53d68de04c3"/>
+                <UML:DiagramElement subject="EDDO_9c907d02-3d77-4a9c-b8d0-2b4a56532119"/>
+                <UML:DiagramElement subject="EDDO_0de5bd2d-2ecf-47b0-a0ef-04c3788c32aa"/>
+                <UML:DiagramElement subject="EDDO_ac4d8961-a457-4b94-b6b5-e53ae46e4b29"/>
+                <UML:DiagramElement subject="EDDO_b29243be-1ed2-47bf-99f4-f939c000123e"/>
+                <UML:DiagramElement subject="EDDO_90bfe5fb-d5bb-40b2-86f3-95226caf7fb8"/>
+                <UML:DiagramElement subject="EDDO_1f0041bf-218c-474d-b7e3-66dfa78813eb"/>
+                <UML:DiagramElement subject="EDDO_6ffabca6-d25e-460c-8a05-d211f0683f63"/>
+                <UML:DiagramElement subject="EDDO_e9054ac1-9dca-4a9d-8ccd-eb28dc9ed323"/>
+            </UML:Diagram.element>
+        </UML:Diagram>
+    </XMI.content>
+    <XMI.extensions xmi.extender="Enterprise Architect 2.5">
+        <EAModel.file/>
+    </XMI.extensions>
+</XMI>

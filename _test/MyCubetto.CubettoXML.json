@@ -1,0 +1,4067 @@
+{"projects": {
+    "@xmlns": "http://xml.semture.de/mobileE3",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@exporter": "Cubetto BPMN",
+    "@exporterVersion": "4.3.3",
+    "@id": "Project_p54",
+    "@name": "MyCubetto",
+    "@targetNamespace": "http://xml.semture.de/mobileE3",
+    "@xsi:schemaLocation": "http://xml.semture.de/mobileE3 http://www.semture.de/downloads/cubetto/schemas/mobileE3.xsd",
+    "project": {
+        "@id": "Project_p54",
+        "@name": "MyCubetto",
+        "@modifiedAt": "1414361973.888649",
+        "@leastPresentation": "Presentation_p146",
+        "@information": "test project for python conversion xmi ",
+        "modelType": {
+            "@id": "ModelType_p54",
+            "@cubettoBuild": "2149",
+            "@cubettoVersion": "4.0.4",
+            "@languageVersion": "1.0.4",
+            "name": {
+                "@de": "UML",
+                "@en": "UML",
+                "@key": "MT_UML20"
+            },
+            "information": {
+                "@de": "Die Unified Modeling Language (UML) ist eine von der Object Management Group (OMG) entwickelte und standardisierte Sprache für die Modellierung von Software und anderen Systemen. Im Sinne einer Sprache definiert die UML dabei Bezeichner für die meisten Begriffe, die für die Modellierung wichtig sind, und legt mögliche Beziehungen zwischen diesen Begriffen fest. Die UML definiert weiter grafische Notationen für diese Begriffe und für Modelle von statischen Strukturen und von dynamischen Abläufen, die man mit diesen Begriffen formulieren kann.",
+                "@key": "languageVersion: 1.0.4 cubettoVersion: 4.0.4 cubettoBuild: 2149"
+            },
+            "model": {
+                "@id": "Model_p54",
+                "name": {"@key": "Neues Model"},
+                "view": {
+                    "@id": "View_p56",
+                    "@viewType": "ViewType_p54",
+                    "name": {
+                        "@en": "Folder",
+                        "@de": "Ordner"
+                    },
+                    "view": {
+                        "@id": "View_p57",
+                        "@viewType": "ViewType_p54",
+                        "name": {"@en-AU": "MyFolder"},
+                        "information": {"@en-AU": ""},
+                        "presentation": {
+                            "@id": "Presentation_p147",
+                            "@presentationType": "PresentationType_p157",
+                            "@layoutOrientation": "0",
+                            "name": {"@en-AU": "MyChildDiagram"},
+                            "information": {"@en-AU": ""}
+                        }
+                    },
+                    "presentation": [
+                        {
+                            "@id": "Presentation_p144",
+                            "@presentationType": "PresentationType_p157",
+                            "@layoutOrientation": "0",
+                            "name": {
+                                "@de": "Anwendungsfall",
+                                "@en": "Use Case"
+                            }
+                        },
+                        {
+                            "@id": "Presentation_p146",
+                            "@presentationType": "PresentationType_p158",
+                            "@layoutOrientation": "1",
+                            "name": {"@en-AU": "MyActivity"},
+                            "information": {"@en-AU": ""}
+                        },
+                        {
+                            "@id": "Presentation_p145",
+                            "@presentationType": "PresentationType_p159",
+                            "@layoutOrientation": "0",
+                            "name": {"@en-AU": "MyClassDiagram"},
+                            "information": {"@en-AU": ""}
+                        }
+                    ]
+                },
+                "object": [
+                    {
+                        "@id": "CubettoObject_p5128",
+                        "@objectType": "ObjectType_p1247",
+                        "name": {
+                            "@en": "package",
+                            "@de": "package",
+                            "@key": "UML20_VISIBILITY__PACKAGE"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5136",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {"@de": "profile"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5127",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@de": "void"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5165",
+                        "@objectType": "ObjectType_p1245",
+                        "name": {"@en-AU": "MyAnnotation1"},
+                        "presentationObject": {
+                            "@id": "PO_p3052",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p694",
+                            "@bounds": "{5, 70};{105, 100};{175, 85};{105, 85}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8111",
+                            "@id": "E3Property_p8112",
+                            "@propertyType": "PropertyType_p1955",
+                            "presentationProperty": {
+                                "@id": "PP_p5268",
+                                "@presentationPropertyType": "PPType_p1433",
+                                "@presentationObject": "PO_p3052",
+                                "@destination": "PP_p5267"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5143",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {"@de": "import"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5133",
+                        "@objectType": "ObjectType_p1252",
+                        "name": {"@en-GB": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3031",
+                            "@presentation": "Presentation_p144",
+                            "@presentationObjectType": "POType_p700",
+                            "@bounds": "{43.5, 55};{128, 55}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8060",
+                                "@id": "E3Property_p8062",
+                                "@propertyType": "PropertyType_p1936",
+                                "presentationProperty": {
+                                    "@id": "PP_p5225",
+                                    "@presentationPropertyType": "PPType_p1417",
+                                    "@presentationObject": "PO_p3031",
+                                    "@destination": "PP_p5223"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8059",
+                                "@id": "E3Property_p8063",
+                                "@propertyType": "PropertyType_p1952",
+                                "presentationProperty": {
+                                    "@id": "PP_p5226",
+                                    "@presentationPropertyType": "PPType_p1406",
+                                    "@presentationObject": "PO_p3031",
+                                    "@destination": "PP_p5224"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5148",
+                        "@objectType": "ObjectType_p1218",
+                        "name": {"@en-AU": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3036",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p688",
+                            "@bounds": "{340, 220};{340, 150}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8071",
+                                "@id": "E3Property_p8069",
+                                "@propertyType": "PropertyType_p1919",
+                                "presentationProperty": {
+                                    "@id": "PP_p5231",
+                                    "@presentationPropertyType": "PPType_p1441",
+                                    "@presentationObject": "PO_p3036",
+                                    "@destination": "PP_p5234"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8070",
+                                "@id": "E3Property_p8068",
+                                "@propertyType": "PropertyType_p1931",
+                                "presentationProperty": {
+                                    "@id": "PP_p5233",
+                                    "@presentationPropertyType": "PPType_p1382",
+                                    "@presentationObject": "PO_p3036",
+                                    "@destination": "PP_p5232"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5119",
+                        "@objectType": "ObjectType_p1223",
+                        "name": {
+                            "@en": "stream",
+                            "@key": "UML20_PT_REGION__EXECUTION_TYPES__STREAM"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5140",
+                        "@objectType": "ObjectType_p1234",
+                        "name": {
+                            "@key": "UML20_RELATIONSHIP_EDGE__TYPE__EXTENDS",
+                            "@de": "erweitert",
+                            "@en": "extend"
+                        },
+                        "information": {"@icon": "DashedLineArrowIcon"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5146",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@en-AU": "MyOtherClass"},
+                        "presentationObject": {
+                            "@id": "PO_p3034",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p703",
+                            "@bounds": "{1, 84};{101, 120}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8074",
+                                "@id": "E3Property_p8072",
+                                "@propertyType": "PropertyType_p1932",
+                                "presentationProperty": {
+                                    "@id": "PP_p5236",
+                                    "@presentationPropertyType": "PPType_p1429",
+                                    "@presentationObject": "PO_p3034",
+                                    "@destination": "PP_p5235"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8083",
+                                "@id": "E3Property_p8082",
+                                "@propertyType": "PropertyType_p1949",
+                                "presentationProperty": {
+                                    "@id": "PP_p5240",
+                                    "@presentationPropertyType": "PPType_p1430",
+                                    "@presentationObject": "PO_p3034",
+                                    "@destination": "PP_p5239"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5132",
+                        "@objectType": "ObjectType_p1249",
+                        "name": {
+                            "@de": "Komposition",
+                            "@en": "Composition",
+                            "@key": "UML20_ASSOCIATION_RELATIONSHIP_TYPE__COMPOSITION"
+                        },
+                        "information": {
+                            "@icon": "RhombusIcon::F",
+                            "@en": ""
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5121",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@de": "String"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5154",
+                        "@objectType": "ObjectType_p1214",
+                        "name": {"@en-AU": "MyAction1"},
+                        "presentationObject": {
+                            "@id": "PO_p3042",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p692",
+                            "@bounds": "{175, 60};{275, 110.00000000000001}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8088",
+                                "@id": "E3Property_p8087",
+                                "@propertyType": "PropertyType_p1925",
+                                "presentationProperty": {
+                                    "@id": "PP_p5245",
+                                    "@presentationPropertyType": "PPType_p1413",
+                                    "@presentationObject": "PO_p3042",
+                                    "@destination": "PP_p5246"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8089",
+                                "@id": "E3Property_p8090",
+                                "@propertyType": "PropertyType_p1933",
+                                "presentationProperty": {
+                                    "@id": "PP_p5247",
+                                    "@presentationPropertyType": "PPType_p1449",
+                                    "@presentationObject": "PO_p3042",
+                                    "@destination": "PP_p5248"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8112",
+                                "@id": "E3Property_p8111",
+                                "@propertyType": "PropertyType_p1872",
+                                "presentationProperty": {
+                                    "@id": "PP_p5267",
+                                    "@presentationPropertyType": "PPType_p1396",
+                                    "@presentationObject": "PO_p3042",
+                                    "@destination": "PP_p5268"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5129",
+                        "@objectType": "ObjectType_p1226",
+                        "name": {"@en-GB": "MyUseCase"},
+                        "presentationObject": {
+                            "@id": "PO_p3030",
+                            "@presentation": "Presentation_p144",
+                            "@presentationObjectType": "POType_p709",
+                            "@bounds": "{128, 30};{228, 80}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@objectValue": "CubettoObject_p5116",
+                                "@id": "E3Property_p8061",
+                                "@propertyType": "PropertyType_p1886"
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8062",
+                                "@id": "E3Property_p8060",
+                                "@propertyType": "PropertyType_p1943",
+                                "presentationProperty": {
+                                    "@id": "PP_p5223",
+                                    "@presentationPropertyType": "PPType_p1391",
+                                    "@presentationObject": "PO_p3030",
+                                    "@destination": "PP_p5225"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5155",
+                        "@objectType": "ObjectType_p1225",
+                        "name": {"@en-AU": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3043",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p708",
+                            "@bounds": "{225, 110};{225, 171}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8091",
+                                "@id": "E3Property_p8092",
+                                "@propertyType": "PropertyType_p1934",
+                                "presentationProperty": {
+                                    "@id": "PP_p5250",
+                                    "@presentationPropertyType": "PPType_p1425",
+                                    "@presentationObject": "PO_p3043",
+                                    "@destination": "PP_p5249"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8090",
+                                "@id": "E3Property_p8089",
+                                "@propertyType": "PropertyType_p1951",
+                                "presentationProperty": {
+                                    "@id": "PP_p5248",
+                                    "@presentationPropertyType": "PPType_p1410",
+                                    "@presentationObject": "PO_p3043",
+                                    "@destination": "PP_p5247"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5137",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {"@de": "interface"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5125",
+                        "@objectType": "ObjectType_p1223",
+                        "name": {
+                            "@en": "parallel",
+                            "@key": "UML20_PT_REGION__EXECUTION_TYPES__PARALLEL"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5156",
+                        "@objectType": "ObjectType_p1221",
+                        "name": {"@en-AU": "MyDecision?"},
+                        "presentationObject": {
+                            "@id": "PO_p3044",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p685",
+                            "@bounds": "{205, 171};{245, 211}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8097",
+                                "@id": "E3Property_p8098",
+                                "@propertyType": "PropertyType_p1878",
+                                "presentationProperty": {
+                                    "@id": "PP_p5256",
+                                    "@presentationPropertyType": "PPType_p1446",
+                                    "@presentationObject": "PO_p3044",
+                                    "@destination": "PP_p5255"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8092",
+                                "@id": "E3Property_p8091",
+                                "@propertyType": "PropertyType_p1923",
+                                "presentationProperty": {
+                                    "@id": "PP_p5249",
+                                    "@presentationPropertyType": "PPType_p1440",
+                                    "@presentationObject": "PO_p3044",
+                                    "@destination": "PP_p5250"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8094",
+                                "@id": "E3Property_p8093",
+                                "@propertyType": "PropertyType_p1878",
+                                "presentationProperty": {
+                                    "@id": "PP_p5252",
+                                    "@presentationPropertyType": "PPType_p1446",
+                                    "@presentationObject": "PO_p3044",
+                                    "@destination": "PP_p5251"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5150",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@en-AU": "MyInterface"},
+                        "presentationObject": {
+                            "@id": "PO_p3038",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p706",
+                            "@bounds": "{1, 3};{101, 31}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8084",
+                            "@id": "E3Property_p8081",
+                            "@propertyType": "PropertyType_p1896",
+                            "presentationProperty": {
+                                "@id": "PP_p5242",
+                                "@presentationPropertyType": "PPType_p1393",
+                                "@presentationObject": "PO_p3038",
+                                "@destination": "PP_p5241"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5158",
+                        "@objectType": "ObjectType_p1214",
+                        "name": {"@en-AU": "MyAction2"},
+                        "presentationObject": {
+                            "@id": "PO_p3046",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p692",
+                            "@bounds": "{226, 251};{326, 301}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8095",
+                                "@id": "E3Property_p8096",
+                                "@propertyType": "PropertyType_p1925",
+                                "presentationProperty": {
+                                    "@id": "PP_p5253",
+                                    "@presentationPropertyType": "PPType_p1413",
+                                    "@presentationObject": "PO_p3046",
+                                    "@destination": "PP_p5254"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8106",
+                                "@id": "E3Property_p8105",
+                                "@propertyType": "PropertyType_p1922",
+                                "presentationProperty": {
+                                    "@id": "PP_p5264",
+                                    "@presentationPropertyType": "PPType_p1421",
+                                    "@presentationObject": "PO_p3046",
+                                    "@destination": "PP_p5263"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5162",
+                        "@objectType": "ObjectType_p1246",
+                        "name": {"@en-AU": "MyEnd"},
+                        "presentationObject": {
+                            "@id": "PO_p3050",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p697",
+                            "@bounds": "{107, 481};{137, 511}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8103",
+                            "@id": "E3Property_p8104",
+                            "@propertyType": "PropertyType_p1871",
+                            "presentationProperty": {
+                                "@id": "PP_p5261",
+                                "@presentationPropertyType": "PPType_p1390",
+                                "@presentationObject": "PO_p3050",
+                                "@destination": "PP_p5262"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5123",
+                        "@objectType": "ObjectType_p1249",
+                        "name": {
+                            "@en": "Directed",
+                            "@key": "UML20_ASSOCIATION_RELATIONSHIP_TYPE__DIRECTED",
+                            "@de": "Gerichtet"
+                        },
+                        "information": {
+                            "@icon": "LineArrowIcon",
+                            "@en": ""
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5117",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {
+                            "@key": "UML20_STEREOTYPE__CONSTRUCTOR",
+                            "@en": "constructor"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5151",
+                        "@objectType": "ObjectType_p1229",
+                        "name": {"@en-AU": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3039",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p704",
+                            "@bounds": "{51, 84};{51, 31}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8081",
+                                "@id": "E3Property_p8084",
+                                "@propertyType": "PropertyType_p1944",
+                                "presentationProperty": {
+                                    "@id": "PP_p5241",
+                                    "@presentationPropertyType": "PPType_p1419",
+                                    "@presentationObject": "PO_p3039",
+                                    "@destination": "PP_p5242"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8082",
+                                "@id": "E3Property_p8083",
+                                "@propertyType": "PropertyType_p1903",
+                                "presentationProperty": {
+                                    "@id": "PP_p5239",
+                                    "@presentationPropertyType": "PPType_p1428",
+                                    "@presentationObject": "PO_p3039",
+                                    "@destination": "PP_p5240"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5141",
+                        "@objectType": "ObjectType_p1247",
+                        "name": {
+                            "@en": "private",
+                            "@key": "UML20_VISIBILITY__PRIVATE",
+                            "@de": "private"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5131",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {"@de": "merge"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5134",
+                        "@objectType": "ObjectType_p1223",
+                        "name": {
+                            "@key": "UML20_PT_REGION__EXECUTION_TYPES__ITERATIVE",
+                            "@en": "iterative"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5153",
+                        "@objectType": "ObjectType_p1225",
+                        "name": {"@en-AU": "myFlow1"},
+                        "presentationObject": {
+                            "@id": "PO_p3041",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p708",
+                            "@bounds": "{225, 20};{225, 60}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8087",
+                                "@id": "E3Property_p8088",
+                                "@propertyType": "PropertyType_p1934",
+                                "presentationProperty": {
+                                    "@id": "PP_p5246",
+                                    "@presentationPropertyType": "PPType_p1425",
+                                    "@presentationObject": "PO_p3041",
+                                    "@destination": "PP_p5245"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8086",
+                                "@id": "E3Property_p8085",
+                                "@propertyType": "PropertyType_p1951",
+                                "presentationProperty": {
+                                    "@id": "PP_p5243",
+                                    "@presentationPropertyType": "PPType_p1410",
+                                    "@presentationObject": "PO_p3041",
+                                    "@destination": "PP_p5244"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5149",
+                        "@objectType": "ObjectType_p1252",
+                        "name": {"@en-AU": "myOther"},
+                        "presentationObject": {
+                            "@id": "PO_p3037",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p691",
+                            "@bounds": "{323, 220};{323, 170};{51, 170};{51, 120}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8072",
+                                "@id": "E3Property_p8074",
+                                "@propertyType": "PropertyType_p1957",
+                                "presentationProperty": {
+                                    "@id": "PP_p5235",
+                                    "@presentationPropertyType": "PPType_p1398",
+                                    "@presentationObject": "PO_p3037",
+                                    "@destination": "PP_p5236"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8073",
+                                "@id": "E3Property_p8075",
+                                "@propertyType": "PropertyType_p1912",
+                                "presentationProperty": {
+                                    "@id": "PP_p5237",
+                                    "@presentationPropertyType": "PPType_p1395",
+                                    "@presentationObject": "PO_p3037",
+                                    "@destination": "PP_p5238"
+                                }
+                            },
+                            {
+                                "@objectValue": "CubettoObject_p5139",
+                                "@id": "E3Property_p8078",
+                                "@propertyType": "PropertyType_p1899"
+                            },
+                            {
+                                "@objectValue": "CubettoObject_p5138",
+                                "@id": "E3Property_p8080",
+                                "@propertyType": "PropertyType_p1928"
+                            }
+                        ],
+                        "stringProperty": [
+                            {
+                                "@en-AU": "1",
+                                "@id": "StringProperty_p8077",
+                                "@propertyType": "PropertyType_p1898"
+                            },
+                            {
+                                "@en-AU": "0..n",
+                                "@id": "StringProperty_p8079",
+                                "@propertyType": "PropertyType_p1870"
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5157",
+                        "@objectType": "ObjectType_p1225",
+                        "name": {"@en-AU": "myFlow2"},
+                        "presentationObject": {
+                            "@id": "PO_p3045",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p708",
+                            "@bounds": "{245, 191};{276, 191};{276, 251}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8093",
+                                "@id": "E3Property_p8094",
+                                "@propertyType": "PropertyType_p1951",
+                                "presentationProperty": {
+                                    "@id": "PP_p5251",
+                                    "@presentationPropertyType": "PPType_p1410",
+                                    "@presentationObject": "PO_p3045",
+                                    "@destination": "PP_p5252"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8096",
+                                "@id": "E3Property_p8095",
+                                "@propertyType": "PropertyType_p1934",
+                                "presentationProperty": {
+                                    "@id": "PP_p5254",
+                                    "@presentationPropertyType": "PPType_p1425",
+                                    "@presentationObject": "PO_p3045",
+                                    "@destination": "PP_p5253"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5138",
+                        "@objectType": "ObjectType_p1249",
+                        "name": {
+                            "@en": "Aggregation",
+                            "@de": "Aggregation",
+                            "@key": "UML20_ASSOCIATION_RELATIONSHIP_TYPE__AGGREGATION"
+                        },
+                        "information": {
+                            "@en": "",
+                            "@icon": "RhombusIcon"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5159",
+                        "@objectType": "ObjectType_p1225",
+                        "name": {"@en-AU": "myFlow3"},
+                        "presentationObject": {
+                            "@id": "PO_p3047",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p708",
+                            "@bounds": "{205, 191};{97, 191};{97, 372}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8099",
+                                "@id": "E3Property_p8100",
+                                "@propertyType": "PropertyType_p1934",
+                                "presentationProperty": {
+                                    "@id": "PP_p5257",
+                                    "@presentationPropertyType": "PPType_p1425",
+                                    "@presentationObject": "PO_p3047",
+                                    "@destination": "PP_p5258"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8098",
+                                "@id": "E3Property_p8097",
+                                "@propertyType": "PropertyType_p1951",
+                                "presentationProperty": {
+                                    "@id": "PP_p5255",
+                                    "@presentationPropertyType": "PPType_p1410",
+                                    "@presentationObject": "PO_p3047",
+                                    "@destination": "PP_p5256"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5130",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {"@de": "stereotype"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5120",
+                        "@objectType": "ObjectType_p1247",
+                        "name": {
+                            "@key": "UML20_VISIBILITY__PROTECTED",
+                            "@en": "protected",
+                            "@de": "protected"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5152",
+                        "@objectType": "ObjectType_p1233",
+                        "name": {"@en-AU": "MyStart"},
+                        "presentationObject": {
+                            "@id": "PO_p3040",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p702",
+                            "@bounds": "{215, 0};{235, 20}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8085",
+                            "@id": "E3Property_p8086",
+                            "@propertyType": "PropertyType_p1885",
+                            "presentationProperty": {
+                                "@id": "PP_p5244",
+                                "@presentationPropertyType": "PPType_p1438",
+                                "@presentationObject": "PO_p3040",
+                                "@destination": "PP_p5243"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5116",
+                        "@objectType": "ObjectType_p1244",
+                        "name": {"@en-GB": "MySystem"},
+                        "presentationObject": {
+                            "@id": "PO_p3029",
+                            "@presentation": "Presentation_p144",
+                            "@presentationObjectType": "POType_p693",
+                            "@bounds": "{107, 0};{249, 100}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5160",
+                        "@objectType": "ObjectType_p1214",
+                        "name": {"@en-AU": "MyAction3"},
+                        "presentationObject": {
+                            "@id": "PO_p3048",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p692",
+                            "@bounds": "{72, 372};{172, 422}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8107",
+                                "@id": "E3Property_p8108",
+                                "@propertyType": "PropertyType_p1929",
+                                "presentationProperty": {
+                                    "@id": "PP_p5266",
+                                    "@presentationPropertyType": "PPType_p1387",
+                                    "@presentationObject": "PO_p3048",
+                                    "@destination": "PP_p5265"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8100",
+                                "@id": "E3Property_p8099",
+                                "@propertyType": "PropertyType_p1925",
+                                "presentationProperty": {
+                                    "@id": "PP_p5258",
+                                    "@presentationPropertyType": "PPType_p1413",
+                                    "@presentationObject": "PO_p3048",
+                                    "@destination": "PP_p5257"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8102",
+                                "@id": "E3Property_p8101",
+                                "@propertyType": "PropertyType_p1933",
+                                "presentationProperty": {
+                                    "@id": "PP_p5259",
+                                    "@presentationPropertyType": "PPType_p1449",
+                                    "@presentationObject": "PO_p3048",
+                                    "@destination": "PP_p5260"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5163",
+                        "@objectType": "ObjectType_p1224",
+                        "name": {"@en-AU": "MyObjectFlow"},
+                        "information": {"@en-AU": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3051",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p699",
+                            "@bounds": "{276, 301};{276, 332};{147, 332};{147, 372}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8105",
+                                "@id": "E3Property_p8106",
+                                "@propertyType": "PropertyType_p1884",
+                                "presentationProperty": {
+                                    "@id": "PP_p5263",
+                                    "@presentationPropertyType": "PPType_p1386",
+                                    "@presentationObject": "PO_p3051",
+                                    "@destination": "PP_p5264"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8108",
+                                "@id": "E3Property_p8107",
+                                "@propertyType": "PropertyType_p1879",
+                                "presentationProperty": {
+                                    "@id": "PP_p5265",
+                                    "@presentationPropertyType": "PPType_p1399",
+                                    "@presentationObject": "PO_p3051",
+                                    "@destination": "PP_p5266"
+                                }
+                            },
+                            {
+                                "@objectValue": "CubettoObject_p5164",
+                                "@id": "E3Property_p8109",
+                                "@propertyType": "PropertyType_p1890"
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5126",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {
+                            "@en": "static",
+                            "@key": "UML20_STEREOTYPE__STATIC"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5118",
+                        "@objectType": "ObjectType_p1247",
+                        "name": {
+                            "@en": "public",
+                            "@de": "public",
+                            "@key": "UML20_VISIBILITY__PUBLIC"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5142",
+                        "@objectType": "ObjectType_p1217",
+                        "name": {"@en-GB": "MyActor"},
+                        "presentationObject": {
+                            "@id": "PO_p3028",
+                            "@presentation": "Presentation_p144",
+                            "@presentationObjectType": "POType_p710",
+                            "@bounds": "{15, 26.200000000000003};{42, 83.200000000000003}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8063",
+                            "@id": "E3Property_p8059",
+                            "@propertyType": "PropertyType_p1881",
+                            "presentationProperty": {
+                                "@id": "PP_p5224",
+                                "@presentationPropertyType": "PPType_p1415",
+                                "@presentationObject": "PO_p3028",
+                                "@destination": "PP_p5226"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5164",
+                        "@objectType": "ObjectType_p1227",
+                        "name": {"@en-AU": "myObject1"},
+                        "e3Property": {
+                            "@objectValue": "CubettoObject_p5145",
+                            "@id": "E3Property_p8110",
+                            "@propertyType": "PropertyType_p1894"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5135",
+                        "@objectType": "ObjectType_p1235",
+                        "name": {
+                            "@en": "abstract",
+                            "@key": "UML20_STEREOTYPE__ABSTRACT",
+                            "@de": "abstract"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5122",
+                        "@objectType": "ObjectType_p1234",
+                        "name": {
+                            "@key": "UML20_RELATIONSHIP_EDGE__TYPE__INCLUDES",
+                            "@en": "include",
+                            "@de": "importiert"
+                        },
+                        "information": {"@icon": "DashedLineArrowIcon"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5144",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@en-AU": "MyClassCollapsed"},
+                        "information": {"@en-AU": "mydes1"},
+                        "presentationObject": {
+                            "@id": "PO_p3032",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p706",
+                            "@bounds": "{289.5, 122};{390.5, 150}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": {
+                            "@propertyValue": "E3Property_p8068",
+                            "@id": "E3Property_p8070",
+                            "@propertyType": "PropertyType_p1900",
+                            "presentationProperty": {
+                                "@id": "PP_p5232",
+                                "@presentationPropertyType": "PPType_p1392",
+                                "@presentationObject": "PO_p3032",
+                                "@destination": "PP_p5233"
+                            }
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5124",
+                        "@objectType": "ObjectType_p1234",
+                        "name": {
+                            "@key": "UML20_RELATIONSHIP_EDGE__TYPE__INHERITANCE",
+                            "@en": "generalization",
+                            "@de": "generalisiert"
+                        },
+                        "information": {"@icon": "FilledArrowIcon"}
+                    },
+                    {
+                        "@id": "CubettoObject_p5161",
+                        "@objectType": "ObjectType_p1225",
+                        "name": {"@en-AU": ""},
+                        "presentationObject": {
+                            "@id": "PO_p3049",
+                            "@presentation": "Presentation_p146",
+                            "@presentationObjectType": "POType_p708",
+                            "@bounds": "{122, 422};{122, 481}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8104",
+                                "@id": "E3Property_p8103",
+                                "@propertyType": "PropertyType_p1934",
+                                "presentationProperty": {
+                                    "@id": "PP_p5262",
+                                    "@presentationPropertyType": "PPType_p1425",
+                                    "@presentationObject": "PO_p3049",
+                                    "@destination": "PP_p5261"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8101",
+                                "@id": "E3Property_p8102",
+                                "@propertyType": "PropertyType_p1951",
+                                "presentationProperty": {
+                                    "@id": "PP_p5260",
+                                    "@presentationPropertyType": "PPType_p1410",
+                                    "@presentationObject": "PO_p3049",
+                                    "@destination": "PP_p5259"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "CubettoObject_p5139",
+                        "@objectType": "ObjectType_p1249",
+                        "name": {
+                            "@en": "Undirected",
+                            "@de": "Ungerichtet",
+                            "@key": "UML20_ASSOCIATION_RELATIONSHIP_TYPE__UNDIRECTED"
+                        },
+                        "information": {
+                            "@en": "",
+                            "@icon": "LineEndIcon"
+                        }
+                    },
+                    {
+                        "@id": "CubettoObject_p5145",
+                        "@objectType": "ObjectType_p1243",
+                        "name": {"@en-AU": "MyClass"},
+                        "presentationObject": {
+                            "@id": "PO_p3033",
+                            "@presentation": "Presentation_p145",
+                            "@presentationObjectType": "POType_p703",
+                            "@bounds": "{290, 220};{390, 256}",
+                            "@horizontalIndex": "0",
+                            "@verticalIndex": "0"
+                        },
+                        "e3Property": [
+                            {
+                                "@propertyValue": "E3Property_p8069",
+                                "@id": "E3Property_p8071",
+                                "@propertyType": "PropertyType_p1940",
+                                "presentationProperty": {
+                                    "@id": "PP_p5234",
+                                    "@presentationPropertyType": "PPType_p1427",
+                                    "@presentationObject": "PO_p3033",
+                                    "@destination": "PP_p5231"
+                                }
+                            },
+                            {
+                                "@propertyValue": "E3Property_p8075",
+                                "@id": "E3Property_p8073",
+                                "@propertyType": "PropertyType_p1887",
+                                "presentationProperty": {
+                                    "@id": "PP_p5238",
+                                    "@presentationPropertyType": "PPType_p1439",
+                                    "@presentationObject": "PO_p3033",
+                                    "@destination": "PP_p5237"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "viewType": {
+                "@id": "ViewType_p54",
+                "name": {
+                    "@en": "Folder",
+                    "@key": "UML_VIEW",
+                    "@de": "Ordner"
+                },
+                "presentationType": [
+                    {
+                        "@id": "PresentationType_p159",
+                        "@standardPresentation": "0",
+                        "name": {
+                            "@key": "UML20_CLASS_DIAGRAM",
+                            "@de": "Klassen",
+                            "@en": "Class"
+                        }
+                    },
+                    {
+                        "@id": "PresentationType_p157",
+                        "@standardPresentation": "0",
+                        "name": {
+                            "@de": "Anwendungsfall",
+                            "@en": "Use Case",
+                            "@key": "UML20_USE_CASE_DIAGRAM"
+                        },
+                        "information": {"@key": "Ein Anwendungsfalldiagramm besteht aus einer Menge von Anwendungsfällen und stellt die Beziehungen zwischen Akteuren und Anwendungsfällen dar. Es zeigt das äußerlich erkennbare Systemverhalten aus der Sicht eines Anwenders."}
+                    },
+                    {
+                        "@id": "PresentationType_p158",
+                        "@standardPresentation": "0",
+                        "name": {
+                            "@key": "UML20_ACTIVITY_DIAGRAM",
+                            "@de": "Aktivität",
+                            "@en": "Activity"
+                        }
+                    }
+                ]
+            },
+            "objectType": [
+                {
+                    "@id": "ObjectType_p1215",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@key": "UML20_TEMPLATE_BINDING",
+                        "@de": "Template Bindung",
+                        "@en": "Template Binding"
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1938",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_TEMPLATE_BINDING__CLASS",
+                                "@de": "Template Klasse",
+                                "@en": "Template Class"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1243",
+                                "@id": "E3Range_p2153"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1917",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Template Parameter",
+                                "@de": "Template Parameter",
+                                "@key": "UML20_PT_TEMPLATE_BINDING__TEMPLATE_PARAMETER"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@de": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1239",
+                                "@id": "E3Range_p2196"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1249",
+                    "@abstract": "0",
+                    "@readOnly": "1",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_ASSOCIATION_RELATIONSHIP_TYPE",
+                        "@en": "Association Relationship Type"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1228",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@en": "Partition",
+                        "@key": "UML20_PARTITION",
+                        "@de": "Partition"
+                    },
+                    "presentationObjectType": {
+                        "@id": "POType_p701",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Partition",
+                            "@de": "Partition",
+                            "@key": "UML20_PARTITION"
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1238",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_EXTENSION",
+                        "@de": "Erweiterung",
+                        "@en": "Extension"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1218"},
+                    "presentationObjectType": {
+                        "@id": "POType_p696",
+                        "@presentationType": "PresentationType_p159",
+                        "name": {
+                            "@en": "Extension",
+                            "@de": "Erweiterung",
+                            "@key": "UML20_EXTENSION"
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1227",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_OBJECT",
+                        "@de": "Objekt",
+                        "@en": "Object"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1894",
+                        "@min": "1",
+                        "@max": "1",
+                        "@index": "0",
+                        "name": {
+                            "@key": "UML20_PT_OBJECT__CLASS",
+                            "@de": "Klasse",
+                            "@en": "Class"
+                        },
+                        "group": {
+                            "@key": "",
+                            "@de": "",
+                            "@en": ""
+                        },
+                        "e3Range": {
+                            "@objectType": "ObjectType_p1243",
+                            "@id": "E3Range_p2202"
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1233",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_START_NODE",
+                        "@de": "Startknoten",
+                        "@en": "Start Node"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1230"},
+                    "presentationObjectType": {
+                        "@id": "POType_p702",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@key": "UML20_START_NODE",
+                            "@en": "Start Node",
+                            "@de": "Startknoten"
+                        }
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1885",
+                        "@min": "0",
+                        "@max": "1",
+                        "@index": "0",
+                        "name": {"@key": "UML20_PT_START_NODE__OUTGOING"},
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1951",
+                            "@id": "E3Range_p2128"
+                        },
+                        "presentationPropertyType": {
+                            "@id": "PPType_p1438",
+                            "@presentationObjectType": "POType_p702",
+                            "name": {"@key": "UML20_PT_START_NODE__OUTGOING"}
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1226",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Use Case",
+                        "@key": "UML20_USE_CASE",
+                        "@de": "Anwendungsfall"
+                    },
+                    "information": {"@de": "Ein Anwendungsfall ist die Deklaration eines Verhaltens, das ein modelliertes System nach außen anbietet. Er spezifiziert eine Menge von Aktionen, die ein System ausführen muss, um ein beobachtbares Resultat zu generieren, das für einen oder mehrere Akteure von Bedeutung ist."},
+                    "superObjectType": {"@id": "ObjectType_p1250"},
+                    "presentationObjectType": {
+                        "@id": "POType_p709",
+                        "@presentationType": "PresentationType_p157",
+                        "name": {
+                            "@en": "Use Case",
+                            "@key": "UML20_USE_CASE",
+                            "@de": "Anwendungsfall"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1915",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Refinement",
+                                "@key": "UML20_PT_USE_CASE__REFINEMENT",
+                                "@de": "Verfeinerung"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@key": "",
+                                "@de": ""
+                            },
+                            "e3Range": [
+                                {
+                                    "@presentationType": "PresentationType_p158",
+                                    "@id": "E3Range_p2203"
+                                },
+                                {
+                                    "@presentationType": "PresentationType_p157",
+                                    "@id": "E3Range_p2185"
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1886",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@succeeding": "1",
+                            "name": {
+                                "@de": "System",
+                                "@en": "System",
+                                "@key": "UML20_USE_CASE__SYSTEM"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": "",
+                                "@key": ""
+                            },
+                            "e3Range": {
+                                "@fromCurrentPresentation": "1",
+                                "@objectType": "ObjectType_p1244",
+                                "@id": "E3Range_p2129"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1913",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_USE_CASE__ASSOCIATION__OUTGOING"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1952",
+                                "@id": "E3Range_p2148"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1400",
+                                "@presentationObjectType": "POType_p709",
+                                "name": {"@key": "UML20_PT_USE_CASE__ASSOCIATION__OUTGOING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1943",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {"@key": "UML20_PT_USE_CASE__ASSOCIATION__INCOMING"},
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1936",
+                                "@id": "E3Range_p2171"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1391",
+                                "@presentationObjectType": "POType_p709",
+                                "name": {"@key": "UML20_PT_USE_CASE__ASSOCIATION__INCOMING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1891",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "beziehungskanten",
+                                "@en": "Relationship Edge Incoming",
+                                "@key": "UML20_PT_USE_CASE__RELATIONSHIP_EDGE__INCOMING"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1953",
+                                "@id": "E3Range_p2116"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1383",
+                                "@presentationObjectType": "POType_p709",
+                                "name": {"@key": "UML20_PT_USE_CASE__RELATIONSHIP_EDGE__INCOMING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1914",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@key": "UML20_PT_USE_CASE__RELATIONSHIP_EDGE__OUTGOING",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1874",
+                                "@id": "E3Range_p2165"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1407",
+                                "@presentationObjectType": "POType_p709",
+                                "name": {"@key": "UML20_PT_USE_CASE__RELATIONSHIP_EDGE__OUTGOING"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1247",
+                    "@abstract": "0",
+                    "@readOnly": "1",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Sichtbarkeit",
+                        "@en": "Visibility",
+                        "@key": "UML20_VISIBILITY"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1222",
+                    "@abstract": "1",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_DEPENDENT_CLASSIFIER",
+                        "@en": "Dependent Classifier",
+                        "@de": "Abhängiger Classifier"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1945",
+                        "@min": "0",
+                        "@max": "1000",
+                        "@index": "0",
+                        "name": {
+                            "@en": "Successor/Content",
+                            "@de": "Nachfolger/Inhalt",
+                            "@key": "UML20_PT_DEPENDENT_CLASSIFIER__INDEPENDENT"
+                        },
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1959",
+                            "@id": "E3Range_p2174"
+                        },
+                        "presentationPropertyType": [
+                            {
+                                "@id": "PPType_p1397",
+                                "@presentationObjectType": "POType_p703",
+                                "name": {"@key": "UML20_PT_DEPENDENT_CLASSIFIER__INDEPENDENT"}
+                            },
+                            {
+                                "@id": "PPType_p1403",
+                                "@presentationObjectType": "POType_p706",
+                                "name": {
+                                    "@de": "unabhängig",
+                                    "@key": "UML20_PT_DEPENDENT_CLASSIFIER__INDEPENDENT"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1248",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_OBJECT_NODE_STATE",
+                        "@de": "Objektknotenzustand",
+                        "@en": "Object Node State"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1240",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@de": "Objektknoten",
+                        "@en": "Object Node",
+                        "@key": "UML20_OBJECT_NODE"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1230"},
+                    "presentationObjectType": {
+                        "@id": "POType_p707",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Object Node",
+                            "@key": "UML20_OBJECT_NODE",
+                            "@de": "Objektknoten"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1904",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Zustand",
+                                "@key": "UML20_PT_OBJECT_NODE__STATE",
+                                "@en": "State"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1248",
+                                "@id": "E3Range_p2155"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1911",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_OBJECT_NODE__OBJECT",
+                                "@de": "Objekt",
+                                "@en": "Object"
+                            },
+                            "group": {
+                                "@key": "",
+                                "@de": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1227",
+                                "@id": "E3Range_p2182"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1906",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_OBJECT_NODE__OUTPUT",
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1951",
+                                "@id": "E3Range_p2137"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1435",
+                                "@presentationObjectType": "POType_p707",
+                                "name": {"@key": "UML20_PT_OBJECT_NODE__OUTPUT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1924",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "input",
+                                "@en": "input",
+                                "@key": "UML20_PT_OBJECT_NODE__INPUT"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1934",
+                                "@id": "E3Range_p2168"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1447",
+                                "@presentationObjectType": "POType_p707",
+                                "name": {"@key": "UML20_PT_OBJECT_NODE__INPUT"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1246",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Endknoten",
+                        "@key": "UML20_END_NODE",
+                        "@en": "End Node"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1230"},
+                    "presentationObjectType": {
+                        "@id": "POType_p697",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "End Node",
+                            "@key": "UML20_END_NODE",
+                            "@de": "Endknoten"
+                        }
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1871",
+                        "@min": "1",
+                        "@max": "1",
+                        "@index": "0",
+                        "@succeeding": "0",
+                        "name": {
+                            "@key": "UML20_PT_END_NODE__INPUT",
+                            "@de": "input",
+                            "@en": "input"
+                        },
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1934",
+                            "@id": "E3Range_p2206"
+                        },
+                        "presentationPropertyType": {
+                            "@id": "PPType_p1390",
+                            "@presentationObjectType": "POType_p697",
+                            "name": {"@key": "UML20_PT_END_NODE__INPUT"}
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1230",
+                    "@abstract": "1",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Partitionsobjekt",
+                        "@key": "UML20_PARTITION_OBJECT",
+                        "@en": "Partition Object"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1935",
+                        "@min": "0",
+                        "@max": "1",
+                        "@index": "0",
+                        "@succeeding": "1",
+                        "name": {
+                            "@key": "UML20_PT_PARTITION_OBJECT__PARTITION",
+                            "@en": "Partition/Region",
+                            "@de": "Partition/Region"
+                        },
+                        "group": {
+                            "@key": "",
+                            "@en": "",
+                            "@de": ""
+                        },
+                        "e3Range": [
+                            {
+                                "@fromCurrentPresentation": "1",
+                                "@objectType": "ObjectType_p1228",
+                                "@id": "E3Range_p2147"
+                            },
+                            {
+                                "@fromCurrentPresentation": "1",
+                                "@objectType": "ObjectType_p1231",
+                                "@id": "E3Range_p2211"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1234",
+                    "@abstract": "0",
+                    "@readOnly": "1",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Relationship Edge Type",
+                        "@de": "Beziehungskantentyp",
+                        "@key": "UML20_RLEATIONSHIP_EDGE__TYPE"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1239",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@key": "UML20_TEMPLATE_PARAMETER",
+                        "@de": "Template Parameter",
+                        "@en": "Template Parameter"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1954",
+                        "@min": "0",
+                        "@max": "1",
+                        "@index": "0",
+                        "name": {
+                            "@key": "UML20_PT_TEMPLATE_PARAMETER__CLASS",
+                            "@de": "Klasse",
+                            "@en": "Class"
+                        },
+                        "group": {
+                            "@de": "",
+                            "@en": ""
+                        },
+                        "e3Range": {
+                            "@objectType": "ObjectType_p1243",
+                            "@id": "E3Range_p2124"
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1253",
+                    "@abstract": "1",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Sender",
+                        "@en": "Sender",
+                        "@key": "UML20_SENDER"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1221",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_DECISION_NODE",
+                        "@en": "Decision Node",
+                        "@de": "Entscheidungsknoten"
+                    },
+                    "superObjectType": [
+                        {"@id": "ObjectType_p1250"},
+                        {"@id": "ObjectType_p1230"}
+                    ],
+                    "presentationObjectType": {
+                        "@id": "POType_p685",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@key": "UML20_DECISION_NODE",
+                            "@de": "Entscheidungsknoten",
+                            "@en": "Decision Node"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1923",
+                            "@min": "1",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "input",
+                                "@de": "input",
+                                "@key": "UML20_PT_DECISION_NODE__INPUT"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1934",
+                                "@id": "E3Range_p2140"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1440",
+                                "@presentationObjectType": "POType_p685",
+                                "name": {"@key": "UML20_PT_DECISION_NODE__INPUT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1878",
+                            "@min": "1",
+                            "@max": "100",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@key": "UML20_PT_DECISION_NODE__OUTPUT",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1951",
+                                "@id": "E3Range_p2159"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1446",
+                                "@presentationObjectType": "POType_p685",
+                                "name": {"@key": "UML20_PT_DECISION_NODE__OUTPUT"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1251",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_FLOW_END",
+                        "@de": "Flussende",
+                        "@en": "Flow End"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1230"},
+                    "presentationObjectType": {
+                        "@id": "POType_p684",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@key": "UML20_FLOW_END",
+                            "@en": "Flow End",
+                            "@de": "Flussende"
+                        }
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1921",
+                        "@min": "1",
+                        "@max": "1",
+                        "@index": "0",
+                        "@succeeding": "0",
+                        "name": {
+                            "@key": "UML20_PT_FLOW_END__INPUT",
+                            "@en": "input",
+                            "@de": "input"
+                        },
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1934",
+                            "@id": "E3Range_p2115"
+                        },
+                        "presentationPropertyType": {
+                            "@id": "PPType_p1445",
+                            "@presentationObjectType": "POType_p684",
+                            "name": {"@key": "UML20_PT_FLOW_END__INPUT"}
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1229",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Realization",
+                        "@key": "UML20_REALIZATON_RELATIONSHIP",
+                        "@de": "Realisierung"
+                    },
+                    "presentationObjectType": {
+                        "@id": "POType_p704",
+                        "@presentationType": "PresentationType_p159",
+                        "name": {
+                            "@en": "Realization",
+                            "@key": "UML20_REALIZATION_RELATIONSHIP",
+                            "@de": "Realisierung"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1903",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@key": "UML20_PT_REALIZATON_RELATIONSHIP__CLIENT",
+                                "@de": "client",
+                                "@en": "client"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1949",
+                                "@id": "E3Range_p2210"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1428",
+                                "@presentationObjectType": "POType_p704",
+                                "name": {"@key": "UML20_PT_REALIZATON_RELATIONSHIP__CLIENT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1944",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_REALIZATON_RELATIONSHIP__SUPPLIER",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1896",
+                                "@id": "E3Range_p2192"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1419",
+                                "@presentationObjectType": "POType_p704",
+                                "name": {"@key": "UML20_PT_REALIZATON_RELATIONSHIP__SUPPLIER"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1214",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@en": "Action",
+                        "@key": "UML20_ACTION",
+                        "@de": "Aktion"
+                    },
+                    "information": {"@de": "Eine Aktion repräsentiert einen elementaren Baustein für die Spezifikation des Verhaltens eines Systems."},
+                    "superObjectType": [
+                        {"@id": "ObjectType_p1250"},
+                        {"@id": "ObjectType_p1230"}
+                    ],
+                    "presentationObjectType": {
+                        "@id": "POType_p692",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Action",
+                            "@key": "UML20_ACTION",
+                            "@de": "Aktion"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1922",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_ACTION__OUTPUT_OBJECT_FLOW",
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1884",
+                                "@id": "E3Range_p2169"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1421",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__OUTPUT_OBJECT_FLOW"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1925",
+                            "@min": "1",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "input",
+                                "@en": "input",
+                                "@key": "UML20_PT_ACTION__INPUT"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1934",
+                                "@id": "E3Range_p2161"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1413",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__INPUT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1905",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Refinement",
+                                "@key": "UML20_PT_ACTION__REFINEMENT",
+                                "@de": "Verfeinerung"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@key": "",
+                                "@de": ""
+                            },
+                            "e3Range": [
+                                {
+                                    "@presentationType": "PresentationType_p157",
+                                    "@id": "E3Range_p2150"
+                                },
+                                {
+                                    "@presentationType": "PresentationType_p158",
+                                    "@id": "E3Range_p2130"
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1916",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "inputOutputRegionsknoten",
+                                "@key": "UML20_PT_ACTION__INPUT_OUTPUT_REGION_NODE",
+                                "@en": "inputOutputRegionNode"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1401",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__INPUT_OUTPUT_REGION_NODE"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1929",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@key": "UML20_PT_ACTION__INPUT_OBJECT_FLOW",
+                                "@en": "input-objektflow",
+                                "@de": "input-objektfluss"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1879",
+                                "@id": "E3Range_p2213"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1387",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__INPUT_OBJECT_FLOW"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1933",
+                            "@min": "1",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_ACTION__OUTPUT",
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1951",
+                                "@id": "E3Range_p2194"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1449",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__OUTPUT"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1216",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_PARAMETER",
+                        "@de": "Parameter",
+                        "@en": "Parameter"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1882",
+                        "@min": "1",
+                        "@max": "1",
+                        "@index": "0",
+                        "name": {
+                            "@de": "Datentyp",
+                            "@en": "Data Type",
+                            "@key": "UML20_PT_PARAMETER__DATA_TYPE"
+                        },
+                        "group": {
+                            "@de": "",
+                            "@en": "",
+                            "@key": ""
+                        },
+                        "e3Range": [
+                            {
+                                "@objectType": "ObjectType_p1239",
+                                "@id": "E3Range_p2184"
+                            },
+                            {
+                                "@objectType": "ObjectType_p1243",
+                                "@id": "E3Range_p2170"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1219",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Dependency",
+                        "@key": "UML20_DEPENDENCY",
+                        "@de": "Abhängigkeit"
+                    },
+                    "information": {"@de": "Eine Abhängigkeit ist eine Beziehung zwischen zwei Modellelementen, die zeigt, daß eine Änderung in dem einen (unabhängigen) Element eine Änderung in dem anderen (abhängigen) Element bewirkt. Die Abhängigkeit bezieht sich dabei auf die Modellelemente selbst und nicht auf eventuelle Instanzen dieser Elemente."},
+                    "presentationObjectType": {
+                        "@id": "POType_p698",
+                        "@presentationType": "PresentationType_p159",
+                        "name": {
+                            "@en": "Dependency",
+                            "@key": "UML20_DEPENDENCY",
+                            "@de": "Abhängigkeit"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1959",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "abhängig",
+                                "@key": "UML20_PT_DEPENDENCY__DEPENDENT",
+                                "@en": "dependent"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1945",
+                                "@id": "E3Range_p2162"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1432",
+                                "@presentationObjectType": "POType_p698",
+                                "name": {"@key": "UML20_PT_DEPENDENCY__DEPENDENT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1909",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@key": "UML20_PT_DEPENDENCY__INDEPENDENT",
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1895",
+                                "@id": "E3Range_p2143"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1408",
+                                "@presentationObjectType": "POType_p698",
+                                "name": {"@key": "UML20_PT_DEPENDENCY__INDEPENDENT"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1231",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_REGION",
+                        "@en": "Region",
+                        "@de": "Region"
+                    },
+                    "superObjectType": [
+                        {"@id": "ObjectType_p1237"},
+                        {"@id": "ObjectType_p1250"}
+                    ],
+                    "presentationObjectType": {
+                        "@id": "POType_p695",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Region",
+                            "@de": "Region",
+                            "@key": "UML20_REGION"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1946",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_REGION__INPUT_OUTPUT_REGION_NODE",
+                                "@en": "inputOutputRegionNode",
+                                "@de": "inputOutputRegionsknoten"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1416",
+                                "@presentationObjectType": "POType_p695",
+                                "name": {"@key": "UML20_PT_REGION__INPUT_OUTPUT_REGION_NODE"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1889",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Ausführung",
+                                "@key": "UML20_PT_REGION__EXECUTION",
+                                "@en": "Execution"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1223",
+                                "@id": "E3Range_p2190"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1235",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Stereotype",
+                        "@de": "Stereotyp",
+                        "@key": "UML20_STEREOTYPE"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1252",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_ASSOCIATION",
+                        "@en": "Association",
+                        "@de": "Assoziation"
+                    },
+                    "information": {"@de": "Eine Assoziation beschreibt eine Beziehung zwischen zwei oder mehr Typen, im häufigsten Fall eine Verbindung zwischen zwei Klassen."},
+                    "presentationObjectType": [
+                        {
+                            "@id": "POType_p700",
+                            "@presentationType": "PresentationType_p157",
+                            "name": {
+                                "@de": "Assoziation",
+                                "@key": "UML20_ASSOCIATION",
+                                "@en": "Association"
+                            }
+                        },
+                        {
+                            "@id": "POType_p691",
+                            "@presentationType": "PresentationType_p159",
+                            "name": {
+                                "@en": "Association",
+                                "@key": "UML20_ASSOCIATION",
+                                "@de": "Assoziation"
+                            }
+                        }
+                    ],
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1936",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {"@key": "UML20_PT_ASSOCIATION__DRAIN"},
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1943",
+                                    "@id": "E3Range_p2114"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1926",
+                                    "@id": "E3Range_p2195"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1417",
+                                "@presentationObjectType": "POType_p700",
+                                "name": {"@key": "UML20_PT_ASSOCIATION__DRAIN"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1873",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Condition",
+                                "@de": "Bedingung",
+                                "@key": "UML20_PT_ASSOCIATION__INCOMING_CONDITION"
+                            },
+                            "information": {"@de": "Die Bedingung (engl. Constraint) beschreibt eine Voraussetzung, die für die Beziehung erfüllt sein muss. In der Regel wird damit der Wertebereich der Beziehung weiter eingeschränkt."},
+                            "group": {
+                                "@en": "Incoming",
+                                "@de": "Eingehend",
+                                "@key": ""
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2214"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1912",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "eingehende klasse",
+                                "@en": "incoming Class",
+                                "@key": "UML20_PT_ASSOCIATION__INCOMING_CLASS"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1887",
+                                "@id": "E3Range_p2151"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1395",
+                                "@presentationObjectType": "POType_p691",
+                                "name": {"@key": "UML20_PT_ASSOCIATION__INCOMING_CLASS"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1870",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "1",
+                            "name": {
+                                "@en": "Multiplicity",
+                                "@key": "UML20_PT_ASSOCIATION__INCOMING_MULTIPLICITY",
+                                "@de": "Multiplizität"
+                            },
+                            "information": {"@de": "Die Multiplizität formuliert eine Ober- und Untergrenze für die Anzahl der Instanzen, die über die Assoziation verbunden werden können."},
+                            "group": {
+                                "@en": "Incoming",
+                                "@key": "",
+                                "@de": "Eingehend"
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2216"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1899",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "2",
+                            "name": {
+                                "@de": "Beziehungsart",
+                                "@en": "Relationship Type",
+                                "@key": "UML20_PT_ASSOCIATION__OUTGOING_RELATIONSHIP_TYPE"
+                            },
+                            "information": {"@de": "Die \"normale\" Beziehungsart der Assoziation macht keine Aussage zur Navigierbarkeit der Beziehung. Teile, die über eine Komposition mit einem Ganzen verbunden sind, dürfen jeweils in höchstens einem (0..1) Ganzen vorkommen. Ein Teil kann aber Bestandteil mehrere Aggregate sein."},
+                            "group": {
+                                "@de": "Ausgehend",
+                                "@en": "Outgoing",
+                                "@key": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1249",
+                                "@id": "E3Range_p2199"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1952",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {"@key": "UML20_PT_ASSOCIATION__SOURCE"},
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1881",
+                                    "@id": "E3Range_p2178"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1913",
+                                    "@id": "E3Range_p2166"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1406",
+                                "@presentationObjectType": "POType_p700",
+                                "name": {"@key": "UML20_PT_ASSOCIATION__SOURCE"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1880",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Bedingung",
+                                "@key": "UML20_PT_ASSOCIATION__OUTGOING_CONDITION",
+                                "@en": "Condition"
+                            },
+                            "information": {"@de": "Die Bedingung (engl. Constraint) beschreibt eine Voraussetzung, die für die Beziehung erfüllt sein muss. In der Regel wird damit der Wertebereich der Beziehung weiter eingeschränkt."},
+                            "group": {
+                                "@de": "Ausgehend",
+                                "@key": "",
+                                "@en": "Outgoing"
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2217"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1898",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "1",
+                            "name": {
+                                "@key": "UML20_PT_ASSOCIATION__OUTGOING_MULTIPLICITY",
+                                "@de": "Multiplizität",
+                                "@en": "Multiplicity"
+                            },
+                            "information": {"@de": "Die Multiplizität formuliert eine Ober- und Untergrenze für die Anzahl der Instanzen, die über die Assoziation verbunden werden können."},
+                            "group": {
+                                "@key": "",
+                                "@de": "Ausgehend",
+                                "@en": "Outgoing"
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2222"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1960",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "3",
+                            "name": {
+                                "@de": "Rolle",
+                                "@en": "Role",
+                                "@key": "UML20_PT_ASSOCIATION__INCOMING_ROLE"
+                            },
+                            "information": {"@de": "Die Rolle definiert einen Namen für die Beziehung."},
+                            "group": {
+                                "@de": "Eingehend",
+                                "@en": "Incoming",
+                                "@key": ""
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2219"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1957",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_ASSOCIATION__OUTGOING_CLASS"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1932",
+                                "@id": "E3Range_p2156"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1398",
+                                "@presentationObjectType": "POType_p691",
+                                "name": {"@key": "UML20_PT_ASSOCIATION__OUTGOING_CLASS"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1927",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "3",
+                            "name": {
+                                "@en": "Role",
+                                "@key": "UML20_PT_ASSOCIATION__OUTGOING_ROLE",
+                                "@de": "Rolle"
+                            },
+                            "information": {"@de": "Die Rolle definiert einen Namen für die Beziehung."},
+                            "group": {
+                                "@en": "Outgoing",
+                                "@key": "",
+                                "@de": "Ausgehend"
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2220"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1928",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "2",
+                            "name": {
+                                "@key": "UML20_PT_ASSOCIATION__INCOMING_RELATIONSHIP_TYPE",
+                                "@en": "Relationship Type",
+                                "@de": "Beziehungsart"
+                            },
+                            "information": {"@de": "Die \"normale\" Beziehungsart der Assoziation macht keine Aussage zur Navigierbarkeit der Beziehung. Teile, die über eine Komposition mit einem Ganzen verbunden sind, dürfen jeweils in höchstens einem (0..1) Ganzen vorkommen. Ein Teil kann aber Bestandteil mehrere Aggregate sein."},
+                            "group": {
+                                "@key": "",
+                                "@en": "Incoming",
+                                "@de": "Eingehend"
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1249",
+                                "@id": "E3Range_p2131"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1242",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_RANGE",
+                        "@de": "Wertebereich",
+                        "@en": "Range"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1213",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Relationship Edge",
+                        "@de": "Beziehungskante",
+                        "@key": "UML20_RELATIONSHIP_EDGE"
+                    },
+                    "information": {"@de": "Anwendungsfälle können mit den Stereotypen 'extends', 'includes' und 'vererbung' untereinander in Beziehung gesetzt werden."},
+                    "presentationObjectType": {
+                        "@id": "POType_p705",
+                        "@presentationType": "PresentationType_p157",
+                        "name": {
+                            "@en": "Relationship Edge",
+                            "@de": "Beziehungskante",
+                            "@key": "UML20_RELATIONSHIP_EDGE"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1874",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@key": "UML20_PT_RELATIONSHIP_EDGE__SENDER",
+                                "@de": "sender",
+                                "@en": "sender"
+                            },
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1914",
+                                    "@id": "E3Range_p2172"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1897",
+                                    "@id": "E3Range_p2186"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1420",
+                                "@presentationObjectType": "POType_p705",
+                                "name": {"@key": "UML20_PT_RELATIONSHIP_EDGE__SENDER"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1918",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Typ",
+                                "@key": "UML20_PT_RELATIONSHIP_EDGE__TYPE",
+                                "@en": "Type"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1234",
+                                "@id": "E3Range_p2123"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1953",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@key": "UML20_PT_RELATIONSHIP_EDGE__RECEIVER",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1891",
+                                    "@id": "E3Range_p2204"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1875",
+                                    "@id": "E3Range_p2121"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1431",
+                                "@presentationObjectType": "POType_p705",
+                                "name": {"@key": "UML20_PT_RELATIONSHIP_EDGE__RECEIVER"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1224",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Objektfluss",
+                        "@en": "Object Flow",
+                        "@key": "UML20_OBJECT_FLOW"
+                    },
+                    "presentationObjectType": {
+                        "@id": "POType_p699",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@key": "UML20_OBJECT_FLOW",
+                            "@en": "Object Flow",
+                            "@de": "Objektfluss"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1890",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Object",
+                                "@key": "UML20_PT_OBJECT_FLOW__OBJECT",
+                                "@de": "Objekt"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@key": "",
+                                "@de": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1227",
+                                "@id": "E3Range_p2191"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1879",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@key": "UML20_PT_OBJECT_FLOW__RECEIVER",
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1929",
+                                "@id": "E3Range_p2154"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1399",
+                                "@presentationObjectType": "POType_p699",
+                                "name": {"@key": "UML20_PT_OBJECT_FLOW__RECEIVER"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1884",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "sender",
+                                "@en": "sender",
+                                "@key": "UML20_PT_OBJECT_FLOW__SENDER"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1922",
+                                "@id": "E3Range_p2136"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1386",
+                                "@presentationObjectType": "POType_p699",
+                                "name": {"@key": "UML20_PT_OBJECT_FLOW__SENDER"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1958",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Bedingung",
+                                "@key": "UML20_PT_OBJECT_FLOW__CONDITION",
+                                "@en": "Condition"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "2147483647",
+                                "@id": "StringRange_p2218"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1220",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Method",
+                        "@key": "UML20_METHOD",
+                        "@de": "Methode"
+                    },
+                    "information": {"@de": "Eine Methode ist ein Verhaltensmerkmal, mit der die Art und Weise modelliert wird, wie ein Verhalten aufgerufen wird. Sie spezifiziert den Einstiegspunkt in ein Verhalten in Form einer Signatur."},
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1892",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Sichtbarkeit",
+                                "@en": "Visibility",
+                                "@key": "UML20_PT_METHOD__VISIBILITY"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": "",
+                                "@key": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1247",
+                                "@id": "E3Range_p2201"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1910",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Parameter",
+                                "@key": "UML20_PT_METHOD__PARAMETER",
+                                "@en": "Parameter"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1216",
+                                "@id": "E3Range_p2158"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1901",
+                            "@min": "0",
+                            "@max": "32767",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Stereotyp",
+                                "@en": "Stereotype",
+                                "@key": "UML20_PT_METHOD__STEREOTYPE"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1235",
+                                "@id": "E3Range_p2120"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1876",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Rückgabewerttyp",
+                                "@key": "UML20_PT_METHOD__RETURN_VALUE_TYPE",
+                                "@en": "Return Value"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1243",
+                                "@id": "E3Range_p2139"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1243",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Klasse",
+                        "@key": "UML20_CLASS",
+                        "@en": "Class"
+                    },
+                    "information": {"@de": "Eine Klasse (engl. class) beschreibt eine Menge von Ausprägungen mit gleichen Merkmalen, gleichen Einschränkungen und gleicher Semantik."},
+                    "superObjectType": [
+                        {"@id": "ObjectType_p1222"},
+                        {"@id": "ObjectType_p1254"},
+                        {"@id": "ObjectType_p1250"}
+                    ],
+                    "presentationObjectType": [
+                        {
+                            "@id": "POType_p703",
+                            "@presentationType": "PresentationType_p159",
+                            "name": {
+                                "@key": "UML20_CLASS",
+                                "@en": "Class",
+                                "@de": "Klasse"
+                            }
+                        },
+                        {
+                            "@id": "POType_p706",
+                            "@presentationType": "PresentationType_p159",
+                            "name": {
+                                "@en": "Class (collapsed)",
+                                "@key": "UML20_CLASS_COLLAPSED",
+                                "@de": "Klasse (verkürzt)"
+                            }
+                        }
+                    ],
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1949",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_CLASS__REALIZATION_CLIENT",
+                                "@de": "Nachfolger/Inhalt",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1903",
+                                "@id": "E3Range_p2208"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1424",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {"@key": "UML20_PT_CLASS__REALIZATION_CLIENT"}
+                                },
+                                {
+                                    "@id": "PPType_p1430",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__REALIZATION_CLIENT"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1932",
+                            "@min": "0",
+                            "@max": "100",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "incoming association",
+                                "@key": "UML20_PT_CLASS__INCOMING_ASSOCIATION",
+                                "@de": "eingehende assoziation"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1957",
+                                "@id": "E3Range_p2133"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1423",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {
+                                        "@de": "eingehende assoziation",
+                                        "@key": "UML20_PT_CLASS__INCOMING_ASSOCIATION"
+                                    }
+                                },
+                                {
+                                    "@id": "PPType_p1429",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__INCOMING_ASSOCIATION"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1877",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "@succeeding": "1",
+                            "name": {
+                                "@de": "Paket",
+                                "@key": "UML20_PT_CLASS__PACKAGE",
+                                "@en": "Package"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1236",
+                                "@id": "E3Range_p2180"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1908",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_CLASS__STEREOTYPE",
+                                "@en": "Stereotype",
+                                "@de": "Stereotyp"
+                            },
+                            "group": {
+                                "@key": "",
+                                "@en": "",
+                                "@de": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1235",
+                                "@id": "E3Range_p2198"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1956",
+                            "@min": "0",
+                            "@max": "32767",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Parameter",
+                                "@key": "UML20_PT_CLASS__TEMPLATE_PARAMETER",
+                                "@en": "Parameter"
+                            },
+                            "group": {
+                                "@de": "Template",
+                                "@en": "Template"
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1239",
+                                "@id": "E3Range_p2179"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1940",
+                            "@min": "0",
+                            "@max": "100",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_CLASS__OUTGOING_INHERITANCE_RELATIONSHIP"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1919",
+                                "@id": "E3Range_p2118"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1414",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {
+                                        "@key": "UML20_PT_CLASS__OUTGOING_INHERITANCE_RELATIONSHIP",
+                                        "@de": "ausgehende vererbungsbeziehung"
+                                    }
+                                },
+                                {
+                                    "@id": "PPType_p1427",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__OUTGOING_INHERITANCE_RELATIONSHIP"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1950",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Methode",
+                                "@key": "UML20_PT_CLASS__METHOD",
+                                "@en": "Method"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1220",
+                                "@id": "E3Range_p2197"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1961",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Attribute",
+                                "@key": "UML20_PT_CLASS__ATTRIBUTE",
+                                "@de": "Attribut"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@key": "",
+                                "@de": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1232",
+                                "@id": "E3Range_p2152"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1941",
+                            "@min": "0",
+                            "@max": "32767",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Bindung",
+                                "@key": "UML20_PT_CLASS__TEMPLATE_BINDING",
+                                "@en": "Binding"
+                            },
+                            "group": {
+                                "@de": "Template",
+                                "@en": "Template"
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1215",
+                                "@id": "E3Range_p2134"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1896",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@key": "UML20_PT_CLASS__REALIZATION_SUPPLIER",
+                                "@en": "supplier",
+                                "@de": "supplier"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1944",
+                                "@id": "E3Range_p2117"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1393",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {"@key": "UML20_PT_CLASS__REALIZATION_SUPPLIER"}
+                                },
+                                {
+                                    "@id": "PPType_p1388",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__REALIZATION_SUPPLIER"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1900",
+                            "@min": "0",
+                            "@max": "100",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "incoming inheritance relationship",
+                                "@de": "eingehende vererbungsbeziehung",
+                                "@key": "UML20_PT_CLASS__INCOMING_INHERITANCE_RELATIONSHIP"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1931",
+                                "@id": "E3Range_p2167"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1392",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {
+                                        "@de": "eingehende vererbungsbeziehung",
+                                        "@key": "UML20_PT_CLASS__INCOMING_INHERITANCE_RELATIONSHIP"
+                                    }
+                                },
+                                {
+                                    "@id": "PPType_p1384",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__INCOMING_INHERITANCE_RELATIONSHIP"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1887",
+                            "@min": "0",
+                            "@max": "100",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_CLASS__OUTGOING_ASSOCIATION",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1912",
+                                "@id": "E3Range_p2125"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1439",
+                                    "@presentationObjectType": "POType_p703",
+                                    "name": {"@key": "UML20_PT_CLASS__OUTGOING_ASSOCIATION"}
+                                },
+                                {
+                                    "@id": "PPType_p1443",
+                                    "@presentationObjectType": "POType_p706",
+                                    "name": {
+                                        "@de": "ausgehende assoziation",
+                                        "@key": "UML20_PT_CLASS__OUTGOING_ASSOCIATION"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1223",
+                    "@abstract": "0",
+                    "@readOnly": "1",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Region Execution Types",
+                        "@key": "UML20_PT_REGION__EXECUTION_TYPES"
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1244",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_SYSTEM",
+                        "@en": "System",
+                        "@de": "System"
+                    },
+                    "presentationObjectType": {
+                        "@id": "POType_p693",
+                        "@presentationType": "PresentationType_p157",
+                        "name": {
+                            "@de": "System",
+                            "@key": "UML20_SYSTEM",
+                            "@en": "System"
+                        }
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1236",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_PACKAGE",
+                        "@de": "Paket",
+                        "@en": "Package"
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1948",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Stereotyp",
+                                "@key": "UML20_PT_PACKAGE__STEREOTYPE",
+                                "@en": "Stereotype"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1235",
+                                "@id": "E3Range_p2144"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1893",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Verfeinerung",
+                                "@key": "UML20_PT_PACKAGE__REFINEMENT",
+                                "@en": "Refinement"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@presentationType": "PresentationType_p159",
+                                "@id": "E3Range_p2163"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1937",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "übergeordnetes Paket",
+                                "@key": "UML20_PT_PACKAGE__SUPER_PACKAGE",
+                                "@en": "Super-Package"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1236",
+                                "@id": "E3Range_p2132"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1237",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Input Output Regionsknoten",
+                        "@key": "UML20_INPUT_OUTPUT_REGION_NODE",
+                        "@en": "Input Output Region Node"
+                    },
+                    "superObjectType": {"@id": "ObjectType_p1230"},
+                    "presentationObjectType": {
+                        "@id": "POType_p690",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Input Output Region Node",
+                            "@de": "Input Output Regionsknoten",
+                            "@key": "UML20_INPUT_OUTPUT_REGION_NODE"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1888",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "input",
+                                "@de": "input",
+                                "@key": "UML20_PT_INPUT_OUTPUT_REGION_NODE__INPUT"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1934",
+                                "@id": "E3Range_p2189"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1444",
+                                "@presentationObjectType": "POType_p690",
+                                "name": {"@key": "UML20_PT_INPUT_OUTPUT_REGION_NODE__INPUT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1930",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@key": "UML20_PT_INPUT_OUTPUT_REGION_NODE__OUTPUT",
+                                "@de": "Nachfolger/Inhalt",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1951",
+                                "@id": "E3Range_p2145"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1434",
+                                "@presentationObjectType": "POType_p690",
+                                "name": {"@key": "UML20_PT_INPUT_OUTPUT_REGION_NODE__OUTPUT"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1225",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_FLOW",
+                        "@de": "Fluss",
+                        "@en": "Flow"
+                    },
+                    "presentationObjectType": {
+                        "@id": "POType_p708",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Flow",
+                            "@key": "UML20_FLOW",
+                            "@de": "Fluss"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1920",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Condition",
+                                "@de": "Bedingung",
+                                "@key": "UML20_PT_FLOW__CONDITION"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@de": "",
+                                "@key": ""
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2221"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1951",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "sender",
+                                "@en": "sender",
+                                "@key": "UML20_PT_FLOW__SENDER"
+                            },
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1933",
+                                    "@id": "E3Range_p2127"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1930",
+                                    "@id": "E3Range_p2141"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1906",
+                                    "@id": "E3Range_p2146"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1885",
+                                    "@id": "E3Range_p2164"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1902",
+                                    "@id": "E3Range_p2176"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1878",
+                                    "@id": "E3Range_p2209"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1410",
+                                "@presentationObjectType": "POType_p708",
+                                "name": {"@key": "UML20_PT_FLOW__SENDER"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1934",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@en": "Successor/Content",
+                                "@key": "UML20_PT_FLOW__RECEIVER",
+                                "@de": "Nachfolger/Inhalt"
+                            },
+                            "e3Range": [
+                                {
+                                    "@propertyType": "PropertyType_p1924",
+                                    "@id": "E3Range_p2173"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1923",
+                                    "@id": "E3Range_p2187"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1947",
+                                    "@id": "E3Range_p2205"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1871",
+                                    "@id": "E3Range_p2122"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1921",
+                                    "@id": "E3Range_p2135"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1925",
+                                    "@id": "E3Range_p2142"
+                                },
+                                {
+                                    "@propertyType": "PropertyType_p1888",
+                                    "@id": "E3Range_p2160"
+                                }
+                            ],
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1425",
+                                "@presentationObjectType": "POType_p708",
+                                "name": {"@key": "UML20_PT_FLOW__RECEIVER"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1254",
+                    "@abstract": "1",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Independent Classifier",
+                        "@key": "UML20_INDEPENDENT_CLASSIFIER",
+                        "@de": "Unabhängiger Classifier"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1895",
+                        "@min": "0",
+                        "@max": "1000",
+                        "@index": "0",
+                        "@succeeding": "0",
+                        "name": {
+                            "@de": "abhängig",
+                            "@en": "dependent",
+                            "@key": "UML20_PT_INDEPENDENT_CLASSIFIER__DEPENDENT"
+                        },
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1909",
+                            "@id": "E3Range_p2181"
+                        },
+                        "presentationPropertyType": [
+                            {
+                                "@id": "PPType_p1409",
+                                "@presentationObjectType": "POType_p706",
+                                "name": {
+                                    "@key": "UML20_PT_INDEPENDENT_CLASSIFIER__DEPENDENT",
+                                    "@de": "abhängig"
+                                }
+                            },
+                            {
+                                "@id": "PPType_p1412",
+                                "@presentationObjectType": "POType_p703",
+                                "name": {"@key": "UML20_PT_INDEPENDENT_CLASSIFIER__DEPENDENT"}
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1218",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_INHERITANCE_RELATIONSHIP",
+                        "@en": "Inheritance",
+                        "@de": "Vererbung"
+                    },
+                    "information": {"@de": "Mechanismus, durch den spezialisierte Klassen die Struktur und das Verhalten allgemeinerer Klassen übernehmen."},
+                    "presentationObjectType": {
+                        "@id": "POType_p688",
+                        "@presentationType": "PresentationType_p159",
+                        "name": {
+                            "@key": "UML20_INHERITANCE_RELATIONSHIP",
+                            "@en": "Inheritance",
+                            "@de": "Vererbung"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1931",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "name": {
+                                "@en": "Successor/Content",
+                                "@de": "Nachfolger/Inhalt",
+                                "@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUPERCLASS"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1900",
+                                "@id": "E3Range_p2188"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1448",
+                                    "@presentationObjectType": "POType_p696",
+                                    "name": {"@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUPERCLASS"}
+                                },
+                                {
+                                    "@id": "PPType_p1382",
+                                    "@presentationObjectType": "POType_p688",
+                                    "name": {"@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUPERCLASS"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1919",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "subclass",
+                                "@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUBCLASS",
+                                "@de": "subklasse"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1940",
+                                "@id": "E3Range_p2149"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1436",
+                                    "@presentationObjectType": "POType_p696",
+                                    "name": {"@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUBCLASS"}
+                                },
+                                {
+                                    "@id": "PPType_p1441",
+                                    "@presentationObjectType": "POType_p688",
+                                    "name": {"@key": "UML20_PT_INHERITANCE_RELATIONSHIP__SUBCLASS"}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1217",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@en": "Actor",
+                        "@de": "Akteur",
+                        "@key": "UML20_AGENT"
+                    },
+                    "information": {"@de": "Ein Akteur bezeichnet ein Element, das mit dem modellierten System interagiert."},
+                    "superObjectType": {"@id": "ObjectType_p1253"},
+                    "presentationObjectType": {
+                        "@id": "POType_p710",
+                        "@presentationType": "PresentationType_p157",
+                        "name": {
+                            "@en": "Agent",
+                            "@de": "Akteur",
+                            "@key": "UML20_AGENT"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1897",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {"@key": "UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING"},
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1874",
+                                "@id": "E3Range_p2183"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1404",
+                                "@presentationObjectType": "POType_p710",
+                                "name": {"@key": "UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1926",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "association incoming",
+                                "@de": "nutzungskanten",
+                                "@key": "UML20_PT_AGENT__ASSOCIATION__INCOMING"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1936",
+                                "@id": "E3Range_p2175"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1394",
+                                "@presentationObjectType": "POType_p710",
+                                "name": {"@key": "UML20_PT_AGENT__ASSOCIATION__INCOMING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1881",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {"@key": "UML20_PT_AGENT__ASSOCIATION__OUTGOING"},
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1952",
+                                "@id": "E3Range_p2200"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1415",
+                                "@presentationObjectType": "POType_p710",
+                                "name": {"@key": "UML20_PT_AGENT__ASSOCIATION__OUTGOING"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1875",
+                            "@min": "0",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@en": "relationship edge incoming",
+                                "@key": "UML20_PT_AGENT__RELATIONSHIP_EDGE__INCOMING",
+                                "@de": "beziehungskante"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1953",
+                                "@id": "E3Range_p2119"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1422",
+                                "@presentationObjectType": "POType_p710",
+                                "name": {"@key": "UML20_PT_AGENT__RELATIONSHIP_EDGE__INCOMING"}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1232",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@key": "UML20_ATTRIBUTE",
+                        "@en": "Attribute",
+                        "@de": "Attribut"
+                    },
+                    "information": {"@de": "Ein Attribut ist ein strukturelles Merkmal einer Klasse und spezifiziert damit einen Teil der Struktur von Instanzen, die für diese Klasse gebildet werden. Es hat einen Namen und einen Typ."},
+                    "superObjectType": {"@id": "ObjectType_p1216"},
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1939",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Sichtbarkeit",
+                                "@key": "UML20_PT_ATTRIBUTE__VISIBILITY",
+                                "@en": "Visibility"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@key": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1247",
+                                "@id": "E3Range_p2212"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1883",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Bedingung",
+                                "@en": "Condition",
+                                "@key": "UML20_PT_ATTRIBUTE__CONDITION"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": "",
+                                "@key": ""
+                            },
+                            "stringRange": {
+                                "@minLength": "0",
+                                "@maxLength": "65535",
+                                "@id": "StringRange_p2215"
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1942",
+                            "@min": "0",
+                            "@max": "32767",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Stereotyp",
+                                "@key": "UML_PT_ATTRIBUTE__STEREOTYPE",
+                                "@en": "Stereotype"
+                            },
+                            "group": {
+                                "@de": "",
+                                "@en": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1235",
+                                "@id": "E3Range_p2193"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1245",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "1",
+                    "name": {
+                        "@key": "UML20_ANNOTATION",
+                        "@en": "Annotation",
+                        "@de": "Annotation"
+                    },
+                    "information": {"@de": "Annotation beschreiben Modellelemente in einer freien Form näher."},
+                    "presentationObjectType": [
+                        {
+                            "@id": "POType_p694",
+                            "@presentationType": "PresentationType_p158",
+                            "name": {
+                                "@en": "Annotation",
+                                "@de": "Annotation",
+                                "@key": "UML20_ANNOTATION"
+                            }
+                        },
+                        {
+                            "@id": "POType_p689",
+                            "@presentationType": "PresentationType_p157",
+                            "name": {
+                                "@en": "Annotation",
+                                "@de": "Annotation",
+                                "@key": "UML20_ANNOTATION"
+                            }
+                        },
+                        {
+                            "@id": "POType_p687",
+                            "@presentationType": "PresentationType_p159",
+                            "name": {
+                                "@en": "Annotation",
+                                "@de": "Annotation",
+                                "@key": "UML20_ANNOTATION"
+                            }
+                        }
+                    ],
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1955",
+                            "@min": "1",
+                            "@max": "1",
+                            "@index": "0",
+                            "@deleteObjectCascade": "1",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "element",
+                                "@key": "UML20_PT_ANNOTATION__ELEMENT",
+                                "@en": "element"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1872",
+                                "@id": "E3Range_p2138"
+                            },
+                            "presentationPropertyType": [
+                                {
+                                    "@id": "PPType_p1442",
+                                    "@presentationObjectType": "POType_p689",
+                                    "name": {"@key": "UML20_PT_ANNOTATION__ELEMENT"}
+                                },
+                                {
+                                    "@id": "PPType_p1433",
+                                    "@presentationObjectType": "POType_p694",
+                                    "name": {"@key": "UML20_PT_ANNOTATION__ELEMENT"}
+                                },
+                                {
+                                    "@id": "PPType_p1437",
+                                    "@presentationObjectType": "POType_p687",
+                                    "name": {"@key": "UML20_PT_ANNOTATION__ELEMENT"}
+                                }
+                            ]
+                        },
+                        {
+                            "@id": "PropertyType_p1907",
+                            "@min": "0",
+                            "@max": "1",
+                            "@index": "0",
+                            "name": {
+                                "@en": "Stereotype",
+                                "@de": "Stereotyp",
+                                "@key": "UML20_PT_ANNOTATION__STEREOTYPE"
+                            },
+                            "group": {
+                                "@en": "",
+                                "@de": "",
+                                "@key": ""
+                            },
+                            "e3Range": {
+                                "@objectType": "ObjectType_p1235",
+                                "@id": "E3Range_p2157"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@id": "ObjectType_p1250",
+                    "@abstract": "1",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@de": "Kommentierbar",
+                        "@en": "Annotateable",
+                        "@key": "UML20_ANNOTATEABLE"
+                    },
+                    "propertyType": {
+                        "@id": "PropertyType_p1872",
+                        "@min": "0",
+                        "@max": "1",
+                        "@index": "0",
+                        "name": {
+                            "@de": "Nachfolger/Inhalt",
+                            "@key": "UML20_PT_ANNOTATEABLE__ANNOTATION",
+                            "@en": "Successor/Content"
+                        },
+                        "e3Range": {
+                            "@propertyType": "PropertyType_p1955",
+                            "@id": "E3Range_p2207"
+                        },
+                        "presentationPropertyType": [
+                            {
+                                "@id": "PPType_p1450",
+                                "@presentationObjectType": "POType_p685",
+                                "name": {"@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"}
+                            },
+                            {
+                                "@id": "PPType_p1405",
+                                "@presentationObjectType": "POType_p703",
+                                "name": {"@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"}
+                            },
+                            {
+                                "@id": "PPType_p1389",
+                                "@presentationObjectType": "POType_p695",
+                                "name": {"@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"}
+                            },
+                            {
+                                "@id": "PPType_p1402",
+                                "@presentationObjectType": "POType_p709",
+                                "name": {"@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"}
+                            },
+                            {
+                                "@id": "PPType_p1385",
+                                "@presentationObjectType": "POType_p706",
+                                "name": {
+                                    "@de": "kommentar",
+                                    "@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"
+                                }
+                            },
+                            {
+                                "@id": "PPType_p1411",
+                                "@presentationObjectType": "POType_p686",
+                                "name": {"@key": "UML20_PT_ANNOTATEABLE__ANNOTATION"}
+                            },
+                            {
+                                "@id": "PPType_p1396",
+                                "@presentationObjectType": "POType_p692",
+                                "name": {"@key": "UML20_PT_ACTION__ANNOTATION"}
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@id": "ObjectType_p1241",
+                    "@abstract": "0",
+                    "@readOnly": "0",
+                    "@copyName": "0",
+                    "name": {
+                        "@en": "Fork Node",
+                        "@key": "UML20_FORK_NODE",
+                        "@de": "Gabelknoten"
+                    },
+                    "superObjectType": [
+                        {"@id": "ObjectType_p1250"},
+                        {"@id": "ObjectType_p1230"}
+                    ],
+                    "presentationObjectType": {
+                        "@id": "POType_p686",
+                        "@presentationType": "PresentationType_p158",
+                        "name": {
+                            "@en": "Fork Node",
+                            "@de": "Gabelknoten",
+                            "@key": "UML20_FORK_NODE"
+                        }
+                    },
+                    "propertyType": [
+                        {
+                            "@id": "PropertyType_p1947",
+                            "@min": "1",
+                            "@max": "1000",
+                            "@index": "0",
+                            "@succeeding": "0",
+                            "name": {
+                                "@de": "input",
+                                "@en": "input",
+                                "@key": "UML20_PT_FORK_NODE__INPUT"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1934",
+                                "@id": "E3Range_p2126"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1426",
+                                "@presentationObjectType": "POType_p686",
+                                "name": {"@key": "UML20_PT_FORK_NODE__INPUT"}
+                            }
+                        },
+                        {
+                            "@id": "PropertyType_p1902",
+                            "@min": "1",
+                            "@max": "1000",
+                            "@index": "0",
+                            "name": {
+                                "@de": "Nachfolger/Inhalt",
+                                "@key": "UML20_PT_FORK_NODE__OUTPUT",
+                                "@en": "Successor/Content"
+                            },
+                            "e3Range": {
+                                "@propertyType": "PropertyType_p1951",
+                                "@id": "E3Range_p2177"
+                            },
+                            "presentationPropertyType": {
+                                "@id": "PPType_p1418",
+                                "@presentationObjectType": "POType_p686",
+                                "name": {"@key": "UML20_PT_FORK_NODE__OUTPUT"}
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}}
