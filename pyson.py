@@ -46,7 +46,7 @@ if inplace:
 def query(text):
     json = cleanJSON(text)
     if args.dict:
-        expression = ''.join(map(lambda x : '["%s"]'%x, args.dict.split('.')))
+        expression = dict2eval(args.dict)
         if args.verbose:
             sys.stderr.write('expression=json%s\n'%expression)
         json = eval('json%s'%expression)
