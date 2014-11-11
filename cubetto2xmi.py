@@ -6,9 +6,13 @@
 # $HeadURL$
 # $Id$
 
-import sys,os,argparse,StringIO
+import sys,os,re,argparse,StringIO
 
 import xmltodict,json
+
+from _tools.pyson import *
+
+import Cubetto
 
 parser = argparse.ArgumentParser()
 
@@ -30,14 +34,27 @@ def main():
         outputEXT = '.CubettoXML'
         
     if args.output:
+        sys.stderr.write('%s\n'%args.output)
         output = open(args.output,'w')
     else:
+        sys.stderr.write('%s\n'%outputEXT)
         output = open(outputEXT,'w')
 
-    fp = open(args.cubetto or args.xmi)
+    pattern = re.compile('^.*%s$'%inputEXT)
+    file = args.cubetto or args.xmi
+    if not pattern.match(file):
+        sys.stderr.write('input file %s does not have a valid extension %s'%(file,inputEXT))
+        return
+    
+    fp = open(file)
     object = xmltodict.parse('\n'.join(fp.readlines()))
     fp.close()
-    json.dump(object,output)
+    
+    # construct XMI model here
+    project = Cubetto.Project(object['projects']['project'])
+    #done
+    
+    output.write(project.doc)
         
     output.close()
     

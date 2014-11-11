@@ -28,6 +28,10 @@ parser.add_argument('-i','--inplace', action='store_true', help='format xml inpl
 parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string', metavar='[\'key\']...')
+group.add_argument('-d','--dict',    action='store',      help='evaluate a JS object dict string', metavar='key.key...')
+
 args = parser.parse_args()
 
 if args.verbose:
@@ -39,6 +43,17 @@ inplace = args.inplace
 if inplace:
     colour = False
         
+def query(text):
+    json = cleanJSON(text)
+    if args.dict:
+        expression = ''.join(map(lambda x : '["%s"]'%x, args.dict.split('.')))
+        if args.verbose:
+            sys.stderr.write('expression=json%s\n'%expression)
+        json = eval('json%s'%expression)
+    if args.eval:
+        json = eval('json%s'%args.eval)
+    return json
+
 def main():
     global colour, inplace, jpath
 
@@ -57,22 +72,22 @@ def main():
             else:
                 print horizon
                 fp = open(f)
-
-            lines = cleanJSON(''.join(fp.readlines()))
+            
+            json = query(''.join(fp.readlines()))
             fp.close()
 
             if inplace:
                 fo = open(f,'w')
             else:
                 fo = sys.stdout
-
-            prettyPrint(lines,colour=colour,output=fo,align=args.align)
+                                
+            prettyPrint(json,colour=colour,output=fo,align=args.align)
 
             if inplace:
                 fo.close()
                 print f
     else:
-        json = cleanJSON(''.join(sys.stdin.readlines()))
+        json = query(''.join(sys.stdin.readlines()))
         prettyPrint(json, colour=colour, align=args.align)
 
     return

@@ -6,5 +6,6 @@
 # $HeadURL$
 # $Id$
 
+from Project import Project
 from ObjectType import ObjectType
 

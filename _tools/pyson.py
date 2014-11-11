@@ -30,3 +30,6 @@ def cleanJSON(lines):
             clean = clean.replace(replacement,replacements[replacement])
     return eval(clean)
 
+def dict2eval(dictionary):
+    expression = ''.join(map(lambda x : '["%s"]'%x, dictionary.split('.')))
+    return expression
