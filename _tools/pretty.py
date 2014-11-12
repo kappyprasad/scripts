@@ -26,7 +26,7 @@ class PrettyPrinter(object):
         t='%s'%type(d)
         if d is None:
             self.output.write(self.colours.Off)
-            self.output.write('None')
+            self.output.write('null')
             self.output.write(self.colours.Off)
             
         elif \
@@ -132,7 +132,7 @@ class PrettyPrinter(object):
             self.output.write('</%s>'%name)
             self.output.write(self.colours.Off)
             
-        elif t == 'org.python.core.PyDictionary' or t == '<type \'dict\'>':
+        elif t == 'org.python.core.PyDictionary' or type(d) == dict:
             self.output.write(self.colours.Purple)
             self.output.write('{')
             self.output.write(self.colours.Off)
@@ -152,11 +152,11 @@ class PrettyPrinter(object):
                 else:
                     padding = 0
                     
-                self.output.write('%s  \''%indent)
+                self.output.write('%s  "'%indent)
                 self.output.write(self.colours.Red)
                 self.output.write('%s'%key)
                 self.output.write(self.colours.Off)
-                self.output.write('\'%s :  '%(' '*padding))
+                self.output.write('"%s :  '%(' '*padding))
                 
                 self.prettify(d[key], indent='%s  '%indent)
                 
@@ -170,26 +170,31 @@ class PrettyPrinter(object):
             self.output.write('}')
             self.output.write(self.colours.Off)
             
-        elif t == 'org.python.core.PyList' or t == '<type \'list\'>':
+        elif t == 'org.python.core.PyList' or type(d) == list:
             if len(self.walked) == 0:
                 self.bracket(d,'[',']','Teal','  %s'%indent)
             else:
                 self.bracket(d,'','','Teal','  %s'%indent)
                 
-        elif t == 'org.python.core.PyTuple' or t == '<type \'tuple\'>':
+        elif t == 'org.python.core.PyTuple' or type(d) == tuple:
             if len(self.walked) == 0:
                 self.bracket(d,'(',')','Orange','  %s'%indent)
             else:
                 self.bracket(d,'','','Orange','  %s'%indent)
                 
-        elif t == 'org.python.core.PyString' or t == '<type \'str\'>':
+        elif t == 'org.python.core.PyString' or type(d) == str or type(d) == unicode:
             if len(self.walked) == 0:
-                self.output.write('\'')
+                self.output.write('"')
                 self.output.write(self.colours.Green)
                 self.output.write('%s'%d)
                 self.output.write(self.colours.Off)
                 if len(self.walked) == 0:
-                    self.output.write('\'')
+                    self.output.write('"')
+
+        elif t == 'org.python.core.PyBoolean' or type(d) == bool:
+            self.output.write(self.colours.Green)
+            self.output.write('%s'%str(d).lower())
+            self.output.write(self.colours.Off)
 
         else:
             self.output.write(self.colours.Green)

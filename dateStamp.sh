@@ -8,4 +8,4 @@
 
 
 
-date +%Y-%m-%d_%H-%M-%S
+date +%Y-%m-%dT%H:%M:%S

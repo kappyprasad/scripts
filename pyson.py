@@ -68,7 +68,7 @@ def main():
                 output = open(f,'w')
                 fp = open(b)
             else:
-                print horizon
+                sys.stderr.write('%s\n'%horizon)
                 fp = open(f)
             
             object = query(''.join(fp.readlines()))
