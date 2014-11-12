@@ -24,7 +24,7 @@ def main():
     for file in args.file:
         with open(file) as fp:
             if args.reverse:
-                object = json.load(fp)
+                object = json.loads(''.join(fp.readlines()))
                 print yaml.dump(object)
             else:
                 object = yaml.load(fp)

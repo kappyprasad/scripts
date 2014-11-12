@@ -11,8 +11,8 @@ class Project(Cubetto.FactoryWorker):
         '@name',
     ]
     
-    def __init__(self,json,xmi,raw):
-        super(Project,self).__init__(json,xmi,raw)
+    def __init__(self,json,xmi,raw,verbose):
+        super(Project,self).__init__(json,xmi,raw,verbose)
 
         self.package = xmi.makePackage(self.name,self.xmi.modelNS)
         if not self.raw: 

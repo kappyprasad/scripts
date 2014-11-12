@@ -12,7 +12,7 @@ class Factory(object):
 
     __xmi     = None
     __indent  = False
-
+    __verbose = False
     __engines = {}
     
     @property
@@ -42,11 +42,12 @@ class Factory(object):
         self.__engines = engines
         return
 
-    def __init__(self, json, raw=False, indent=False):
+    def __init__(self, json, raw=False, indent=False, verbose=False):
         self.json = json
         self.xmi = XMI()
         self.indent = indent
-        args = (json,self.xmi,raw)
+        self.__verbose = verbose
+        args = (json,self.xmi,raw,verbose)
         self.__engines = {
             'Project' : Cubetto.Project(*args),
             'ObjectType' : Cubetto.ObjectType(*args),

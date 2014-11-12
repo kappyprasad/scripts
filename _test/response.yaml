@@ -1,2 +1,5 @@
-bob: car
-fred : bar
+array: [value1, value2]
+boolean: true
+number: 0
+string: value
+

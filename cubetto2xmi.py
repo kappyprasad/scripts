@@ -52,7 +52,7 @@ def main():
     object = xmltodict.parse('\n'.join(fp.readlines()))
     fp.close()
     
-    factory = Cubetto.Factory(object, raw=args.raw, indent=args.indent)
+    factory = Cubetto.Factory(object, raw=args.raw, indent=args.indent, verbose=args.verbose)
     factory.ingest()
     factory.process()
     factory.export(output)

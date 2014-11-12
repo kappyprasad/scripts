@@ -9,6 +9,7 @@ class FactoryWorker(object):
     __name       = None
     __xmi        = None
     __raw        = False
+    __verbose    = False
     __package    = None
     __diagram    = None
 
@@ -53,6 +54,10 @@ class FactoryWorker(object):
         return
 
     @property
+    def verbose(self):
+        return self.__verbose
+    
+    @property
     def package(self):
         return self.__package
 
@@ -70,10 +75,11 @@ class FactoryWorker(object):
         self.__diagram = diagram
         return
 
-    def __init__(self, json, xmi, raw=False):
+    def __init__(self, json, xmi, raw=False, verbose=False):
         self.__json = json
         self.xmi = xmi
         self.raw = raw
+        self.__verbose = verbose
         self.entities = {}
         return
 
