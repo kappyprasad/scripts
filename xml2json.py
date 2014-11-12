@@ -19,7 +19,7 @@ parser.add_argument('-?',              action='help',       help='show this help
 parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
 parser.add_argument('-r','--reverse',  action='store_true', help='reverse json->xml')
 parser.add_argument('-o','--output',   action='store',      help='output to file')
-parser.add_argument('file',            action='store',      help='files to format', nargs='*')
+parser.add_argument('-i','--input',    action='store',      help='input from file')
 
 args = parser.parse_args()
 
@@ -30,28 +30,21 @@ def main():
     else:
         output = sys.stdout
 
-    if args.file:
-        for file in args.file:
-            fp = open(file)
-            if args.reverse:
-                object = json.loads(''.join(fp.readlines()))
-                xml = xmltodict.unparse(object)
-                output.write('%s'%xml)
-            else:
-                object = xmltodict.parse('\n'.join(fp.readlines()))
-                json.dump(object,output)
-            fp.close()
+    if args.input:
+        input=open(args.input)
     else:
-        if args.reverse:
-            object = json.loads(''.join(sys.stdin.readlines()))
-            xml = xmltodict.unparse(object)
-            output.write('%s'%xml)
-            None
-        else:
-            object = xmltodict.parse('\n'.join(sys.stdin.readlines()))
-            json.dump(object,output)
+        input=sys.stdin
         
+    if args.reverse:
+        object = json.load(input)
+        xml = xmltodict.unparse(object)
+        output.write('%s'%xml)
+    else:
+        object = xmltodict.parse('\n'.join(input.readlines()))
+        json.dump(object,output)
+
     output.close()
+    input.close()
     
     return
     
