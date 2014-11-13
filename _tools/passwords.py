@@ -14,8 +14,8 @@ from _tools.secrets import *
 
 class Passwords(object):
 
-    sshKeyFile = '%s/.ssh/id_rsa'%os.environ['HOME']
-    contextDir = '%s/.bpm.context'%os.environ['HOME']
+    sshKeyFile = ''
+    contextDir = '%s/.password'%os.environ['HOME']
 
     @property
     def username(self):
@@ -27,6 +27,8 @@ class Passwords(object):
     @classmethod
     def __init__(self,environment,username,clear=False):
 
+        sshKeyFile = '%s/.ssh/id_rsa'%environment
+        
         self.username = username
         self.password = None
 
@@ -36,7 +38,7 @@ class Passwords(object):
             md5.update(''.join(fp.readlines()))
             fp.close()
         else:
-            md5.update('%s@%s'%(os.environ['USER'],os.environ['HOSTNAME']))
+            md5.update('%s@%s'%(username,environment))
         
         key = md5.digest()[0:8]
 
