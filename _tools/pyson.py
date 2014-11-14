@@ -6,8 +6,6 @@
 # $HeadURL$
 # $Id$
 
-
-
 import sys,os,re
 
 from _tools.eddo import *
