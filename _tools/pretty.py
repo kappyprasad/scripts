@@ -70,7 +70,7 @@ class PrettyPrinter(object):
             else:
                 keys = dir(d)
 
-            for key in keys:
+            for key in sorted(keys):
                 #sys.stderr.write('key=%s\n'%key)
 
                 if isinstance(d,Types.List):
@@ -143,7 +143,7 @@ class PrettyPrinter(object):
             else:
                 width = 0
 
-            keys = d.keys()
+            keys = sorted(d.keys())
             for i in range(len(keys)):
                 key = keys[i]
 
