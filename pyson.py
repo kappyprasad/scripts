@@ -19,7 +19,6 @@ horizon = buildHorizon()
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-?',             action='help',       help='show this help')
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
 parser.add_argument('-a','--align',   action='store_true', help='align attributes')
 parser.add_argument('-i','--inplace', action='store_true', help='format xml inplace')
@@ -27,7 +26,7 @@ parser.add_argument('-c','--colour',  action='store_true', help='show colour out
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 group = parser.add_mutually_exclusive_group()
-group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string', metavar='[\'key\']...')
+group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string', metavar='\\[key\\[...')
 group.add_argument('-d','--dict',    action='store',      help='evaluate a JS object dict string', metavar='key.key...')
 
 args = parser.parse_args()
