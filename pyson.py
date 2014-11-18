@@ -23,6 +23,7 @@ parser.add_argument('-v','--verbose', action='store_true', help='show detailed o
 parser.add_argument('-a','--align',   action='store_true', help='align attributes')
 parser.add_argument('-i','--inplace', action='store_true', help='format xml inplace')
 parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
+parser.add_argument('-t','--title',   action='store_true', help='show file title')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 group = parser.add_mutually_exclusive_group()
@@ -59,6 +60,7 @@ def main():
             b='%s.bak'%f
 
             if inplace:
+                sys.stderr.write('%s\n'%f)
                 try:
                     os.remove(b)
                 except:
@@ -68,6 +70,8 @@ def main():
                 fp = open(b)
             else:
                 sys.stderr.write('%s\n'%horizon)
+                if args.title:
+                    sys.stderr.write('%s\n'%f)
                 fp = open(f)
             
             object = query(''.join(fp.readlines()))
