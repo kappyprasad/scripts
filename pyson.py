@@ -42,7 +42,7 @@ if inplace:
     colour = False
         
 def query(text):
-    object = json.loads(text)
+    object = json.load(text)
     if args.dict:
         expression = dict2eval(args.dict)
         if args.verbose:
@@ -66,7 +66,6 @@ def main():
                 except:
                     None
                 os.rename(f,b)
-                output = open(f,'w')
                 fp = open(b)
             else:
                 sys.stderr.write('%s\n'%horizon)
@@ -74,7 +73,7 @@ def main():
                     sys.stderr.write('%s\n'%f)
                 fp = open(f)
             
-            object = query(''.join(fp.readlines()))
+            object = query(fp)
             fp.close()
 
             if inplace:
@@ -87,7 +86,7 @@ def main():
             if inplace:
                 fo.close()
     else:
-        object = query(''.join(sys.stdin.readlines()))
+        object = query(sys.stdin)
         prettyPrint(object, colour=colour, align=args.align)
 
     return
