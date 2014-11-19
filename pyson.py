@@ -86,7 +86,6 @@ def main():
 
             if inplace:
                 fo.close()
-                print f
     else:
         object = query(''.join(sys.stdin.readlines()))
         prettyPrint(object, colour=colour, align=args.align)
