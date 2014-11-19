@@ -37,11 +37,10 @@ def main():
         
     if args.reverse:
         object = json.load(input)
-        xml = xmltodict.unparse(object)
-        output.write('%s'%xml)
+        xmltodict.unparse(object,output=output,indent='    ',pretty=True)
     else:
-        object = xmltodict.parse('\n'.join(input.readlines()))
-        json.dump(object,output)
+        object = xmltodict.parse(input)
+        json.dump(object,output,indent=4)
 
     output.close()
     input.close()

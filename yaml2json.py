@@ -36,10 +36,10 @@ def main():
         
     if args.reverse:
         object = json.load(input)
-        yaml.dump(object, stream=output)
+        yaml.dump(object,stream=output,indent=4,default_flow_style=False)
     else:
         object = yaml.load(input)
-        json.dump(object, output)
+        json.dump(object, output, indent=4)
 
     output.close()
     input.close()
