@@ -13,6 +13,7 @@ find . \( \
 -iname "~*" -or \
 -iname "*~" -or \
 -iname "nohup.out" -or \
+-iname "*.pyc" -or \
 -iname "*.bak" -or \
 -iname "*.stackdump" \
  \) -exec rm -vf {} \;
