@@ -21,6 +21,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
 parser.add_argument('-a','--align',   action='store_true', help='align attributes')
+parser.add_argument('-b','--bar',     action='store_true', help='bar between files')
 parser.add_argument('-i','--inplace', action='store_true', help='format xml inplace')
 parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
 parser.add_argument('-t','--text',    action='store_true', help='eval result as text')
@@ -69,9 +70,8 @@ def main():
                 os.rename(f,b)
                 fp = open(b)
             else:
-                sys.stderr.write('%s\n'%horizon)
-                if args.name:
-                    sys.stderr.write('%s\n'%f)
+                if args.bar:  sys.stderr.write('%s\n'%horizon)
+                if args.name: sys.stderr.write('%s\n'%f)
                 fp = open(f)
             
             object = query(fp)
