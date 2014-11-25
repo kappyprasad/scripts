@@ -23,7 +23,8 @@ parser.add_argument('-v','--verbose', action='store_true', help='show detailed o
 parser.add_argument('-a','--align',   action='store_true', help='align attributes')
 parser.add_argument('-i','--inplace', action='store_true', help='format xml inplace')
 parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
-parser.add_argument('-t','--title',   action='store_true', help='show file title')
+parser.add_argument('-t','--text',    action='store_true', help='eval result as text')
+parser.add_argument('-n','--name',    action='store_true', help='show file title')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 group = parser.add_mutually_exclusive_group()
@@ -69,7 +70,7 @@ def main():
                 fp = open(b)
             else:
                 sys.stderr.write('%s\n'%horizon)
-                if args.title:
+                if args.name:
                     sys.stderr.write('%s\n'%f)
                 fp = open(f)
             
@@ -80,14 +81,20 @@ def main():
                 fo = open(f,'w')
             else:
                 fo = sys.stdout
-                                
-            prettyPrint(object,colour=colour,output=fo,align=args.align)
+            
+            if args.text:
+                fo.write('%s'%object)
+            else:                    
+                prettyPrint(object,colour=colour,output=fo,align=args.align)
 
             if inplace:
                 fo.close()
     else:
         object = query(sys.stdin)
-        prettyPrint(object, colour=colour, align=args.align)
+        if args.text:
+            sys.stdout.write('%s\n'%object)
+        else:
+            prettyPrint(object, colour=colour, align=args.align)
 
     return
 
