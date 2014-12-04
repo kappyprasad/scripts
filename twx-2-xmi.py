@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date$
-# $Revision$
-# $Author$
-# $HeadURL$
-# $Id$
 
 
 # use getWebSphere.sh to obtain the websphere resource files

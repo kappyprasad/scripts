@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-26 17:18:56 +1000 (Thu, 26 Jun 2014) $
-# $Revision: 11953 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/test/typesTest.py $
-# $Id: typesTest.py 11953 2014-06-26 07:18:56Z david.edson $
 
 import os,re,sys
 import unittest, uuid

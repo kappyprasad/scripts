@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date$
-# $Revision$
-# $Author$
-# $HeadURL$
-# $Id$
 
 import sys, re, os, copy
 import argparse

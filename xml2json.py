@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date$
-# $Revision$
-# $Author$
-# $HeadURL$
-# $Id$
 
 # https://pypi.python.org/pypi/xmltodict
 

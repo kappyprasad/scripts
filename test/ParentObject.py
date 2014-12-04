@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2014-06-26 11:01:47 +1000 (Thu, 26 Jun 2014) $
-# $Revision: 11947 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/test/ParentObject.py $
-# $Id: ParentObject.py 11947 2014-06-26 01:01:47Z david.edson $
 
 from Types import Object,Typed
 from MyObject import MyObject

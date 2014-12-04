@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-# $Date: 2014-04-07 15:00:55 +1000 (Mon, 07 Apr 2014) $
-# $Revision: 9930 $
-# $Author: david.edson $
-# $HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/test/environmentsTest.py $
-# $Id: environmentsTest.py 9930 2014-04-07 05:00:55Z david.edson $
 
 
 import os,re,sys
