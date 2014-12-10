@@ -21,6 +21,7 @@ parser.add_argument('-i','--inplace', action='store_true', help='format xml inpl
 parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
 parser.add_argument('-t','--text',    action='store_true', help='eval result as text')
 parser.add_argument('-n','--name',    action='store_true', help='show file title')
+parser.add_argument('-f','--flat',    action='store_true', help='output flat with no indent')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 group = parser.add_mutually_exclusive_group()
@@ -48,6 +49,15 @@ def query(text):
     if args.eval:
         object = eval('object%s'%args.eval)
     return object
+
+def dump(object,output,colour):
+    if args.text:
+        output.write('%s'%object)
+    elif args.flat:
+        json.dump(object,output)
+    else:                    
+        prettyPrint(object,colour=colour,output=output,align=args.align)
+    return
 
 def main():
     global colour, inplace, jpath
@@ -77,19 +87,13 @@ def main():
             else:
                 fo = sys.stdout
             
-            if args.text:
-                fo.write('%s'%object)
-            else:                    
-                prettyPrint(object,colour=colour,output=fo,align=args.align)
+            dump(object,fo,colour)
 
             if inplace:
                 fo.close()
     else:
         object = query(sys.stdin)
-        if args.text:
-            sys.stdout.write('%s\n'%object)
-        else:
-            prettyPrint(object, colour=colour, align=args.align)
+        dump(object,sys.stdout,colour)
 
     return
 
