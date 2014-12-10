@@ -48,7 +48,7 @@ class PropertyType(Cubetto.FactoryWorker):
                     self.xmi.addDiagramClass(propertyTypeXMI,self.diagram)
                 self.entities[str(propertyTypeCubetto['@id'])] = (propertyTypeXMI,propertyTypeCubetto)
                 for attr in ['@max','@min','@index']:
-                    self.xmi.makeAttribute(propertyTypeCubetto[attr], None, None, propertyTypeXMI)
+                    self.xmi.makeAttribute(attr,None,propertyTypeCubetto[attr], propertyTypeXMI)
 
         return
 
