@@ -49,8 +49,10 @@ class Factory(object):
         self.__verbose = verbose
         args = (json,self.xmi,raw,verbose)
         self.__engines = {
-            'Project' : Cubetto.Project(*args),
-            'ObjectType' : Cubetto.ObjectType(*args),
+            'Project'      : Cubetto.Project(*args),
+            'ObjectType'   : Cubetto.ObjectType(*args),
+            'PropertyType' : Cubetto.PropertyType(*args),
+            'Object'       : Cubetto.Object(*args),
         }
         for key in self.__engines.keys():
             self.__engines[key].factory = self

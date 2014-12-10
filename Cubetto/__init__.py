@@ -10,4 +10,6 @@ from Factory import Factory
 from FactoryWorker import FactoryWorker
 from Project import Project
 from ObjectType import ObjectType
+from PropertyType import PropertyType
+from Object import Object
 
