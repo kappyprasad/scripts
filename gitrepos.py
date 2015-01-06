@@ -62,7 +62,7 @@ def main():
 
     if args.ownr: list(auth,headers, url='%s/users/%s/repos'%(baseurl,args.ownr))
     if args.cpny: list(auth,headers, url='%s/orgs/%s/repos'%(baseurl,args.cpny))
-    if args.repo: get(args.repo)
+    #if args.repo: get(args.repo)
     
     return
 
