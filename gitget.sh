@@ -7,7 +7,7 @@ pass=$(passwords.py -e $envr -u $user)
 ppwd=$(basename $(dirname $(pwd)))
 ownr=$(basename $(pwd))
 
-echo $ppwd/$ownr
+echo $ppwd/$ownr >&2
 
 if [ "$ppwd" != "github.com" ]
 then
