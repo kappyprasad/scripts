@@ -16,4 +16,5 @@ fi
 
 ssh-keygen -y -f "$private" > "$private.pub"
 
+chmod 600 "$private.pub"
 ls "$private.pub"
