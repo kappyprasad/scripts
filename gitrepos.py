@@ -7,18 +7,17 @@ from requests.auth import HTTPBasicAuth
 baseurl  ='https://api.github.com'
 apiurl   ='https://api.github.com/repos/'
 cloneurl ='git@github.com:'
-clonetag ='clone_url'
 
 parser = argparse.ArgumentParser(description='github repository listerer')
 
 parser.add_argument('-v', '--verbose',   action='store_true', help='show verbose detail')
+parser.add_argument('-s', '--ssh',       action='store_true', help='ssh clone tag')
 parser.add_argument('-u', '--user',      action='store',      help='github username')
 parser.add_argument('-p', '--pswd',      action='store',      help='github password')
 
 group1=parser.add_mutually_exclusive_group(required=True)
 group1.add_argument('-o', '--ownr',      action='store',      help='list repos for owner')
 group1.add_argument('-c', '--cpny',      action='store',      help='list repos for company')
-#group1.add_argument('-r', '--repo',      action='store',      help='clone the repo')
 
 
 args = parser.parse_args()
@@ -35,6 +34,11 @@ else:
     
 #########################################################################################
 def list(auth,headers,url):
+    if args.ssh:
+        clonetag = 'ssh_url'
+    else:
+        clonetag ='clone_url'
+
     repos = requests.get(url=url,auth=auth,headers=headers)
     for row in repos.json():
         if type(row) == dict and clonetag in row.keys():
