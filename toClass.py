@@ -123,7 +123,7 @@ def process(input,output):
 def main():
     for file in args.file:
         if args.inplace:
-            backup='%s.bak'
+            backup='%s.bak'%file
             if os.path.isfile(backup):
                 os.unlink(backup)
             os.rename(file,backup)
