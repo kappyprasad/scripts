@@ -4,7 +4,7 @@ import os,sys,re,json,argparse
 
 parser = argparse.ArgumentParser('make a python script into a class')
 
-parser.add_argument('-v', '--verbose', action='store_true'                     help='show verbose output')
+parser.add_argument('-v', '--verbose', action='store_true',                    help='show verbose output')
 parser.add_argument('-t', '--tab',     action='store',     default='    ',     help='indent characters')
 parser.add_argument('-c', '--clasz',   action='store',     required=True,      help='the name of the class required')
 parser.add_argument('-i', '--include', action='store',     default='^\^',      help='regex pattern to include in class <name> ():')
@@ -31,8 +31,11 @@ class State(object):
     def __new__(cls,*args,**kwargs):
         ''' singleton pattern '''
         if not cls._instance:
-            cls.instance = super(State,cls).__new__(cls,*args,*kwargs)
+            cls.instance = super(State,cls).__new__(cls,*args,**kwargs)
         return cls._instance
+
+    def __init__(self):
+        '''constructor'''
 
     def before(self,line,output):
         raise NotImplementedError()
@@ -46,7 +49,7 @@ class BeforeClass(State):
         return
     def process(self,line,output):
         if self.classPattern.match(line):
-            state = new InClass()
+            state = InClass()
             state.before(line,output)
             return state
         output.write('%s\n'%line)
@@ -60,13 +63,13 @@ class InClass(State):
         return
     def process(self,line,output):
         if self.mainPattern.match(line):
-            state = new InMain()
+            state = InMain()
             state.before(line,output)
             return state
         if self.classPattern.match(line):
             output.write('%s%s\n'%(args.tab,line.lstrip('^')))
             return self
-        state = new AfterAll()
+        state = AfterAll()
         state.before(line,output)
         return state
 
@@ -76,7 +79,7 @@ class InMain(State):
         output.write('%sdef __init__(self):\n'%args.tab)
         output.write('%s%s\n'%(args.tab*2,line.lstrip(':')))
         return
-    def process(self,line.output):
+    def process(self,line,output):
         output.write('%s%s\n'%(args.tab*2,line.lstrip(':')))
         return
 
@@ -86,21 +89,21 @@ class AfterAll(State):
         output.write('''
 if __name__ == '__main__': main()
 def main():
-%sinstance=new %s()
-'''%(args.tab,args.clasz)
+%sinstance=%s()
+'''%(args.tab,args.clasz))
         return
-    def process(self,line.output):
+    def process(self,line,output):
         output.write('%s\n'%line)
         return self
 
 ################################################################################
 def process(input,output):
-    state = new BeforeClass()
+    state = BeforeClass()
     while True:
         line = input.readline()
         if not line:
             break
-        line = rstrip('\n').rstrip('\r')
+        line = line.rstrip('\n').rstrip('\r')
         state = state.process(line,output)
     return
 
