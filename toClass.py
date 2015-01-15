@@ -64,7 +64,7 @@ class InClass(State):
     methodPattern = re.compile('^\\%sdef\s([^\(]+)\(([^\)]*)\)\:(.*)$'%args.body)
     def before(self,line,output):
         output.write('class %s(object):\n\n'%args.clasz)
-        output.write('%s%s\n'%(args.tab,line.lstrip('[%s%s]'%(args.attr,args.body))))
+        output.write('%s%s\n'%(args.tab,line.lstrip(args.attr).lstrip(args.body)))
         return
     def process(self,line,output):
         isMethod = self.methodPattern.match(line)
@@ -72,12 +72,15 @@ class InClass(State):
             (name,params,rest) = isMethod.groups()
             output.write('\n%sdef %s(self,%s):%s\n'%(args.tab,name,params,rest))
             return self
+        if self.attrPattern.match(line):
+            output.write('%s%s\n'%(args.tab,line.lstrip(args.attr)))
+            return self
         if self.mainPattern.match(line):
             state = InMain()
             state.before(line,output)
             return state
         if self.classPattern.match(line):
-            output.write('%s%s\n'%(args.tab,line.lstrip('^')))
+            output.write('%s%s\n'%(args.tab,line.lstrip(args.body)))
             return self
         if self.lastPattern.match(line):
             state = AfterAll()
@@ -135,8 +138,14 @@ def main():
             input.close()
         else:
             input=open(file)
-            output=sys.stdout
+            if args.output:
+                sys.stderr.write('%s\n'%file)
+                output=open(args.output,'w')
+            else:
+                output=sys.stdout
             process(input,output)
+            if args.output:
+                output.close()
     return
 
 if __name__ == '__main__': main()
