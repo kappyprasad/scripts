@@ -1,14 +1,17 @@
 #!/bin/bash
 
-for i in *
-do
-    if [ -d "$i" ]
-    then
-        horizontal.pl
-        pushd "$i" > /dev/null
-        pwd
-        git pull
-        popd > /dev/null
-    fi
-done
+repo="$*"
+
+if [ -z "$repo" ]
+then
+    find . -name .git -exec $0 "{}" \;
+else
+    dir=$(echo $repo | sed -e 's/.git$//')
+    horizontal.pl
+    pushd "$dir" > /dev/null
+    pwd
+    git pull
+    popd > /dev/null
+fi
+
 
