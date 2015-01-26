@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 require "$1/libraries.ph" if ($0=~/^(.*)\/[^\/]+$/);
 
