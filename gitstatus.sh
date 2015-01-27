@@ -1,12 +1,17 @@
 #!/bin/bash
 
-for i in *
+fetch="$1"
+
+for repo in *
 do 
-    if [ -d "$i" ]
+    if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then 
-        horizontal.pl
-        pushd $i > /dev/null
+        pushd $repo > /dev/null
         pwd
+	if [ "$fetch" = "-f" ]
+	then
+	    git fetch
+	fi
         git status
         popd >/dev/null
     fi
