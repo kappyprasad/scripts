@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fetch="$1"
+# bulk pusher
 
 for repo in *
 do 
@@ -8,11 +8,7 @@ do
     then 
         pushd $repo > /dev/null
         pwd
-	    if [ "$fetch" = "-f" ]
-	    then
-	        git fetch
-	    fi
-        git status --porcelain
+        git push
         popd >/dev/null
     fi
 done
