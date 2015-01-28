@@ -12,7 +12,7 @@ do
 	then
 	    git fetch
 	fi
-        git status
+        git status --porcelain
         popd >/dev/null
     fi
 done
