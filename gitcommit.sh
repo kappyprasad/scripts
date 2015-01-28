@@ -16,7 +16,11 @@ do
     then 
         pushd $repo > /dev/null
         pwd
-        git commit -m "$comment"
+        lines=$(git status --porcelain | wc -l)
+        if [ ! "$lines" = "0" ]
+        then
+            git commit -m "$comment"
+        fi
         popd >/dev/null
     fi
 done

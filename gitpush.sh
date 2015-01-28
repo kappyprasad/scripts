@@ -8,7 +8,11 @@ do
     then 
         pushd $repo > /dev/null
         pwd
-        git push
+        lines=$(git status --porcelain | wc -l)
+        if [ ! "$lines" = "0" ]
+        then
+            git push
+        fi
         popd >/dev/null
     fi
 done
