@@ -2,7 +2,8 @@
 
 # bulk committer, assumes items already added to index
 
-comment="$*"
+argument="$1"
+comment="$2"
 
 if [ -z "$comment" ]
 then
@@ -26,7 +27,12 @@ do
         lines=$(git status --porcelain | wc -l)
         if [ ! "$lines" = "0" ]
         then
-            git commit -m "$comment"
+            if [ "$argument" = "-m" ]
+            then
+                git commit -m "$comment"
+            else
+                git commit -m "$argument"
+            fi
         fi
         popd >/dev/null
     fi
