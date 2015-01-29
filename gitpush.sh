@@ -15,8 +15,7 @@ do
     then 
         pushd $repo > /dev/null
         pwd
-        lines=$(git status --porcelain | wc -l)
-        if [ ! "$lines" = "0" ]
+        if git status | grep "use \"git push\" to publish your local commits" >/dev/null
         then
             git push
         fi
