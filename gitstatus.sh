@@ -2,7 +2,14 @@
 
 fetch="$1"
 
-for repo in *
+if [ -d .git ]
+then
+    repos=$(pwd)
+else
+    repos=*
+fi
+
+for repo in $repos
 do 
     if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then 
