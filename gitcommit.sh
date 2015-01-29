@@ -5,7 +5,7 @@
 argument="$1"
 comment="$2"
 
-if [ -z "$comment" ]
+if [ -z "$*" ]
 then
     echo "usage: $0 <comment>"
     exit 1
