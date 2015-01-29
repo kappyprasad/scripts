@@ -8,7 +8,7 @@ import argparse
 
 from subprocess import Popen, PIPE
 
-from _tools.pretty import *
+from Tools.pretty import *
 
 defaults=[
     'dn',

@@ -6,10 +6,10 @@
 
 import sys, re, os
 
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.eddo import *
-from _tools.finder import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.eddo import *
+from Tools.finder import *
 
 xmldefinition="""
 import javax.xml.bind.annotation.XmlAccessType;

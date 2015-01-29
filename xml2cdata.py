@@ -5,7 +5,7 @@
 
 
 import sys
-from _tools.cdata import *
+from Tools.cdata import *
 
 xml2cdata(sys.stdin,sys.stdout)
     

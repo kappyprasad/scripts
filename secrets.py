@@ -6,7 +6,7 @@
 import os,sys,re
 import argparse
 
-from _tools.secrets import *
+from Tools.secrets import *
 
 parser = argparse.ArgumentParser()
 

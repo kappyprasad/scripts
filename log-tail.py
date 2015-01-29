@@ -8,9 +8,9 @@ import sys, re, os, operator
 from datetime import *
 import argparse
 
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.eddo import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.eddo import *
 
 verbose = False
 files = []

@@ -4,7 +4,7 @@
 
 import sys, re, os
 
-from _tools.finder import *
+from Tools.finder import *
 
 
 classPattern = re.compile('^.*$')

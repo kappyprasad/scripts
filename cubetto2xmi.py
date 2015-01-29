@@ -5,7 +5,7 @@ import sys,os,re,argparse,StringIO
 
 import xmltodict,json
 
-from _tools.pyson import *
+from Tools.pyson import *
 
 import Cubetto
 

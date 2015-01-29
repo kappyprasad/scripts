@@ -7,8 +7,8 @@
 import os,sys,re
 import argparse
 
-from _tools.pretty import *
-from _tools.eddo import *
+from Tools.pretty import *
+from Tools.eddo import *
 
 parser = argparse.ArgumentParser()
 

@@ -2,8 +2,8 @@
 
 import os, re, sys, argparse, yaml, json
 
-from _tools.pretty import prettyPrint
-from _tools.pyson import *
+from Tools.pretty import prettyPrint
+from Tools.pyson import *
 
 
 parser = argparse.ArgumentParser()

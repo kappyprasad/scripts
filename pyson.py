@@ -6,9 +6,9 @@ import argparse
 import StringIO
 import json
 
-from _tools.eddo import *
-from _tools.pyson import *
-from _tools.pretty import *
+from Tools.eddo import *
+from Tools.pyson import *
+from Tools.pretty import *
 
 horizon = buildHorizon()
 

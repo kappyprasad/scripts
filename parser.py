@@ -10,9 +10,9 @@ import sys,os
 import argparse
 import StringIO
 
-from _tools.eddo import *
-from _tools.parser import *
-from _tools.pretty import *
+from Tools.eddo import *
+from Tools.parser import *
+from Tools.pretty import *
 
 horizon = buildHorizon()
 

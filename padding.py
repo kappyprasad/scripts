@@ -8,8 +8,8 @@ import os,re,sys
 import StringIO
 import argparse
 
-from _tools.pretty import *
-from _tools.eddo import *
+from Tools.pretty import *
+from Tools.eddo import *
 
 parser = argparse.ArgumentParser()
 

@@ -6,11 +6,11 @@
 
 import sys, re, os, urllib, urllib2, argparse, StringIO
 
-from _tools.parser import *
-from _tools.xpath import *
-from _tools.eddo import *
-from _tools.cdata import *
-from _tools.pretty import *
+from Tools.parser import *
+from Tools.xpath import *
+from Tools.eddo import *
+from Tools.cdata import *
+from Tools.pretty import *
 
 parser = argparse.ArgumentParser()
 

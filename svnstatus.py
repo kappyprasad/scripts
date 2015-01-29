@@ -6,9 +6,9 @@ import argparse
 
 from subprocess import Popen, PIPE
 
-from _tools.eddo import *
-from _tools.colours import *
-from _tools.pretty import *
+from Tools.eddo import *
+from Tools.colours import *
+from Tools.pretty import *
 
 parser = argparse.ArgumentParser()
 

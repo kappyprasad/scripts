@@ -6,7 +6,7 @@
 
 import sys, os
 
-from _tools.colours import *
+from Tools.colours import *
 
 for path in os.environ['PATH'].split(':'):
     if os.path.isdir(path):

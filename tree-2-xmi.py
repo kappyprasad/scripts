@@ -8,11 +8,11 @@ import sys,re,os,argparse
 
 from subprocess import Popen, PIPE
 
-from _tools.xmi import *
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.pretty import *
-from _tools.finder import *
+from Tools.xmi import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.pretty import *
+from Tools.finder import *
 
 ####################################################################################
 parser = argparse.ArgumentParser()

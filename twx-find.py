@@ -11,11 +11,11 @@ from xml.dom.minidom import parse, Document, Node
 import sys, re, os, urllib, urllib2, StringIO
 import argparse
 
-from _tools.colours import *
-from _tools.eddo import *
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.cdata import *
+from Tools.colours import *
+from Tools.eddo import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.cdata import *
 
 parser = argparse.ArgumentParser()
 

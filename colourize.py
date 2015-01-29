@@ -7,9 +7,9 @@
 import os,sys,re, operator
 import argparse
 
-from _tools.colours import *
-from _tools.eddo import *
-from _tools.pretty import *
+from Tools.colours import *
+from Tools.eddo import *
+from Tools.pretty import *
 
 parser = argparse.ArgumentParser()
 

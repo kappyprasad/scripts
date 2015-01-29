@@ -1,20 +1,29 @@
 #!/bin/bash
 
-if [ ! -d scripts ]
+if [ -d .git ]
 then
-    echo 'you are not in the eddo888 directory'
+    repos=$(pwd)
+    source=../scripts
+else
+    repos=*
+    source=scripts
+fi
+
+if [ ! -d "$source" ]
+then
+    echo 'cant find the $source directory'
     exit 1
 fi
 
-for i in *
+for i in $repos
 do 
     if [ -d $i ]
-    then 
+    then
         if [ ! -f $i/.project ] 
         then 
             echo $i
-            cp scripts/.pydevproject $i/
-            cp scripts/.project $i/
+            cp $source/.pydevproject $i/
+            cp $source/.project $i/
             xset.py -x '/projectDescription/name' -t $i $i/.project
         fi
     fi

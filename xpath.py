@@ -9,10 +9,10 @@
 import sys, re, os, libxml2
 import argparse
 
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.pretty import *
-from _tools.eddo import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.pretty import *
+from Tools.eddo import *
 
 parser = argparse.ArgumentParser()
 
