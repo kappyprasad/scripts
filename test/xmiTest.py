@@ -5,11 +5,11 @@
 import os,re,sys
 import unittest, uuid
 
-from _tools.test import *
-from _tools.xpath import *
-from _tools.parser import *
-from _tools.pretty import *
-from _tools.xmi import *
+from Tools.test import *
+from Tools.xpath import *
+from Tools.parser import *
+from Tools.pretty import *
+from Tools.xmi import *
 
 class XMI_Test(unittest.TestCase):
     """xmi module test"""

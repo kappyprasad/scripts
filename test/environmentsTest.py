@@ -5,8 +5,8 @@
 import os,re,sys
 import unittest
 
-from _tools.test import *
-from _tools.environments import *
+from Tools.test import *
+from Tools.environments import *
 
 class EnvironmentsTest(unittest.TestCase):
     """Environments class test"""

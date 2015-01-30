@@ -4,8 +4,8 @@
 import os,re,sys
 import unittest, uuid
 
-from _tools.test import *
-from _tools.pretty import *
+from Tools.test import *
+from Tools.pretty import *
 
 from Types import Object,Typed,Type,List,Map
 

@@ -4,8 +4,8 @@
 import os,re,sys
 import unittest
 
-from _tools.test import *
-from _tools.colours import *
+from Tools.test import *
+from Tools.colours import *
 
 class ColoursTest(unittest.TestCase):
     """Colours class test"""

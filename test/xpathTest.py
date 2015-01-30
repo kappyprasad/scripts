@@ -4,9 +4,9 @@
 import os,re,sys
 import unittest, uuid
 
-from _tools.test import *
-from _tools.xpath import *
-from _tools.pretty import *
+from Tools.test import *
+from Tools.xpath import *
+from Tools.pretty import *
 
 import xpath
 
