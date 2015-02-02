@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys,re,os,argparse,json,requests
+from xtermcolor import colorize
 from subprocess import Popen, PIPE
 from requests.auth import HTTPBasicAuth
 
@@ -11,6 +12,7 @@ cloneurl ='git@github.com:'
 parser = argparse.ArgumentParser(description='github repository listerer')
 
 parser.add_argument('-v', '--verbose',   action='store_true', help='show verbose detail')
+parser.add_argument('-i', '--ignore',    action='store_true', help='ignore existing')
 parser.add_argument('-s', '--ssh',       action='store_true', help='ssh clone tag')
 parser.add_argument('-u', '--user',      action='store',      help='github username')
 parser.add_argument('-p', '--pswd',      action='store',      help='github password')
@@ -42,9 +44,14 @@ def list(auth,headers,url):
     repos = requests.get(url=url,auth=auth,headers=headers)
     for row in repos.json():
         if type(row) == dict and clonetag in row.keys():
+            if args.ignore and os.path.isdir(row['name']):
+                sys.stderr.write(colorize('%s\n'%(row[clonetag]),ansi=118));
+                sys.stderr.flush()
+            else:
+                sys.stdout.write('%s\n'%row[clonetag])
+                sys.stdout.flush()
             if args.verbose:
                 json.dump(row,sys.stderr,indent=4)
-            print row[clonetag]
     return
 
 #########################################################################################
