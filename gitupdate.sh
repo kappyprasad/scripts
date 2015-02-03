@@ -13,7 +13,7 @@ do
     then
 	    pushd "$repo" > /dev/null
 	    pwd
-	    git pull
+	    git pull | grep -v "Already up-to-date"
 	    popd > /dev/null
     fi
 done
