@@ -1,12 +1,12 @@
 #!/bin/bash
 
+source=$(dirname $(which eclipsify.sh ))
+
 if [ -d .git ]
 then
     repos=$(pwd)
-    source=../scripts
 else
     repos=*
-    source=scripts
 fi
 
 if [ ! -d "$source" ]
@@ -24,7 +24,9 @@ do
             echo $i
             cp $source/.pydevproject $i/
             cp $source/.project $i/
-            xset.py -x '/projectDescription/name' -t $i $i/.project
+            name=$(basename $i)
+            xset.py -x '/projectDescription/name' -t $name $i/.project
+            xset.py -x '/projectDescription/comment' -t $name $i/.project
         fi
     fi
 done
