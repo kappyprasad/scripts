@@ -1,12 +1,9 @@
 #!/usr/bin/python
 
-
-
-
 import os,sys,re
 import argparse
 
-from Tools.passwords import *
+from Tools.Passwords import *
 
 if 'HOSTNAME' in os.environ.keys():
     ENV=os.environ['HOSTNAME']

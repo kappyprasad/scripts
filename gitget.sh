@@ -1,7 +1,7 @@
 #!/bin/bash
 
 envr=github.com
-user=eddo888@tpg.com.au
+user=eddo888
 pass=$(passwords.py -e $envr -u $user)
 
 ppwd=$(basename $(dirname $(pwd)))
