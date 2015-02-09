@@ -1,12 +1,8 @@
 #!/usr/bin/python
 
-
-
-
-
 # http://mikekneller.com/kb/python/libxml2python/part1
 
-import sys, re, os, libxml2
+import sys, re, os
 import argparse
 
 from Tools.xpath import *
