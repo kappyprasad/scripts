@@ -17,7 +17,7 @@ groupI.add_argument('-x', '--iXML',   action='store', help='input is xml')
 groupO = parser.add_mutually_exclusive_group(required=True)
 groupO.add_argument('-L', '--oXLS',   action='store_true', help='output is excel')
 groupO.add_argument('-J', '--oJSON',  action='store_true', help='output is json')
-groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml')
+groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml', )
 
 args = parser.parse_args()
 
@@ -132,9 +132,13 @@ def main():
         input.close()
         None
 
-    if args.oXLS and args.output:
-        wb =dict2xls(js)
-        wb.save(args.output)
+    if args.oXLS:
+        if args.output:
+            wb =dict2xls(js)
+            wb.save(args.output)
+        else:
+            sys.stderr.write('please specify -o output') 
+
 
     if args.oJSON:
         json.dump(js,output,indent=4)
