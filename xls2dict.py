@@ -3,7 +3,7 @@
 import sys,os,re,argparse,json,StringIO,xmltodict
 from xlrd import open_workbook
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
 
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
 parser.add_argument('-o','--output',  action='store',      help='output file')
@@ -33,10 +33,13 @@ def xls2dict(input):
     }
 
     wb = open_workbook(file_contents=input.read())
-    sys.stderr.write('%s\n'%wb)
+    if args.verbose:
+        sys.stderr.write('%s\n'%wb)
 
     for s in wb.sheets():
-        sys.stderr.write('%s\n'%s)
+        if args.verbose:
+            sys.stderr.write('%s\n'%s)
+
         sheet = {
             'name' : s.name,
             'row' : []
@@ -44,6 +47,8 @@ def xls2dict(input):
         js['workbook']['sheet'].append(sheet)
 
         for r in range(s.nrows):
+            if args.verbose:
+                sys.stderr.write('\trow=%0d\n'%r)
             row = {
                 'number' : r,
                 'col' : []
@@ -52,6 +57,8 @@ def xls2dict(input):
             sheet['row'].append(row)
 
             for c in range(s.ncols):
+                if args.verbose:
+                    sys.stderr.write('\t\tcol=%0d = %s\n'%(c,s.cell(r,c)))
                 col = {
                     'number' : c,
                     'value' : '%s'%s.cell(r,c).value
