@@ -6,7 +6,6 @@
 import sys,os,argparse,StringIO
 
 import xmltodict,json
-from dicttoxml import dicttoxml
 
 parser = argparse.ArgumentParser()
 
