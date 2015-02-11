@@ -2,6 +2,7 @@
 
 import sys,os,re,argparse,json,StringIO,xmltodict
 from xlrd import open_workbook
+from xlwt import Workbook
 
 parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
 
@@ -14,7 +15,7 @@ groupI.add_argument('-j', '--iJSON',  action='store', help='input is json')
 groupI.add_argument('-x', '--iXML',   action='store', help='input is xml')
 
 groupO = parser.add_mutually_exclusive_group(required=True)
-groupI.add_argument('-L', '--oXLS',   action='store_true', help='output is excel')
+groupO.add_argument('-L', '--oXLS',   action='store_true', help='output is excel')
 groupO.add_argument('-J', '--oJSON',  action='store_true', help='output is json')
 groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml')
 
@@ -41,8 +42,8 @@ def xls2dict(input):
             sys.stderr.write('%s\n'%s)
 
         sheet = {
-            'name' : s.name,
-            'row' : []
+            '@name' : '%s'%s.name,
+            'row': []
         }
         js['workbook']['sheet'].append(sheet)
 
@@ -50,22 +51,63 @@ def xls2dict(input):
             if args.verbose:
                 sys.stderr.write('\trow=%0d\n'%r)
             row = {
-                'number' : r,
+                '@number' : '%d'%r,
                 'col' : []
             }
-            row['number'] = r
             sheet['row'].append(row)
 
             for c in range(s.ncols):
                 if args.verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(c,s.cell(r,c)))
                 col = {
-                    'number' : c,
-                    'value' : '%s'%s.cell(r,c).value
+                    '@number' : '%d'%c,
+                    '#text' : '%s'%s.cell(r,c).value
                 }
                 row['col'].append(col)
 
     return js
+
+def dict2xls(js):
+    if args.verbose:
+        json.dump(js,sys.stderr,indent=4)
+        sys.stderr.write('\n')
+
+    wb = Workbook()
+    if args.verbose:
+        sys.stderr.write('%s\n'%wb)
+
+    w = js['workbook']
+    sheets = w['sheet']
+    if type(sheets) is not list:
+        sheets = [ sheets ]
+
+    for s in sheets:
+        sheet = wb.add_sheet(s['@name'])
+        if args.verbose:
+            sys.stderr.write('%s\n'%sheet)
+
+        rows = s['row']
+        if type(rows) is not list:
+            rows = [ rows ]
+
+        for r in rows:
+            row = int(r['@number'])
+            if args.verbose:
+                sys.stderr.write('\trow=%0d\n'%row)
+
+            cols = r['col']
+            if type(cols) is not list:
+                cols = [ cols ]
+
+            for c in cols:
+                col = int(c['@number'])
+                text = c['#text']
+                if args.verbose:
+                    sys.stderr.write('\t\tcol=%0d = %s\n'%(col,text))
+                
+                sheet.write(row,col,text)
+
+    return wb
 
 def main():
     if args.output:
@@ -90,8 +132,9 @@ def main():
         input.close()
         None
 
-    if args.oXLS:
-        None
+    if args.oXLS and args.output:
+        wb =dict2xls(js)
+        wb.save(args.output)
 
     if args.oJSON:
         json.dump(js,output,indent=4)

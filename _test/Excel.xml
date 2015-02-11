@@ -1,0 +1,18 @@
+<workbook>
+  <sheet name='sheet1'>
+    <row number='0'>
+      <col number='0'>text1</col>
+      <col number='1'>text2</col>
+    </row>
+  </sheet>
+  <sheet name='sheet2'>
+    <row number='0'>
+      <col number='0'>text3</col>
+      <col number='1'>text4</col>
+    </row>
+    <row number='1'>
+      <col number='0'>text5</col>
+      <col number='1'>text6</col>
+    </row>
+  </sheet>
+</workbook>
