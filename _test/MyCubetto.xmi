@@ -1,3 +1,1038 @@
 <?xml version="1.0"?>
-<XMI xmlns:UML="org.omg.xmi.namespace.UML" xmi.version="1.2" timestamp="2014-11-12 11:17:25"><XMI.header><XMI.documentation><XMI.exporter>$HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py $</XMI.exporter><XMI.exporterVersion>$Revision: 11983 $</XMI.exporterVersion></XMI.documentation><XMI.metamodel xmi.name="UML" xmi.version="1.4"/></XMI.header><XMI.content><UML:Model isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="2014-11-12 11:17:25" visibility="public" xmi.id="EDDO_f9cb5f97-a9fc-46af-aade-c116a9bd929a"><UML:Namespace.ownedElement><UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Project" visibility="public" xmi.id="EDDO_97d82d4e-5964-48c6-a3d5-40a3507954ab"><UML:Namespace.ownedElement><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="MyCubetto" visibility="public" xmi.id="EDDO_3374d0ed-ed53-4e2c-b6d2-317f3f5ce291"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="@id" visibility="private"><UML:Attribute.initialValue><UML:Expression body="Project_p54"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="@name" visibility="private"><UML:Attribute.initialValue><UML:Expression body="MyCubetto"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_0a2560e5-4822-456e-9b36-85ec83a31153"/></UML:ModelElement.stereotype></UML:Class></UML:Namespace.ownedElement></UML:Package><UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="ObjectType" visibility="public" xmi.id="EDDO_16d19889-1c05-43f4-8f44-f186d0601de3"><UML:Namespace.ownedElement><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Template Binding" visibility="public" xmi.id="EDDO_2279e9d3-802b-47c8-82c0-4673c64cc535"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Template Class" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_TEMPLATE_BINDING__CLASS"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Template Parameter" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_TEMPLATE_BINDING__TEMPLATE_PARAMETER"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Association Relationship Type" visibility="public" xmi.id="EDDO_97fbcb90-5614-46b7-b653-797e66317b32"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Partition" visibility="public" xmi.id="EDDO_6a33134a-e5ae-454e-98f1-fb7876108bed"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Extension" visibility="public" xmi.id="EDDO_c891c755-4912-4906-87d5-3b66c61420c9"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object" visibility="public" xmi.id="EDDO_d18648b8-e34a-448c-b9aa-90dbcc340c67"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Start Node" visibility="public" xmi.id="EDDO_da3bf945-63af-4b8d-9ebd-c4c2389cf3ac"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Use Case" visibility="public" xmi.id="EDDO_14f6a9e3-a7bb-48ef-97de-b0d9095a1be9"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Refinement" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_USE_CASE__REFINEMENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="System" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_USE_CASE__SYSTEM"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_USE_CASE__ASSOCIATION__OUTGOING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="UML20_PT_USE_CASE__ASSOCIATION__INCOMING" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_USE_CASE__ASSOCIATION__INCOMING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Relationship Edge Incoming" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_USE_CASE__RELATIONSHIP_EDGE__INCOMING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_USE_CASE__RELATIONSHIP_EDGE__OUTGOING"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Visibility" visibility="public" xmi.id="EDDO_3e3b5764-7c74-4532-b61d-fb765df095f0"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Dependent Classifier" visibility="public" xmi.id="EDDO_82421006-4fe4-434a-bc16-02613cb1850b"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Node State" visibility="public" xmi.id="EDDO_7fa5f6ed-df4e-4219-aef2-ddc44b5e8115"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Node" visibility="public" xmi.id="EDDO_3b82ee7d-a92d-4fa4-b5dd-3929b5a369c9"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="State" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_NODE__STATE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Object" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_NODE__OBJECT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_NODE__OUTPUT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="input" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_NODE__INPUT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="End Node" visibility="public" xmi.id="EDDO_21114b12-98ba-4cdb-a89b-43fab8071525"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Partition Object" visibility="public" xmi.id="EDDO_ed121c0f-9ab6-4230-b7d6-c6897a81aa4b"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Relationship Edge Type" visibility="public" xmi.id="EDDO_9f84ee80-48f4-476b-8757-41b9d4ad37e5"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Template Parameter" visibility="public" xmi.id="EDDO_4f66519c-e94e-4e27-9839-7dc22285079e"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Sender" visibility="public" xmi.id="EDDO_43ee088f-54da-4f61-8a88-6ed89e7b4e53"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Decision Node" visibility="public" xmi.id="EDDO_907b86b8-ec63-4074-aec6-74e180959dd5"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="input" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_DECISION_NODE__INPUT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_DECISION_NODE__OUTPUT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Flow End" visibility="public" xmi.id="EDDO_8860eda1-1b61-45c8-afcc-0105f91fd105"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Realization" visibility="public" xmi.id="EDDO_1a63363b-0042-4b02-a000-2c4946517412"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="client" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_REALIZATON_RELATIONSHIP__CLIENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_REALIZATON_RELATIONSHIP__SUPPLIER"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Action" visibility="public" xmi.id="EDDO_71db6e49-6760-4102-8e09-36c9999cb5de"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__OUTPUT_OBJECT_FLOW"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="input" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__INPUT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Refinement" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__REFINEMENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="inputOutputRegionNode" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__INPUT_OUTPUT_REGION_NODE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="input-objektflow" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__INPUT_OBJECT_FLOW"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ACTION__OUTPUT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Parameter" visibility="public" xmi.id="EDDO_5c2c66ce-0d92-4e9d-963f-0ca5dc755c5e"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Dependency" visibility="public" xmi.id="EDDO_1a06ece7-9ceb-48db-8ded-f90af051da09"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="dependent" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_DEPENDENCY__DEPENDENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_DEPENDENCY__INDEPENDENT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Region" visibility="public" xmi.id="EDDO_b1d896ae-625e-4824-ac37-3a5983281049"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="inputOutputRegionNode" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_REGION__INPUT_OUTPUT_REGION_NODE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Execution" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_REGION__EXECUTION"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Stereotype" visibility="public" xmi.id="EDDO_0e7c759a-ac5c-4e0b-b65e-a8327cf520e3"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Association" visibility="public" xmi.id="EDDO_241cf45b-2734-47db-b0c2-51da1597e361"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="UML20_PT_ASSOCIATION__DRAIN" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__DRAIN"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Condition" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_CONDITION"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="incoming Class" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_CLASS"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Multiplicity" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_MULTIPLICITY"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Relationship Type" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_RELATIONSHIP_TYPE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="UML20_PT_ASSOCIATION__SOURCE" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__SOURCE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Condition" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_CONDITION"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Multiplicity" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_MULTIPLICITY"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Role" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_ROLE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_CLASS"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Role" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_ROLE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Relationship Type" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_RELATIONSHIP_TYPE"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Range" visibility="public" xmi.id="EDDO_32ed0318-3011-4b31-bcd0-becb82e08bcf"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Relationship Edge" visibility="public" xmi.id="EDDO_ba2e62ac-78d0-48b7-b26d-d3226731b419"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="sender" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__SENDER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Type" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__TYPE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__RECEIVER"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Object Flow" visibility="public" xmi.id="EDDO_1ad32cf2-e1c9-431f-be69-7a6f8431dbeb"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Object" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_FLOW__OBJECT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_FLOW__RECEIVER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="sender" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_FLOW__SENDER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Condition" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_OBJECT_FLOW__CONDITION"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Method" visibility="public" xmi.id="EDDO_cf22f2bd-60f8-4d1e-8e6f-045985cfc87a"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Visibility" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_METHOD__VISIBILITY"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Parameter" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_METHOD__PARAMETER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Stereotype" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_METHOD__STEREOTYPE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Return Value" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_METHOD__RETURN_VALUE_TYPE"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Class" visibility="public" xmi.id="EDDO_1e11b16c-d159-4a3f-8289-cacf07e7f3c3"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__REALIZATION_CLIENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="incoming association" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__INCOMING_ASSOCIATION"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Package" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__PACKAGE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Stereotype" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__STEREOTYPE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Parameter" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__TEMPLATE_PARAMETER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__OUTGOING_INHERITANCE_RELATIONSHIP"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Method" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__METHOD"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Attribute" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__ATTRIBUTE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Binding" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__TEMPLATE_BINDING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="supplier" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__REALIZATION_SUPPLIER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="incoming inheritance relationship" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__INCOMING_INHERITANCE_RELATIONSHIP"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_CLASS__OUTGOING_ASSOCIATION"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Region Execution Types" visibility="public" xmi.id="EDDO_d9d0c42a-31c0-4992-b538-6ccb2a5a58b5"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="System" visibility="public" xmi.id="EDDO_63a400cb-0af3-432b-9c2a-e1f73ff503dc"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Package" visibility="public" xmi.id="EDDO_1ea64c25-666e-482b-9d12-5dd649577552"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Stereotype" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_PACKAGE__STEREOTYPE"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Refinement" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_PACKAGE__REFINEMENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Super-Package" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_PACKAGE__SUPER_PACKAGE"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Input Output Region Node" visibility="public" xmi.id="EDDO_eeb10d97-95a1-4565-9f2f-66e9522c2422"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="input" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_INPUT_OUTPUT_REGION_NODE__INPUT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_INPUT_OUTPUT_REGION_NODE__OUTPUT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Flow" visibility="public" xmi.id="EDDO_57b98b08-68cc-4755-bb52-c2784d86c7c0"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Condition" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_FLOW__CONDITION"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="sender" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_FLOW__SENDER"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_FLOW__RECEIVER"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Independent Classifier" visibility="public" xmi.id="EDDO_5efc6fc5-9f18-4b7e-b85b-906d844197d9"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Inheritance" visibility="public" xmi.id="EDDO_3b33e20c-17c8-4197-9d59-9dd13d6bfcf4"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_INHERITANCE_RELATIONSHIP__SUPERCLASS"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="subclass" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_INHERITANCE_RELATIONSHIP__SUBCLASS"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Actor" visibility="public" xmi.id="EDDO_d1d2a74a-a0c3-4cb2-8d92-174d24734492"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="association incoming" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_AGENT__ASSOCIATION__INCOMING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="UML20_PT_AGENT__ASSOCIATION__OUTGOING" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_AGENT__ASSOCIATION__OUTGOING"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="relationship edge incoming" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_AGENT__RELATIONSHIP_EDGE__INCOMING"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Attribute" visibility="public" xmi.id="EDDO_ceb95ced-2295-46ca-89f5-35344e3f3efb"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="Visibility" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ATTRIBUTE__VISIBILITY"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Condition" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ATTRIBUTE__CONDITION"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Stereotype" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML_PT_ATTRIBUTE__STEREOTYPE"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Annotation" visibility="public" xmi.id="EDDO_3e5bd18c-06f2-40b0-8bd0-37912ee476b1"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="element" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ANNOTATION__ELEMENT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Stereotype" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_ANNOTATION__STEREOTYPE"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Annotateable" visibility="public" xmi.id="EDDO_ecafb1ee-c38e-476b-b38e-d95afc4d0d21"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature/><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class><UML:Class isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false" name="Fork Node" visibility="public" xmi.id="EDDO_8ef55b6a-f14a-4821-93ca-206824d4af3b"><UML:ModelElement.taggedValue><UML:TaggedValue tag="ea_eleType" value="element"/></UML:ModelElement.taggedValue><UML:Classifier.feature><UML:Attribute name="input" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_FORK_NODE__INPUT"/></UML:Attribute.initialValue></UML:Attribute><UML:Attribute name="Successor/Content" visibility="private"><UML:Attribute.initialValue><UML:Expression body="UML20_PT_FORK_NODE__OUTPUT"/></UML:Attribute.initialValue></UML:Attribute></UML:Classifier.feature><UML:ModelElement.stereotype><UML:Stereotype xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:ModelElement.stereotype></UML:Class></UML:Namespace.ownedElement></UML:Package><UML:Stereotype name="Project" xmi.id="EDDO_0a2560e5-4822-456e-9b36-85ec83a31153"/><UML:Stereotype name="ObjectType" xmi.id="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/></UML:Namespace.ownedElement></UML:Model></XMI.content><XMI.extensions xmi.extender="Enterprise Architect 2.5"><EAModel.file/></XMI.extensions></XMI>
-
+<XMI xmlns:UML="org.omg.xmi.namespace.UML" xmi.version="1.2" timestamp="2014-11-12 11:17:25">
+    <XMI.header>
+        <XMI.documentation>
+            <XMI.exporter>$HeadURL: http://cgu-svn/CGUBPMLombardi/trunk/Scripts/_tools/xmi.py
+                $</XMI.exporter>
+            <XMI.exporterVersion>$Revision: 11983 $</XMI.exporterVersion>
+        </XMI.documentation>
+        <XMI.metamodel xmi.name="UML" xmi.version="1.4"/>
+    </XMI.header>
+    <XMI.content>
+        <UML:Model isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false"
+            name="2014-11-12 11:17:25" visibility="public"
+            xmi.id="EDDO_f9cb5f97-a9fc-46af-aade-c116a9bd929a">
+            <UML:Namespace.ownedElement>
+                <UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false"
+                    name="Project" visibility="public"
+                    xmi.id="EDDO_97d82d4e-5964-48c6-a3d5-40a3507954ab">
+                    <UML:Namespace.ownedElement>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="MyCubetto" visibility="public"
+                            xmi.id="EDDO_3374d0ed-ed53-4e2c-b6d2-317f3f5ce291">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="@id" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="Project_p54"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="@name" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="MyCubetto"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_0a2560e5-4822-456e-9b36-85ec83a31153"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                    </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Package isAbstract="false" isLeaf="false" isRoot="true" isSpecification="false"
+                    name="ObjectType" visibility="public"
+                    xmi.id="EDDO_16d19889-1c05-43f4-8f44-f186d0601de3">
+                    <UML:Namespace.ownedElement>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Template Binding" visibility="public"
+                            xmi.id="EDDO_2279e9d3-802b-47c8-82c0-4673c64cc535">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Template Class" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_TEMPLATE_BINDING__CLASS"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Template Parameter" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_TEMPLATE_BINDING__TEMPLATE_PARAMETER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Association Relationship Type"
+                            visibility="public" xmi.id="EDDO_97fbcb90-5614-46b7-b653-797e66317b32">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Partition" visibility="public"
+                            xmi.id="EDDO_6a33134a-e5ae-454e-98f1-fb7876108bed">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Extension" visibility="public"
+                            xmi.id="EDDO_c891c755-4912-4906-87d5-3b66c61420c9">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Object" visibility="public"
+                            xmi.id="EDDO_d18648b8-e34a-448c-b9aa-90dbcc340c67">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Start Node" visibility="public"
+                            xmi.id="EDDO_da3bf945-63af-4b8d-9ebd-c4c2389cf3ac">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Use Case" visibility="public"
+                            xmi.id="EDDO_14f6a9e3-a7bb-48ef-97de-b0d9095a1be9">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Refinement" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_USE_CASE__REFINEMENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="System" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_USE_CASE__SYSTEM"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_USE_CASE__ASSOCIATION__OUTGOING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="UML20_PT_USE_CASE__ASSOCIATION__INCOMING"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_USE_CASE__ASSOCIATION__INCOMING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Relationship Edge Incoming"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_USE_CASE__RELATIONSHIP_EDGE__INCOMING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_USE_CASE__RELATIONSHIP_EDGE__OUTGOING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Visibility" visibility="public"
+                            xmi.id="EDDO_3e3b5764-7c74-4532-b61d-fb765df095f0">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Dependent Classifier" visibility="public"
+                            xmi.id="EDDO_82421006-4fe4-434a-bc16-02613cb1850b">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Object Node State" visibility="public"
+                            xmi.id="EDDO_7fa5f6ed-df4e-4219-aef2-ddc44b5e8115">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Object Node" visibility="public"
+                            xmi.id="EDDO_3b82ee7d-a92d-4fa4-b5dd-3929b5a369c9">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="State" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_NODE__STATE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Object" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_NODE__OBJECT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_NODE__OUTPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="input" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_NODE__INPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="End Node" visibility="public"
+                            xmi.id="EDDO_21114b12-98ba-4cdb-a89b-43fab8071525">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Partition Object" visibility="public"
+                            xmi.id="EDDO_ed121c0f-9ab6-4230-b7d6-c6897a81aa4b">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Relationship Edge Type"
+                            visibility="public" xmi.id="EDDO_9f84ee80-48f4-476b-8757-41b9d4ad37e5">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Template Parameter" visibility="public"
+                            xmi.id="EDDO_4f66519c-e94e-4e27-9839-7dc22285079e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Sender" visibility="public"
+                            xmi.id="EDDO_43ee088f-54da-4f61-8a88-6ed89e7b4e53">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Decision Node" visibility="public"
+                            xmi.id="EDDO_907b86b8-ec63-4074-aec6-74e180959dd5">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="input" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_DECISION_NODE__INPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_DECISION_NODE__OUTPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Flow End" visibility="public"
+                            xmi.id="EDDO_8860eda1-1b61-45c8-afcc-0105f91fd105">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Realization" visibility="public"
+                            xmi.id="EDDO_1a63363b-0042-4b02-a000-2c4946517412">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="client" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_REALIZATON_RELATIONSHIP__CLIENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_REALIZATON_RELATIONSHIP__SUPPLIER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Action" visibility="public"
+                            xmi.id="EDDO_71db6e49-6760-4102-8e09-36c9999cb5de">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ACTION__OUTPUT_OBJECT_FLOW"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="input" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ACTION__INPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Refinement" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ACTION__REFINEMENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="inputOutputRegionNode" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ACTION__INPUT_OUTPUT_REGION_NODE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="input-objektflow" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ACTION__INPUT_OBJECT_FLOW"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ACTION__OUTPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Parameter" visibility="public"
+                            xmi.id="EDDO_5c2c66ce-0d92-4e9d-963f-0ca5dc755c5e">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Dependency" visibility="public"
+                            xmi.id="EDDO_1a06ece7-9ceb-48db-8ded-f90af051da09">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="dependent" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_DEPENDENCY__DEPENDENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_DEPENDENCY__INDEPENDENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Region" visibility="public"
+                            xmi.id="EDDO_b1d896ae-625e-4824-ac37-3a5983281049">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="inputOutputRegionNode" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_REGION__INPUT_OUTPUT_REGION_NODE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Execution" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_REGION__EXECUTION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Stereotype" visibility="public"
+                            xmi.id="EDDO_0e7c759a-ac5c-4e0b-b65e-a8327cf520e3">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Association" visibility="public"
+                            xmi.id="EDDO_241cf45b-2734-47db-b0c2-51da1597e361">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="UML20_PT_ASSOCIATION__DRAIN"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__DRAIN"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Condition" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__INCOMING_CONDITION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="incoming Class" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_CLASS"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Multiplicity" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__INCOMING_MULTIPLICITY"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Relationship Type" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__OUTGOING_RELATIONSHIP_TYPE"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="UML20_PT_ASSOCIATION__SOURCE"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__SOURCE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Condition" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__OUTGOING_CONDITION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Multiplicity" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__OUTGOING_MULTIPLICITY"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Role" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__INCOMING_ROLE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_CLASS"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Role" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ASSOCIATION__OUTGOING_ROLE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Relationship Type" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_ASSOCIATION__INCOMING_RELATIONSHIP_TYPE"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Range" visibility="public"
+                            xmi.id="EDDO_32ed0318-3011-4b31-bcd0-becb82e08bcf">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Relationship Edge" visibility="public"
+                            xmi.id="EDDO_ba2e62ac-78d0-48b7-b26d-d3226731b419">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="sender" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__SENDER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Type" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__TYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_RELATIONSHIP_EDGE__RECEIVER"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Object Flow" visibility="public"
+                            xmi.id="EDDO_1ad32cf2-e1c9-431f-be69-7a6f8431dbeb">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Object" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_FLOW__OBJECT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_FLOW__RECEIVER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="sender" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_FLOW__SENDER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Condition" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_OBJECT_FLOW__CONDITION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Method" visibility="public"
+                            xmi.id="EDDO_cf22f2bd-60f8-4d1e-8e6f-045985cfc87a">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Visibility" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_METHOD__VISIBILITY"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Parameter" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_METHOD__PARAMETER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Stereotype" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_METHOD__STEREOTYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Return Value" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_METHOD__RETURN_VALUE_TYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Class" visibility="public"
+                            xmi.id="EDDO_1e11b16c-d159-4a3f-8289-cacf07e7f3c3">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__REALIZATION_CLIENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="incoming association" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__INCOMING_ASSOCIATION"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Package" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__PACKAGE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Stereotype" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__STEREOTYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Parameter" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__TEMPLATE_PARAMETER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_CLASS__OUTGOING_INHERITANCE_RELATIONSHIP"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Method" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__METHOD"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Attribute" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__ATTRIBUTE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Binding" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__TEMPLATE_BINDING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="supplier" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__REALIZATION_SUPPLIER"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="incoming inheritance relationship"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_CLASS__INCOMING_INHERITANCE_RELATIONSHIP"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_CLASS__OUTGOING_ASSOCIATION"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Region Execution Types"
+                            visibility="public" xmi.id="EDDO_d9d0c42a-31c0-4992-b538-6ccb2a5a58b5">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="System" visibility="public"
+                            xmi.id="EDDO_63a400cb-0af3-432b-9c2a-e1f73ff503dc">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Package" visibility="public"
+                            xmi.id="EDDO_1ea64c25-666e-482b-9d12-5dd649577552">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Stereotype" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_PACKAGE__STEREOTYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Refinement" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_PACKAGE__REFINEMENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Super-Package" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_PACKAGE__SUPER_PACKAGE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Input Output Region Node"
+                            visibility="public" xmi.id="EDDO_eeb10d97-95a1-4565-9f2f-66e9522c2422">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="input" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_INPUT_OUTPUT_REGION_NODE__INPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_INPUT_OUTPUT_REGION_NODE__OUTPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Flow" visibility="public"
+                            xmi.id="EDDO_57b98b08-68cc-4755-bb52-c2784d86c7c0">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Condition" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_FLOW__CONDITION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="sender" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_FLOW__SENDER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_FLOW__RECEIVER"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Independent Classifier"
+                            visibility="public" xmi.id="EDDO_5efc6fc5-9f18-4b7e-b85b-906d844197d9">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Inheritance" visibility="public"
+                            xmi.id="EDDO_3b33e20c-17c8-4197-9d59-9dd13d6bfcf4">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_INHERITANCE_RELATIONSHIP__SUPERCLASS"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="subclass" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_INHERITANCE_RELATIONSHIP__SUBCLASS"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Actor" visibility="public"
+                            xmi.id="EDDO_d1d2a74a-a0c3-4cb2-8d92-174d24734492">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_AGENT__RELATIONSHIP_EDGE__OUTGOING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="association incoming" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_AGENT__ASSOCIATION__INCOMING"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="UML20_PT_AGENT__ASSOCIATION__OUTGOING"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_AGENT__ASSOCIATION__OUTGOING"
+                                        />
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="relationship edge incoming"
+                                    visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression
+                                            body="UML20_PT_AGENT__RELATIONSHIP_EDGE__INCOMING"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Attribute" visibility="public"
+                            xmi.id="EDDO_ceb95ced-2295-46ca-89f5-35344e3f3efb">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="Visibility" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ATTRIBUTE__VISIBILITY"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Condition" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ATTRIBUTE__CONDITION"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Stereotype" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML_PT_ATTRIBUTE__STEREOTYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Annotation" visibility="public"
+                            xmi.id="EDDO_3e5bd18c-06f2-40b0-8bd0-37912ee476b1">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="element" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ANNOTATION__ELEMENT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Stereotype" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_ANNOTATION__STEREOTYPE"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Annotateable" visibility="public"
+                            xmi.id="EDDO_ecafb1ee-c38e-476b-b38e-d95afc4d0d21">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature/>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                        <UML:Class isAbstract="false" isLeaf="false" isRoot="true"
+                            isSpecification="false" name="Fork Node" visibility="public"
+                            xmi.id="EDDO_8ef55b6a-f14a-4821-93ca-206824d4af3b">
+                            <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue tag="ea_eleType" value="element"/>
+                            </UML:ModelElement.taggedValue>
+                            <UML:Classifier.feature>
+                                <UML:Attribute name="input" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_FORK_NODE__INPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                                <UML:Attribute name="Successor/Content" visibility="private">
+                                    <UML:Attribute.initialValue>
+                                        <UML:Expression body="UML20_PT_FORK_NODE__OUTPUT"/>
+                                    </UML:Attribute.initialValue>
+                                </UML:Attribute>
+                            </UML:Classifier.feature>
+                            <UML:ModelElement.stereotype>
+                                <UML:Stereotype
+                                    xmi.idref="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"/>
+                            </UML:ModelElement.stereotype>
+                        </UML:Class>
+                    </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Stereotype name="Project" xmi.id="EDDO_0a2560e5-4822-456e-9b36-85ec83a31153"/>
+                <UML:Stereotype name="ObjectType" xmi.id="EDDO_7016dbbd-e730-4d33-8446-af035eaaf27c"
+                />
+            </UML:Namespace.ownedElement>
+        </UML:Model>
+    </XMI.content>
+    <XMI.extensions xmi.extender="Enterprise Architect 2.5">
+        <EAModel.file/>
+    </XMI.extensions>
+</XMI>
