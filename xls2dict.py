@@ -4,29 +4,32 @@ import sys,os,re,argparse,json,StringIO,xmltodict
 from xlrd import open_workbook
 from xlwt import Workbook
 
-parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
+def argue():
+    parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
 
-parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
-parser.add_argument('-o','--output',  action='store',      help='output file')
+    parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
+    parser.add_argument('-o','--output',  action='store',      help='output file')
 
-groupI = parser.add_mutually_exclusive_group(required=True)
-groupI.add_argument('-l', '--iXLS',   action='store', help='input is excel')
-groupI.add_argument('-j', '--iJSON',  action='store', help='input is json')
-groupI.add_argument('-x', '--iXML',   action='store', help='input is xml')
+    groupI = parser.add_mutually_exclusive_group(required=True)
+    groupI.add_argument('-l', '--iXLS',   action='store', help='input is excel')
+    groupI.add_argument('-j', '--iJSON',  action='store', help='input is json')
+    groupI.add_argument('-x', '--iXML',   action='store', help='input is xml')
 
-groupO = parser.add_mutually_exclusive_group(required=True)
-groupO.add_argument('-L', '--oXLS',   action='store_true', help='output is excel')
-groupO.add_argument('-J', '--oJSON',  action='store_true', help='output is json')
-groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml', )
+    groupO = parser.add_mutually_exclusive_group(required=True)
+    groupO.add_argument('-L', '--oXLS',   action='store_true', help='output is excel')
+    groupO.add_argument('-J', '--oJSON',  action='store_true', help='output is json')
+    groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml', )
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-if args.verbose:
-    sys.stderr.write('args:')
-    json.dump(vars(args),sys.stderr,indent=4)
-    sys.stderr.write('\n')
+    if args.verbose:
+        sys.stderr.write('args:')
+        json.dump(vars(args),sys.stderr,indent=4)
+        sys.stderr.write('\n')
 
-def xls2dict(input):
+    return args
+
+def xls2dict(input,verbose=False):
     js = {
         'workbook' : {
             'sheet' : []
@@ -34,11 +37,11 @@ def xls2dict(input):
     }
 
     wb = open_workbook(file_contents=input.read())
-    if args.verbose:
+    if verbose:
         sys.stderr.write('%s\n'%wb)
 
     for s in wb.sheets():
-        if args.verbose:
+        if verbose:
             sys.stderr.write('%s\n'%s)
 
         sheet = {
@@ -48,7 +51,7 @@ def xls2dict(input):
         js['workbook']['sheet'].append(sheet)
 
         for r in range(s.nrows):
-            if args.verbose:
+            if verbose:
                 sys.stderr.write('\trow=%0d\n'%r)
             row = {
                 '@number' : '%d'%r,
@@ -57,7 +60,7 @@ def xls2dict(input):
             sheet['row'].append(row)
 
             for c in range(s.ncols):
-                if args.verbose:
+                if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(c,s.cell(r,c)))
                 col = {
                     '@number' : '%d'%c,
@@ -67,13 +70,13 @@ def xls2dict(input):
 
     return js
 
-def dict2xls(js):
-    if args.verbose:
+def dict2xls(js,verbose=False):
+    if verbose:
         json.dump(js,sys.stderr,indent=4)
         sys.stderr.write('\n')
 
     wb = Workbook()
-    if args.verbose:
+    if verbose:
         sys.stderr.write('%s\n'%wb)
 
     w = js['workbook']
@@ -83,7 +86,7 @@ def dict2xls(js):
 
     for s in sheets:
         sheet = wb.add_sheet(s['@name'])
-        if args.verbose:
+        if verbose:
             sys.stderr.write('%s\n'%sheet)
 
         rows = s['row']
@@ -92,7 +95,7 @@ def dict2xls(js):
 
         for r in rows:
             row = int(r['@number'])
-            if args.verbose:
+            if verbose:
                 sys.stderr.write('\trow=%0d\n'%row)
 
             cols = r['col']
@@ -102,7 +105,7 @@ def dict2xls(js):
             for c in cols:
                 col = int(c['@number'])
                 text = c['#text']
-                if args.verbose:
+                if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(col,text))
                 
                 sheet.write(row,col,text)
@@ -110,6 +113,8 @@ def dict2xls(js):
     return wb
 
 def main():
+    args=argue()
+
     if args.output:
         output = open(args.output,'w')
     else:
@@ -117,7 +122,7 @@ def main():
     
     if args.iXLS:
         input = open(args.iXLS,'rb')
-        js = xls2dict(input)
+        js = xls2dict(input,verbose=args.verbose)
         input.close()
 
     if args.iJSON:
@@ -128,13 +133,13 @@ def main():
 
     if args.iXML:
         input = open(args.iXML)
-        js = xmltodict.parse(input)
+        js = xmltodict.parse(input,verbose=args.verbose)
         input.close()
         None
 
     if args.oXLS:
         if args.output:
-            wb =dict2xls(js)
+            wb =dict2xls(js,verbose=args.verbose)
             wb.save(args.output)
         else:
             sys.stderr.write('please specify -o output') 
