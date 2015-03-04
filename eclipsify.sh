@@ -2,11 +2,16 @@
 
 source=$(dirname $(which eclipsify.sh ))
 
-if [ -d .git ]
+repos="$*"
+
+if [ -z "$repos" ]
 then
-    repos=$(pwd)
-else
+    if [ -d .git ]
+    then
+	repos=$(pwd)
+    else
     repos=*
+    fi
 fi
 
 if [ ! -d "$source" ]
