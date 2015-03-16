@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rsync --partial --progress $*
+rsync --perms --times --executability --partial --rsh=ssh.sh $*
  

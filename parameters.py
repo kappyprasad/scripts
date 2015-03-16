@@ -19,7 +19,7 @@ parser.add_argument('filename',action='store',help='the file name')
 
 args = parser.parse_args()
 
-prettyPrint(vars(args),colour=True)
+prettyPrint(vars(args),colour=False)
 
 print 'verbose =',args.verbose
 print 'username=',args.username
