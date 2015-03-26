@@ -1,14 +1,7 @@
 #!/usr/bin/python
 
-
-
-
-
-import os,sys,re
+import os,sys,re,json
 import argparse
-
-from Tools.pretty import *
-from Tools.eddo import *
 
 parser = argparse.ArgumentParser()
 
@@ -19,7 +12,8 @@ parser.add_argument('filename',action='store',help='the file name')
 
 args = parser.parse_args()
 
-prettyPrint(vars(args),colour=False)
+json.dump(vars(args),sys.stderr,indent=4)
+sys.stderr.write('\n')
 
 print 'verbose =',args.verbose
 print 'username=',args.username
