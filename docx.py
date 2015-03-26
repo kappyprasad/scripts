@@ -74,7 +74,7 @@ def main():
         if args.verbose:
             json.dump(js,sys.stderr,indent=4)
         if args.dump:
-            output = open('%s.js'%docx,'w')
+            output = open('%s.js'%path,'w')
             json.dump(js,output,indent=4)
             output.close()
         del xml
