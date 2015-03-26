@@ -2,12 +2,14 @@
 
 import os,sys,re,json,argparse,xmltodict,struct
 
+from subprocess import Popen, PIPE
 from zipfile import ZipFile
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-v','--verbose',action='store_true')
-parser.add_argument('docx',action='store',help='the MS word docx files', nargs='*')
+parser.add_argument('-v','--verbose', action='store_true')
+parser.add_argument('-d','--dump',    action='store_true', help='dump js')
+parser.add_argument('docx',           action='store',      help='the MS word docx files', nargs='*')
 
 args = parser.parse_args()
 
@@ -47,6 +49,13 @@ def readlnk(path):
         pass
     return target
 
+def cygpath(dospath):
+    process = Popen('cygpath -au %s'%dospath,shell=True, stdout=PIPE)
+    path = process.stdout.readline().rstrip('\n')
+    del process
+    return path
+
+
 def main():
     for path in args.docx:
         if path.endswith('.lnk'):
@@ -64,6 +73,10 @@ def main():
         js = xmltodict.parse(xml)
         if args.verbose:
             json.dump(js,sys.stderr,indent=4)
+        if args.dump:
+            output = open('%s.js'%docx,'w')
+            json.dump(js,output,indent=4)
+            output.close()
         del xml
         del zip
     return
