@@ -13,7 +13,7 @@ parser.add_argument('-?',              action='help',       help='show this help
 parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
 parser.add_argument('-r','--reverse',  action='store_true', help='reverse json->xml')
 parser.add_argument('-o','--output',   action='store',      help='output to file')
-parser.add_argument('-i','--input',    action='store',      help='input from file')
+parser.add_argument('file', nargs='*', action='store',      help='file to input')
 
 args = parser.parse_args()
 
@@ -24,8 +24,8 @@ def main():
     else:
         output = sys.stdout
 
-    if args.input:
-        input=open(args.input)
+    if len(args.file) > 0:
+        input=open(args.file[0])
     else:
         input=sys.stdin
         
