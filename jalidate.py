@@ -12,7 +12,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-v','--verbose', action='store_true')
 parser.add_argument('-d','--delve',   action='store_true', help='delve into schema and rename $ref values')
 parser.add_argument('-s','--schema',  action='store',      help='schema name', required=True)
-parser.add_argument('-t','--type',    action='store',      help='schema type name')
 parser.add_argument('json',           action='store',      help='json file')
 
 args = parser.parse_args()
@@ -28,7 +27,7 @@ def delve(node):
             if type(node) == list:
                 for child in node:
                     delve(node[key])
-            if key == '$ref':
+            if key == '$ref' and type(node[key]) in [unicode, str]:
                 node[key] = node[key].replace('#/schemas/','#/')
                 if args.verbose:
                     json.dump(node,sys.stderr,indent=4)
@@ -40,8 +39,7 @@ def main():
         if args.delve:
             delve(schema)
         fp.close()
-    if args.type:
-        schema = schema[args.type]
+
     with open(args.json) as fp:
         js=json.load(fp)
         fp.close()
