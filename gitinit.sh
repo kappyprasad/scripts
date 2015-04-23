@@ -4,6 +4,14 @@ verbose=0
 existing=0
 base="/cygdrive/d/GIT"
 
+usage="\
+usage: $0 \n\
+    -v         verbose\n\
+    -h         help\n\
+    -e         use existing repo as source\n\
+    -b base    git base dir\n\
+"
+
 while getopts vheb: opt
 do
     case $opt in
@@ -12,18 +20,12 @@ do
             echo "verbose is on" 1>&2
             ;;
         h)
-            echo -e "usage: $0 \n\
--v         verbose\n\
--h         help\n\
--e         use existing repo as source\n\
--b base    git base dir\n\
-"
+            echo -e "$usage"
             exit 
             ;;
         e) 
             existing=1
             echo "upload existing" 1>&2
-            exi
             ;;
         b) 
             base=$OPTARG
