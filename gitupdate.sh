@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -d .git ]
 then
@@ -13,7 +13,7 @@ do
     then
 	    pushd "$repo" > /dev/null
 	    pwd
-	    git pull #| grep -v "Already up-to-date"
+	    /usr/bin/env git pull #| grep -v "Already up-to-date"
 	    popd > /dev/null
     fi
 done
