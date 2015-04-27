@@ -106,3 +106,9 @@ git commit -m 'repo created'
 git remote add origin "$base/$repo.git"
 git push origin master
 
+if [ $existing == 1 ]
+then
+    echo "don't forget to remove then clone the existing repo"
+    echo "git pull $base/$repo.git master"
+fi
+
