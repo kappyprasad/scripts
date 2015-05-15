@@ -58,7 +58,7 @@ if (! $quiet) {
 open (IN, "df -k $bits |") || die "Can't run df, $!\n";
 while (<IN>) {
   s/[\r\n]//g;
-  if (/^(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\%)\s+(\S+)/i) {
+  if (/^(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\%)\s+(\/cygdrive\S+)/i) {
     ($disk, $size, $used, $avail, $percent, $drive) = ($1, $2, $3, $4, $5, $6);
     $sizef = &libraries'num2commas($size);
     $usedf = &libraries'num2commas($used);
