@@ -17,7 +17,7 @@ fi
 
 if [ "$1" = "" ]
 then
-    svn status | perl -ne 'print "$1\n" if (/^\?\s+(\S.*)$/);' | xargs -r -I FILE -d '\n\r' $echo svn --parents add "FILE"
+    svn status | perl -ne 'print "$1\n" if (/^\?\s+(\S.*)$/);' | xargs -n1 -I FILE -d '\n\r' $echo svn --parents add "FILE"
 else
     svn add $*
 fi

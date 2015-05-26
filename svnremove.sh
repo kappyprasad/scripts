@@ -15,4 +15,4 @@ then
     echo=echo
 fi
 
-svn status | perl -ne 'print "$1\n" if (/^\!\s+(\S.*)$/);' | xargs -r -I FILE -d '\n\r' $echo svn remove FILE
+svn status | perl -ne 'print "$1\n" if (/^\!\s+(\S.*)$/);' | xargs -n1 -I FILE -d '\n\r' $echo svn remove FILE

@@ -20,7 +20,7 @@ do
     then
 	    pushd "$repo" > /dev/null
 	    pwd
-	    git status --porcelain | cut -c 4- | xargs -rn1 git checkout
+	    git status --porcelain | cut -c 4- | xargs -n1 git checkout
 	    popd > /dev/null
     fi
 done

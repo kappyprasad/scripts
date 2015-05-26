@@ -26,7 +26,7 @@ do
         git status --porcelain \
             | egrep "$query" \
             | cut -c 4- \
-            | xargs -r -I FILE $echo git add "FILE"
+            | xargs -n1 -I FILE $echo git add "FILE"
 
         git status --porcelain
         popd >/dev/null
