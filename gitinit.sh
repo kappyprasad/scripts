@@ -2,7 +2,7 @@
 
 verbose=0
 existing=0
-base="/cygdrive/d/GIT"
+base="/Users/davidedson/Repository"
 
 usage="\
 usage: $0 \n\

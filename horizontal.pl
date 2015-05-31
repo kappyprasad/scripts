@@ -6,7 +6,7 @@ if ($#ARGV >= 0) {
   $char = shift(@ARGV);
 }
 else {
-  $char = "-";
+  $char = "_";
 }
 
 &libraries'doHorizontal($char);
