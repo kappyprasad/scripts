@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2.7
 
 import sys,os,re,argparse,json,StringIO,xmltodict
 from xlrd import open_workbook

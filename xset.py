@@ -1,8 +1,4 @@
-#!/usr/bin/python
-
-
-
-
+#!/usr/bin/env python2.7
 
 import sys, re, os, libxml2
 import argparse
