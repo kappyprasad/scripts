@@ -41,8 +41,6 @@ done
 
 shift $((OPTIND-1))
 
-envr='svn.sensitive'
-user='david.edson'
 pass=$(passwords.py -e $envr -u $user)
 
 curl -u "$user:$pass" "$base/" \
