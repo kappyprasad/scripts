@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
 
-import os,sys,re,json
-import argparse
+import os,sys,re,json,argparse,urllib
 
 def argue():
     parser = argparse.ArgumentParser()
@@ -22,10 +21,13 @@ def argue():
 def directory(dir,output,target,recurse=False):
     for file in os.listdir('%s'%dir):
         path='%s/%s'%(dir,file)
-        if file != target and file[0] != '.':
-            output.write('<a href="%s">%s</a><br/>\n'%(path,path))
-        if recurse and os.path.isdir(file):
-            directory('%s/%s'%(dir,file),output,target,recurse)
+        if os.path.isfile(path):
+            if file != target and file[0] != '.':
+                output.write('<a href="%s">%s</a><br/>\n'%(urllib.quote(path),path))
+        if os.path.isdir(path):
+            output.write('<a href="%s/index.html">%s</a><br/>\n'%(urllib.quote(path),path))
+            if recurse:
+                directory('%s/%s'%(dir,file),output,target,recurse)
     return
 
 def main():
