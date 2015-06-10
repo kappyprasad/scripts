@@ -22,6 +22,7 @@ do
 done
 
 shift $((OPTIND-1))
+
 horizontal.pl
 for file in $*
 do

@@ -59,8 +59,10 @@ done
 
 if [ -d .git ]
 then
+    local=1
     repos=$(pwd)
 else
+    local=0
     repos=*
 fi
 
@@ -70,9 +72,9 @@ do
     then 
         pushd $repo > /dev/null
 
-        if [ "$verbose" = "1" ]
+        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then
-            pwd
+            echo $repo
         fi
 
         git status --porcelain \

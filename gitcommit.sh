@@ -1,20 +1,56 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-# bulk committer, assumes items already added to index
+help="\
+usage: $(basename $0) <comment>\n\
+\n\
+-v verbose\n\
+-h help\n\
+-t test\n\
+-m commentt\n\
+"
 
-argument="$1"
-comment="$2"
+verbose=0
+test=''
+comment=''
 
-if [ -z "$*" ]
+while getopts vhtm opt
+do
+    case $opt in
+        v) 
+            verbose=1
+            ;;
+        h) 
+            echo "$help"
+            exit 0
+            ;;
+        t)
+            test='echo '
+            ;;
+        m)
+            comment=$OPTARG
+            ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+if [ -z "$comment" ]
 then
-    echo "usage: $0 <comment>"
-    exit 1
+    comment=$(echo $*)
+fi
+
+if [ -z "$comment" ]
+then
+    echo "$help"
+    exit 0
 fi
 
 if [ -d .git ]
 then
+    local=1
     repos=$(pwd)
 else
+    local=0
     repos=*
 fi
 
@@ -23,17 +59,18 @@ do
     if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then 
         pushd $repo > /dev/null
-        pwd
+
+        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
+        then
+            echo "$repo"
+        fi
+
         lines=$(git status --porcelain | wc -l)
         if [ ! "$lines" = "0" ]
         then
-            if [ "$argument" = "-m" ]
-            then
-                git commit -m "$comment"
-            else
-                git commit -m "$argument"
-            fi
+            $test git commit -m "$comment"
         fi
+
         popd >/dev/null
     fi
 done
