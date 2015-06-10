@@ -65,7 +65,7 @@ do
             echo "$repo"
         fi
 
-        lines=$(git status --porcelain | wc -l)
+        lines=$(echo $(git status --porcelain | wc -l))
         if [ ! "$lines" = "0" ]
         then
             $test git commit -m "$comment"
