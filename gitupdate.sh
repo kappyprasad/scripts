@@ -1,9 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if [ -d .git ]
 then
+    local=1
     repos=$(pwd)
 else
+    local=0
     repos=*
 fi
 
@@ -12,8 +14,13 @@ do
     if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then
 	    pushd "$repo" > /dev/null
-	    pwd
-	    /usr/bin/env git pull #| grep -v "Already up-to-date"
+        if [ "$local" = "0" ]
+        then
+            echo "\033[34m$repo\033[0m"
+        fi
+
+	    git pull
+
 	    popd > /dev/null
     fi
 done
