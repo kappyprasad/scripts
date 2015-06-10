@@ -16,7 +16,7 @@ do
         pushd $repo > /dev/null
         if [ "$local" = "0" ]
         then
-            echo "\033[34m$repo\033[0m"
+            echo -e "\033[34m$repo\033[0m"
         fi
 
 	    git diff
