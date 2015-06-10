@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 help="\
-usage: $0 <files>\n\
+usage: $(basename $0) <files>\n\
 \n\
 -v verbose\n\
 -h help\n\
@@ -51,6 +51,11 @@ then
     echo "matchers=$matchers"
     echo "query=$query"
 fi
+
+for git in $*
+do
+    $test git add $git
+done
 
 if [ -d .git ]
 then
