@@ -93,8 +93,11 @@ def dict2xls(js,verbose=False):
         if type(rows) is not list:
             rows = [ rows ]
 
-        for r in rows:
-            row = int(r['@number'])
+        for row in range(len(rows)):
+            r = rows[row]
+            if '@number' in r.keys():
+                row = int(r['@number'])
+                
             if verbose:
                 sys.stderr.write('\trow=%0d\n'%row)
 
@@ -102,9 +105,14 @@ def dict2xls(js,verbose=False):
             if type(cols) is not list:
                 cols = [ cols ]
 
-            for c in cols:
-                col = int(c['@number'])
-                text = c['#text']
+            for col in range(len(cols)):
+                c = cols[col]
+                if type(c) == dict:
+                    if '@number' in c.keys():
+                        col = int(c['@number'])
+                    text = c['#text']
+                else:
+                    text = c
                 if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(col,text))
                 
@@ -133,7 +141,7 @@ def main():
 
     if args.iXML:
         input = open(args.iXML)
-        js = xmltodict.parse(input,verbose=args.verbose)
+        js = xmltodict.parse(input)
         input.close()
         None
 
