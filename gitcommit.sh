@@ -62,7 +62,7 @@ do
 
         if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then
-            echo "$repo"
+            echo "\033[34m$repo\033[0m"
         fi
 
         lines=$(echo $(git status --porcelain | wc -l))

@@ -45,7 +45,7 @@ do
         pushd $repo > /dev/null
         if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then
-            echo $repo
+            echo "\033[34m$repo\033[0m"
         fi
 
 	    if [ "$fetch" = "1" ]
