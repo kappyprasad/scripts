@@ -1,24 +1,20 @@
 #!/usr/bin/env sh
 
-verbose=0
 existing=0
 base="/Users/davidedson/Repository"
+user=$(whoami)
+host=localhost
 
 usage="\
 usage: $0 \n\
-    -v         verbose\n\
     -h         help\n\
     -e         use existing repo as source\n\
     -b base    git base dir\n\
 "
 
-while getopts vheb: opt
+while getopts heb: opt
 do
     case $opt in
-        v) 
-            verbose=1
-            echo "verbose is on" 1>&2
-            ;;
         h)
             echo -e "$usage"
             exit 
@@ -60,55 +56,32 @@ fi
 pushd "$base" >/dev/null
 mkdir -p "$repo.git"
 cd "$repo.git"
-if [ $verbose == 1 ]
-then 
-    echo "cd $(pwd)"
-    echo git init --bare
-fi
 git init --bare
 popd >/dev/null
 
+function pushit {
+    git remote add origin "$user@$host:$base/$repo.git"
+    git push origin master
+    git branch --set-upstream-to=origin/master master
+    gitcommit.sh -m 'moved remote'
+    gitpush.sh
+}
+
 if [ $existing == 1 ] && [ -e "$repo/.git" ] 
 then
-    cd "$repo"
+    pushd "$repo"
     cleanBackupFiles.sh
-    if [ $verbose == 1 ]
-    then 
-        echo "cd $(pwd)"
-        echo gitadd.sh -a
-    fi
     gitadd.sh -a
-    
+    pushit
+    popd
 else
-    cd "$TEMP"
+    pushd "$TEMP"
     mkdir -p "$repo"
     cd "$repo"
-    if [ $verbose == 1 ]
-    then
-        echo "cd $(pwd)"
-        echo git init
-        echo "# $repo" > README.md
-        echo git add README.md
-    fi
     git init
     echo "# $repo" > README.md
     git add README.md
-fi
-
-if [ $verbose == 1 ]
-then
-    echo git commit -m 'repo created'
-    echo git remote add origin "$base/$repo.git"
-    echo git push origin master
-fi
-
-git commit -m 'repo created'
-git remote add origin "$base/$repo.git"
-git push origin master
-
-if [ $existing == 1 ]
-then
-    echo "don't forget to remove then clone the existing repo"
-    echo "git pull $base/$repo.git master"
+    pushit
+    popd
 fi
 
