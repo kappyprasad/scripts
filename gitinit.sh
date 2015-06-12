@@ -63,15 +63,12 @@ function pushit {
     git remote add origin "$user@$host:$base/$repo.git"
     git push origin master
     git branch --set-upstream-to=origin/master master
-    gitcommit.sh -m 'moved remote'
     gitpush.sh
 }
 
 if [ $existing == 1 ] && [ -e "$repo/.git" ] 
 then
     pushd "$repo"
-    cleanBackupFiles.sh
-    gitadd.sh -a
     pushit
     popd
 else
@@ -79,8 +76,10 @@ else
     mkdir -p "$repo"
     cd "$repo"
     git init
+    echo target >> .gitignore
     echo "# $repo" > README.md
-    git add README.md
+    gitadd.sh -a
+    gitcommit.sh -m 'moved remote'
     pushit
     popd
 fi
