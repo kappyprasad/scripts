@@ -18,10 +18,20 @@ doc = libxml2.parseFile(args.xml)
 if args.schema:
     schema = args.schema
 else:
-    spath = doc.getRootElement().prop('schemaLocation').split(' ')[1]
+    schemaElement = doc.getRootElement()
+    schemaTag = None
+    for tag in ['schemaLocation','noNamespaceSchemaLocation']:
+        if schemaElement.hasProp(tag):
+            schemaTag = schemaElement.prop(tag)
+            break
+    schemaTags = schemaTag.split(' ')
+    spath = schemaTags[len(schemaTags)-1]
     dpath = os.path.dirname(args.xml)
-    schema = '%s/%s'%(dpath,spath)
-
+    if len(dpath) == 0:
+        schema = spath
+    else:
+        schema = '%s/%s'%(dpath,spath)
+    
 sys.stderr.write('schema=%s\n'%schema)
 
 ctxt = libxml2.schemaNewParserCtxt(schema)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python2.7
 
-import os,sys,re,json
-import argparse
-
+import os,sys,re,json,argparse
 import pyraml.parser
+
+from Tools.pretty import *
 
 parser = argparse.ArgumentParser()
 
@@ -31,7 +31,7 @@ def main():
         if not key.startswith('_'):
             sys.stdout.write('%s : '%key)
             if args.key and key == args.key:
-                json.dump(getattr(raml,key),output,indent=4)
+                prettyPrint(getattr(raml,key),output)
             elif args.type:
                 sys.stdout.write('%s'%type(getattr(raml,key)))
             sys.stdout.write('\n')
