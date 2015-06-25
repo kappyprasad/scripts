@@ -14,13 +14,14 @@ do
     if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then
 	    pushd "$repo" > /dev/null
-        if [ "$local" = "0" ]
+        if [ -d ".git" ]
         then
-            echo -e "\033[34m$repo\033[0m"
-        fi
-
+            if [ "$local" = "0" ]
+            then
+                echo "\033[36m$repo\033[0m"
+            fi
 	    git pull
-
+        fi
 	    popd > /dev/null
     fi
 done

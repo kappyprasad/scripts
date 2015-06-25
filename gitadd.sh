@@ -74,7 +74,7 @@ do
 
         if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then
-            echo -e "\033[34m$repo\033[0m"
+            echo "\033[36m$repo\033[0m"
         fi
 
         git status --porcelain \
