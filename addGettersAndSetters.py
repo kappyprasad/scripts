@@ -1,11 +1,8 @@
 #!/usr/bin/env python2.7
 
-
-
 import sys, re, os
 
 from Tools.finder import *
-
 
 classPattern = re.compile('^.*$')
 attrPattern  = re.compile('^(\s+private\s+(\S+)\s+([^\s;]+))(.*)$')
