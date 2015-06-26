@@ -4,7 +4,8 @@ import sys, re, os
 
 from Tools.finder import *
 
-listPattern  = re.compile('^(.*)(java.util.List)<([^>]+)>(.*)$')
+uidPattern  = re.compile('.*static final long serialVersionUID = 1L.*') 
+listPattern = re.compile('^(.*)(java.util.List)<([^>]+)>(.*)$')
 
 def main():
     for f in findFiles(path='.',fileOrDir=True,pn='^.*\.java$'):
@@ -19,6 +20,9 @@ def main():
             line = line.rstrip('\r')
             line = line.rstrip('\n')
 
+            if uidPattern.match(line):
+                continue
+            
             m = listPattern.match(line)
             if m:
                 (lead,dump,keep,tail) = m.groups()
