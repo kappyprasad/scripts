@@ -15,9 +15,4 @@ then
     echo=echo
 fi
 
-if [ "$1" = "" ]
-then
-    svn status | perl -ne 'print "$1\n" if (/^\?\s+(\S.*)$/);' | xargs -n1 -I FILE -d '\n\r' $echo svn --parents add "FILE"
-else
-    svn add $*
-fi
+svn status | perl -ne 'print "$1\n" if (/^\?\s+(\S.*)$/);' | xargs -n1 -I FILE $echo svn --parents add "FILE"
