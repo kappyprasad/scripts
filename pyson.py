@@ -39,15 +39,41 @@ inplace = args.inplace
 if inplace:
     colour = False
         
-def query(text):
-    object = json.load(text)
-    if args.dict:
-        expression = dict2eval(args.dict)
-        if args.verbose:
-            sys.stderr.write('expression=object%s\n'%expression)
+def query(text,expression=None):
+    if args.verbose:
+        sys.stderr.write('text=%s[%s], expression=%s\n'%(text,type(text), expression))
+
+    if type(text) == str:
+        object = json.loads(text)
+    elif type(text) == file:
+        object = json.load(text)
+    else:
+        object = text
+    multiple='[*]'
+    if expression==None:
+        if args.dict:
+            expression = dict2eval(args.dict)
+        elif args.eval:
+            expression = args.eval
+        else:
+            expression = ''
+    if multiple in expression:
+        results = []
+        parts = expression.split(multiple)
+        lhs = '%s"]'%parts[0]
+        rhs = '["' + multiple.join(parts[1:])
+        rhs = '["%s'%rhs.lstrip('[""]')
+        try:
+            for result in eval('object%s'%lhs):
+                if multiple in rhs:
+                    results.append(query(result,rhs))
+                else:
+                    results.append(result)
+        except:
+            None
+        object = results
+    else:
         object = eval('object%s'%expression)
-    if args.eval:
-        object = eval('object%s'%args.eval)
     return object
 
 def dump(object,output,colour):
