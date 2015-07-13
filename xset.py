@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
 
-import sys, re, os, libxml2
-import argparse
+import sys, re, os, libxml2, argparse
 
 from Tools.colours import *
 from Tools.eddo import *
@@ -13,7 +12,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-?',             action='help',       help='show this help')
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
 parser.add_argument('-s','--show',    action='store_true', help='show changes')
+parser.add_argument('-c','--cdata',   action='store_true', help='text as cdata')
 parser.add_argument('-t','--text',    action='store',      help='set value as text value')
+parser.add_argument('-T','--tfile',   action='store',      help='set value as text value taken from tfile')
 parser.add_argument('-a','--attr',    action='store',      help='set value as attribute value')
 parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
 parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
@@ -61,13 +62,26 @@ def main():
         for p in ns.keys():
             ctx.xpathRegisterNs(p,ns[p])
 
+        if args.tfile:
+            with open(args.tfile) as tf:
+                text = ''.join(tf.readlines())
+                tf.close()
+        elif args.text:
+            text = args.text
+        else:
+            text = None
+            
         res = ctx.xpathEval(xpath)
         for r in res:
-            if args.text:
+            if text:
                 if args.show:
                     sys.stderr.write('%s- %s%s\n'%(colours['Red'],r.content,colours['Off']))
-                    sys.stderr.write('%s+ %s%s\n'%(colours['Green'],args.text,colours['Off']))
-                r.setContent(args.text)
+                    sys.stderr.write('%s+ %s%s\n'%(colours['Green'],text,colours['Off']))
+                if args.cdata:
+                    cdata = doc.newCDataBlock(text,len(text))
+                    r.addChild(cdata)
+                else:
+                    r.setContent(text)
             if args.attr:
                 if args.show:
                     sys.stderr.write('%s- %s%s\n'%(colours['Red'],r.prop(attr),colours['Off']))
