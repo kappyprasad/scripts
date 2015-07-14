@@ -78,6 +78,7 @@ def main():
                     sys.stderr.write('%s- %s%s\n'%(colours['Red'],r.content,colours['Off']))
                     sys.stderr.write('%s+ %s%s\n'%(colours['Green'],text,colours['Off']))
                 if args.cdata:
+                    r.setContent(None)
                     cdata = doc.newCDataBlock(text,len(text))
                     r.addChild(cdata)
                 else:
