@@ -47,7 +47,7 @@ else
     then
         git fetch
     fi
-    git status --porcelain
+    git status --porcelain | grep -v "^?"
     
     popd >/dev/null
 fi
