@@ -20,7 +20,7 @@ do
             verbose='-v'
             ;;
         h) 
-            echo "$help"
+            echo -e "$help"
             exit 0
             ;;
         f)
@@ -35,6 +35,7 @@ done
 shift $((OPTIND-1))
 
 repo="$1"
+
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
     find . -name .git -and -type d -exec $0 $verbose $fetch $recurse {} \;
