@@ -6,12 +6,14 @@ usage: $(basename $0) <repos...>\n\
 -v verbose\n\
 -h help\n\
 -f fetch\n\
+-r recurse\n\
 "
 
 verbose=''
 fetch=''
+recurse=''
 
-while getopts vhf opt
+while getopts vhfr opt
 do
     case $opt in
         v) 
@@ -24,17 +26,26 @@ do
         f)
             fetch="-f"
             ;;
+        r)
+            recurse="-r"
+            ;;
     esac
 done
 
 shift $((OPTIND-1))
 
 repo="$1"
-if [ -z "$repo" ]
+if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    find . -name .git -and -type d -exec $0 $verbose $fetch {} \;
+    find . -name .git -and -type d -exec $0 $verbose $fetch $recurse {} \;
 else
-    repo=$(dirname $repo)
+    if [ "$recurse" = "-r" ]
+    then
+        repo=$(dirname $repo)
+    else
+        repo=.
+    fi
+
     pushd $repo > /dev/null
 
     if [ "$verbose" = "-v" ]
