@@ -5,7 +5,6 @@ usage: $(basename $0) <repos...>\n\
 \n\
 -v verbose\n\
 -h help\n\
--f fetch\n\
 -r recurse\n\
 "
 
@@ -13,7 +12,7 @@ verbose=''
 fetch=''
 recurse=''
 
-while getopts vhfr opt
+while getopts vhr opt
 do
     case $opt in
         v) 
@@ -22,9 +21,6 @@ do
         h) 
             echo -e "$help"
             exit 0
-            ;;
-        f)
-            fetch="-f"
             ;;
         r)
             recurse="-r"
