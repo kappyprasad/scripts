@@ -1,64 +1,54 @@
 #!/usr/bin/env sh
 
 help="\
-usage: $(basename $0) <files>\n\
+usage: $(basename $0) <repos...>\n\
 \n\
 -v verbose\n\
 -h help\n\
 -f fetch\n\
 "
 
-verbose=0
-fetch=0
+verbose=''
+fetch=''
 
 while getopts vhf opt
 do
     case $opt in
         v) 
-            verbose=1
+            verbose='-v'
             ;;
         h) 
             echo "$help"
             exit 0
             ;;
         f)
-            fetch=1
+            fetch="-f"
             ;;
     esac
 done
 
 shift $((OPTIND-1))
 
-if [ -d .git ]
+repo="$1"
+if [ -z "$repo" ]
 then
-    local=1
-    repos=$(pwd)
+    find . -name .git -and -type d -exec $0 $verbose $fetch {} \;
 else
-    local=0
-    repos=*
+    repo=$(dirname $repo)
+    pushd $repo > /dev/null
+
+    if [ "$verbose" = "-v" ]
+    then
+        horizontal.pl
+        echo "\033[36m$repo\033[0m"
+    fi
+
+    if [ "$fetch" = "-f" ] 
+    then
+        git fetch
+    fi
+    git status --porcelain
+    
+    popd >/dev/null
 fi
 
-for repo in $repos
-do 
-    if [ -d "$repo" ] && [ ! "$repo" = "." ]
-    then 
-        pushd $repo > /dev/null
-        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
-        then
-            echo "\033[36m$repo\033[0m"
-        fi
-
-	    if [ "$fetch" = "1" ]
-	    then
-            if [ "$verbose" = "1" ]
-            then
-                echo "git fetch"
-            fi
-	        git fetch
-	    fi
-
-        git status --porcelain $*
-
-        popd >/dev/null
-    fi
-done
