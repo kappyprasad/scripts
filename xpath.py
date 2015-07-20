@@ -22,7 +22,7 @@ parser.add_argument('-f','--fname',   action='store_true', help='show file name'
 parser.add_argument('-o','--output',  action='store',      help='output to file')
 parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
 parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
-parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
+parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file', nargs='*')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 args = parser.parse_args()
@@ -49,21 +49,22 @@ def process(xml,output=sys.stdout,rdoc=None,rctx=None):
             sys.stderr.write('nsp : ')
             prettyPrint(nsp,colour=True,output=sys.stderr)
 
-        res = ctx.xpathEval(args.xpath)
-        if args.single:
-            output.write('%s\n'%res)
-        else:
-            if len(res) == 0:
-                None
-                #output.write('\n')
+        for xpath in args.xpath:
+            res = ctx.xpathEval(xpath)
+            if args.single:
+                output.write('%s\n'%res)
             else:
-                for r in res:
-                    if args.text:
-                        output.write('%s\n'%r.content)
-                    elif not args.clean and rdoc and rctx:
-                        element('%s'%r,rdoc,rctx,nsp)
-                    else:
-                        output.write('%s\n'%r)
+                if len(res) == 0:
+                    None
+                    #output.write('\n')
+                else:
+                    for r in res:
+                        if args.text:
+                            output.write('%s\n'%r.content)
+                        elif not args.clean and rdoc and rctx:
+                            element('%s'%r,rdoc,rctx,nsp)
+                        else:
+                            output.write('%s\n'%r)
 
     except:
         sys.stderr.write('<!-- exception when parsing -->\n')

@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# $Date$
-# $Revision$
-# $Author$
-# $HeadURL$
-# $Id$
+replace="s/[\x7F-\xFF]//g;"
 
-
-
-perl -pe "s/[\x7F-\xFF]//g" -i "$*" 
-
+if [ -z "$1" ]
+then
+    perl -pe "$replace"
+else
+    perl -pe "$replace" -i "$*" 
+fi
