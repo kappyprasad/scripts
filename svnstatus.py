@@ -52,7 +52,7 @@ def main():
     if args.verbose:
         options += ' -v'
 
-    cmd='/usr/bin/svn status %s %s'%(options,' '.join(args.file))
+    cmd='svn status %s %s'%(options,' '.join(args.file))
 
     process = Popen(cmd,shell=True,stdout=PIPE)
     #prettyPrint(process)
