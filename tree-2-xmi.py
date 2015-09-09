@@ -22,6 +22,8 @@ fgroup.add_argument('-l','--link',    action='store_true', help='link local file
 fgroup.add_argument('-s','--svn',     action='store_true', help='link svn files')
 
 parser.add_argument('-v','--verbose', action='store_true', help='show help')
+parser.add_argument('-c','--cygwin',  action='store_true', help='shell is cygwin')
+parser.add_argument('-f','--files',   action='store_true', help='included files')
 parser.add_argument('-o','--output',  action='store',      help='output.xmi file name', default='.xmi')
 parser.add_argument('dir',            action='store',      help='the directory')
 
@@ -68,7 +70,7 @@ class DirectoryTree:
             if args.verbose:
                 sys.stderr.write('< %s\n'%fp)
                 sys.stderr.flush()
-            if os.path.isfile(fp):
+            if os.path.isfile(fp) and args.files:
                 self.makeFile(f,element,dir)
             elif os.path.isdir(fp):
                 self.makeDirectory(f,element,dir)
@@ -78,13 +80,14 @@ class DirectoryTree:
     def makeFile(self,name,parent,prefix=None):
         classCF = self.xmi.makeClass(name,parent)
         fp = os.path.abspath(concatPath(prefix,name))
-        p = re.compile('^/cygdrive/([a-z])(/.*)$')
-        m = p.match(fp)
-        if m:
-            fp = '%s:%s'%m.groups()
-        if fp[0] == '/':
-            fp = 'c:/cygwin%s'%fp
-        fp = fp.replace('/','\\')
+        if args.cygwin:
+            p = re.compile('^/cygdrive/([a-z])(/.*)$')
+            m = p.match(fp)
+            if m:
+                fp = '%s:%s'%m.groups()
+            if fp[0] == '/':
+                fp = 'c:/cygwin%s'%fp
+            fp = fp.replace('/','\\')
         self.xmi.makeEAFile(fp,'Local File',classCF.parent)
         return
 
