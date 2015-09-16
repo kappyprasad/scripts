@@ -94,7 +94,7 @@ def main():
     if args.file:
         for file in args.file:
             if horizon:
-                sys.stderr.write('%s\n%'%horizon)
+                sys.stderr.write('%s\n'%horizon)
             if args.fname:
                 if args.text or args.single:
                     sys.stderr.write('%s: '%file)
