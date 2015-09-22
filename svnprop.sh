@@ -42,4 +42,4 @@ then
     exit
 fi
 
-echo svn propset svn:mime-type "$type" $*
+svn propset svn:mime-type "$type" $*
