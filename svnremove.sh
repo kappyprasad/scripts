@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# $Date$
-# $Revision$
-# $Author$
-# $HeadURL$
-# $Id$
-
-
-
 echo=""
 
 if [ "$1" = "-v" ]
