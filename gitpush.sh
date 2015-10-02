@@ -1,54 +1,87 @@
 #!/usr/bin/env sh
 
 help="\
-usage: $(basename $0)\n\
+usage: $(basename $0) <repo>\n\
 \n\
 -v verbose\n\
 -h help\n\
+-a all repos\n\
+-r recurse\n\
+-o origin\n\
+-b branch\n\
+-t test only dont execute\n\
 "
 
-verbose=0
+verbose=''
+all=''
+recurse=''
+origin='origin'
+branch='master'
+test=''
+echo=''
 
-while getopts vh opt
+while getopts vharo:b:t opt
 do
     case $opt in
         v) 
-            verbose=1
+            verbose='-v'
             ;;
         h) 
             echo "$help"
             exit 0
+            ;;
+        a)
+            all='-a'
+            ;;
+        r)
+            recurse='-r'
+            ;;
+        o)
+            origin=$OPTARG
+            ;;
+        b)
+            branch=$OPTARG
+            ;;
+        t)
+            test='-t'
+            echo='echo'
             ;;
     esac
 done
 
 shift $((OPTIND-1))
 
-if [ -d .git ]
+repo="$1"
+
+if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    local=1
-    repos=$(pwd)
+    find . -name .git -and -type d -exec $0 $verbose $all $recurse $test -o $origin -b $branch {} \;
 else
-    local=0
-    repos=*
+    if [ "$recurse" = "-r" ]
+    then
+        repo=$(dirname $repo)
+    else
+        repo=.
+    fi
+
+    pushd $repo > /dev/null
+    
+    if [ "$verbose" = "-v" ]
+    then
+        horizontal.pl
+        echo "\033[36m$repo\033[0m"
+    fi
+
+    if [ -d '.git' ]
+    then
+        if [ "$all" = "-a" ]
+        then
+            git remote | xargs -I O -n1 $echo git push O $branch
+        else
+            $echo git push $origin $branch
+        fi
+    fi
+    
+    popd >/dev/null
 fi
 
-for repo in $repos
-do 
-    if [ -d "$repo" ] && [ ! "$repo" = "." ]
-    then 
-        pushd $repo > /dev/null
-
-        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
-        then
-            echo "\033[36m$repo\033[0m"
-        fi
-
-        if git status | grep "use \"git push\" to publish your local commits" >/dev/null
-        then
-            git push
-        fi
-
-        popd >/dev/null
-    fi
-done
