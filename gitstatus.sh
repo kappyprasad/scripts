@@ -52,8 +52,11 @@ else
 
     if [ "$verbose" = "-v" ]
     then
-        horizontal.pl
-        echo "\033[36m$repo\033[0m"
+        if ! git status --porcelain | grep -v "^?" | wc -l | grep "^\s*0\s*$" > /dev/null
+        then
+            horizontal.pl
+            echo "\033[36m$repo\033[0m"
+        fi
     fi
 
     if [ "$fetch" = "-f" ] 
