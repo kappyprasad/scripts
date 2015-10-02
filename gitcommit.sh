@@ -5,15 +5,18 @@ usage: $(basename $0) <comment>\n\
 \n\
 -v verbose\n\
 -h help\n\
+-r recurse\n\
 -t test\n\
--m commentt\n\
+-m comment\n\
 "
 
 verbose=0
+echo=''
 test=''
+recurse=''
 comment=''
 
-while getopts vhtm opt
+while getopts vhtrm: opt
 do
     case $opt in
         v) 
@@ -24,7 +27,11 @@ do
             exit 0
             ;;
         t)
-            test='echo '
+            test='-t'
+            echo='echo'
+            ;;
+        r)
+            recurse='-r'
             ;;
         m)
             comment=$OPTARG
@@ -36,41 +43,39 @@ shift $((OPTIND-1))
 
 if [ -z "$comment" ]
 then
-    comment=$(echo $*)
+    comment=$(dateStamp.sh)
 fi
 
-if [ -z "$comment" ]
-then
-    echo "$help"
-    exit 0
-fi
+repo="$1"
 
-if [ -d .git ]
+if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    local=1
-    repos=$(pwd)
+    options="$verbose $recurse $test -m \"$comment\""
+    find . -name .git -and -type d -exec $0 $options {} \;
 else
-    local=0
-    repos=*
-fi
+    if [ "$recurse" = "-r" ]
+    then
+        repo=$(dirname $repo)
+    else
+        repo=.
+    fi
 
-for repo in $repos
-do 
-    if [ -d "$repo" ] && [ ! "$repo" = "." ]
-    then 
-        pushd $repo > /dev/null
+    pushd $repo > /dev/null
 
-        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
-        then
-            echo "\033[36m$repo\033[0m"
-        fi
+    if [ "$verbose" = "-v" ]
+    then
+        horizontal.pl =
+        echo "\033[36m$repo\033[0m"
+    fi
 
+    if [ -d '.git' ]
+    then
         lines=$(echo $(git status --porcelain | wc -l))
         if [ ! "$lines" = "0" ]
         then
-            $test git commit -m "$comment"
+            $echo git commit -m "$comment"
         fi
-
-        popd >/dev/null
     fi
-done
+    
+    popd >/dev/null
+fi

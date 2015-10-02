@@ -1,6 +1,16 @@
 #!/usr/bin/env sh
 
-horizontal.pl
+help="\
+usage: $(basename $0) <repo>\n\
+\n\
+-v       Verbose\n\
+-h       Help\n\
+-H host  Hostname\n\
+-P port  Portnum\n\
+"
+
+OPTERR=0
+
 while getopts vhH:P: opt
 do
     case $opt in
@@ -8,7 +18,8 @@ do
             echo "verbose is on"
             ;;
         h) 
-            echo "help is on"
+            echo "$help"
+            exit 0
             ;;
         H) 
             host=$OPTARG
@@ -17,6 +28,10 @@ do
         P) 
             port=$OPTARG
             echo "port=$port"
+            ;;
+        \?)
+            echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
+            exit 1
             ;;
     esac
 done
