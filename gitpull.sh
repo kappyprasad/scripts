@@ -54,7 +54,8 @@ repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    find . -name .git -and -type d -exec $0 $verbose $all $recurse $test -o $origin -b $branch {} \;
+    options="$verbose $all $recurse $test -o $origin -b $branch"
+    find . -name .git -and -type d -exec $0 $options {} \;
 else
     if [ "$recurse" = "-r" ]
     then
@@ -67,7 +68,7 @@ else
 
     if [ "$verbose" = "-v" ]
     then
-        horizontal.pl
+        horizontal.pl =
         echo "\033[36m$repo\033[0m"
     fi
 
@@ -75,7 +76,15 @@ else
     then
         if [ "$all" = "-a" ]
         then
-            git remote | xargs -I O -n1 $echo git pull O $branch
+            for origin in $(git remote)
+            do
+                if [ "$verbose" = "-v" ]
+                then
+                    horizontal.pl -
+                    echo "\033[34m$origin\033[0m"
+                fi
+                $echo git pull $origin $branch
+            done
         else
             $echo git pull $origin $branch
         fi
