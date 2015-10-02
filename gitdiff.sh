@@ -34,7 +34,8 @@ repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    find . -name .git -and -type d -exec $0 $verbose $fetch $recurse {} \;
+    options="$verbose $fetch $recurse"
+    find . -name .git -and -type d -exec $0 $options {} \;
 else
     if [ "$recurse" = "-r" ]
     then
@@ -46,7 +47,11 @@ else
     pushd $repo > /dev/null
     if [ "$verbose" = "-v" ]
     then
-        echo -e "\033[36m$repo\033[0m"
+        if ! git status --porcelain | grep -v "^?" | wc -l | grep "^\s*0\s*$" > /dev/null
+        then
+            horizontal.pl
+            echo -e "\033[36m$repo\033[0m"
+        fi
     fi
 
     git diff
