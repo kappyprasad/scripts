@@ -69,7 +69,7 @@ else
     
     if [ "$verbose" = "-v" ]
     then
-        horizontal.pl =
+        horizontal.pl
         echo "\033[36m$repo\033[0m"
     fi
 
@@ -81,7 +81,7 @@ else
             do
                 if [ "$verbose" = "-v" ]
                 then
-                    horizontal.pl -
+                    horizontal.pl .
                     echo "\033[34m$origin\033[0m"
                 fi
                 $echo git push $origin $branch
