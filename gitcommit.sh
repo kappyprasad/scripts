@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 help="\
-usage: $(basename $0) <comment>\n\
+usage: $(basename $0)\n\
 \n\
 -v verbose\n\
 -h help\n\
@@ -20,7 +20,7 @@ while getopts vhtrm: opt
 do
     case $opt in
         v) 
-            verbose=1
+            verbose="-v"
             ;;
         h) 
             echo "$help"
@@ -50,7 +50,7 @@ repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    options="$verbose $recurse $test -m \"$comment\""
+    options="$verbose $recurse $test -m $comment"
     find . -name .git -and -type d -exec $0 $options {} \;
 else
     if [ "$recurse" = "-r" ]
