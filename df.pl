@@ -65,6 +65,13 @@ while (<IN>) {
     $availf = &libraries'num2commas($avail);
     write;
   }
+  if (/\S+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\%)\s+(\/\S*)/i) {
+    ($size, $used, $avail, $percent, $drive) = ($1, $2, $3, $4, $5);
+    $sizef = &libraries'num2commas($size);
+    $usedf = &libraries'num2commas($used);
+    $availf = &libraries'num2commas($avail);
+    write;
+  }
 }
 close(IN);
 
