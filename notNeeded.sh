@@ -5,17 +5,19 @@ usage: $(basename $0)\n\
 \n\
 -v         Verbose\n\
 -h         Help\n\
--b backup  directory
--t         make target dir\n\
+-b backup  directory\n\
+-s source  directory to clean\n\
+-c compare file to test for removal\n\
 "
 
 OPTERR=0
 
 verbose=''
-mkdtarget=''
+current_dir=''
 backup_dir=''
+test_target=''
 
-while getopts vhtb: opt
+while getopts vhb:s:c: opt
 do
     case $opt in
         v) 
@@ -28,8 +30,11 @@ do
         b)
             backup_dir=$OPTARG
             ;;
-        t)
-            mkdtarget='-t'
+        s)
+            current_dir=$OPTARG
+            ;;
+        c)
+            test_target=$OPTARG
             ;;
         \?)
             echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
@@ -46,12 +51,10 @@ then
     exit 1
 fi
 
-current_dir=$(pwd)
-
-if [ "$verbose" = "-v" ]
+if [ -z "$current_dir" ]
 then
-    echo $current_dir
-    echo $backup_dir
+    current_dir=$(pwd)
+    test_target=""
 fi
 
 if [ "$backup_dir" = "$current_dir" ]
@@ -60,21 +63,17 @@ then
     exit 1
 fi
 
-if [ "$mkdtarget" = "-t" ]
+if [ "$test_target" = "" ]
 then
-    mkdir -p $backup_dir
+    pushd $backup_dir >/dev/null
+    find . -exec $0 $verbose -b $backup_dir -s $current_dir -c {} \;
+else
+    if [ -e "$backup_dir/$test_target" ] && [ ! -e "$current_dir/$test_target" ]
+    then
+        if [ "$verbose" = "-v" ]
+        then
+            echo "$test_target"
+        fi
+        rm -fr $backup_dir/$test_target
+    fi
 fi
-
-if [ ! -d "$backup_dir" ]
-then
-    echo "the target $backup_dir doesn't exist"
-    exit 1
-fi
-
-horizontal.pl
-rsync --perms --times --partial --update -vr . $backup_dir 2>/dev/null
-
-horizontal.pl
-notNeeded.sh -vb $backup_dir
-
-

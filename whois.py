@@ -1,14 +1,8 @@
 #!/usr/bin/env python2.7
 
-
-
-
-import sys, re, os, copy
-import argparse
+import sys, re, os, copy, json, argparse
 
 from subprocess import Popen, PIPE
-
-from Tools.pretty import *
 
 defaults=[
     'dn',
@@ -34,7 +28,7 @@ ogroup.add_argument('-t','--text',     action='store_true', help='xml output')
 args = parser.parse_args()
 
 if args.verbose:
-    prettyPrint(vars(args))
+    json.dump(vars(args),indent=4)
 
 host='dynam150.clarence.sirca.org.au'
 port=50389
