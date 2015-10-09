@@ -5,6 +5,7 @@ usage: $(basename $0)\n\
 \n\
 -v         Verbose\n\
 -h         Help\n\
+-c         clean deleted files\n\
 -b backup  directory
 -t         make target dir\n\
 "
@@ -14,8 +15,9 @@ OPTERR=0
 verbose=''
 mkdtarget=''
 backup_dir=''
+clean=''
 
-while getopts vhtb: opt
+while getopts vhctb: opt
 do
     case $opt in
         v) 
@@ -24,6 +26,9 @@ do
         h) 
             echo "$help"
             exit 0
+            ;;
+        c)
+            clean='-c'
             ;;
         b)
             backup_dir=$OPTARG
@@ -72,9 +77,11 @@ then
 fi
 
 horizontal.pl
-rsync --perms --times --partial --update -vr . $backup_dir 2>/dev/null
 
-horizontal.pl
-notNeeded.sh -vb $backup_dir
+rsync --perms --times --partial --update -vr . $backup_dir | rsync.pl
 
-
+if [ "$clean" = "-c" ]
+then
+    horizontal.pl
+    notNeeded.sh -vb $backup_dir
+fi

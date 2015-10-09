@@ -66,13 +66,17 @@ fi
 if [ "$test_target" = "" ]
 then
     pushd $backup_dir >/dev/null
-    find . -exec $0 $verbose -b $backup_dir -s $current_dir -c {} \;
+    options="$verbose -b $backup_dir -s $current_dir"
+    find . ! -name '.' -exec $0 $options -c {} \;
 else
-    if [ -e "$backup_dir/$test_target" ] && [ ! -e "$current_dir/$test_target" ]
+    test_target=$(echo $test_target | perl -pe 's|^./||')
+    
+    if [ -e "$backup_dir/$test_target" ] \
+    && [ ! -e "$current_dir/$test_target" ]
     then
         if [ "$verbose" = "-v" ]
         then
-            echo "$test_target"
+            echo "-$test_target"
         fi
         rm -fr $backup_dir/$test_target
     fi
