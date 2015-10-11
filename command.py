@@ -1,14 +1,8 @@
 #!/usr/bin/env python2.7
 
-
-
-
-import sys, re, os, copy
-import argparse
+import sys, re, os, copy, argparse
 
 from subprocess import Popen, PIPE
-
-from Tools.pretty import *
 
 parser = argparse.ArgumentParser()
 

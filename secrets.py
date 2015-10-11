@@ -1,12 +1,9 @@
 #!/usr/bin/env python2.7
 
-
-
-
 import os,sys,re
 import argparse
 
-from Tools.secrets import *
+from Tools.Secret import Secret
 
 parser = argparse.ArgumentParser()
 

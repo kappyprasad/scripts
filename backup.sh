@@ -24,7 +24,7 @@ do
             verbose='-v'
             ;;
         h) 
-            echo "$help"
+            echo -e "$help"
             exit 0
             ;;
         c)
@@ -47,7 +47,7 @@ shift $((OPTIND-1))
 
 if [ -z "$backup_dir" ]
 then
-    echo "$help"
+    echo -e "$help"
     exit 1
 fi
 
