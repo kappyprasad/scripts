@@ -1,4 +1,6 @@
-array: [value1, value2]
+array: 
+  - n1 : v1
+    n2 : v2
 boolean: true
 number: 0
 string: value
