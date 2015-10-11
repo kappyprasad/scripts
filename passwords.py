@@ -28,7 +28,9 @@ def main():
     args = argue()
     if args.verbose:
         json.dump(vars(args),sys.stderr,indent=4)
-    passwords = Passwords(args.env,args.user,args.clear)
+        sys.stderr.write('\n')
+        
+    passwords = Passwords(args.env,args.user,clear=args.clear,verbose=args.verbose)
     print passwords.password
     return
 
