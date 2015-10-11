@@ -69,7 +69,7 @@ else
     if [ "$verbose" = "-v" ]
     then
         horizontal.pl
-        echo "\033[36m$repo\033[0m"
+        echo -e "\033[36m$repo\033[0m"
     fi
 
     if [ -d '.git' ]
