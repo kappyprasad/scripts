@@ -21,6 +21,7 @@ group1=parser.add_mutually_exclusive_group(required=True)
 group1.add_argument('-o', '--ownr',      action='store',      help='list repos for owner')
 group1.add_argument('-c', '--cpny',      action='store',      help='list repos for company')
 group1.add_argument('-r', '--repo',      action='store',      help='base + repo')
+group1.add_argument('-P', '--projects',  action='store_true', help='list projects')
 
 args = parser.parse_args()
 
@@ -68,6 +69,23 @@ def get(repo):
     return
 
 #########################################################################################
+def projects(auth,headers,url):
+    projs = requests.get(url=url,auth=auth,headers=headers)
+    if args.verbose:
+        json.dump(projs.json(),sys.stderr,indent=4)
+
+    rows = projs.json()
+    if type(rows) is dict:
+        #fix for stash
+        rows = rows['values']
+        
+    for row in rows:
+        sys.stdout.write('%s\n'%row['key'])
+        sys.stdout.flush()
+        if args.verbose:
+            json.dump(row,sys.stderr,indent=4)
+
+#########################################################################################
 def main():
 
     if args.user and args.pswd:
@@ -82,6 +100,8 @@ def main():
     if args.ownr: list(auth,headers, url='%s/users/%s/repos'%(args.base,args.ownr))
     if args.cpny: list(auth,headers, url='%s/orgs/%s/repos'%(args.base,args.cpny))
     if args.repo: list(auth,headers, url='%s/%s'%(args.base,args.repo))
+
+    if args.projects: projects(auth,headers, url='%s/projects'%args.base)
     
     return
 
