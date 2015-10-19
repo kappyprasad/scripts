@@ -99,6 +99,8 @@ class RuleParser:
                 continue
                 
         fp.close()
+        file = file.replace('/','\\')
+        self.xmi.makeEAFile(file,'Local File',drool)
         return drool
 
 ####################################################################################
