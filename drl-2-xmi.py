@@ -49,8 +49,11 @@ class RuleParser:
 
     def findRules(self,path):
         rules=self.xmi.makePackage('Drools',self.xmi.modelNS)
+        diagram = self.xmi.makeClassDiagram('Drools',rules)
+        
         for file in findFiles(path=path,fileOrDir=True,pn='^.*.drl$'):
-            self.makeRuleFile(file,os.path.basename(file),parent=rules)
+            drool = self.makeRuleFile(file,os.path.basename(file),parent=rules)
+            self.xmi.addDiagramClass(drool,diagram)
         return
     
     def makeRuleFile(self,file,name,parent=None,prefix=None):
@@ -96,7 +99,7 @@ class RuleParser:
                 continue
                 
         fp.close()
-        return
+        return drool
 
 ####################################################################################
 def main():
