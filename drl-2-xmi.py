@@ -32,6 +32,7 @@ if args.verbose:
 class RuleParser:
 
     rr = re.compile('^rule [\'\"]*([^\'\"]*)[\'\"]*$')
+    rq = re.compile('^query [\'\"]*([^\'\"]*)[\'\"]*$')
     ra = re.compile('^agenda-group [\'\"]*([^\'\"]*)[\'\"]*$')
     rw = re.compile('^when$')
     rt = re.compile('^then$')
@@ -56,37 +57,46 @@ class RuleParser:
         drool = self.xmi.makePackage(name,parent)
         diagram = self.xmi.makeClassDiagram(name,drool)
         
-        name = None
+        rule  = None
+        query = None
         group = None
+        
         fp = open(file)
         for line in fp.readlines():
             line=line.rstrip('[\r\n]')
-            if not name:
+            
+            if not rule and not query:
                 m = self.rr.match(line)
                 if m:
-                    name=m.group(1)
-                continue
-            else:
-                m = self.ra.match(line)
+                    rule=m.group(1)
+                    continue
+                m = self.rq.match(line)
                 if m:
-                    group=m.group(1)
+                    query=m.group(1)
                     continue
-                if self.re.match(line):
-                    rule = self.makeRule(name,group,drool)
-                    self.xmi.addDiagramClass(rule,diagram)
-                    name=None
-                    continue
+
+            m = self.ra.match(line)
+            if m:
+                group=m.group(1)
+                continue
+
+            if self.re.match(line):
+                if rule:
+                    target = self.xmi.makeClass(rule,drool)
+                    self.xmi.makeStereotype('Rule',target)
+                    rule=None
+                if query:
+                    target = self.xmi.makeClass(query,drool)
+                    self.xmi.makeStereotype('Query',target)
+                    query=None
+                if group:
+                    self.xmi.makeAttribute('group',None,group,rule)
+                    
+                self.xmi.addDiagramClass(target,diagram)
+                continue
                 
         fp.close()
         return
-
-
-    def makeRule(self,name,group,parent,prefix=None):
-        rule = self.xmi.makeClass(name,parent)
-        self.xmi.makeStereotype('Rule',self.string)
-        if group:
-            self.xmi.makeAttribute('group',None,group,rule)
-        return rule
 
 ####################################################################################
 def main():
