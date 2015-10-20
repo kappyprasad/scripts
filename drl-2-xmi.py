@@ -31,6 +31,9 @@ if args.verbose:
 ####################################################################################
 class RuleParser:
 
+    fr = re.compile('^.*\.drl$')
+    fg = re.compile('^.*\.gdst$')
+    
     rr = re.compile('^rule [\'\"]*([^\'\"]*)[\'\"]*$')
     rq = re.compile('^query [\'\"]*([^\'\"]*)[\'\"]*$')
     ra = re.compile('^agenda-group [\'\"]*([^\'\"]*)[\'\"]*$')
@@ -38,24 +41,44 @@ class RuleParser:
     rt = re.compile('^then$')
     re = re.compile('^end$')
     
+    #-------------------------------------------------------------------------------
     @property
     def doc(self):
         return self.xmi.doc
 
+    #-------------------------------------------------------------------------------
     def __init__(self,xmi=XMI()):
         self.xmi = xmi
         self.classes = self.xmi.makePackage('Classes',self.xmi.modelNS)
         self.string = self.xmi.makeClass('String',self.classes)
 
+    #-------------------------------------------------------------------------------
     def findRules(self,path):
         rules=self.xmi.makePackage('Drools',self.xmi.modelNS)
         diagram = self.xmi.makeClassDiagram('Drools',rules)
         
-        for file in findFiles(path=path,fileOrDir=True,pn='^.*.drl$'):
-            drool = self.makeRuleFile(file,os.path.basename(file),parent=rules)
-            self.xmi.addDiagramClass(drool,diagram)
+        for file in findFiles(path=path,fileOrDir=True,pn='^.*\.(drl|gdst)$'):
+            rule = None
+            if self.fr.match(file):
+                rule = self.makeRuleFile(file,os.path.basename(file),parent=rules)
+            if self.fg.match(file):
+                rule = self.makeGdstFile(file,os.path.basename(file),parent=rules)
+            if rule:
+                self.xmi.addDiagramClass(rule,diagram)
         return
-    
+
+    #-------------------------------------------------------------------------------
+    def makeGdstFile(self,file,name,parent=None,prefix=None):
+        drool = self.xmi.makePackage(name,parent)
+        diagram = self.xmi.makeClassDiagram(name,drool)
+        
+        target = self.xmi.makeClass(name,drool)
+        self.xmi.makeStereotype('GDST',target)
+        self.xmi.addDiagramClass(target,diagram)
+
+        return drool
+
+    #-------------------------------------------------------------------------------
     def makeRuleFile(self,file,name,parent=None,prefix=None):
         drool = self.xmi.makePackage(name,parent)
         diagram = self.xmi.makeClassDiagram(name,drool)
@@ -99,10 +122,8 @@ class RuleParser:
                 continue
                 
         fp.close()
-        file = file.replace('/','\\')
-        self.xmi.makeEAFile(file,'Local File',drool)
         return drool
-
+    
 ####################################################################################
 def main():
     global files
