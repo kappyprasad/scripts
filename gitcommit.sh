@@ -60,7 +60,7 @@ else
         repo=.
     fi
 
-    pushd $repo > /dev/null
+    pushd "$repo" > /dev/null
 
     if [ "$verbose" = "-v" ]
     then

@@ -70,7 +70,7 @@ for repo in $repos
 do 
     if [ -d "$repo" ] && [ ! "$repo" = "." ]
     then 
-        pushd $repo > /dev/null
+        pushd "$repo" > /dev/null
 
         if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then

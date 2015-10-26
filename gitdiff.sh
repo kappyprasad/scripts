@@ -44,7 +44,7 @@ else
         repo=.
     fi
 
-    pushd $repo > /dev/null
+    pushd "$repo" > /dev/null
     if [ "$verbose" = "-v" ]
     then
         if ! git status --porcelain | grep -v "^?" | wc -l | grep "^\s*0\s*$" > /dev/null
