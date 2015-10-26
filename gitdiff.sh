@@ -35,11 +35,11 @@ repo="$1"
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
     options="$verbose $fetch $recurse"
-    find . -name .git -and -type d -exec $0 $options {} \;
+    find . -name .git -and -type d -exec $0 $options "{}" \;
 else
     if [ "$recurse" = "-r" ]
     then
-        repo=$(dirname $repo)
+        repo=$(dirname "$repo")
     else
         repo=.
     fi

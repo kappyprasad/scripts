@@ -34,7 +34,7 @@ done
 
 shift $((OPTIND-1))
 
-repo="$*"
+repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
