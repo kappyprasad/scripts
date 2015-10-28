@@ -57,6 +57,17 @@ shift $((OPTIND-1))
 
 repo="$1"
 
+function gitpull {
+    if [ "$submodules" = "-s" ]
+    then
+        $echo git pull --recurse-submodules $origin $branch
+        $echo git submodule init
+        $echo git submodule update --recursive
+    else
+        $echo git pull $origin $branch
+    fi
+}
+
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
     options="$verbose $all $recurse $test $submodules -o $origin -b $branch"
@@ -88,16 +99,11 @@ else
                     horizontal.pl .
                     echo "\033[34m$origin\033[0m"
                 fi
-                $echo git pull $origin $branch
                 
-                if [ "$submodules" = "-s" ]
-                then
-                    $echo git submodule init
-                    $echo git submodule update --resursive
-                fi
+                gitpull
             done
         else
-            $echo git pull $origin $branch
+            gitpull
         fi
     fi
     
