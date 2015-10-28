@@ -8,6 +8,7 @@ usage: $(basename $0) <repos>\n\
 -r recurse\n\
 -o origin\n\
 -b branch\n\
+-s submodules\n\
 -t test only dont execute\n\
 "
 
@@ -16,10 +17,11 @@ recurse=''
 all=''
 origin='origin'
 branch='master'
+submodules=''
 test=''
 echo=''
 
-while getopts vharo:b:t opt
+while getopts vharso:b:t opt
 do
     case $opt in
         v) 
@@ -41,6 +43,9 @@ do
         b)
             branch=$OPTARG
             ;;
+        s)
+            submodules='-s'
+            ;;
         t)
             test='-t'
             echo='echo'
@@ -54,7 +59,7 @@ repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    options="$verbose $all $recurse $test -o $origin -b $branch"
+    options="$verbose $all $recurse $test $submodules -o $origin -b $branch"
     find . -name .git -and -type d -exec $0 $options "{}" \;
 else
     if [ "$recurse" = "-r" ]
@@ -84,6 +89,12 @@ else
                     echo "\033[34m$origin\033[0m"
                 fi
                 $echo git pull $origin $branch
+                
+                if [ "$submodules" = "-s" ]
+                then
+                    $echo git submodule init
+                    $echo git submodule update --resursive
+                fi
             done
         else
             $echo git pull $origin $branch
