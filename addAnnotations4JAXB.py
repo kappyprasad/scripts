@@ -1,9 +1,5 @@
 #!/usr/bin/env python2.7
 
-
-
-
-
 import sys, re, os
 
 from Tools.xpath import *
@@ -39,6 +35,8 @@ classes = [
     '@Embeddable',
     '@javax.persistence.Entity',
     '@javax.persistence.Embeddable',
+    '@MappedSuperclass',
+    '@javax.persistence.MappedSuperclass',
 ]
 
 attributes = [
