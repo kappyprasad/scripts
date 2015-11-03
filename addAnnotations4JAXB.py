@@ -25,6 +25,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 """
 
+package="""
+@javax.xml.bind.annotation.XmlSchema(
+    namespace = "ns://%s",
+    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
+)
+
+package %s;
+"""
+
 classes = [
     '@Entity',
     '@Embeddable',
@@ -42,6 +51,9 @@ attributes = [
     'double',
 ]
 
+packagePatternStr = '^package (\S+);'
+packagePattern = re.compile(packagePatternStr)
+
 classPatternStr = '^(%s).*'%'|'.join(classes)
 classPattern = re.compile(classPatternStr)
 
@@ -53,6 +65,7 @@ def main():
         hasXmlRoot = False
         hasXmlAttr = False
 
+        
         print f
         b = '%s.bak'%f
         os.rename(f,b)
@@ -60,6 +73,16 @@ def main():
         op = open(f,'w')
         for line in ip.readlines():
 
+            pm = packagePattern.match(line)
+            if pm:
+                pkg = pm.group(1)
+                dir = os.path.dirname(f)
+                pij = '%s/package-info.java'%dir
+                if not os.path.isfile(pij):
+                    fo = open(pij,'w')
+                    fo.write(package%(pkg,pkg))
+                    fo.close()
+                            
             if '@XmlRootElement' in line:
                 hasXmlRoot = True
             if classPattern.match(line) and not hasXmlRoot:
