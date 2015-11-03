@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 @XmlRootElement
 """
@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlType;
 classes = [
     '@Entity',
     '@Embeddable',
+    '@javax.persistence.Entity',
+    '@javax.persistence.Embeddable',
 ]
 
 attributes = [

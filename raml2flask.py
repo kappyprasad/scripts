@@ -6,10 +6,10 @@ import pyraml.parser
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose', action='store_true')
-parser.add_argument('-t','--type',    action='store_true')
-parser.add_argument('-o','--output',  action='store', help='save to file output')
-parser.add_argument('-k','--key',     action='store', help='specific section key')
-parser.add_argument('raml',           action='store', help='raml file')
+parser.add_argument('-o','--output',  action='store',      help='save to file output')
+parser.add_argument('-d','--dir',     action='store_true', help='directory of keys')
+parser.add_argument('-k','--key',     action='store',      help='specific section key')
+parser.add_argument('raml',           action='store',      help='raml file')
 
 args = parser.parse_args()
 
@@ -19,21 +19,21 @@ if args.verbose:
 
 def main():
     raml = pyraml.parser.load(args.raml)
-    print type(raml)
+    sys.stderr.write('%s\n'%type(raml))
 
     if args.output:
         output = open(args.output,'w')
     else:
         output = sys.stdout
 
-    for key in dir(raml):
-        if not key.startswith('_'):
-            sys.stdout.write('%s : '%key)
-            if args.key and key == args.key:
-                json.dump(getattr(raml,key),output,indent=4)
-            elif args.type:
-                sys.stdout.write('%s'%type(getattr(raml,key)))
-            sys.stdout.write('\n')
+    if args.dir:
+        for key in dir(raml):
+            if not key.startswith('_'):
+                sys.stdout.write('%s\n'%key)
+
+    if args.key:
+        for value in getattr(raml,args.key):
+            output.write('%s\n'%value)
 
     if args.output:
         output.close()
