@@ -8,9 +8,9 @@ if [ -z "$repos" ]
 then
     if [ -d .git ]
     then
-	repos=$(pwd)
+	    repos=$(pwd)
     else
-    repos=*
+        repos=*
     fi
 fi
 
