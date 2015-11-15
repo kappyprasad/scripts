@@ -9,10 +9,13 @@ usage="\
 usage: $0 \n\
     -h         help\n\
     -e         use existing repo as source\n\
+    -r         test only don\'t execute\n\
     -b base    git base dir\n\
 "
 
-while getopts heb: opt
+echo=''
+
+while getopts hetb: opt
 do
     case $opt in
         h)
@@ -22,6 +25,10 @@ do
         e) 
             existing=1
             echo "upload existing" 1>&2
+            ;;
+        t)
+            echo='echo '
+            echo "testing only, won\'t execute" 1>&2
             ;;
         b) 
             base=$OPTARG
@@ -45,7 +52,7 @@ then
     repo=$(basename $(pwd))
 fi
 
-repo=$(echo $repo | perl -pe 's|/$||')
+repo=$(echo "$repo" | perl -pe 's|/$||')
 
 if [ -e "$base/$repo.git" ]
 then
@@ -53,17 +60,17 @@ then
     exit 1
 fi
 
-pushd "$base" >/dev/null
-mkdir -p "$repo.git"
-cd "$repo.git"
-git init --bare
-popd >/dev/null
+pushd "$base"
+$echo mkdir -p "$repo.git"
+$echo cd "$repo.git"
+$echo git init --bare
+popd
 
 function pushit {
-    git remote add origin "$user@$host:$base/$repo.git"
-    git push origin master
-    git branch --set-upstream-to=origin/master master
-    gitpush.sh
+    $echo git remote add origin "$user@$host:$base/$repo.git"
+    $echo git push origin master
+    $echo git branch --set-upstream-to=origin/master master
+    $echo gitpush.sh
 }
 
 if [ $existing == 1 ] && [ -e "$repo/.git" ] 
@@ -73,13 +80,13 @@ then
     popd
 else
     pushd "$TEMP"
-    mkdir -p "$repo"
-    cd "$repo"
-    git init
-    echo target >> .gitignore
-    echo "# $repo" > README.md
-    gitadd.sh -a
-    gitcommit.sh -m 'moved remote'
+    $echo mkdir -p "$repo"
+    $echo cd "$repo"
+    $echo git init
+    $echo echo target >> .gitignore
+    $echo echo "# $repo" > README.md
+    $echo gitadd.sh -a
+    $echo gitcommit.sh -m 'moved remote'
     pushit
     popd
 fi
