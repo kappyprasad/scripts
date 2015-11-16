@@ -5,6 +5,9 @@ from xtermcolor import colorize
 from subprocess import Popen, PIPE
 from requests.auth import HTTPBasicAuth
 
+import urllib3
+urllib3.disable_warnings()
+
 parser = argparse.ArgumentParser(description='github repository listerer')
 
 parser.add_argument('-v', '--verbose',   action='store_true', help='show verbose detail')
