@@ -50,7 +50,7 @@ repo="$1"
 
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    options="$verbose $recurse $test -m $comment"
+    options="$verbose $recurse $test -m \"$comment\""
     find . -name .git -and -type d -exec $0 $options "{}" \;
 else
     if [ "$recurse" = "-r" ]
