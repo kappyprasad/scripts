@@ -41,7 +41,7 @@ done
 
 shift $((OPTIND-1))
 
-pass=$(passwords.py -e $envr -u $user)
+pass=$(passwords.py -e $envr -a svn -u $user)
 
 curl -u "$user:$pass" "$base/" \
 | perl -ne 'print "$1\n" if (/<li><a href="([^"]*)"/);' \

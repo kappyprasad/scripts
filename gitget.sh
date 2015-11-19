@@ -2,7 +2,7 @@
 
 envr=github.com
 user=eddo888
-pass=$(passwords.py -e $envr -u $user)
+pass=$(passwords.py -e $envr -a git -u $user)
 
 ppwd=$(basename $(dirname $(pwd)))
 ownr=$(basename $(pwd))
