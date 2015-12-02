@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
-import sys,os,re,argparse,json,StringIO,xmltodict
+import sys,os,re,argparse,json,StringIO,xmltodict,collections
+
 from xlrd import open_workbook
 from xlwt import Workbook
 
@@ -90,10 +91,12 @@ def dict2xls(js,verbose=False):
         if verbose:
             sys.stderr.write('%s\n'%sheet)
 
+        if 'row' not in s.keys():
+            continue
         rows = s['row']
         if type(rows) is not list:
             rows = [ rows ]
-
+        
         for row in range(len(rows)):
             r = rows[row]
             if '@number' in r.keys():
@@ -102,21 +105,26 @@ def dict2xls(js,verbose=False):
             if verbose:
                 sys.stderr.write('\trow=%0d\n'%row)
 
+            if 'col' not in r.keys():
+                continue
             cols = r['col']
             if type(cols) is not list:
                 cols = [ cols ]
 
             for col in range(len(cols)):
                 c = cols[col]
-                if type(c) == dict:
+                if type(c) in [ dict, collections.OrderedDict ]:
                     if '@number' in c.keys():
                         col = int(c['@number'])
-                    text = c['#text']
+                    if '#text' in c.keys():
+                        text = c['#text']
+                    else:
+                        text = ''
                 else:
-                    text = c
+                    text = '%s'%type(c)
                 if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(col,text))
-                
+
                 sheet.write(row,col,text)
 
     return wb
