@@ -59,7 +59,7 @@ def convert(source):
     position = contact['c:contact']['c:PositionCollection']['c:Position']
     
     vcard.add('org')
-    vcard.org.value = populate(position,'c:Company')
+    vcard.org.value = [ populate(position,'c:Company') ]
     
     vcard.add('title')
     vcard.title.value = populate(position,'c:JobTitle')    
