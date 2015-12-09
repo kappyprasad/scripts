@@ -121,7 +121,7 @@ def dict2xls(js,verbose=False):
                     else:
                         text = ''
                 else:
-                    text = '%s'%type(c)
+                    text = c
                 if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(col,text))
 
