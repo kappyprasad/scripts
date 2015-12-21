@@ -1,4 +1,4 @@
-assignee = davidedson 
+assignee = currentUser() 
   and 
 status != Resolved 
   ORDER BY 
