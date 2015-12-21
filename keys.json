@@ -1,0 +1,85 @@
+[
+    {
+        "name"  : "Project",
+        "path"  : "fields.project.key",
+        "format": "{:<8.8}",
+        "width" : 8
+    },
+    {
+        "name"  : "Key",
+        "path"  : "key",
+        "format": "{:<10.10}",
+        "width" : 10
+    },
+    {
+        "name"  : "Type",
+        "path"  : "fields.issuetype.name",
+        "format": "{:<10.10}",
+        "width"  : 10
+    },
+    {
+        "name"  : "Created",
+        "path"  : "fields.created",
+        "format": "{:<15.15}",
+        "style" : "dd/mm/yyyy hh:mm:ss",
+        "width" : 20
+    },
+    {
+        "name"  : "Creator",
+        "path"  : "fields.creator.name",
+        "format": "{:<15.15}",
+        "width" : 20
+    },
+    {
+        "name"  : "Priority",
+        "path"  : "fields.priority.name",
+        "format": "{:<10.10}",
+        "width" : 10
+    },
+    {
+        "name"  : "Due",
+        "path"  : "fields.dueDate",
+        "format": "{:<15.15}",
+        "style" : "dd/mm/yyyy hh:mm:ss",
+        "width" : 20
+    },
+    {
+        "name"  : "Updated",
+        "path"  : "fields.updated",
+        "format": "{:<15.15}",
+        "style" : "dd/mm/yyyy hh:mm:ss",
+        "width" : 20
+    },
+    {
+        "name"  : "Estim",
+        "path"  : "fields.aggregatetimeestimate",
+        "format": "{:>7}",
+        "sum"   : 0,
+        "width" : 10
+    },
+    {
+        "name"  : "Spent",
+        "path"  : "fields.aggregatetimespent",
+        "format": "{:>7}",
+        "sum"   : 0,
+        "width" : 10
+    },
+    {
+        "name"  : "Assignee",
+        "path"  : "fields.assignee.displayName",
+        "format": "{:<15.15}",
+        "width" : 15
+    },
+    {
+        "name"  : "Status",
+        "path"  : "fields.status.name",
+        "format": "{:<15.15}",
+        "width" : 15
+    },
+    {
+        "name"  : "Summary",
+        "path"  : "fields.summary",
+        "format": "{:<80.80}",
+        "width" : 80
+    }
+]

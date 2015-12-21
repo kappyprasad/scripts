@@ -1,0 +1,5 @@
+assignee = davidedson 
+  and 
+status != Resolved 
+  ORDER BY 
+updatedDate
