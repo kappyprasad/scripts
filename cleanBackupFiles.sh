@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # $Date: 2014-06-19 08:22:37 +1000 (Thu, 19 Jun 2014) $
 # $Revision: 4727 $

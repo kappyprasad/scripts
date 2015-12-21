@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 replace="s/[\x7F-\xFF]//g;"
 

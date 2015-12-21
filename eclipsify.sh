@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source=$(dirname $(which eclipsify.sh ))
 

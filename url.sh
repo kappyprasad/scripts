@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 target="$*"
 unixpath=$(cygpath -au "$target" | perl -pe 's|^/cygdrive/([a-z])|file://\1:|')

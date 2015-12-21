@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "#!/usr/bin/env python2.7" > __init__.py
 
