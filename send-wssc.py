@@ -1,8 +1,4 @@
-#!/usr/bin/env python2.7
-
-
-
-
+#!/usr/bin/env python
 
 import sys, re, os, urllib, urllib2, argparse, StringIO
 
@@ -100,7 +96,6 @@ def main():
 
         fp = sys.stdout
         if output:
-            colour=False
             fp = open(output,'w')
 
         if verbose:
@@ -109,7 +104,7 @@ def main():
             myParser.parser.Parse(xml)
             del myParser
             
-        myParser = MyParser(colour=colour,rformat=True,output=fp)
+        myParser = MyParser(colour=False,rformat=True,output=fp)
         myParser.parser.Parse(xml)
         del myParser
         

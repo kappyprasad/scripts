@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
 # https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_SUBTOTAL_function
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
 # http://mikekneller.com/kb/python/libxml2python/part1
 
