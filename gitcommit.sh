@@ -10,7 +10,7 @@ usage: $(basename $0)\n\
 -m comment\n\
 "
 
-verbose=0
+verbose=''
 echo=''
 test=''
 recurse=''
