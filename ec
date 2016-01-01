@@ -7,7 +7,7 @@ for p in "$@"; do
     elif [ "${p:0:1}" == "+" ]; then
         params+=( "$p" )
     else
-        params+=( "/ssh:des:"$(readlink -f $p) )
+        params+=( "/ssh:ec2:"$(readlink -f $p) )
     fi
 done
-echo emacsclient "${params[@]}"
+emacsclient "${params[@]}"
