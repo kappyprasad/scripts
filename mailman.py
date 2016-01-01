@@ -76,15 +76,16 @@ def send():
         msg.attach(body)
     else:           
         msg.preamble = args.body
-    
-    # Assume we know that the image files are all in PNG format
-    for file in args.files:
-        # Open the files in binary mode.  Let the MIMEImage class automatically
-        # guess the specific image type.
-        fp = open(file, 'rb')
-        img = MIMEImage(fp.read())
-        fp.close()
-        msg.attach(img)
+
+    if args.files:
+        # Assume we know that the image files are all in PNG format
+        for file in args.files:
+            # Open the files in binary mode.  Let the MIMEImage class automatically
+            # guess the specific image type.
+            fp = open(file, 'rb')
+            img = MIMEImage(fp.read())
+            fp.close()
+            msg.attach(img)
     
     # Send the email via our own SMTP server.
     if args.encrypt:
