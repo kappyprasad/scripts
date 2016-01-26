@@ -55,8 +55,8 @@ current_dir=$(pwd)
 
 if [ "$verbose" = "-v" ]
 then
-    echo $current_dir
-    echo $backup_dir
+    echo "$current_dir"
+    echo "$backup_dir"
 fi
 
 if [ "$backup_dir" = "$current_dir" ]
@@ -67,7 +67,7 @@ fi
 
 if [ "$mkdtarget" = "-t" ]
 then
-    mkdir -p $backup_dir
+    mkdir -p "$backup_dir"
 fi
 
 if [ ! -d "$backup_dir" ]
@@ -78,10 +78,10 @@ fi
 
 horizontal.pl
 
-rsync --perms --times --partial --update -vr . $backup_dir | rsync.pl
+rsync --perms --times --partial --update -vr . "$backup_dir" | rsync.pl
 
 if [ "$clean" = "-c" ]
 then
     horizontal.pl
-    notNeeded.sh -vb $backup_dir
+    notNeeded.sh -vb "$backup_dir"
 fi
