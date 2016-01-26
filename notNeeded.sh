@@ -6,8 +6,8 @@ usage: $(basename $0)\n\
 -v         Verbose\n\
 -h         Help\n\
 -b backup  directory\n\
--s source  directory to clean\n\
--c compare file to test for removal\n\
+-c current directory\n\
+-t test    file to remove\n\
 "
 
 OPTERR=0
@@ -17,7 +17,7 @@ current_dir=''
 backup_dir=''
 test_target=''
 
-while getopts vhb:s:c: opt
+while getopts vhb:c:t: opt
 do
     case $opt in
         v) 
@@ -30,14 +30,14 @@ do
         b)
             backup_dir=$OPTARG
             ;;
-        s)
+        c)
             current_dir=$OPTARG
             ;;
-        c)
+        t)
             test_target=$OPTARG
             ;;
         \?)
-            echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
+            echo "\n$(basename $0): Invalid option -$opt" >&2
             exit 1
             ;;
     esac
@@ -51,30 +51,67 @@ then
     exit 1
 fi
 
+backup_dir=$(echo "$backup_dir" | perl -pe 's/\/$//')
+
 if [ -z "$current_dir" ]
 then
     current_dir=$(pwd)
     test_target=""
 fi
 
+if [ "$verboseStubbed" = "-v" ]
+then
+    echo "current_dir=$current_dir"
+    echo "backup_dir=$backup_dir"
+    echo "test_target=$test_target"
+fi
+
 if [ "$backup_dir" = "$current_dir" ]
 then
-    echo "Cant backup to the same target"
+    echo "Cant use backup as current"
     exit 1
 fi
+
+function cleanLine {
+    if [ "$verbose" = "-v" ] && [ ! -z "$COLUMNS" ]
+    then
+        echo -ne "\r"
+        count=$COLUMNS
+        while [ ! "$count" = "0" ]
+        do
+            echo -n " "
+            count=$(($count-1))
+        done
+    fi
+}
 
 if [ "$test_target" = "" ]
 then
     pushd "$backup_dir" >/dev/null
-    options="$verbose -b \"$backup_dir\" -s $current_dir"
-    find . ! -name '.' -exec $0 $options -c {} \; 2>/dev/null
+    options=
+    find . ! -name '.' -exec $0 \
+         $verbose \
+         -b "$backup_dir" \
+         -c "$current_dir" \
+         -t "{}" \
+    \; 2>/dev/null
+
+    cleanLine
 else
     test_target=$(echo "$test_target" | perl -pe 's|^./||')
+
+    if [ "$verbose" = "-v" ]
+    then
+        echo -ne "?$backup_dir/$test_target\r"
+    fi
     
     if [ -e "$backup_dir/$test_target" ] \
     && [ ! -e "$current_dir/$test_target" ]
     then
+        cleanLine
         echo "-$test_target"
-        rm -fr "$backup_dir"/"$test_target"
+        rm -fr "$backup_dir/$test_target"
     fi
+
 fi
+

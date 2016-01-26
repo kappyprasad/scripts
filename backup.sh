@@ -78,10 +78,10 @@ fi
 
 horizontal.pl
 
-rsync --perms --times --partial --update -vr . "$backup_dir" | rsync.pl
+rsync --perms --times --partial --update "$verbose" -r . "$backup_dir" | rsync.pl
 
 if [ "$clean" = "-c" ]
 then
     horizontal.pl
-    notNeeded.sh -vb "$backup_dir"
+    notNeeded.sh $verbose -b "$backup_dir"
 fi
