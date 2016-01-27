@@ -43,9 +43,13 @@ file="$1"
 
 if [ -z "$file" ]
 then
-    options="-n $name"
     echo "<html><body>" 
-    find . -iname "$name" -exec $0 $options {} \;
+
+    find . -iname "$name" -exec $0 \
+         -n "$name" \
+         "{}" \
+    \;
+
     echo "</body></html>"
 else
     if ! echo $file | grep "/target/" > /dev/null

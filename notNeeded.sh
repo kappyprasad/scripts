@@ -88,7 +88,7 @@ function cleanLine {
 if [ "$test_target" = "" ]
 then
     pushd "$backup_dir" >/dev/null
-    options=
+
     find . ! -name '.' -exec $0 \
          $verbose \
          -b "$backup_dir" \
