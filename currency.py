@@ -11,7 +11,7 @@ def argue():
 
     parser.add_argument('-f', '--fr',      action='store',  help='from currency', default='AUD')
     parser.add_argument('-t', '--to',      action='store',  help='to currency',   default='EUR')
-    parser.add_argument('-a', '--amount',  action='store',  help='ammount',       default=1)
+    parser.add_argument('-a', '--amount',  action='store',  help='ammount',       default=1, type=float)
 
     parser.add_argument('-l', '--list',    action='store_true')
 
