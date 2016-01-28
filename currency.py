@@ -9,9 +9,9 @@ def argue():
     parser.add_argument('-k','--key',      action='store',  default='082e15bd1fbaf4aca090d7108724589c')
     parser.add_argument('-u','--url',      action='store',  default='http://www.apilayer.net/api/live')
 
-    parser.add_argument('-f', '--from',    action='store',  default='AUD')
-    parser.add_argument('-t', '--to',      action='store',  default='EUR')
-    parser.add_argument('-a', '--amount',  action='store',  default=1)
+    parser.add_argument('-f', '--fr',      action='store',  help='from currency', default='AUD')
+    parser.add_argument('-t', '--to',      action='store',  help='to currency',   default='EUR')
+    parser.add_argument('-a', '--amount',  action='store',  help='ammount',       default=1)
 
     #parser.add_argument('-c', '--currency',action='store_true')
 
@@ -20,15 +20,14 @@ def argue():
 def main():
     args = argue()
 
+    logging.basicConfig()
+    logger=logging.getLogger(__name__)
     if args.verbose:
-        level=logging.DEBUG
+        logger.setLevel(logging.DEBUG)
     else:
-        level=logging.INFO
-        
-    logging.basicConfig(level=level)
+        logger.setLevel(logging.INFO)
 
-    
-    logging.debug('args=%s',json.dumps(vars(args),indent=4))
+    logger.debug('args=%s',json.dumps(vars(args),indent=4))
 
     data={
         'access_key': args.key,
@@ -36,11 +35,11 @@ def main():
     }
 
     url='%s?%s'%(args.url,'&'.join(map(lambda x : '%s=%s'%(x,data[x]), data.keys())))
-    logging.debug('url=%s',url)
+    logger.debug('url=%s',url)
 
     response = requests.get(url,data=data)
     js = response.json()
-    logging.debug('js=%s',json.dumps(js,indent=4))
+    logger.debug('js=%s',json.dumps(js,indent=4))
         
     quotes=js['quotes']
     for key in quotes.keys():
@@ -48,7 +47,12 @@ def main():
         del quotes[key]
         quotes[key[3:]] = price
 
-    logging.debug('quotes=%s',json.dumps(quotes,indent=4))
+    logger.debug('quotes=%s',json.dumps(quotes,indent=4))
+
+    if args.fr and args.to and args.amount:
+        logger.info('from=%s to=%s',quotes[args.fr], quotes[args.to])
+        other = args.amount * quotes[args.fr] / quotes[args.to]
+        print other
         
     return
 

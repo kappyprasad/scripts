@@ -89,13 +89,15 @@ else
                 if [ "$verbose" = "-v" ]
                 then
                     horizontal.pl .
-                    echo "\033[34m$origin\033[0m"
+                    echo -e "\033[34m$origin\033[0m"
                 fi
                 $echo git push $origin $branch
             done
         else
             $echo git push $origin $branch
         fi
+    else
+        echo ".git not found" 1>&2
     fi
     
     popd >/dev/null

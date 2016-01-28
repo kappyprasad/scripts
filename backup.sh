@@ -78,7 +78,7 @@ fi
 
 horizontal.pl
 
-rsync --perms --times --partial --update "$verbose" -r . "$backup_dir" | rsync.pl
+rsync --perms --times --partial --update -v -r . "$backup_dir" | rsync.pl
 
 if [ "$clean" = "-c" ]
 then
