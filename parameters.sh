@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # list choice options
 envs=(Darwin Linux CYGWIN_NT-6.2-WOW64)

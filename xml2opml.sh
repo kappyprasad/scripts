@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 xslt="$EDDO_PATH/Outliner/xslt/xml2outliner.xsl"
 
