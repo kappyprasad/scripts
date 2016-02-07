@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "#!/usr/bin/env python2.7" > __init__.py
+echo "#!/usr/bin/env python" > __init__.py
 
 for i in *.py
 do
