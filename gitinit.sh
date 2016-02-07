@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 existing=0
 base="/Users/davidedson/Repository"

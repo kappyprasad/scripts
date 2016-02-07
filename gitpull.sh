@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 help="\
 usage: $(basename $0) <repos>\n\
