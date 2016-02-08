@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os,sys,re,json,argparse
+import os,sys,re,json,argparse,logging
 
 def argue():
     parser = argparse.ArgumentParser()
@@ -21,10 +21,25 @@ def argue():
 
     return args
 
-args = argue()
-print 'verbose =',args.verbose
-print 'username=',args.username
-print 'password=',args.password
-print 'filename=',args.filename
+
+def main():
+    args = argue()
+
+    level=logging.INFO
+    if args.verbose:
+        level=logging.DEBUG
+        
+    logging.basicConfig(level=level)
+    #logging.getLogger('spyne.protocol.xml').setLevel(level)
+
+    logging.info('verbose=%s'%args.verbose)
+    logging.info('username=%s'%args.username)
+    logging.info('password=%s'%args.password)
+    logging.info('filename=%s'%args.filename)
+
+    return
+
+
+if __name__ == '__main__': main()
 
 
