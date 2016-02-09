@@ -105,7 +105,7 @@ else
                 if [ "$verbose" = "-v" ]
                 then
                     horizontal.pl .
-                    echo "\033[34m$origin\033[0m"
+                    echo -e "\033[34m$origin\033[0m"
                 fi
                 
                 gitpull
