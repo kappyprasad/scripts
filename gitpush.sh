@@ -5,7 +5,9 @@ usage: $(basename $0) <repo>\n\
 \n\
 -v verbose\n\
 -h help\n\
--a all repos\n\
+-a all everything\n\
+-O all repos\n\
+-B all branches\n\
 -r recurse\n\
 -o origin\n\
 -b branch\n\
@@ -14,13 +16,15 @@ usage: $(basename $0) <repo>\n\
 
 verbose=''
 all=''
+origins=''
+branches=''
 recurse=''
 origin='origin'
 branch='master'
 test=''
 echo=''
 
-while getopts vharo:b:t opt
+while getopts vhaOBro:b:t opt
 do
     case $opt in
         v) 
@@ -32,6 +36,12 @@ do
             ;;
         a)
             all='-a'
+            ;;
+        O)
+            origins='-O'
+            ;;
+        B)
+            branches='-B'
             ;;
         r)
             recurse='-r'
@@ -58,6 +68,8 @@ then
     find . -name .git -and -type d -exec $0 \
          $verbose \
          $all \
+         $origins \
+         $branches \
          $recurse \
          $test \
          -o "$origin" \

@@ -63,6 +63,7 @@ function gitpull {
         $echo git pull --recurse-submodules $origin $branch
         $echo git submodule init
         $echo git submodule update --recursive
+        $echo git submodule foreach -q --recursive 'git checkout master'
     else
         $echo git pull $origin $branch
     fi

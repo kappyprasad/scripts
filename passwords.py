@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os,sys,re,json,argparse
+import os,sys,re,json,argparse,logging
 
 from Tools.Passwords import *
 
@@ -17,11 +17,15 @@ def argue():
 
 def main():
     args = argue()
+    level=logging.WARN
     if args.verbose:
+        level=logging.DEBUG
         json.dump(vars(args),sys.stderr,indent=4)
         sys.stderr.write('\n')
+    logging.basicConfig(level=level)
+
         
-    passwords = Passwords(args.env, args.app, args.user, clear=args.clear, verbose=args.verbose)
+    passwords = Passwords(args.env, args.app, args.user, clear=args.clear)
     print passwords.password
     return
 
