@@ -58,8 +58,6 @@ then
     exit 1
 fi
 
-horizontal.pl
-
 reso=$(system_profiler SPDisplaysDataType | grep Resolution | head -$disp | tail -1)
 
 pixelwidth=$(echo $reso | perl -ne 'print "$1\n" if (/^\s*Resolution:\s+(\d+)\s+x\s+(\d+)\s.*/);')
@@ -76,19 +74,19 @@ height=$(($textheight / $rows))
 
 if [ "$verbose" = "-v" ]
 then
+    horizontal.pl
     echo "disp=$disp"
-    echo "rows=$rows"
-    echo "cols=$cols"
-    echo "pw=$pixelwidth"
-    echo "ph=$pixelheight"
-    echo "tw=$textwidth"
-    echo "th=$textheight"
+    echo "size=$rows/$cols"
+    echo "pixxles=$pixelwidth/$pixelheight"
+    echo "text=$textwidth/$textheight"
 fi
+
+horizontal.pl
 
 row=$rows
 while [ "$row" != "0" ] 
 do
-    downset=$((($row-1) * $down))
+    downset=$(((($row-1) * $down) - 14))
     
     col=$cols
     while [ "$col" != "0" ]
