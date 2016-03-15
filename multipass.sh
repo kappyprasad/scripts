@@ -3,14 +3,14 @@
 help="\
 usage: $(basename $0)\n\
 \n\
--v         Verbose   show detailed debug\n\
--h         Help      show this help message and exit\n\
--q         query     structure no action\n\
--d display =1        which display to use as the resolution\n\
--o offset  =0        (number of screens to the right\n\
--r rows    =1        number of rows of terminals\n\
--c cols    =1        number of columns of terminals\n\
--f font    =6x14     font size used to calculate width/height\n\
+-v           Verbose   show detailed debug\n\
+-h           Help      show this help message and exit\n\
+-q           Query     structure no action\n\
+-d display   =1        which display to use as the resolution\n\
+-o offset    =0        place this number of screens to the right\n\
+-r rows      =1        number of rows of terminals\n\
+-c cols      =1        number of columns of terminals\n\
+-f font      =6x14     font size used to calculate width/height\n\
 "
 
 # preset error for param validation
