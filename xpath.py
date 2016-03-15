@@ -21,7 +21,8 @@ parser.add_argument('-b','--horizon', action='store_true', help='display horizon
 parser.add_argument('-f','--fname',   action='store_true', help='show file name')
 parser.add_argument('-o','--output',  action='store',      help='output to file')
 parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
-parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
+parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='prefix:url')
+parser.add_argument('-a','--attr',    action='store',      help='get the attr by name')
 parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file', nargs='*')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
@@ -57,11 +58,12 @@ def process(xml=None,file=None,output=sys.stdout,nsp=None):
                 xpath = '.'
             elif xpath[:1] == '/':
                 xpath = '.%s'%xpath
-            res = root.findall(xpath,nsp)
             if args.single:
-                xml = ET.dump(res)
-                output.write('%s\n'%xml)
+                res = root.find(xpath,nsp)
+                out = ET.ElementTree(res)
+                out.write(output)
             else:
+                res = root.findall(xpath,nsp)
                 if len(res) == 0:
                     None
                     #output.write('\n')
@@ -70,7 +72,8 @@ def process(xml=None,file=None,output=sys.stdout,nsp=None):
                         if args.text:
                             output.write('%s\n'%r.text)
                         else:
-                            output.write('%s\n'%ET.dump(r))
+                            out = ET.ElementTree(r)
+                            out.write(output)
 
     #except:
     #    sys.stderr.write('<!-- exception when parsing -->\n')
@@ -94,10 +97,11 @@ def main():
         output=sys.stdout
 
     nsp = {}
-    for ns in args.ns:
-        p = ns[:ns.index(':')]
-        u = ns[ns.index(':')+1:]
-        nsp[p] = u
+    if args.ns:
+        for ns in args.ns:
+            p = ns[:ns.index(':')]
+            u = ns[ns.index(':')+1:]
+            nsp[p] = u
 
     if args.file:
         for file in args.file:
