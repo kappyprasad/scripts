@@ -3,12 +3,14 @@
 help="\
 usage: $(basename $0)\n\
 \n\
--v       Verbose\n\
--h       Help\n\
--d disp  display=1\n\
--r rows  default=1\n\
--c cols  default=1\n\
--f font  default=6x14\n\
+-v         Verbose   show detailed debug\n\
+-h         Help      show this help message and exit\n\
+-q         query     structure no action\n\
+-d display =1        which display to use as the resolution\n\
+-o offset  =0        (number of screens to the right\n\
+-r rows    =1        number of rows of terminals\n\
+-c cols    =1        number of columns of terminals\n\
+-f font    =6x14     font size used to calculate width/height\n\
 "
 
 # preset error for param validation
@@ -16,18 +18,22 @@ OPTERR=0
 
 # presets for variables
 verbose=''
-disp=1
+query=''
+display=1
+offset=0
 rows=1
 cols=1
 font='6x14'
 
 # iterate through getopts on options
-while getopts vhd:r:c:f: opt
+while getopts vhqo:d:r:c:f: opt
 do
     case $opt in
         v)  verbose='-v';;
         h)  echo -e "$help"; exit 0;;
-        d)  disp=$OPTARG;;
+        q)  query='-q';;
+        d)  display=$OPTARG;;
+        o)  offset=$OPTARG;;
         r)  rows=$OPTARG;;
         c)  cols=$OPTARG;;
         f)  font=$OPTARG;;
@@ -37,7 +43,7 @@ done
 
 shift $((OPTIND-1))
 
-reso=$(system_profiler SPDisplaysDataType | grep Resolution | head -$disp | tail -1)
+reso=$(system_profiler SPDisplaysDataType | grep Resolution | head -$display | tail -1)
 
 fontwidth=$(echo $font | cut -d x -f 1)
 fontheight=$(echo $font | cut -d x -f 2)
@@ -54,13 +60,18 @@ textheight=$((($pixelheight / $fontheight) - 1))
 width=$(($textwidth / $cols))
 height=$(($textheight / $rows))
 
-if [ "$verbose" = "-v" ]
+if [ "$query" = "-q" ] || [ "$verbose" = "-v" ]
 then
-    horizontal.pl
-    echo "disp=$disp"
-    echo "size=$rows/$cols"
-    echo "pixxles=$pixelwidth/$pixelheight"
-    echo "text=$textwidth/$textheight"
+    echo "display=$display"
+    echo "offset=$offset"
+    echo "rows/cols=$rows/$cols"
+    echo "width/height=$pixelwidth/$pixelheight"
+    echo "chars/lines=$textwidth/$textheight"
+
+    if [ "$query" = "-q" ]
+    then
+        exit
+    fi
 fi
 
 horizontal.pl
@@ -68,12 +79,12 @@ horizontal.pl
 row=$rows
 while [ "$row" != "0" ] 
 do
-    downset=$(((($row-1) * $down) - $fontheight))
+    downset=$(( (($row - 1) * $down) - $fontheight ))
     
     col=$cols
     while [ "$col" != "0" ]
     do
-        inset=$((($col-1) * $over))
+        inset=$(( (($col - 1) * $over) + ($offset * $pixelwidth) ))
 
         if [ "$verbose" = "-v" ]
         then
@@ -81,9 +92,9 @@ do
         fi
         xterm -geometry ${width}x${height}+${inset}+${downset} &
 
-        col=$(($col - 1))
+        col=$(( $col - 1 ))
     done
 
-    row=$(($row - 1))
+    row=$(( $row - 1 ))
 done
 
