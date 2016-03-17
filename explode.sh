@@ -9,8 +9,8 @@ then
 fi
 
 leader=$(echo $file | cut -c -1)
-echo "leader=$leader"
-if [ "$leader" = "/" ] || "$leader" = "~" ]
+#echo "leader=$leader"
+if [ "$leader" = "/" ] || [ "$leader" = "~" ]
 then
     source="$file"
 else
