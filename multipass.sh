@@ -6,6 +6,7 @@ usage: $(basename $0)\n\
 -v           Verbose   show detailed debug\n\
 -h           Help      show this help message and exit\n\
 -q           Query     structure no action\n\
+-t           Test      only show commands don't execute\n\
 -d display   =1        which display to use as the resolution\n\
 -o offset    =0        place this number of screens to the right\n\
 -r rows      =1        number of rows of terminals\n\
@@ -22,6 +23,7 @@ OPTERR=0
 # presets for variables
 verbose=''
 query=''
+test=''
 display=1
 offset=0
 rows=1
@@ -32,12 +34,13 @@ execute='bash'
 executes=''
 
 # iterate through getopts on options
-while getopts vhqo:d:r:c:f:b:e:E opt
+while getopts vhqto:d:r:c:f:b:e:E opt
 do
     case $opt in
         v)  verbose='-v';;
         h)  echo -e "$help"; exit 0;;
         q)  query='-q';;
+        t)  test='-t';;
         d)  display=$OPTARG;;
         o)  offset=$OPTARG;;
         r)  rows=$OPTARG;;
@@ -125,12 +128,16 @@ do
         unset commands[0]
         commands=(${commands[@]})
                   
-        if [ "$verbose" = "-v" ]
+        if [ "$verbose" = "-v" ] || [  "$test" = "-t" ]
         then
             echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command"
         fi
-        xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command" &
-
+        
+        if [ -z "$test" ]
+        then
+            xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command" &
+        fi
+        
         col=$(( $col - 1 ))
     done
 
