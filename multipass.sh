@@ -12,6 +12,7 @@ usage: $(basename $0)\n\
 -c cols      =1        number of columns of terminals\n\
 -f font      =6x14     font size used to calculate width/height\n\
 -e execute   =bash     execute this command on this terminal\n\
+-E executes            execute this commands found on stdin\n\
 "
 
 # preset error for param validation
@@ -26,9 +27,10 @@ rows=1
 cols=1
 font='6x14'
 execute='bash'
+executes=''
 
 # iterate through getopts on options
-while getopts vhqo:d:r:c:f:e: opt
+while getopts vhqo:d:r:c:f:e:E opt
 do
     case $opt in
         v)  verbose='-v';;
@@ -40,6 +42,7 @@ do
         c)  cols=$OPTARG;;
         f)  font=$OPTARG;;
         e)  execute=$OPTARG;;
+        E)  executes='-E';;
         \?) echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2;exit 1;;
     esac
 done
@@ -79,21 +82,51 @@ fi
 
 horizontal.pl
 
+declare -a commands
+
+IFS=""
+commands=()
+if [ "$executes" = "-E" ]
+then
+    while read command
+    do
+        #echo "$command"
+        commands+=($(echo $command | perl -pe 's/"/\\"/g;'))
+    done
+fi
+
+while (( ${#commands[@]} < ( $rows * $cols) ))
+do
+    commands+=($execute)
+done
+
+if [ "$verbose" = "-v" ]
+then
+    for (( i = 0; i< ${#commands[@]}; i++ ))
+    do
+        echo "${commands[$i]}"
+    done
+fi
+
 row=$rows
-while [ "$row" != "0" ] 
+while (( $row > 0 )) 
 do
     downset=$(( (($row - 1) * $down) - $fontheight ))
     
     col=$cols
-    while [ "$col" != "0" ]
+    while (( $col > 0 ))
     do
         inset=$(( (($col - 1) * $over) + ($offset * $pixelwidth) ))
 
+        command=${commands[0]}
+        unset commands[0]
+        commands=(${commands[@]})
+                  
         if [ "$verbose" = "-v" ]
         then
-            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$execute" -e "$execute"
+            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$command"
         fi
-        xterm -geometry ${width}x${height}+${inset}+${downset} -T "$execute" -e "$execute" &
+        xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$command" &
 
         col=$(( $col - 1 ))
     done
