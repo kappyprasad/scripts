@@ -11,6 +11,7 @@ usage: $(basename $0)\n\
 -r rows      =1        number of rows of terminals\n\
 -c cols      =1        number of columns of terminals\n\
 -f font      =6x14     font size used to calculate width/height\n\
+-b base      =''       ssh -i epm user@host <execute>\n\
 -e execute   =bash     execute this command on this terminal\n\
 -E executes            execute this commands found on stdin\n\
 "
@@ -26,11 +27,12 @@ offset=0
 rows=1
 cols=1
 font='6x14'
+base=''
 execute='bash'
 executes=''
 
 # iterate through getopts on options
-while getopts vhqo:d:r:c:f:e:E opt
+while getopts vhqo:d:r:c:f:b:e:E opt
 do
     case $opt in
         v)  verbose='-v';;
@@ -41,6 +43,7 @@ do
         r)  rows=$OPTARG;;
         c)  cols=$OPTARG;;
         f)  font=$OPTARG;;
+        b)  base=$OPTARG;;
         e)  execute=$OPTARG;;
         E)  executes='-E';;
         \?) echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2;exit 1;;
@@ -124,9 +127,9 @@ do
                   
         if [ "$verbose" = "-v" ]
         then
-            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$command"
+            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command"
         fi
-        xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$command" &
+        xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command" &
 
         col=$(( $col - 1 ))
     done
