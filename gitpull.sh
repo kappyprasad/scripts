@@ -6,49 +6,40 @@ usage: $(basename $0) <repos>\n\
 -v verbose\n\
 -h help\n\
 -r recurse\n\
+-O all origins\n\
+-B all branches\n\
+-a all everything\n\
 -o origin\n\
 -b branch\n\
--s submodules\n\
 -t test only dont execute\n\
 "
 
 verbose=''
 recurse=''
-all=''
+all_everything=''
+all_origins=''
+all_branches=''
 origin='origin'
 branch='master'
-submodules=''
 test=''
 echo=''
 
-while getopts vharso:b:t opt
+while getopts vhaOBro:b:t opt
 do
     case $opt in
-        v) 
-            verbose='-v'
-            ;;
-        h) 
-            echo -e "$help"
-            exit 0
-            ;;
-        a)
-            all='-a'
-            ;;
-        r)
-            recurse='-r'
-            ;;
-        o)
-            origin=$OPTARG
-            ;;
-        b)
-            branch=$OPTARG
-            ;;
-        s)
-            submodules='-s'
-            ;;
-        t)
-            test='-t'
-            echo='echo'
+        v) verbose='-v';;
+        h) echo -e "$help"; exit 0;;
+        r) recurse='-r';;
+        O) all_origins='-O';;
+        B) all_branches='-B';;
+        a) all_everything='-a';;
+        o) origin=$OPTARG;;
+        b) branch=$OPTARG;;
+        t) test='-t'; echo='echo';;
+        \?)
+            # everything else is invalid
+            echo -e "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
+            exit 1
             ;;
     esac
 done
@@ -57,26 +48,15 @@ shift $((OPTIND-1))
 
 repo="$1"
 
-function gitpull {
-    if [ "$submodules" = "-s" ]
-    then
-        $echo git pull --recurse-submodules $origin $branch
-        $echo git submodule init
-        $echo git submodule update --recursive
-        $echo git submodule foreach -q --recursive 'git checkout master'
-    else
-        $echo git pull $origin $branch
-    fi
-}
-
 if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
     find . -name .git -and -type d -exec $0 \
          $verbose \
-         $all \
+         $all_everything \
+         $all_origins \
+         $all_branches \
          $recurse \
          $test \
-         $submodules \
          -o "$origin" \
          -b "$branch" \
          "{}" \
@@ -99,21 +79,35 @@ else
 
     if [ -d '.git' ]
     then
-        if [ "$all" = "-a" ]
+
+        origins=()
+        if [ "$all_everything" = "-a" ] || [ "$all_origins" = "-O" ]
         then
-            for origin in $(git remote)
+            origins=($(git remote))
+        else
+            origins=($origin)
+        fi
+
+        branches=()
+        if [ "$all_everything" = "-a" ] || [ "$all_branches" = "-B" ]
+        then
+            branches=($(git branch | cut -c 3-))
+        else
+            branches=($branch)
+        fi
+        
+        for o in ${origins[@]}
+        do
+            for b in ${branches[@]}
             do
                 if [ "$verbose" = "-v" ]
                 then
                     horizontal.pl .
-                    echo -e "\033[34m$origin\033[0m"
+                    echo -e "\033[34m$o->$b\033[0m"
                 fi
-                
-                gitpull
+                $echo git pull $o $b
             done
-        else
-            gitpull
-        fi
+        done
     fi
     
     popd >/dev/null
