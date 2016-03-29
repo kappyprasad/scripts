@@ -8,7 +8,7 @@ def argue():
     parser.add_argument('-v','--verbose',action='store_true')
     parser.add_argument('-r','--recurse',action='store_true',help='recurse dirs')
     parser.add_argument('-o','--output',action='store',help='output file name',default='index.html')
-    parser.add_argument('directory',action='store',help='the file name')
+    parser.add_argument('-d','--directory',action='store',help='the file name', default=".")
 
     args = parser.parse_args()
 

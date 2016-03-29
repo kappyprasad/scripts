@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 
 help="\
-usage: $(basename $0) <repo>\n\
+usage: $(basename $0) <repos>\n\
 \n\
 -v verbose\n\
 -h help\n\
--a all everything\n\
--O all repos\n\
--B all branches\n\
 -r recurse\n\
+-O all origins\n\
+-B all branches\n\
+-a all everything\n\
 -o origin\n\
 -b branch\n\
 -t test only dont execute\n\
 "
 
 verbose=''
-all=''
-origins=''
-branches=''
 recurse=''
+all_everything=''
+all_origins=''
+all_branches=''
 origin='origin'
 branch='master'
 test=''
@@ -27,34 +27,19 @@ echo=''
 while getopts vhaOBro:b:t opt
 do
     case $opt in
-        v) 
-            verbose='-v'
-            ;;
-        h) 
-            echo "$help"
-            exit 0
-            ;;
-        a)
-            all='-a'
-            ;;
-        O)
-            origins='-O'
-            ;;
-        B)
-            branches='-B'
-            ;;
-        r)
-            recurse='-r'
-            ;;
-        o)
-            origin=$OPTARG
-            ;;
-        b)
-            branch=$OPTARG
-            ;;
-        t)
-            test='-t'
-            echo='echo'
+        v) verbose='-v';;
+        h) echo -e "$help"; exit 0;;
+        r) recurse='-r';;
+        O) all_origins='-O';;
+        B) all_branches='-B';;
+        a) all_everything='-a';;
+        o) origin=$OPTARG;;
+        b) branch=$OPTARG;;
+        t) test='-t'; echo='echo';;
+        \?)
+            # everything else is invalid
+            echo -e "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
+            exit 1
             ;;
     esac
 done
@@ -67,9 +52,9 @@ if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
     find . -name .git -and -type d -exec $0 \
          $verbose \
-         $all \
-         $origins \
-         $branches \
+         $all_everything \
+         $all_origins \
+         $all_branches \
          $recurse \
          $test \
          -o "$origin" \
@@ -85,7 +70,7 @@ else
     fi
 
     pushd "$repo" > /dev/null
-    
+
     if [ "$verbose" = "-v" ]
     then
         horizontal.pl
@@ -94,22 +79,35 @@ else
 
     if [ -d '.git' ]
     then
-        if [ "$all" = "-a" ]
+
+        origins=()
+        if [ "$all_everything" = "-a" ] || [ "$all_origins" = "-O" ]
         then
-            for origin in $(git remote)
+            origins=($(git remote))
+        else
+            origins=($origin)
+        fi
+
+        branches=()
+        if [ "$all_everything" = "-a" ] || [ "$all_branches" = "-B" ]
+        then
+            branches=($(git branch | cut -c 3-))
+        else
+            branches=($branch)
+        fi
+        
+        for o in ${origins[@]}
+        do
+            for b in ${branches[@]}
             do
                 if [ "$verbose" = "-v" ]
                 then
                     horizontal.pl .
-                    echo -e "\033[34m$origin\033[0m"
+                    echo -e "\033[34m$o->$b\033[0m"
                 fi
-                $echo git push $origin $branch
+                $echo git push $o $b
             done
-        else
-            $echo git push $origin $branch
-        fi
-    else
-        echo ".git not found" 1>&2
+        done
     fi
     
     popd >/dev/null

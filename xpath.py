@@ -4,7 +4,8 @@
 
 import sys, re, os, argparse, json
 
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
+#import xml.etree.ElementTree as ET
 
 from Tools.parser import *
 from Tools.pretty import *
@@ -54,10 +55,6 @@ def process(xml=None,file=None,output=sys.stdout,nsp=None):
                 sys.stderr.write('%s\n'%json.dumps(nsp,indent=4))
 
         for xpath in args.xpath:
-            if xpath == '/':
-                xpath = '.'
-            elif xpath[:1] == '/':
-                xpath = '.%s'%xpath
             if args.single:
                 res = root.find(xpath,nsp)
                 out = ET.ElementTree(res)
