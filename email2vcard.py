@@ -22,13 +22,13 @@ if args.verbose:
     sys.stderr.write('\n')
 
 def convert(fqn):
+    fqn = fqn.lstrip(' ').rstrip(' ')
     triangles = re.compile('^([^<]+) <([^>]+)>$')
     match = triangles.match(fqn)
     if match:
         names = match.group(1).split(' ')
         email = match.group(2)
     else:
-        fqn = fqn.lstrip(' ').rstrip(' ')
         email = fqn
         rawemail = re.compile('^([^@]+)@(.*)')
         match = rawemail.match(fqn)
@@ -40,7 +40,12 @@ def convert(fqn):
     vcard = vobject.vCard()
     vcard.add('n')
 
-    names = map(lambda x : x[0].upper() + x[1:], names)
+    for n in range(len(names)):
+        name = names[n-1]
+        if len(name) > 1:
+            names[n-1] = name[0].upper() + name[1:]
+        elif len(name) > 0:
+            names[n-1] = name[0].upper()
     
     if len(names) == 1:
         vcard.n.value = vobject.vcard.Name(
