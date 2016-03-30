@@ -24,16 +24,24 @@ if args.verbose:
 def convert(fqn):
     triangles = re.compile('^([^<]+) <([^>]+)>$')
     match = triangles.match(fqn)
-    if not match:
-        sys.stderr.write('triangles failed=%s\n'%fqn)
-        return
-
-    names = match.group(1).split(' ')
-    email = match.group(2)
+    if match:
+        names = match.group(1).split(' ')
+        email = match.group(2)
+    else:
+        fqn = fqn.lstrip(' ').rstrip(' ')
+        email = fqn
+        rawemail = re.compile('^([^@]+)@(.*)')
+        match = rawemail.match(fqn)
+        if match:
+            names=match.group(1).split('.')
+        else:
+            names=''
     
     vcard = vobject.vCard()
     vcard.add('n')
 
+    names = map(lambda x : x[0].upper() + x[1:], names)
+    
     if len(names) == 1:
         vcard.n.value = vobject.vcard.Name(
             given      = names[0],
