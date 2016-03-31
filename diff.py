@@ -73,10 +73,10 @@ def main():
     
     if args.recurse:
         if not os.path.isdir(args.lhs):
-            sys.stderr.write('lhs is not a directory')
+            sys.stderr.write('%s%s%s is not a directory'%(mycolours['Purple'],args.lhs,mycolours['Off']))
             return
         if not os.path.isdir(args.rhs):
-            sys.stderr.write('rhs is not a directory')
+            sys.stderr.write('%s%s%s is not a directory'%(mycolours['Green'],args.rhs,mycolours['Off']))
             return
 
         onlyIn = re.compile('^(Only in )(\S[^:]*):\s+(\S.*)$')
