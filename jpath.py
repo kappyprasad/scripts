@@ -8,7 +8,7 @@ from Tools.jpath import *
 
 def printXML(xml):
     myParser = MyParser(
-        colour=False, 
+        colour=True, 
         rformat=True,
         areturn=True,
         output=sys.stdout
@@ -44,9 +44,9 @@ def main():
     
     print
     
-    results = jpath(js,xpath)
+    results = jpath(js,xpath,xml=True)
     
-    prettyPrint(results,colour=False)
+    prettyPrint(results,colour=True)
 
     print 
     
