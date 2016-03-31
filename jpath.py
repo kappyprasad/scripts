@@ -45,7 +45,7 @@ def test():
     
     print
     
-    printXML(xml,colour=args.colour)
+    printXML(xml,colour=args.colour,areturn=True)
     
     print
               
@@ -56,22 +56,28 @@ def test():
         'prefix:child',
     ]
     
-    xpath = '/'.join(paths)
-    
-    print(xpath)
+    xpath = '/'+'/'.join(paths)
     jp = xpath2eval(xpath)
-    print(jp)
+    
+    print ("%s = %s"%(xpath,jp))
+
+    print
+
+    jps = jpath(js,xpath)
+    print "as js;"
+    prettyPrint(jps,colour=args.colour)
     
     print
     
     results = jpath(js,xpath,xml=True)
-    
+    print "as jml;"
     prettyPrint(results,colour=args.colour)
 
     print 
     
     xml = xmltodict.unparse(results)
-    printXML(xml,colour=args.colour)
+    print "as xml;"
+    printXML(xml,colour=args.colour,areturn=True)
     
     return
 
