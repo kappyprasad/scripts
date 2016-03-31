@@ -6,17 +6,6 @@ from Tools.parser import *
 from Tools.pretty import *
 from Tools.jpath import *
 
-def printXML(xml):
-    myParser = MyParser(
-        colour=True, 
-        rformat=True,
-        areturn=True,
-        output=sys.stdout
-    )
-    myParser.parser.Parse(xml)
-    del myParser
-    return
-    
 def main():
     dir = os.path.dirname(sys.argv[0])
     fp=open('%s/_test/sample.xml'%dir)
@@ -25,7 +14,7 @@ def main():
     
     print
     
-    printXML(xml)
+    printXML(xml,colour=True)
     
     print
               
@@ -51,7 +40,7 @@ def main():
     print 
     
     xml = xmltodict.unparse(results)
-    printXML(xml)
+    printXML(xml,colour=True)
     
     return
     
