@@ -5,19 +5,34 @@
 
 import sys,os,argparse,StringIO
 
-import xmltodict,json
+import xml,xmltodict,json
 
-parser = argparse.ArgumentParser()
+def argue():
+    parser = argparse.ArgumentParser()
 
-parser.add_argument('-?',              action='help',       help='show this help')
-parser.add_argument('-v','--verbose',  action='store_true', help='show detailed output')
-parser.add_argument('-r','--reverse',  action='store_true', help='reverse json->xml')
-parser.add_argument('-o','--output',   action='store',      help='output to file')
-parser.add_argument('file', nargs='*', action='store',      help='file to input')
+    parser.add_argument('-?',               action='help',       help='show this help')
+    parser.add_argument('-v','--verbose',   action='store_true', help='show detailed output')
+    parser.add_argument('-n','--namespace', action='store_true', help='process namespaces')
+    parser.add_argument('-c','--cdata',     action='store_true', help='force cdata')
+    parser.add_argument('-r','--reverse',   action='store_true', help='reverse json->xml')
+    parser.add_argument('-o','--output',    action='store',      help='output to file')
+    parser.add_argument('file', nargs='*',  action='store',      help='file to input')
 
-args = parser.parse_args()
+    return parser.parse_args()
+
+def escape_hacked(data, entities={}):
+    if data[0] == '<' and  data.strip()[-1] == '>':
+        return '<![CDATA[%s]]>' % data
+    return escape_orig(data, entities)
+
 
 def main():
+    global args,escape_orig
+    args = argue()
+
+    if args.cdata:
+        escape_orig = xml.sax.saxutils.escape
+        xml.sax.saxutils.escape = escape_hacked
 
     if args.output:
         output=open(args.output,'w')
@@ -33,7 +48,7 @@ def main():
         object = json.load(input)
         xmltodict.unparse(object,output=output,indent='    ',pretty=True)
     else:
-        object = xmltodict.parse(input)
+        object = xmltodict.parse(input,process_namespaces=args.namespace,force_cdata=args.cdata)
         json.dump(object,output,indent=4)
 
     output.close()

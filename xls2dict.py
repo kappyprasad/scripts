@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys,os,re,argparse,json,StringIO,xmltodict,collections
+import sys,os,re,argparse,json,StringIO,xml,xmltodict,collections
 
 from xlrd import open_workbook
 from xlwt import Workbook
@@ -30,6 +30,11 @@ def argue():
         sys.stderr.write('\n')
 
     return args
+
+def escape_hacked(data, entities={}):
+    if data[0] == '<' and  data.strip()[-1] == '>':
+        return '<![CDATA[%s]]>' % data
+    return escape_orig(data, entities)
 
 def xls2dict(input,verbose=False):
     js = {
@@ -130,7 +135,11 @@ def dict2xls(js,verbose=False):
     return wb
 
 def main():
+    global args, escape_orig
     args=argue()
+
+    escape_orig = xml.sax.saxutils.escape
+    xml.sax.saxutils.escape = escape_hacked
 
     if args.output:
         output = open(args.output,'w')
@@ -149,7 +158,7 @@ def main():
         js = json.load(input)
 
     if args.iXML:
-        js = xmltodict.parse(input)
+        js = xmltodict.parse(input,force_cdata=True)
 
     if args.input:
         input.close()
