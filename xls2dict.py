@@ -9,6 +9,7 @@ def argue():
     parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
 
     parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
+    parser.add_argument('-c','--cdata',   action='store_true', help='force cdata')
     parser.add_argument('-i','--input',   action='store',      help='input file')
     parser.add_argument('-o','--output',  action='store',      help='output file')
 
@@ -30,11 +31,6 @@ def argue():
         sys.stderr.write('\n')
 
     return args
-
-def escape_hacked(data, entities={}):
-    if data[0] == '<' and  data.strip()[-1] == '>':
-        return '<![CDATA[%s]]>' % data
-    return escape_orig(data, entities)
 
 def xls2dict(input,verbose=False):
     js = {
@@ -137,9 +133,6 @@ def dict2xls(js,verbose=False):
 def main():
     global args, escape_orig
     args=argue()
-
-    escape_orig = xml.sax.saxutils.escape
-    xml.sax.saxutils.escape = escape_hacked
 
     if args.output:
         output = open(args.output,'w')

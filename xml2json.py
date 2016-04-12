@@ -21,7 +21,8 @@ def argue():
     return parser.parse_args()
 
 def escape_hacked(data, entities={}):
-    if data[0] == '<' and  data.strip()[-1] == '>':
+    print entities
+    if '<' in data or '>' in data or '&' in data:
         return '<![CDATA[%s]]>' % data
     return escape_orig(data, entities)
 
