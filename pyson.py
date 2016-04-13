@@ -22,12 +22,13 @@ parser.add_argument('-c','--colour',  action='store_true', help='show colour out
 parser.add_argument('-t','--text',    action='store_true', help='eval result as text')
 parser.add_argument('-n','--name',    action='store_true', help='show file title')
 parser.add_argument('-f','--flat',    action='store_true', help='output flat with no indent')
+parser.add_argument('-o','--output',  action='store',      help='output file')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
-group = parser.add_mutually_exclusive_group()
-group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string',  metavar='\\[key\\[...')
-group.add_argument('-d','--dict',    action='store',      help='evaluate a JS object dict string', metavar='key.key...')
-group.add_argument('-x','--xpath',   action='store',      help='evaluate a JS object with xpath',  metavar='/key/key...')
+group1 = parser.add_mutually_exclusive_group()
+group1.add_argument('-e','--eval',    action='store',      help='evaluate a JS eval',  metavar='\\[key\\[...')
+group1.add_argument('-d','--dots',    action='store',      help='evaluate a JS dots',  metavar='key.key...')
+group1.add_argument('-x','--xpath',   action='store',      help='evaluate a JS xpath', metavar='/key/key...')
 
 args = parser.parse_args()
 
@@ -40,46 +41,6 @@ inplace = args.inplace
 if inplace:
     colour = False
         
-def query(text,expression=None):
-    if args.verbose:
-        sys.stderr.write('text=%s[%s], expression=%s\n'%(text,type(text), expression))
-
-    if type(text) == str:
-        object = json.loads(text)
-    elif type(text) == file:
-        object = json.load(text)
-    else:
-        object = text
-    multiple='[*]'
-    if expression==None:
-        if args.dict:
-            expression = dict2eval(args.dict)
-        elif args.eval:
-            expression = args.eval
-        else:
-            expression = ''
-    if multiple in expression:
-        results = []
-        parts = expression.split(multiple)
-        lhs = '%s"]'%parts[0]
-        rhs = '["' + multiple.join(parts[1:])
-        rhs = '["%s'%rhs.lstrip('[""]')
-        try:
-            for result in eval('object%s'%lhs):
-                if multiple in rhs:
-                    results.append(query(result,rhs))
-                else:
-                    results.append(result)
-        except:
-            None
-        object = results
-    else:
-        try:
-            object = eval('object%s'%expression)
-        except:
-            None
-    return object
-
 def dump(object,output,colour):
     if args.text:
         output.write('%s'%object)
@@ -91,6 +52,11 @@ def dump(object,output,colour):
 
 def main():
     global colour, inplace, jpath
+
+    if args.output:
+        output = open(args.output,'a')
+    else:
+        output = sys.stdout
 
     if args.file and len(args.file) > 0:
         for f in args.file:
@@ -109,11 +75,13 @@ def main():
                 if args.name: sys.stderr.write('%s\n'%f)
                 fp = open(f)
             
-            object = query(fp)
+            object = query(fp,verbose=args.verbose,xpath=args.xpath,dots=args.dots,brackets=args.eval)
             fp.close()
 
             if inplace:
                 fo = open(f,'w')
+            elif args.output:
+                fo = output
             else:
                 fo = sys.stdout
             
@@ -122,9 +90,12 @@ def main():
             if inplace:
                 fo.close()
     else:
-        object = query(sys.stdin)
-        dump(object,sys.stdout,colour)
+        object = query(sys.stdin,verbose=args.verbose,xpath=args.xpath,dots=args.dots,brackets=args.eval)
+        dump(object,output,colour)
 
+    if args.output:
+        output.close()
+        
     return
 
 if __name__ == '__main__':main()
