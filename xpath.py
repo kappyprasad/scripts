@@ -22,7 +22,7 @@ parser.add_argument('-f','--fname',   action='store_true', help='show file name'
 parser.add_argument('-o','--output',  action='store',      help='output to file')
 parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
 parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
-parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file', nargs='*')
+parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 args = parser.parse_args()
@@ -42,31 +42,30 @@ def element(xml,rdoc,rctx,nsp):
     return
 
 def process(xml,output=sys.stdout,rdoc=None,rctx=None):
-    try:
+    if True: #try
         (doc,ctx,nsp)=getContextFromStringWithNS(xml,args.ns)
         
         if args.verbose:
             sys.stderr.write('nsp : ')
             prettyPrint(nsp,colour=True,output=sys.stderr)
 
-        for xpath in args.xpath:
-            res = ctx.xpathEval(xpath)
-            if args.single:
-                output.write('%s\n'%res)
+        res = ctx.xpathEval(args.xpath)
+        if args.single:
+            output.write('%s\n'%res)
+        else:
+            if len(res) == 0:
+                None
+                #output.write('\n')
             else:
-                if len(res) == 0:
-                    None
-                    #output.write('\n')
-                else:
-                    for r in res:
-                        if args.text:
-                            output.write('%s\n'%r.content)
-                        elif not args.clean and rdoc and rctx:
-                            element('%s'%r,rdoc,rctx,nsp)
-                        else:
-                            output.write('%s\n'%r)
+                for r in res:
+                    if args.text:
+                        output.write('%s\n'%r.content)
+                    elif not args.clean and rdoc and rctx:
+                        element('%s'%r,rdoc,rctx,nsp)
+                    else:
+                        output.write('%s\n'%r)
 
-    except:
+    if False: #except:
         sys.stderr.write('<!-- exception when parsing -->\n')
         if args.verbose:
             sys.stderr.write('exc_info : ')
