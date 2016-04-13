@@ -1,8 +1,13 @@
 {
   "array" :  [
     "value1",
-    "value2"
+    {
+      "name": "value"
+    }
   ],
+  "child" : {
+    "grandchild" : "goo"
+  },
   "boolean" :  true,
   "string" :  "value",
   "number" :  0,

@@ -25,8 +25,9 @@ parser.add_argument('-f','--flat',    action='store_true', help='output flat wit
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 group = parser.add_mutually_exclusive_group()
-group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string', metavar='\\[key\\[...')
+group.add_argument('-e','--eval',    action='store',      help='evaluate a JS expression string',  metavar='\\[key\\[...')
 group.add_argument('-d','--dict',    action='store',      help='evaluate a JS object dict string', metavar='key.key...')
+group.add_argument('-x','--xpath',   action='store',      help='evaluate a JS object with xpath',  metavar='/key/key...')
 
 args = parser.parse_args()
 
