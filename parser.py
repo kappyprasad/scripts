@@ -88,7 +88,7 @@ def main():
 
                 fp = open(arg)
 
-            doParse(colour,areturn,rformat,fp,html,output,preserve,comments)
+            doParse(fp,output,colour,areturn,rformat,html,preserve,comments)
 
             fp.close()
 
@@ -99,7 +99,7 @@ def main():
 
     else:
         fp = StringIO.StringIO('\n'.join(sys.stdin.readlines()))
-        doParse(colour,areturn,rformat,fp,html,output,preserve,comments)
+        doParse(fp,output,colour,areturn,rformat,html,preserve,comments)
         fp.close()
         
     if foutput:

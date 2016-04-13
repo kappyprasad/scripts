@@ -2,8 +2,7 @@
 
 # http://mikekneller.com/kb/python/libxml2python/part1
 
-import sys, re, os
-import argparse
+import sys, re, os,  argparse, StringIO
 
 from Tools.xpath import *
 from Tools.parser import *
@@ -14,10 +13,12 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-?',             action='help',       help='show this help')
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
-parser.add_argument('-c','--clean',   action='store_true', help='show clean output with root element')
+parser.add_argument('-b','--bare',    action='store_true', help='show bare output with root element')
+parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
 parser.add_argument('-t','--text',    action='store_true', help='print result as text')
 parser.add_argument('-s','--single',  action='store_true', help='display result as a single value')
-parser.add_argument('-b','--horizon', action='store_true', help='display horizontal bar between files')
+parser.add_argument('-p','--pretty',  action='store_true', help='display horizontal bar between files')
+parser.add_argument('-z','--horizon', action='store_true', help='display horizontal bar between files')
 parser.add_argument('-f','--fname',   action='store_true', help='show file name')
 parser.add_argument('-o','--output',  action='store',      help='output to file')
 parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
@@ -51,7 +52,12 @@ def process(xml,output=sys.stdout,rdoc=None,rctx=None):
 
         res = ctx.xpathEval(args.xpath)
         if args.single:
-            output.write('%s\n'%res)
+            if args.pretty:
+                sp = StringIO.StringIO('%s'%res)
+                doParse(sp,output,colour=args.colour)
+                sp.close()
+            else:
+                output.write('%s\n'%res)
         else:
             if len(res) == 0:
                 None
@@ -60,10 +66,15 @@ def process(xml,output=sys.stdout,rdoc=None,rctx=None):
                 for r in res:
                     if args.text:
                         output.write('%s\n'%r.content)
-                    elif not args.clean and rdoc and rctx:
+                    elif not args.bare and rdoc and rctx:
                         element('%s'%r,rdoc,rctx,nsp)
                     else:
-                        output.write('%s\n'%r)
+                        if args.pretty:
+                            sp = StringIO.StringIO('%s'%r)
+                            doParse(sp,output,colour=args.colour)
+                            sp.close()
+                        else:
+                            output.write('%s\n'%r)
 
     if False: #except:
         sys.stderr.write('<!-- exception when parsing -->\n')
@@ -87,7 +98,7 @@ def main():
         output=sys.stdout
 
     (rdoc,rctx) = (None,None)
-    if not args.clean:
+    if not args.bare:
         (rdoc,rctx) = getContextFromString('<%s/>'%args.element)
 
     if args.file:
@@ -109,8 +120,13 @@ def main():
         xml = ''.join(sys.stdin.readlines())
         process(xml,output,rdoc,rctx)
 
-    if not args.clean and not args.text and not args.single:
-        output.write('%s'%rdoc)
+    if not args.bare and not args.text and not args.single:
+        if args.pretty:
+            sp = StringIO.StringIO('%s'%rdoc)
+            doParse(sp,output,colour=args.colour)
+            sp.close()
+        else:
+            output.write('%s'%rdoc)
         
     if args.output:
         output.close()
