@@ -25,7 +25,7 @@ def argue():
     parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
     parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='prefix:url')
     parser.add_argument('-a','--attr',    action='store',      help='get the attr by name')
-    parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file', nargs='*')
+    parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
     parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
     args = parser.parse_args()
@@ -56,23 +56,21 @@ def process(xml=None,file=None,output=sys.stdout,nsp=None):
             else:
                 sys.stderr.write('%s\n'%json.dumps(nsp,indent=4))
 
-        for xpath in args.xpath:
-            if args.single:
-                res = root.find(xpath,nsp)
-                out = ET.ElementTree(res)
-                out.write(output)
+        if args.single:
+            res = root.findall(args.xpath,nsp)
+            out = ET.ElementTree(res)
+            out.write(output)
+        else:
+            res = root.findall(args.xpath,nsp)
+            if len(res) == 0:
+                sys.stderr.write('empty result\n');
             else:
-                res = root.findall(xpath,nsp)
-                if len(res) == 0:
-                    None
-                    #output.write('\n')
-                else:
-                    for r in res:
-                        if args.text:
-                            output.write('%s\n'%r.text)
-                        else:
-                            out = ET.ElementTree(r)
-                            out.write(output)
+                for r in res:
+                    if args.text:
+                        output.write('%s\n'%r.text)
+                    else:
+                        out = ET.ElementTree(r)
+                        out.write(output)
 
     #except:
     #    sys.stderr.write('<!-- exception when parsing -->\n')
@@ -104,7 +102,7 @@ def main():
             u = ns[ns.index(':')+1:]
             nsp[p] = u
 
-    if args.file:
+    if args.file and len(args.file) > 0:
         for file in args.file:
             if horizon:
                 sys.stderr.write('%s\n'%horizon)

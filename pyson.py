@@ -73,7 +73,10 @@ def query(text,expression=None):
             None
         object = results
     else:
-        object = eval('object%s'%expression)
+        try:
+            object = eval('object%s'%expression)
+        except:
+            None
     return object
 
 def dump(object,output,colour):
