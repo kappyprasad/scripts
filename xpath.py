@@ -2,88 +2,80 @@
 
 # http://mikekneller.com/kb/python/libxml2python/part1
 
-import sys, re, os, argparse, json
+import sys, re, os
+import argparse
 
-from lxml import etree as ET
-#import xml.etree.ElementTree as ET
-
+from Tools.xpath import *
 from Tools.parser import *
 from Tools.pretty import *
 from Tools.eddo import *
 
-def argue():
-    parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 
-    parser.add_argument('-?',             action='help',       help='show this help')
-    parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
-    parser.add_argument('-c','--colour',  action='store_true', help='show colour output')
-    parser.add_argument('-t','--text',    action='store_true', help='print result as text')
-    parser.add_argument('-s','--single',  action='store_true', help='display result as a single value')
-    parser.add_argument('-b','--horizon', action='store_true', help='display horizontal bar between files')
-    parser.add_argument('-f','--fname',   action='store_true', help='show file name')
-    parser.add_argument('-o','--output',  action='store',      help='output to file')
-    parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
-    parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='prefix:url')
-    parser.add_argument('-a','--attr',    action='store',      help='get the attr by name')
-    parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
-    parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
+parser.add_argument('-?',             action='help',       help='show this help')
+parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
+parser.add_argument('-c','--clean',   action='store_true', help='show clean output with root element')
+parser.add_argument('-t','--text',    action='store_true', help='print result as text')
+parser.add_argument('-s','--single',  action='store_true', help='display result as a single value')
+parser.add_argument('-b','--horizon', action='store_true', help='display horizontal bar between files')
+parser.add_argument('-f','--fname',   action='store_true', help='show file name')
+parser.add_argument('-o','--output',  action='store',      help='output to file')
+parser.add_argument('-e','--element', action='store',      help='use this element as the document root', default='results')
+parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
+parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file', nargs='*')
+parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
-    args = parser.parse_args()
+args = parser.parse_args()
 
-    if args.verbose:
-        sys.stderr.write('args : ')
-        if args.colour:
-            prettyPrint(vars(args), colour=True, output=sys.stderr)
-        else:
-            sys.stderr.write('%s\n'%json.dumps(vars(args),indent=4))
-    return args
+if args.verbose:
+    sys.stderr.write('args : ')
+    prettyPrint(vars(args), colour=True, output=sys.stderr)
 
-def process(xml=None,file=None,output=sys.stdout,nsp=None):
-    #try:
-    if True:
-        if file:
-            tree = ET.parse(file)
-            root = tree.getroot()
-        elif xml:
-            root = ET.fromstring(xml)
-        else:
-            return
+def element(xml,rdoc,rctx,nsp):
+    (doc,ctx) = getContextFromString(xml)
+    element = doc.getRootElement().copyNode(True)
+    for ns in nsp.keys():
+        ctx.xpathRegisterNs(ns,nsp[ns])
+        #element.setProp('xmlns:%s'%ns,'%s'%nsp[ns])
+        rdoc.getRootElement().setProp('xmlns:%s'%ns,'%s'%nsp[ns])
+    rdoc.getRootElement().addChild(element)
+    return
+
+def process(xml,output=sys.stdout,rdoc=None,rctx=None):
+    try:
+        (doc,ctx,nsp)=getContextFromStringWithNS(xml,args.ns)
         
         if args.verbose:
             sys.stderr.write('nsp : ')
-            if args.colour:
-                prettyPrint(nsp,colour=True,output=sys.stderr)
-            else:
-                sys.stderr.write('%s\n'%json.dumps(nsp,indent=4))
+            prettyPrint(nsp,colour=True,output=sys.stderr)
 
-        if args.single:
-            res = root.findall(args.xpath,nsp)
-            out = ET.ElementTree(res)
-            out.write(output)
-        else:
-            res = root.findall(args.xpath,nsp)
-            if len(res) == 0:
-                sys.stderr.write('empty result\n');
+        for xpath in args.xpath:
+            res = ctx.xpathEval(xpath)
+            if args.single:
+                output.write('%s\n'%res)
             else:
-                for r in res:
-                    if args.text:
-                        output.write('%s\n'%r.text)
-                    else:
-                        out = ET.ElementTree(r)
-                        out.write(output)
+                if len(res) == 0:
+                    None
+                    #output.write('\n')
+                else:
+                    for r in res:
+                        if args.text:
+                            output.write('%s\n'%r.content)
+                        elif not args.clean and rdoc and rctx:
+                            element('%s'%r,rdoc,rctx,nsp)
+                        else:
+                            output.write('%s\n'%r)
 
-    #except:
-    #    sys.stderr.write('<!-- exception when parsing -->\n')
-    #    if args.verbose:
-    #        sys.stderr.write('exc_info : ')
-    #        prettyPrint(sys.exc_info(), output=sys.stderr)
+    except:
+        sys.stderr.write('<!-- exception when parsing -->\n')
+        if args.verbose:
+            sys.stderr.write('exc_info : ')
+            prettyPrint(sys.exc_info(), output=sys.stderr)
 
     return
 
 def main():
-    global args
-    args = argue()
-    
+
     if args.horizon:
         horizon = buildHorizon()
     else:
@@ -95,14 +87,11 @@ def main():
     else:
         output=sys.stdout
 
-    nsp = {}
-    if args.ns:
-        for ns in args.ns:
-            p = ns[:ns.index(':')]
-            u = ns[ns.index(':')+1:]
-            nsp[p] = u
+    (rdoc,rctx) = (None,None)
+    if not args.clean:
+        (rdoc,rctx) = getContextFromString('<%s/>'%args.element)
 
-    if args.file and len(args.file) > 0:
+    if args.file:
         for file in args.file:
             if horizon:
                 sys.stderr.write('%s\n'%horizon)
@@ -112,10 +101,17 @@ def main():
                 else:
                     sys.stderr.write('%s\n'%file)
 
-            process(file=file,output=output,nsp=nsp)
+            fp = open(file)
+            xml=''.join(fp.readlines())
+            fp.close()
+
+            process(xml,output,rdoc,rctx)
     else:
-        xml = sys.stdin.read()
-        process(xml=xml,output=output,nsp=nsp)
+        xml = ''.join(sys.stdin.readlines())
+        process(xml,output,rdoc,rctx)
+
+    if not args.clean and not args.text and not args.single:
+        output.write('%s'%rdoc)
         
     if args.output:
         output.close()
