@@ -1,24 +1,18 @@
 #!/usr/bin/env python
 
+import sys, re, os, operator, argparse, json
 
-
-
-
-import sys, re, os, operator
 from datetime import *
-import argparse
 
 from Tools.xpath import *
 from Tools.parser import *
 from Tools.eddo import *
 
-verbose = False
 files = []
 elements = {}
 patterns = []
 pairs = {}
 dump = None
-usdate = False
 leader = ''
 horizon = ''
 
@@ -29,34 +23,36 @@ cdp = re.compile('^<!\[CDATA\[(.*)\]\]>$')
 dsp = '%Y-%m-%d'
 tsp = '%H-%M-%S.%f'
 
-parser = argparse.ArgumentParser()
+def argue():
+    parser = argparse.ArgumentParser()
 
-parser.add_argument('-v','--verbose',   action='store_true', help='versbose mode'                            )
-parser.add_argument('-b','--horizon',   action='store_true', help='horizontal bar between messages'          )
-parser.add_argument('-c','--colour',    action='store_true', help='show in colour'                           )
-parser.add_argument('-s','--stubb',     action='store_true', help='stub out date time stamp'                 )
-parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'                    )
-parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                           )
-parser.add_argument('-t','--text',      action='store_true', help='text xpath output'                        )
-parser.add_argument('-e','--element',   action='store',      help='xml element match',              nargs='*')
-parser.add_argument('-x','--xpath',     action='store',      help='xpath on xml element'                     )
-parser.add_argument('-d','--dir',       action='store',      help='dump to directory'                        )
-parser.add_argument('-f','--file',      action='store',      help='dump to file suffix'                      )
-parser.add_argument('-r','--regex',     action='store',      help='regex patter',                   nargs='*')
-parser.add_argument('-p','--pair',      action='store',      help='pair of start:end tags',         nargs='*')
-parser.add_argument('files',            action='store',      help='the files to log',               nargs='*')
+    parser.add_argument('-v','--verbose',   action='store_true', help='versbose mode'                            )
+    parser.add_argument('-b','--horizon',   action='store_true', help='horizontal bar between messages'          )
+    parser.add_argument('-c','--colour',    action='store_true', help='show in colour'                           )
+    parser.add_argument('-s','--stubb',     action='store_true', help='stub out date time stamp'                 )
+    parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'                    )
+    parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                           )
+    parser.add_argument('-t','--text',      action='store_true', help='text xpath output'                        )
+    parser.add_argument('-e','--element',   action='store',      help='xml element match',              nargs='*')
+    parser.add_argument('-q','--quit',      action='store',      help='quit on this if found'                    )
+    parser.add_argument('-x','--xpath',     action='store',      help='xpath on xml element'                     )
+    parser.add_argument('-d','--dir',       action='store',      help='dump to directory'                        )
+    parser.add_argument('-f','--file',      action='store',      help='dump to file suffix'                      )
+    parser.add_argument('-r','--regex',     action='store',      help='regex patter',                   nargs='*')
+    parser.add_argument('-p','--pair',      action='store',      help='pair of start:end tags',         nargs='*')
+    parser.add_argument('files',            action='store',      help='the files to log',               nargs='*')
 
-args = parser.parse_args()
+    return parser.parse_args()
 
-def getElements(args):
+def getElements(a):
     global elements
     elements = { 'start' : [] , 'end' : [] }
-    if not args:
+    if not a:
         return
-    for e in args:
+    for e in a:
         elements['start'].append(re.compile('.*<%s(|\s.*)(|\/)>.*'%(e)))
         elements['end'].append(re.compile('.*<(/%s|%s/)>.*'%(e,e)))
-    if verbose:
+    if args.verbose:
         print 'elements='
         for key in elements.keys():
             print '\t%s'%key
@@ -64,31 +60,31 @@ def getElements(args):
                 print '\t\t%s'%r.pattern
     return
 
-def getPatterns(args):
+def getPatterns(a):
     global patterns
     patterns = []
-    if not args:
+    if not a:
         return
-    for p in args:
+    for p in a:
         patterns.append(re.compile('.*%s.*'%(p)))
-    if verbose:
+    if args.verbose:
         print 'patterns='
         for p in patterns:
             print '\t%s'%p.pattern    
 
     return
 
-def getPairs(args):
+def getPairs(a):
     global pairs
     pairs = { 'start' : [] , 'end' : [] }
-    if not args:
+    if not a:
         return
-    for se in args:
+    for se in a:
         p = se.split(':')
         if len(p) > 1:
             pairs['start'].append(re.compile('.*%s.*'%(p[0])))
             pairs['end'].append(re.compile('.*%s.*'%(p[1])))
-    if verbose:
+    if args.verbose:
         print 'pairs='
         for key in pairs.keys():
             print '\t%s'%key
@@ -97,13 +93,13 @@ def getPairs(args):
     return
 
 def processLine(line):
-    global prints, xml, leader, dt, thread, lm, usdate
-    if verbose:
+    global prints, xml, leader, dt, thread, lm
+    if args.verbose:
         print 'line=%s'%(line)
         
     lm = lep.match(line)
     if lm:
-        if usdate:
+        if args.usdate:
             months = int(lm.group(1))
             days = int(lm.group(2))
         else:
@@ -163,15 +159,18 @@ def processLine(line):
                     printXML(xml)
                 xml = None
     sys.stdout.flush()
+    if args.quit:
+        if quitPattern.match(line):
+            quit()
     return
 
 def printXML(xml):
-    global xp, leader, horizon
-    if xp:
+    global leader, horizon
+    if args.xpath:
         try:
             (doc,ctx) = getContextFromString(xml)
-            for r in ctx.xpathEval(xp):
-                if text:
+            for r in ctx.xpathEval(args.xpath):
+                if args.text:
                     dumpIfDump(r.content)
                 else:
                     printSnippetXML('%s'%r)
@@ -208,15 +207,15 @@ def printSnippetXML(xml):
     if horizon:
         sys.stdout.write('%s\n'%horizon)
         sys.stdout.flush()
-    if lm and not stubb:
+    if lm and not args.stubb:
         sys.stdout.write('%s %s %s\n'%(dt,thread,leader))
         sys.stdout.flush()
     if dump:
         fp = getDumpFP()
     else:
         fp = sys.stdout
-    myParser = MyParser(colour=colour, rformat=rformat, output=fp)
-    if verbose:
+    myParser = MyParser(colour=args.colour, rformat=args.attribute, output=fp)
+    if args.verbose:
         sys.stdout.write('xml=%s'%xml)
     try:
         myParser.parser.Parse(xml)
@@ -233,28 +232,22 @@ def printSnippetXML(xml):
     return
 
 def main():
-    global prints, verbose, files, xml, horizon, colour, text, xp, stubb, rformat, dump, usdate
+    global args, quitPattern, prints, files, xml, horizon, dump
 
+    args = argue()
+    
     prints = False
     xml = None
     
     if args.horizon:
         horizon = buildHorizon()
 
-    xp = args.xpath
     if args.element and not args.xpath:
-        xp = '/'
+        args.xpath = '/'
 
-    verbose = args.verbose
-    colour = args.colour
-    stubb = args.stubb
-    rformat = args.attribute
-    usdate = args.usdate
-    text = args.text
-    
     dump = (args.file or args.dir)
     if dump:
-        colour = False
+        args.colour = False
 
     if args.dir:
         if not os.path.isdir(args.dir):
@@ -266,6 +259,9 @@ def main():
     getPatterns(args.regex)
     getPairs(args.pair)
 
+    if args.quit:
+        quitPattern = re.compile(args.quit)
+        
     if len(files) == 0:
         while sys.stdin:
             line = sys.stdin.readline()
