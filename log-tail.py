@@ -3,6 +3,7 @@
 import sys, re, os, operator, argparse, json
 
 from datetime import *
+from subprocess import Popen, PIPE
 
 from Tools.xpath import *
 from Tools.parser import *
@@ -33,6 +34,7 @@ def argue():
     parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'                    )
     parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                           )
     parser.add_argument('-t','--text',      action='store_true', help='text xpath output'                        )
+    parser.add_argument('-P','--pipe',      action='store',      help='pipe input from command'                  )
     parser.add_argument('-e','--element',   action='store',      help='xml element match',              nargs='*')
     parser.add_argument('-q','--quit',      action='store',      help='quit on this if found'                    )
     parser.add_argument('-x','--xpath',     action='store',      help='xpath on xml element'                     )
@@ -95,7 +97,7 @@ def getPairs(a):
 def processLine(line):
     global prints, xml, leader, dt, thread, lm
     if args.verbose:
-        print 'line=%s'%(line)
+        print line
         
     lm = lep.match(line)
     if lm:
@@ -162,8 +164,8 @@ def processLine(line):
     if args.quit:
         if quitPattern.match(line):
             sys.stderr.write('quitting on match\n')
-            quit()
-    return
+            return True
+    return False
 
 def printXML(xml):
     global leader, horizon
@@ -261,12 +263,22 @@ def main():
     getPairs(args.pair)
 
     if args.quit:
-        quitPattern = re.compile(args.quit)
+        quitPattern = re.compile('^.*%s.*$'%args.quit)
         
-    if len(files) == 0:
+    if args.pipe:
+        process = Popen(args.pipe,shell=True,stdout=PIPE)
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                break
+            line = line.rstrip('\n').rstrip('\r')
+            if processLine(line):
+                del process
+                quit()
+    elif len(files) == 0:
         while sys.stdin:
             line = sys.stdin.readline()
-            processLine(line)
+            if processLine(line): quit()
             sys.stdout.flush()
     else:
         for f in files:
@@ -274,7 +286,7 @@ def main():
                 sys.stderr.write('< %s\n'%f)
                 fp = open(f)
                 for line in fp.readlines():
-                    processLine(line)
+                    if processLine(line): quit()
                 fp.close()
             else:
                 print 'file %s doesn\'t exist'%f
