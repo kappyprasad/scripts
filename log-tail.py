@@ -161,6 +161,7 @@ def processLine(line):
     sys.stdout.flush()
     if args.quit:
         if quitPattern.match(line):
+            sys.stderr.write('quitting on match\n')
             quit()
     return
 
