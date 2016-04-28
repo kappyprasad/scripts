@@ -274,7 +274,7 @@ def main():
             line = line.rstrip('\n').rstrip('\r')
             if processLine(line):
                 del process
-                quit()
+                break
     elif len(files) == 0:
         while sys.stdin:
             line = sys.stdin.readline()

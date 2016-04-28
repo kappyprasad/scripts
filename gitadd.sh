@@ -72,6 +72,12 @@ do
     then 
         pushd "$repo" > /dev/null
 
+        if [ ! -d .git ]
+        then
+            echo "not in root of git tree"
+            exit 1
+        fi
+
         if [ "$local" = "0" ] || [ "$verbose" = "1" ]
         then
             echo -e "\033[36m$repo\033[0m"
@@ -80,6 +86,7 @@ do
         git status --porcelain \
             | egrep "$query" \
             | cut -c 4- \
+            | perl -pe 's/ ->.*$//' \
             | xargs -n1 -I FILE $test git add "FILE"
 
         
