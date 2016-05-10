@@ -30,7 +30,7 @@ def compare(lhsf,rhsf,output):
     lhs = re.compile('^<.*')
     rhs = re.compile('^>.*')
 
-    cmd='/usr/bin/diff %s %s'%(lhsf,rhsf)
+    cmd='/usr/bin/diff -b %s %s'%(lhsf,rhsf)
     output.write('(%s%s%s) -> (%s%s%s) %s'%(
         mycolours['Purple'],lhsf,mycolours['Off'],
         mycolours['Green'],rhsf,mycolours['Off'],
