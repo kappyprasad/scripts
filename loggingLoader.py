@@ -37,7 +37,6 @@ def argue():
     parser.add_argument('-t', '--test',     action='store_true', help='insert test data')    
     parser.add_argument('-j', '--json',     action='store_true', help='output json')    
     parser.add_argument('-x', '--xml',      action='store_true', help='output xml')    
-    parser.add_argument(      '--xtd',      action='store_true', help='output xmltodict')
     
     parser.add_argument('-u', '--url',      action='store',      default='mysql+mysqlconnector://%s:%s@%s')
     parser.add_argument('-H', '--hostname', action='store',      default='localhost')
@@ -131,15 +130,7 @@ def main():
     args = argue()
 
     def show(o):
-        if args.xtd:
-            sio = StringIO()
-            alloro(o,Base=Base,colour=False,output=sio)
-            js = xmltodict.parse(sio.getvalue())
-            print json.dumps(js,indent=4)
-            sio.close()
-    
         if args.json:
-            #prettyPrint(o,colour=args.colour,output=sys.stdout)
             print dumper(o,exclude_nulls=False,indent=4)
     
         if args.xml:
