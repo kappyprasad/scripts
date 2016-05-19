@@ -26,7 +26,7 @@ from sqlalchemy.orm.collections import \
 
 Base = declarative_base()
 
-###############################################################################
+####################################################################################################
 def argue():
     parser = argparse.ArgumentParser(description='logging loader')
     
@@ -51,7 +51,7 @@ def argue():
     if args.verbose: sys.stderr.write('args : %s' % vars(args))
     return args
 
-###############################################################################
+####################################################################################################
 @from_object()
 @to_object()
 class Message(Base):
@@ -60,13 +60,23 @@ class Message(Base):
     id            = Column(Integer, primary_key=True)
     when          = Column(DateTime)
     level         = Column(String(25))
+    thread        = Column(String(50))
     key           = Column(String(50))
     description   = Column(String(250))
 
-    def __init__(self,id=None,when=None,level=None,key=None,description=None):
+    def __init__(
+        self,
+        id=None,
+        when=None,
+        level=None,
+        thread=None,
+        key=None,
+        description=None
+    ):
         self.id=id
         self.when=when
         self.level=level
+        self.thread=thread
         self.key=key
         self.description=description
         return
@@ -82,11 +92,12 @@ class Message(Base):
             'id',
             'when',
             'level',
+            'thread',
             'key',
             'description',
         ]
 
-##############################################################################
+####################################################################################################
 class Loader(object):
 
     def __init__(self,args,password):
@@ -125,7 +136,7 @@ class Loader(object):
         return
 
         
-###############################################################################
+####################################################################################################
 def main():
     args = argue()
 
@@ -151,7 +162,7 @@ def main():
 
     if args.test:
         session = loader.Session()
-        m = Message(when=datetime.now(),level='INFO',key='k1',description='d1')
+        m = Message(when=datetime.now(),level='INFO',thread='t1',key='k1',description='d1')
         session.add(m)
         session.commit()
         session.close()
