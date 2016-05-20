@@ -33,20 +33,43 @@ def argue():
     parser.add_argument('-v', '--verbose',  action='store_true', help='show verbose detail')
     parser.add_argument('-c', '--colour',   action='store_true', help='colour output')
     parser.add_argument('-m', '--make',     action='store_true', help='make schema')
-    parser.add_argument('-f', '--filter',   action='store',      help='filter_by')    
+    parser.add_argument('-w', '--window',   action='store',      type=int, default=1000)
+
+    parser.add_argument('-f', '--filter',   action='store',      help='filter_by')
     parser.add_argument('-t', '--test',     action='store_true', help='insert test data')    
     parser.add_argument('-j', '--json',     action='store_true', help='output json')    
     parser.add_argument('-x', '--xml',      action='store_true', help='output xml')    
-    
+
     parser.add_argument('-u', '--url',      action='store',      default='mysql+mysqlconnector://%s:%s@%s')
     parser.add_argument('-H', '--hostname', action='store',      default='localhost')
     parser.add_argument('-U', '--username', action='store',      default='root')
     parser.add_argument('-P', '--password', action='store',      default=None)
     parser.add_argument('-D', '--database', action='store',      default='logging')
 
-    parser.add_argument('-r', '--regex',    action='store',      default='^(.*)$')
-    parser.add_argument('log',              action='store',     nargs='*')
-    
+    parser.add_argument('-r', '--pattern',  action='store',      default=\
+                        '^'+
+                        '(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),\d{3}\s+'+
+                        '\[([^\]]+)\]\s+'+
+                        '(DEBUG|INFO|ERROR|WARN)\s+'+
+                        '(.*)'+
+                        '$'
+    )
+    parser.add_argument('-R', '--mapping',  action='store', nargs='*', default=[
+                        'when',
+                        'thread',
+                        'level',
+                        'description',
+    ])
+
+    parser.add_argument('-k', '--keys',     action='store', nargs='*', default=[
+                        '^(Booking)\{.*$'
+    ])
+        
+    group1=parser.add_mutually_exclusive_group(required=False)
+    group1.add_argument('-i', '--input',    action='store')
+    group1.add_argument('-q', '--query',    action='store_true')
+                 
+
     args = parser.parse_args()
     if args.verbose: sys.stderr.write('args : %s' % vars(args))
     return args
@@ -61,8 +84,8 @@ class Message(Base):
     when          = Column(DateTime)
     level         = Column(String(25))
     thread        = Column(String(50))
-    key           = Column(String(50))
-    description   = Column(String(250))
+    key           = Column(String(100))
+    description   = Column(String(1024))
 
     def __init__(
         self,
@@ -135,11 +158,32 @@ class Loader(object):
         self.Session.configure(bind=self.engine)
         return
 
-        
+####################################################################################################
+def process(line,pattern,mapping,session):
+    match = pattern.match(line)
+    if not match:
+        #sys.stderr.write('%s\n'%line)
+        return
+    data = dict()
+    for k in range(len(mapping)):
+        value=match.group(k+1)
+        if mapping[k] == 'when':
+            value = datetime.strptime(value,"%Y-%m-%d %H:%M:%S")
+        data[mapping[k]] = value
+    m = Message(**data)
+    #print dumper(m)
+    session.add(m)
+    return
+    
 ####################################################################################################
 def main():
     args = argue()
 
+    pattern = re.compile(args.pattern)
+    #print pattern.pattern
+    mapping = args.mapping
+    #print mapping
+    
     def show(o):
         if args.json:
             print dumper(o,exclude_nulls=False,indent=4)
@@ -161,23 +205,43 @@ def main():
     loader = Loader(args,password)
 
     if args.test:
+        line = '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility'
         session = loader.Session()
-        m = Message(when=datetime.now(),level='INFO',thread='t1',key='k1',description='d1')
-        session.add(m)
+        process(line,pattern,mapping,session)
         session.commit()
         session.close()
- 
-    session = loader.Session()
-   
-    query = session.query(Message)
-    if args.filter:
-        fb={}
-        for nvp in args.filter.split(','):
-            (n,v) = nvp.split('=')
-            fb[n]=v
-        query = query.filter_by(fb)
 
-    show(query.all())
+    if args.input:
+        input = open(args.input)
+    else:
+        input = sys.stdin
+        
+    session = loader.Session()
+
+    if args.query:
+        query = session.query(Message)
+        if args.filter:
+            fb={}
+            for nvp in args.filter.split(','):
+                (n,v) = nvp.split('=')
+                fb[n]=v
+            query = query.filter_by(fb)
+
+        show(query.all())
+    else:
+        window=0
+        for line in input.readlines():
+            process(line,pattern,mapping,session)
+            window+=1
+            if window % args.window == 0:
+                session.commit()
+                sys.stdout.write('%d\r'%window)
+                sys.stdout.flush()
+        session.commit()
+        sys.stdout.write('\n')
+
+    if args.input:
+        input.close()
         
     session.close()
     
