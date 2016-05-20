@@ -62,7 +62,10 @@ def argue():
     ])
 
     parser.add_argument('-k', '--keys',     action='store', nargs='*', default=[
-                        '^(Booking)\{.*$'
+                        '^(Booking)\{.*$',
+                        '^(Inserted):.*$',
+                        '^(errai bus started).*',
+                        '^(Repository :.*)$',
     ])
         
     group1=parser.add_mutually_exclusive_group(required=False)
@@ -159,7 +162,7 @@ class Loader(object):
         return
 
 ####################################################################################################
-def process(line,pattern,mapping,session):
+def process(line,pattern,mapping,keys,session):
     match = pattern.match(line)
     if not match:
         #sys.stderr.write('%s\n'%line)
@@ -169,6 +172,12 @@ def process(line,pattern,mapping,session):
         value=match.group(k+1)
         if mapping[k] == 'when':
             value = datetime.strptime(value,"%Y-%m-%d %H:%M:%S")
+        if mapping[k] == 'description':
+            for p in keys:
+                m = p.match(value)
+                if m:
+                    data['key'] = m.group(1)
+                    continue
         data[mapping[k]] = value
     m = Message(**data)
     #print dumper(m)
@@ -183,6 +192,7 @@ def main():
     #print pattern.pattern
     mapping = args.mapping
     #print mapping
+    keys = map(lambda x:re.compile(x),args.keys)
     
     def show(o):
         if args.json:
@@ -207,10 +217,11 @@ def main():
     if args.test:
         line = '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility'
         session = loader.Session()
-        process(line,pattern,mapping,session)
+        process(line,pattern,mapping,keys,session)
         session.commit()
         session.close()
-
+        return
+    
     if args.input:
         input = open(args.input)
     else:
@@ -231,7 +242,7 @@ def main():
     else:
         window=0
         for line in input.readlines():
-            process(line,pattern,mapping,session)
+            process(line,pattern,mapping,keys,session)
             window+=1
             if window % args.window == 0:
                 session.commit()
