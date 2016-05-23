@@ -67,9 +67,11 @@ def argue():
                         '^(errai bus started).*',
                         '^(Repository :.*)$',
     ])
-        
+
+    parser.add_argument('-s', '--server',   action='store',     required=True)
+    
     group1=parser.add_mutually_exclusive_group(required=False)
-    group1.add_argument('-i', '--input',    action='store')
+    group1.add_argument('-i', '--input',    action='store', nargs='*')
     group1.add_argument('-q', '--query',    action='store_true')
                  
 
@@ -84,6 +86,8 @@ class Message(Base):
 
     __tablename__ = 'message'
     id            = Column(Integer, primary_key=True)
+    server          = Column(String(25))
+    file          = Column(String(50))
     when          = Column(DateTime)
     level         = Column(String(25))
     thread        = Column(String(50))
@@ -93,6 +97,8 @@ class Message(Base):
     def __init__(
         self,
         id=None,
+        server=None,
+        file=None,
         when=None,
         level=None,
         thread=None,
@@ -100,6 +106,8 @@ class Message(Base):
         description=None
     ):
         self.id=id
+        self.server=server
+        self.file=file
         self.when=when
         self.level=level
         self.thread=thread
@@ -116,6 +124,8 @@ class Message(Base):
     def __dir__(self):
         return [
             'id',
+            'server',
+            'file',
             'when',
             'level',
             'thread',
@@ -162,12 +172,12 @@ class Loader(object):
         return
 
 ####################################################################################################
-def process(line,pattern,mapping,keys,session):
+def process(line,pattern,mapping,keys,session,server,file):
     match = pattern.match(line)
     if not match:
         #sys.stderr.write('%s\n'%line)
         return
-    data = dict()
+    data = dict(server=server,file=file)
     for k in range(len(mapping)):
         value=match.group(k+1)
         if mapping[k] == 'when':
@@ -217,16 +227,10 @@ def main():
     if args.test:
         line = '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility'
         session = loader.Session()
-        process(line,pattern,mapping,keys,session)
+        process(line,pattern,mapping,keys,session,args.server,'test.snippet.log')
         session.commit()
         session.close()
-        return
     
-    if args.input:
-        input = open(args.input)
-    else:
-        input = sys.stdin
-        
     session = loader.Session()
 
     if args.query:
@@ -240,19 +244,27 @@ def main():
 
         show(query.all())
     else:
-        window=0
-        for line in input.readlines():
-            process(line,pattern,mapping,keys,session)
-            window+=1
-            if window % args.window == 0:
-                session.commit()
-                sys.stdout.write('%d\r'%window)
-                sys.stdout.flush()
-        session.commit()
-        sys.stdout.write('\n')
+        
+        def load(input,server,file):
+            window=0
+            for line in input.readlines():
+                process(line,pattern,mapping,keys,session,server,file)
+                window+=1
+                if window % args.window == 0:
+                    session.commit()
+                    sys.stdout.write('%s -> %d\r'%(file,window))
+                    sys.stdout.flush()
+            session.commit()
+            sys.stdout.write('\n')
 
-    if args.input:
-        input.close()
+        if args.input:
+            for file in args.input:
+                input = open(file)
+                load(input,args.server,file)
+                input.close()
+        else:
+            input = sys.stdin
+            load(input,args.server,'stdin')
         
     session.close()
     
