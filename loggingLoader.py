@@ -32,6 +32,7 @@ def argue():
     
     parser.add_argument('-v', '--verbose',  action='store_true', help='show verbose detail')
     parser.add_argument('-c', '--colour',   action='store_true', help='colour output')
+    parser.add_argument('-e', '--errors',   action='store_true', help='show pattern match errors')
     parser.add_argument('-m', '--make',     action='store_true', help='make schema')
     parser.add_argument('-w', '--window',   action='store',      type=int, default=1000)
 
@@ -45,6 +46,8 @@ def argue():
     parser.add_argument('-U', '--username', action='store',      default='root')
     parser.add_argument('-P', '--password', action='store',      default=None)
     parser.add_argument('-D', '--database', action='store',      default='logging')
+
+    parser.add_argument('-T', '--dts',      action='store',      default='%Y-%m-%d %H:%M:%S')
 
     parser.add_argument('-r', '--pattern',  action='store',      default=\
                         '^'+
@@ -68,7 +71,7 @@ def argue():
                         '^(Repository :.*)$',
     ])
 
-    parser.add_argument('-s', '--server',   action='store',     required=True)
+    parser.add_argument('-s', '--server',   action='store',            default='localhost')
     
     group1=parser.add_mutually_exclusive_group(required=False)
     group1.add_argument('-i', '--input',    action='store', nargs='*')
@@ -82,16 +85,101 @@ def argue():
 ####################################################################################################
 @from_object()
 @to_object()
+class Server(Base):
+
+    __tablename__ = 'server'
+    id            = Column(Integer, primary_key=True)
+    name          = Column(String(50))
+
+    def __init__(self,id=None,name=None):
+        self.id=id
+        self.name=name
+        return
+    
+    def __dir__(self):
+        return [
+            'id',
+            'name'
+        ]
+
+####################################################################################################
+@from_object()
+@to_object()
+class Level(Base):
+
+    __tablename__ = 'level'
+    id            = Column(Integer, primary_key=True)
+    name          = Column(String(25))
+
+    def __init__(self,id=None,name=None):
+        self.id=id
+        self.name=name
+        return
+    
+    def __dir__(self):
+        return [
+            'id',
+            'name'
+        ]
+
+####################################################################################################
+@from_object()
+@to_object()
+class Key(Base):
+
+    __tablename__ = 'key'
+    id            = Column(Integer, primary_key=True)
+    name          = Column(String(255))
+
+    def __init__(self,id=None,name=None):
+        self.id=id
+        self.name=name
+        return
+    
+    def __dir__(self):
+        return [
+            'id',
+            'name'
+        ]
+
+####################################################################################################
+@from_object()
+@to_object()
+class File(Base):
+
+    __tablename__ = 'file'
+    id            = Column(Integer, primary_key=True)
+    name          = Column(String(255))
+
+    def __init__(self,id=None,name=None):
+        self.id=id
+        self.name=name
+        return
+    
+    def __dir__(self):
+        return [
+            'id',
+            'name'
+        ]
+
+
+####################################################################################################
+@from_object()
+@to_object()
 class Message(Base):
 
     __tablename__ = 'message'
     id            = Column(Integer, primary_key=True)
-    server          = Column(String(25))
-    file          = Column(String(50))
+    server        = relationship(Server)
+    server_id     = Column(Integer, ForeignKey('server.id'))
+    file          = relationship(File)
+    file_id       = Column(Integer, ForeignKey('file.id'))
+    level         = relationship(Level)
+    level_id      = Column(Integer, ForeignKey('level.id'))
+    key           = relationship(Key)
+    key_id        = Column(Integer, ForeignKey('key.id'))
     when          = Column(DateTime)
-    level         = Column(String(25))
     thread        = Column(String(50))
-    key           = Column(String(100))
     description   = Column(String(1024))
 
     def __init__(
@@ -172,23 +260,41 @@ class Loader(object):
         return
 
 ####################################################################################################
-def process(line,pattern,mapping,keys,session,server,file):
+def byName(tipe,name,session):
+    value = None
+    if tipe not in names.keys():
+        names[tipe] = {}
+    if name not in names[tipe].keys():
+        value = session.query(tipe).filter_by(name=name).first()
+        if not value:
+            value = tipe(name=name)
+            session.add(value)
+            session.commit()
+        names[tipe][name] = value
+    return names[tipe][name]
+
+####################################################################################################
+def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
     match = pattern.match(line)
     if not match:
-        #sys.stderr.write('%s\n'%line)
+        if errors:
+            sys.stderr.write('%s\n'%line)
         return
-    data = dict(server=server,file=file)
+    data = dict(server=byName(Server,server,session),file=byName(File,file,session))
     for k in range(len(mapping)):
         value=match.group(k+1)
         if mapping[k] == 'when':
-            value = datetime.strptime(value,"%Y-%m-%d %H:%M:%S")
-        if mapping[k] == 'description':
+            data[mapping[k]] = datetime.strptime(value,dts)
+        elif mapping[k] == 'description':
             for p in keys:
                 m = p.match(value)
                 if m:
-                    data['key'] = m.group(1)
+                    data['key'] = byName(Key,m.group(1),session)
                     continue
-        data[mapping[k]] = value
+        elif mapping[k] == 'level':
+            data[mapping[k]] = byName(Level,value,session)
+        else:
+            data[mapping[k]] = value
     m = Message(**data)
     #print dumper(m)
     session.add(m)
@@ -196,8 +302,10 @@ def process(line,pattern,mapping,keys,session,server,file):
     
 ####################################################################################################
 def main():
+    global args, names
     args = argue()
-
+    names = {}
+    
     pattern = re.compile(args.pattern)
     #print pattern.pattern
     mapping = args.mapping
@@ -224,14 +332,15 @@ def main():
 
     loader = Loader(args,password)
 
-    if args.test:
-        line = '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility'
-        session = loader.Session()
-        process(line,pattern,mapping,keys,session,args.server,'test.snippet.log')
-        session.commit()
-        session.close()
-    
     session = loader.Session()
+
+    if args.test:
+        for line in [
+            '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility',
+            '2016-05-21 09:20:58,056 [http-nio-8080-exec-6] WARN  Inserted: FlightMucken',
+        ]:
+            process(line,pattern,mapping,keys,session,args.server,'test.snippet.log',args.dts,args.errors)
+        session.commit()
 
     if args.query:
         query = session.query(Message)
@@ -248,7 +357,7 @@ def main():
         def load(input,server,file):
             window=0
             for line in input.readlines():
-                process(line,pattern,mapping,keys,session,server,file)
+                process(line,pattern,mapping,keys,session,server,file,args.dts,args.errors)
                 window+=1
                 if window % args.window == 0:
                     session.commit()
