@@ -162,6 +162,26 @@ class File(Base):
             'name'
         ]
 
+####################################################################################################
+@from_object()
+@to_object()
+class Thread(Base):
+
+    __tablename__ = 'thread'
+    id            = Column(Integer, primary_key=True)
+    name          = Column(String(255))
+
+    def __init__(self,id=None,name=None):
+        self.id=id
+        self.name=name
+        return
+    
+    def __dir__(self):
+        return [
+            'id',
+            'name'
+        ]
+
 
 ####################################################################################################
 @from_object()
@@ -179,7 +199,8 @@ class Message(Base):
     key           = relationship(Key)
     key_id        = Column(Integer, ForeignKey('key.id'))
     when          = Column(DateTime)
-    thread        = Column(String(50))
+    thread        = relationship(Thread)
+    thread_id     = Column(Integer, ForeignKey('thread.id'))
     description   = Column(String(1024))
 
     def __init__(
@@ -285,7 +306,10 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
         value=match.group(k+1)
         if mapping[k] == 'when':
             data[mapping[k]] = datetime.strptime(value,dts)
+        elif mapping[k] == 'thread':
+            data[mapping[k]] = byName(Thread,value,session)
         elif mapping[k] == 'description':
+            data[mapping[k]] = value
             for p in keys:
                 m = p.match(value)
                 if m:
