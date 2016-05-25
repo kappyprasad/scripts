@@ -1,5 +1,5 @@
 #drop view if exists `donkey`.`mule_logs`;
-
+    
 CREATE 
     ALGORITHM = UNDEFINED 
     DEFINER = `root`@`localhost` 

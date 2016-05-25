@@ -201,7 +201,7 @@ class Message(Base):
     when          = Column(DateTime)
     thread        = relationship(Thread)
     thread_id     = Column(Integer, ForeignKey('thread.id'))
-    description   = Column(String(1024))
+    description   = Column(String(4096))
 
     def __init__(
         self,
