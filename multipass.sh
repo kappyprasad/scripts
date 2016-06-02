@@ -86,7 +86,7 @@ then
     fi
 fi
 
-horizontal.pl
+#horizontal.pl
 
 declare -a commands
 

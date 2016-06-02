@@ -150,16 +150,19 @@ class File(Base):
     __tablename__ = 'file'
     id            = Column(Integer, primary_key=True)
     name          = Column(String(255))
-
-    def __init__(self,id=None,name=None):
+    loaded        = Column(Integer)
+    
+    def __init__(self,id=None,name=None,loaded=0):
         self.id=id
         self.name=name
+        self.loaded=loaded
         return
     
     def __dir__(self):
         return [
             'id',
-            'name'
+            'name',
+            'loaded',
         ]
 
 ####################################################################################################
@@ -301,7 +304,7 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
         if errors:
             sys.stderr.write('%s\n'%line)
         return
-    data = dict(server=byName(Server,server,session),file=byName(File,file,session))
+    data = dict(server=byName(Server,server,session),file=file)
     for k in range(len(mapping)):
         value=match.group(k+1)
         if mapping[k] == 'when':
@@ -359,11 +362,13 @@ def main():
     session = loader.Session()
 
     if args.test:
+        file=byName(File,'test',session)
         for line in [
             '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility',
             '2016-05-21 09:20:58,056 [http-nio-8080-exec-6] WARN  Inserted: FlightMucken',
         ]:
-            process(line,pattern,mapping,keys,session,args.server,'test.snippet.log',args.dts,args.errors)
+            process(line,pattern,mapping,keys,session,args.server,file,args.dts,args.errors)
+        file.loaded = 2
         session.commit()
 
     if args.query:
@@ -379,16 +384,19 @@ def main():
     else:
         
         def load(input,server,file):
-            window=0
-            for line in input.readlines():
-                process(line,pattern,mapping,keys,session,server,file,args.dts,args.errors)
-                window+=1
-                if window % args.window == 0:
+            fp = byName(File,file,session)
+            loaded=fp.loaded
+            for line in input.readlines()[loaded:]:
+                process(line,pattern,mapping,keys,session,server,fp,args.dts,args.errors)
+                loaded+=1
+                if loaded % args.window == 0:
+                    fp.loaded = loaded
                     session.commit()
-                    sys.stdout.write('%s -> %d\r'%(file,window))
+                    sys.stdout.write('%s -> %d\r'%(file,loaded))
                     sys.stdout.flush()
+            sys.stdout.write('%s -> %d\n'%(file,loaded))
+            fp.loaded=loaded
             session.commit()
-            sys.stdout.write('\n')
 
         if args.input:
             for file in args.input:
@@ -396,6 +404,7 @@ def main():
                 load(input,args.server,file)
                 input.close()
         else:
+            sys.stderr.write('\nreading from stdin ...\n')
             input = sys.stdin
             load(input,args.server,'stdin')
         
