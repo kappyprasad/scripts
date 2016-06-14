@@ -125,17 +125,19 @@ do
         inset=$(( (($col - 1) * $over) + ($offset * $pixelwidth) ))
 
         command=${commands[0]}
+        title=${command#*tail -f *}
+        title=${title%| xml.pl | error.pl*}
         unset commands[0]
         commands=(${commands[@]})
                   
         if [ "$verbose" = "-v" ] || [  "$test" = "-t" ]
         then
-            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command"
+            echo xterm -geometry ${width}x${height}+${inset}+${downset} -T "$title" -e "$base $command"
         fi
         
         if [ -z "$test" ]
         then
-            xterm -geometry ${width}x${height}+${inset}+${downset} -T "$command" -e "$base $command" &
+            xterm -geometry ${width}x${height}+${inset}+${downset} -T "$title" -e "$base $command" &
         fi
         
         col=$(( $col - 1 ))
