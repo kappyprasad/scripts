@@ -308,7 +308,7 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
     for k in range(len(mapping)):
         value=match.group(k+1)
         if mapping[k] == 'when':
-            data[mapping[k]] = datetime.strptime(value,dts)
+            data[mapping[k]] = datetime.strptime(value.replace('T',' '),dts)
         elif mapping[k] == 'thread':
             data[mapping[k]] = byName(Thread,value,session)
         elif mapping[k] == 'description':
