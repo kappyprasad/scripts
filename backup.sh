@@ -20,26 +20,12 @@ clean=''
 while getopts vhctb: opt
 do
     case $opt in
-        v) 
-            verbose='-v'
-            ;;
-        h) 
-            echo -e "$help"
-            exit 0
-            ;;
-        c)
-            clean='-c'
-            ;;
-        b)
-            backup_dir=$OPTARG
-            ;;
-        t)
-            mkdtarget='-t'
-            ;;
-        \?)
-            echo "\n$(basename $0): Invalid option -$opt\n\n$help\n" >&2
-            exit 1
-            ;;
+        v)  verbose='-v';;
+        h)  echo -e "$help"; exit 0;;
+        c)  clean='-c';;
+        b)  backup_dir=$OPTARG;;
+        t)  mkdtarget='-t';;
+        \?) echo "\nInvalid option -$opt\n\n$help\n" >&2; exit 1;;
     esac
 done
 
