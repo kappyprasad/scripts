@@ -17,24 +17,26 @@ parser.add_argument('-t','--text',    action='store',      help='set value as te
 parser.add_argument('-T','--tfile',   action='store',      help='set value as text value taken from tfile')
 parser.add_argument('-a','--attr',    action='store',      help='set value as attribute value')
 parser.add_argument('-x','--xpath',   action='store',      help='xpath to apply to the file')
-parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='xmlns:prefix=\"url\"')
+parser.add_argument('-n','--ns',      action='store',      help='added to context ', nargs='*', metavar='prefix=\"url\"')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 args = parser.parse_args()
 
 if args.verbose:
-    prettyPrint(vars(args), colour=True, output=sys.stderr)
+    prettyPrint(('args',vars(args)), colour=True, output=sys.stderr)
 
 def main():
 
-    pn = re.compile('^xmlns:([^=]*)=(.*)$');
+    pn = re.compile('^([^=]*)=["\']([^\'"]*)["\']$')
     ns = {}
     if args.ns:
         for nsp in args.ns:
             m = pn.match(nsp)
             if m:
                 ns[m.group(1)]=m.group(2)
-
+        if args.verbose:
+            prettyPrint(('ns',ns), colour=True, output=sys.stderr)
+            
     if args.attr and args.xpath:
         pa = re.compile('^(.*)/@([^@]*)$')
         m = pa.match(args.xpath)
