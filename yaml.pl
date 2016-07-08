@@ -44,7 +44,7 @@ sub processLine {
   s/(['"])(\s*:\s*)([^,]*)/\1\2$libraries'colour{'Green'}\3$libraries'colour{'Off'}\4/g;
 
   # element
-  s/([^: '"]+)(:\s*)$/$libraries'colour{'Orange'}\1$libraries'colour{'Off'}\2/g;
+  s/([^ '"]+)(:\s*)$/$libraries'colour{'Orange'}\1$libraries'colour{'Off'}\2/g;
 
   print "$_\n";
 
