@@ -88,7 +88,17 @@ def main():
 
                 fp = open(arg)
 
-            doParse(fp,output,colour,areturn,rformat,html,preserve,comments)
+            doParse(
+                fp,
+                output,
+                colour=colour,
+                areturn=areturn,
+                rformat=rformat,
+                html=html,
+                preserve=preserve,
+                comments=comments,
+                fname=arg
+            )
 
             fp.close()
 
@@ -99,7 +109,17 @@ def main():
 
     else:
         fp = StringIO.StringIO('\n'.join(sys.stdin.readlines()))
-        doParse(fp,output,colour,areturn,rformat,html,preserve,comments)
+        doParse(
+            fp,
+            output,
+            colour=colour,
+            areturn=areturn,
+            rformat=rformat,
+            html=html,
+            preserve=preserve,
+            comments=comments,
+            fname='stdin'
+        )
         fp.close()
         
     if foutput:
