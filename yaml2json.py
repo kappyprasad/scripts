@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
 parser.add_argument('-r','--reverse', action='store_true', help='reverse json->yaml')
+parser.add_argument('-f','--flow',    action='store_true', help='default flow style')
 parser.add_argument('-o','--output',  action='store',      help='output file name')
 parser.add_argument('-i','--input',   action='store',      help='files to parse', nargs='*', default=[])
 parser.add_argument('file',           action='store',      help='files to parse', nargs='*')
@@ -44,7 +45,7 @@ def process(input,output):
     if args.reverse:
         object = json.load(input)
         object = query(object)
-        yaml.dump(object,stream=output,indent=4,default_flow_style=False)
+        yaml.dump(object,stream=output,indent=4,default_flow_style=args.flow)
     else:
         object = yaml.load(input)
         object = query(object)
