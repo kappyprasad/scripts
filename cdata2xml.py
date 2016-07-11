@@ -9,6 +9,7 @@ def argue():
 
     parser.add_argument('-v','--verbose',    action='store_true')
     parser.add_argument('-r','--reverse',    action='store_true')
+    parser.add_argument('-w','--wrap',       action='store_true')
     parser.add_argument('-i','--input',      action='store')
     parser.add_argument('-o','--output',     action='store')
 
@@ -35,7 +36,11 @@ def main():
         output = open(args.output,'w')
 
     if args.reverse:
+        if args.wrap:
+            output.write('<xml attr="')
         xml2cdata(input,output)
+        if args.wrap:
+            output.write('"/>')
     else:
         cdata2xml(input,output)
 
