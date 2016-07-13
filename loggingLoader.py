@@ -312,7 +312,7 @@ def byName(tipe,name,session):
     return names[tipe][name]
 
 ####################################################################################################
-def process(line,pattern,mapping,keys,session,server,file,dts,errors=False,regex=None,replace=None):
+def process(line,pattern,mapping,keys,session,server,file,dts,errors=False,regex=None,replace=None,verbose=False):
     if regex and replace:
         m = regex.match(line)
         if m:
@@ -342,7 +342,8 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False,regex
         else:
             data[mapping[k]] = value
     m = Message(**data)
-    #print dumper(m)
+    if verbose:
+        print dumper(m)
     session.add(m)
     return
     
@@ -389,7 +390,8 @@ def main():
             process(
                 line,pattern,mapping,keys,session,args.server,file,args.dts,args.errors,
                 re.compile(args.regex) if args.regex else None,
-                args.replace
+                args.replace,
+                args.verbose
             )
         file.loaded = 2
         session.commit()
@@ -413,7 +415,8 @@ def main():
                 process(
                     line,pattern,mapping,keys,session,server,fp,args.dts,args.errors,
                     re.compile(args.regex) if args.regex else None,
-                    args.replace
+                    args.replace,
+                    args.verbose
                 )
                 loaded+=1
                 if loaded % args.window == 0:
