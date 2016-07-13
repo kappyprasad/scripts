@@ -14,10 +14,21 @@ from Tools.pretty import *
 
 import sqlalchemy
 import sqlalchemy.orm
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
-from sqlalchemy.engine import reflection
-from sqlalchemy.orm import relationship, backref, joinedload
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import \
+    Column, \
+    Integer, \
+    String, \
+    Float, \
+    DateTime, \
+    ForeignKey
+from sqlalchemy.engine import \
+    reflection
+from sqlalchemy.orm import \
+    relationship, \
+    backref, \
+    joinedload
+from sqlalchemy.ext.declarative import \
+    declarative_base
 from sqlalchemy.orm.collections import \
     InstrumentedList, \
     InstrumentedDict, \
@@ -49,6 +60,9 @@ def argue():
 
     parser.add_argument('-T', '--dts',      action='store',      default='%Y-%m-%d %H:%M:%S')
 
+    parser.add_argument('-g', '--regex',    action='store',      help='apply a s/regex/replace/ for each line before procesing')
+    parser.add_argument('-G', '--replace',  action='store',      help='apply a s/regex/replace/ for each line before procesing')
+    
     parser.add_argument('-r', '--pattern',  action='store',      default=\
                         '^'+
                         '(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),\d{3}\s+'+
@@ -298,7 +312,12 @@ def byName(tipe,name,session):
     return names[tipe][name]
 
 ####################################################################################################
-def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
+def process(line,pattern,mapping,keys,session,server,file,dts,errors=False,regex=None,replace=None):
+    if regex and replace:
+        m = regex.match(line)
+        if m:
+            line = regex.sub(replace,line)
+        #print line
     match = pattern.match(line)
     if not match:
         if errors:
@@ -308,7 +327,7 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False):
     for k in range(len(mapping)):
         value=match.group(k+1)
         if mapping[k] == 'when':
-            data[mapping[k]] = datetime.strptime(value.replace('T',' '),dts)
+            data[mapping[k]] = datetime.strptime(value,dts)
         elif mapping[k] == 'thread':
             data[mapping[k]] = byName(Thread,value,session)
         elif mapping[k] == 'description':
@@ -367,7 +386,11 @@ def main():
             '2016-05-20 09:20:58,056 [http-nio-8080-exec-5] INFO  Inserted: FlightEligibility',
             '2016-05-21 09:20:58,056 [http-nio-8080-exec-6] WARN  Inserted: FlightMucken',
         ]:
-            process(line,pattern,mapping,keys,session,args.server,file,args.dts,args.errors)
+            process(
+                line,pattern,mapping,keys,session,args.server,file,args.dts,args.errors,
+                re.compile(args.regex) if args.regex else None,
+                args.replace
+            )
         file.loaded = 2
         session.commit()
 
@@ -387,7 +410,11 @@ def main():
             fp = byName(File,file,session)
             loaded=fp.loaded
             for line in input.readlines()[loaded:]:
-                process(line,pattern,mapping,keys,session,server,fp,args.dts,args.errors)
+                process(
+                    line,pattern,mapping,keys,session,server,fp,args.dts,args.errors,
+                    re.compile(args.regex) if args.regex else None,
+                    args.replace
+                )
                 loaded+=1
                 if loaded % args.window == 0:
                     fp.loaded = loaded
