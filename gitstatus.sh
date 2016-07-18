@@ -16,19 +16,10 @@ recurse=''
 while getopts vhfr opt
 do
     case $opt in
-        v) 
-            verbose='-v'
-            ;;
-        h) 
-            echo -e "$help"
-            exit 0
-            ;;
-        f)
-            fetch="-f"
-            ;;
-        r)
-            recurse="-r"
-            ;;
+        v) verbose='-v';;
+        h) echo -e "$help"; exit 0;;
+        f) fetch="-f";;
+        r) recurse="-r";;
     esac
 done
 

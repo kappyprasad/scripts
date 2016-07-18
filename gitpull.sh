@@ -78,10 +78,9 @@ else
         then
             horizontal.pl
             echo -e "\033[36m$repo\033[0m"
-            source gittree.sh
-        else
-            source gittree.sh > /dev/null
         fi
+
+        source gittree.sh > /dev/null
     
         if [ "$all_everything" = "-a" ] || [ "$all_origins" = "-O" ]
         then

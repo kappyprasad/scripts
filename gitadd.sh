@@ -6,94 +6,90 @@ usage: $(basename $0) <files>\n\
 -v verbose\n\
 -h help\n\
 -t test\n\
+-r recurse\n\
 -d delete\n\
 -a add\n\
 "
 
-verbose=0
+verbose=''
 test=''
+addopt=''
+delopt=''
 matchers=('.M')
+recurse=''
 
-while getopts vhtda opt
+while getopts vhtrda opt
 do
     case $opt in
-        v) 
-            verbose=1
-            ;;
-        h) 
-            echo "$help"
-            exit 0
-            ;;
-        t)
-            test='echo '
-            ;;
-        d) 
-            matchers+=('.D')
-            ;;
-        a) 
-            matchers+=('\?\?')
-            ;;
+        v) verbose='-v';;
+        h) echo -e "$help";exit 0;;
+        t) test='-t';;
+        r) recurse='-r';;
+        d) delopt='-d';matchers+=('.D');;
+        a) addopt='-a';matchers+=('\?\?');;
     esac
 done
 
 shift $((OPTIND-1))
 
-function join { 
-    local IFS="$1" 
-    shift
-    echo "$*" 
-}
+repo="$1"
 
-query=$(join \| ${matchers[@]} )
-
-if [ "$verbose" = "1" ]
+if [ -z "$repo" ] && [ "$recurse" = "-r" ]
 then
-    echo "matchers=$matchers"
-    echo "query=$query"
-fi
-
-for git in $*
-do
-    $test git add $git
-done
-
-if [ -d .git ]
-then
-    local=1
-    repos=$(pwd)
+    find . -name .git -and -type d -exec $0 \
+         $verbose \
+         $test \
+         $recurse \
+         $delopt \
+         $addopt \
+         "{}" \
+    \;
 else
-    local=0
-    repos=*
+    if [ "$recurse" = "-r" ]
+    then
+        repo=$(dirname "$repo")
+    else
+        repo=.
+    fi
+    
+    function join { 
+        local IFS="$1" 
+        shift
+        echo "$*" 
+    }
+    
+    query=$(join \| ${matchers[@]} )
+    
+    pushd "$repo" > /dev/null
+
+    if [ ! -d .git ]
+    then
+        echo "not in root of git tree"
+        exit 1
+    fi
+
+    if [ "$verbose" = "-v" ]
+    then
+        horizontal.pl
+        echo -e "\033[36m$repo\033[0m"
+    fi
+
+    if [ "$test" = "-t" ]
+    then
+        test='echo'
+    fi
+    
+    git status --porcelain \
+        | egrep "$query" \
+        | cut -c 4- \
+        | perl -pe 's/ ->.*$//' \
+        | xargs -n1 -I FILE $test git add "FILE"
+    
+    
+    git status --porcelain
+    
+    popd >/dev/null
 fi
 
-for repo in $repos
-do 
-    if [ -d "$repo" ] && [ ! "$repo" = "." ]
-    then 
-        pushd "$repo" > /dev/null
-
-        if [ ! -d .git ]
-        then
-            echo "not in root of git tree"
-            exit 1
-        fi
-
-        if [ "$local" = "0" ] || [ "$verbose" = "1" ]
-        then
-            echo -e "\033[36m$repo\033[0m"
-        fi
-
-        git status --porcelain \
-            | egrep "$query" \
-            | cut -c 4- \
-            | perl -pe 's/ ->.*$//' \
-            | xargs -n1 -I FILE $test git add "FILE"
-
-        
-        git status --porcelain
-
-        popd >/dev/null
-    fi
-done
 
 
