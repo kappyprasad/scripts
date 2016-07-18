@@ -19,8 +19,8 @@ recurse=''
 all_everything=''
 all_origins=''
 all_branches=''
-origin='origin'
-branch='master'
+the_origin=''
+the_branch=''
 test=''
 echo=''
 
@@ -33,8 +33,8 @@ do
         O) all_origins='-O';;
         B) all_branches='-B';;
         a) all_everything='-a';;
-        o) origin=$OPTARG;;
-        b) branch=$OPTARG;;
+        o) the_origin=$OPTARG;;
+        b) the_branch=$OPTARG;;
         t) test='-t'; echo='echo';;
         \?)
             # everything else is invalid
@@ -57,8 +57,8 @@ then
          $all_branches \
          $recurse \
          $test \
-         -o "$origin" \
-         -b "$branch" \
+         -o "$the_origin" \
+         -b "$the_branch" \
          "{}" \
     \;
 else
@@ -71,42 +71,56 @@ else
 
     pushd "$repo" > /dev/null
 
-    if [ "$verbose" = "-v" ]
-    then
-        horizontal.pl
-        echo -e "\033[36m$repo\033[0m"
-    fi
-
     if [ -d '.git' ]
     then
 
-        origins=()
+        if [ "$verbose" = "-v" ]
+        then
+            horizontal.pl
+            echo -e "\033[36m$repo\033[0m"
+            source gittree.sh
+        else
+            source gittree.sh > /dev/null
+        fi
+    
         if [ "$all_everything" = "-a" ] || [ "$all_origins" = "-O" ]
         then
-            origins=($(git remote))
+            origins=$origins
         else
-            origins=($origin)
+            if [ ! -z "$the_origin" ]
+            then
+                origins=($the_origin)
+            else
+                origins=($origin)
+            fi
         fi
 
-        branches=()
         if [ "$all_everything" = "-a" ] || [ "$all_branches" = "-B" ]
         then
-            branches=($(git branch | cut -c 3-))
+            branches=$branches
         else
-            branches=($branch)
+            if [ ! -z "$the_branch" ]
+            then
+                branches=($the_branch)
+            else
+                branches=($branch)
+            fi
         fi
         
         for o in ${origins[@]}
         do
-            for b in ${branches[@]}
-            do
-                if [ "$verbose" = "-v" ]
-                then
-                    horizontal.pl .
-                    echo -e "\033[34m$o->$b\033[0m"
-                fi
-                $echo git pull $o $b
-            done
+            if [ ! -z "$o" ]
+            then
+                for b in ${branches[@]}
+                do
+                    if [ "$verbose" = "-v" ]
+                    then
+                        horizontal.pl .
+                        echo -e "\033[34m$o->$b\033[0m"
+                    fi
+                    $echo git pull $o $b
+                done
+            fi
         done
     fi
     
