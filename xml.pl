@@ -47,7 +47,8 @@ sub processLine {
 
   if ($comment == 0) {
 	# <element>
-	s/<([^\?\!][^>]+)>/$libraries'colour{'Teal'}<$libraries'colour{'Purple'}\1$libraries'colour{'Teal'}>$libraries'colour{'Off'}/g;
+	s/<([^\?\!][^>]+)(>)/$libraries'colour{'Teal'}<$libraries'colour{'Purple'}\1$libraries'colour{'Teal'}\2$libraries'colour{'Off'}/g;
+	s/<([^\?\!][^ ]+)( )/$libraries'colour{'Teal'}<$libraries'colour{'Purple'}\1$libraries'colour{'Off'}\2/g;
 
 	# &amp; etc
 	s/(&[^;]+;)/$libraries'colour{'Purple'}\1$libraries'colour{'Off'}/g;
