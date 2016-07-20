@@ -31,6 +31,7 @@ def argue():
     parser.add_argument('-b','--horizon',   action='store_true', help='horizontal bar between messages'          )
     parser.add_argument('-c','--colour',    action='store_true', help='show in colour'                           )
     parser.add_argument('-s','--stubb',     action='store_true', help='stub out date time stamp'                 )
+    parser.add_argument('-R','--rootattr',  action='store_true', help='format only root xml attributes'          )
     parser.add_argument('-a','--attribute', action='store_true', help='format xml attributes'                    )
     parser.add_argument('-u','--usdate',    action='store_true', help='us date format'                           )
     parser.add_argument('-t','--text',      action='store_true', help='text xpath output'                        )
@@ -217,7 +218,7 @@ def printSnippetXML(xml):
         fp = getDumpFP()
     else:
         fp = sys.stdout
-    myParser = MyParser(colour=args.colour, rformat=args.attribute, output=fp)
+    myParser = MyParser(colour=args.colour, rformat=args.rootattr,areturn=args.attribute, output=fp)
     if args.verbose:
         sys.stdout.write('xml=%s'%xml)
     try:
