@@ -15,7 +15,7 @@ verbose=''
 test=''
 addopt=''
 delopt=''
-matchers=('.M')
+matchers=('.M' '.T')
 recurse=''
 
 while getopts vhtrda opt
