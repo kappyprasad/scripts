@@ -12,6 +12,8 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-v','--verbose',   action='store_true', help='show detailed output')
 parser.add_argument('-e','--encrypt',   action='store_true', help='use ssl')
+parser.add_argument('-d','--delete',
+                    action='store_true', help='delete after read')
 parser.add_argument('-S','--server',    action='store',      help='server name',        default='mail.tpg.com.au')
 parser.add_argument('-P','--outport',   action='store',      help='port number',        default=25, type=int)
 parser.add_argument('-N','--inport',    action='store',      help='port number',        default=110, type=int)
@@ -40,7 +42,7 @@ if args.verbose:
 if args.password:
     password = args.password
 else:
-    passwords = Passwords(args.server, 'email', args.username, clear=False, verbose=args.verbose)
+    passwords = Passwords(args.server, 'email', args.username, clear=False)
     password = passwords.password
 
 def read():
@@ -58,7 +60,11 @@ def read():
         for stanza in poppy.retr(message+1)[1]:
             if stanza.startswith('Subject:'):
                 print stanza
-                
+                break
+        if args.delete:
+            poppy.dele(message+1)
+
+    poppy.quit()
     return
 
 def send():
