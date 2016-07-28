@@ -60,7 +60,8 @@ def download(url):
 
     for xi in ctx.xpathEval('//xsd:import') + ctx.xpathEval('//xsd:include'):
         child = getAttribute(xi,'schemaLocation')
-        children.append(child)
+        if child:
+            children.append(child)
 
     del doc
     del ctx
