@@ -53,46 +53,61 @@ def download(url):
 
     (doc,ctx,nsp) = getContextFromStringWithNS(xml,None)
 
+    psn={}
+    for p in nsp.keys():
+        psn[nsp[p]] = p
+
+    #print json.dumps(psn,indent=4)
+
     xsp = 'xs'
     xsd = 'http://www.w3.org/2001/XMLSchema'
     ctx.xpathRegisterNs(xsp,xsd)
 
-    print json.dumps(nsp,indent=4)
     
     r = doc.getRootElement()
     
     children = []
 
+    # save children references
     for xi in ctx.xpathEval('//xs:import') + ctx.xpathEval('//xs:include'):
         child = getAttribute(xi,'schemaLocation')
         if child:
             children.append(child)
 
+    files = {
+        #namespace: filepath
+    }
+
+    # save inline schema
     if r.name == 'definitions':
         for si in ctx.xpathEval('//xs:schema'):
             si.unlinkNode()
-            setAttribute(si,'xmlns:tns',getAttribute(si,'targetNamespace'))
-            p = re.compile('^ xmlns:([^=]*)=["\']([^\'"]*)["\']$')
-            s = str(si.ns())
-            #print s
-            m = p.match(s)
-            if m:
-                #print m.groups()
-                setAttribute(si,'xmlns:%s'%m.group(1),m.group(2))
-
+            tns = getAttribute(si,'targetNamespace')
+            setAttribute(si,'xmlns:tns',tns)
             for p in nsp.keys():
                 if p != 'tns':
                     setAttribute(si,'xmlns:%s'%p,nsp[p])
-                    
-            f = '%s/%s.xsd'%(args.directory,getAttribute(si,'targetNamespace'))
+            f = '%s/%s.xsd'%(args.directory,tns)
+            files[tns] = f
             print f
             with open(f,'w') as fo:
                 fo.write(str(si))
                 fo.close()
-    
+
     del doc
     del ctx
 
+    # reindex schema locations
+    for ns in files.keys():
+        (doc,ctx) = getContextFromFile(files[ns])
+        for xi in ctx.xpathEval('//xs:import'):
+            tns = getAttribute(xi,'namespace')
+            if not getAttribute(xi,'schemaLocation'):
+                setAttribute(xi,'schemaLocation',files[tns].lstrip(args.directory).lstrip('/'))
+        fo = open(files[ns],'w')
+        fo.write(str(doc))
+        fo.close()
+        
     for child in children:
         download(child)
         
