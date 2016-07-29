@@ -51,21 +51,47 @@ def download(url):
         fo.write(xml)
         fo.close()
 
-    ns = [
-        'xsd="http://www.w3.org/2001/XMLSchema"',
-    ]
+    (doc,ctx,nsp) = getContextFromStringWithNS(xml,None)
 
+    xsp = 'xs'
+    xsd = 'http://www.w3.org/2001/XMLSchema'
+    ctx.xpathRegisterNs(xsp,xsd)
+
+    print json.dumps(nsp,indent=4)
+    
+    r = doc.getRootElement()
+    
     children = []
-    (doc,ctx,nsp) = getContextFromStringWithNS(xml,ns)
 
-    for xi in ctx.xpathEval('//xsd:import') + ctx.xpathEval('//xsd:include'):
+    for xi in ctx.xpathEval('//xs:import') + ctx.xpathEval('//xs:include'):
         child = getAttribute(xi,'schemaLocation')
         if child:
             children.append(child)
 
+    if r.name == 'definitions':
+        for si in ctx.xpathEval('//xs:schema'):
+            si.unlinkNode()
+            setAttribute(si,'xmlns:tns',getAttribute(si,'targetNamespace'))
+            p = re.compile('^ xmlns:([^=]*)=["\']([^\'"]*)["\']$')
+            s = str(si.ns())
+            #print s
+            m = p.match(s)
+            if m:
+                #print m.groups()
+                setAttribute(si,'xmlns:%s'%m.group(1),m.group(2))
+
+            for p in nsp.keys():
+                if p != 'tns':
+                    setAttribute(si,'xmlns:%s'%p,nsp[p])
+                    
+            f = '%s/%s.xsd'%(args.directory,getAttribute(si,'targetNamespace'))
+            print f
+            with open(f,'w') as fo:
+                fo.write(str(si))
+                fo.close()
+    
     del doc
     del ctx
-    del nsp
 
     for child in children:
         download(child)
