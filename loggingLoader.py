@@ -45,6 +45,7 @@ def argue():
     parser.add_argument('-c', '--colour',   action='store_true', help='colour output')
     parser.add_argument('-e', '--errors',   action='store_true', help='show pattern match errors')
     parser.add_argument('-m', '--make',     action='store_true', help='make schema')
+    parser.add_argument('-M', '--klobber',  action='store_true', help='make schema and quit')
     parser.add_argument('-w', '--window',   action='store',      type=int, default=1000)
 
     parser.add_argument('-f', '--filter',   action='store',      help='filter_by')
@@ -143,7 +144,7 @@ class Key(Base):
 
     __tablename__ = 'key'
     id            = Column(Integer, primary_key=True)
-    name          = Column(String(255))
+    name          = Column(String(4096))
 
     def __init__(self,id=None,name=None):
         self.id=id
@@ -271,7 +272,7 @@ class Loader(object):
 
         print url
         
-        if args.make:
+        if args.make or args.klobber:
             engine = sqlalchemy.create_engine(url)
             for dbr in engine.execute('show databases'):
                 if '%s'%dbr[0] == args.database:
@@ -281,7 +282,7 @@ class Loader(object):
             engine.execute('create database %s'%args.database)
             engine.execute('use %s'%args.database)
             del engine
-            
+
         self.engine = sqlalchemy.create_engine(
             '%s/%s'%(
                 url,
@@ -290,7 +291,7 @@ class Loader(object):
             echo=args.verbose
         )
 
-        if args.make:
+        if args.make or args.klobber:
             Base.metadata.create_all(self.engine)
 
         self.Session = sqlalchemy.orm.sessionmaker()
@@ -379,6 +380,9 @@ def main():
 
     loader = Loader(args,password)
 
+    if args.klobber:
+        return
+    
     session = loader.Session()
 
     if args.test:
