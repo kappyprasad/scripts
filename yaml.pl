@@ -5,6 +5,14 @@ require "$1/libraries.ph" if ($0=~/^(.*)\/[^\/]+$/);
 $|=1;
 #$/='}';
 
+$off    = $libraries'colour{'Off'};
+$green  = $libraries'colour{'Green'};
+$red    = $libraries'colour{'Red'};
+$blue   = $libraries'colour{'Blue'};
+$teal   = $libraries'colour{'Teal'};
+$purple = $libraries'colour{'Purple'};
+$orange = $libraries'colour{'Orange'};
+
 if ($#ARGV == -1 ) {
   while (<>) {
     &processLine();
@@ -30,21 +38,17 @@ else {
   }
 }
 
-
 sub processLine {
   s/[\r\n]//gi;
 
-  s/([\[\]])/$libraries'colour{'Teal'}\1$libraries'colour{'Off'}/g;
-  s/([{}])/$libraries'colour{'Purple'}\1$libraries'colour{'Off'}/g;
-
-  # attribute=
-  s/(['"])([^'"]*)(['"])(\s*:\s*)/\1$libraries'colour{'Red'}\2$libraries'colour{'Off'}\3\4/g;
-  
-  # "value"
-  s/(['"])(\s*:\s*)([^,]*)/\1\2$libraries'colour{'Green'}\3$libraries'colour{'Off'}\4/g;
+  s/([\[\]])/${teal}\1${off}/g;
+  s/([{}])/${purple}\1${off}/g;
 
   # element
-  s/([^ '"]+)(:\s*)$/$libraries'colour{'Orange'}\1$libraries'colour{'Off'}\2/g;
+  s/([^:]+)(:\s*)$/${orange}\1${off}\2/g;
+
+  # attribute/value
+  s/([^:]*):([^:]+)/${red}\1${off}:${green}\2${off}/g;
 
   print "$_\n";
 
