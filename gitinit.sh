@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 existing=0
-base="/Users/davidedson/Repository"
+base="/Volumes/128GB/Repository"
 user=$(whoami)
 host=localhost
 
@@ -18,22 +18,10 @@ echo=''
 while getopts hetb: opt
 do
     case $opt in
-        h)
-            echo -e "$usage"
-            exit 
-            ;;
-        e) 
-            existing=1
-            echo "upload existing" 1>&2
-            ;;
-        t)
-            echo='echo '
-            echo "testing only, won\'t execute" 1>&2
-            ;;
-        b) 
-            base=$OPTARG
-            echo "base=$base" 1>&2
-            ;;
+        h) echo -e "$usage"; exit;;
+        e) existing=1; echo "upload existing" 1>&2;;
+        t) echo='echo '; echo "testing only, won\'t execute" 1>&2;;
+        b) base=$OPTARG; echo "base=$base" 1>&2;;
     esac
 done
 

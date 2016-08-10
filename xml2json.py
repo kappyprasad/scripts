@@ -52,7 +52,9 @@ def main():
         object = xmltodict.parse(input,process_namespaces=args.namespace,force_cdata=args.cdata)
         json.dump(object,output,indent=4)
 
-    output.close()
+    if args.output:
+        print args.output
+        output.close()
     input.close()
     
     return
