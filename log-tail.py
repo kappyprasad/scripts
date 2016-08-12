@@ -43,7 +43,7 @@ def argue():
     parser.add_argument('-f','--file',      action='store',      help='dump to file suffix'                      )
     parser.add_argument('-r','--regex',     action='store',      help='regex patter',                   nargs='*')
     parser.add_argument('-p','--pair',      action='store',      help='pair of start:end tags',         nargs='*')
-    parser.add_argument('files',            action='store',      help='the files to log',               nargs='*')
+    parser.add_argument('-i','--files',     action='store',      help='the files to log',               nargs='*')
 
     return parser.parse_args()
 

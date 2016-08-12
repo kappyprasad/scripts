@@ -68,7 +68,8 @@ else
 
     if [ "$verbose" = '-v' ]
     then
-        echo "$dir"
+        horizontal.pl
+        echo -e "\033[36m$dir\033[0m"
     fi
 
     declare -A repos
