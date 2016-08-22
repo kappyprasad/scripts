@@ -4,7 +4,7 @@
 import os,re,sys
 import unittest
 
-from Tools.test import *
+from Tools.testing import *
 from Tools.colours import *
 
 class ColoursTest(unittest.TestCase):

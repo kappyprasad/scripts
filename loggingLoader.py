@@ -332,11 +332,12 @@ def process(line,pattern,mapping,keys,session,server,file,dts,errors=False,regex
         elif mapping[k] == 'thread':
             data[mapping[k]] = byName(Thread,value,session)
         elif mapping[k] == 'description':
-            data[mapping[k]] = value
+            data[mapping[k]] = value[:4095]
             for p in keys:
                 m = p.match(value)
                 if m:
-                    data['key'] = byName(Key,m.group(1),session)
+                    v = m.group(1)
+                    data['key'] = byName(Key,v[:4096],session)
                     continue
         elif mapping[k] == 'level':
             data[mapping[k]] = byName(Level,value,session)
@@ -434,6 +435,8 @@ def main():
 
         if args.input:
             for file in args.input:
+                if not os.path.isfile(file):
+                    continue
                 input = open(file)
                 load(input,args.server,file)
                 input.close()

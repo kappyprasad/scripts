@@ -4,7 +4,7 @@
 import os,re,sys
 import unittest, uuid
 
-from Tools.test import *
+from Tools.testing import *
 from Tools.xpath import *
 from Tools.parser import *
 from Tools.pretty import *
