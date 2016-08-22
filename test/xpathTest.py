@@ -8,7 +8,6 @@ from Tools.testing import *
 from Tools.xpath import *
 from Tools.pretty import *
 
-import xpath
 
 xml="""<?xml version="1.0" encoding="UTF-8"?>
 <prefix:root attr="bob &lt; &gt; &amp; &quot; &apos; char" xmlns:prefix="http://www.mucken.com.au/Sample" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mucken.com.au/Sample Sample.xsd">
