@@ -6,22 +6,14 @@ from xlrd import open_workbook
 from xlwt import Workbook
 
 def argue():
-    parser = argparse.ArgumentParser('Excel processor input/output in xls,json,xml')
+    parser = argparse.ArgumentParser('Excel processor input/output by suffix')
 
+    suffix=map(lambda x:'*.%s'%x, ['xls', 'xlsx', 'json', 'xml'])
+    
     parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
     parser.add_argument('-c','--cdata',   action='store_true', help='force cdata')
-    parser.add_argument('-i','--input',   action='store',      help='input file')
-    parser.add_argument('-o','--output',  action='store',      help='output file')
-
-    groupI = parser.add_mutually_exclusive_group(required=True)
-    groupI.add_argument('-e', '--iXLS',   action='store_true', help='input is excel')
-    groupI.add_argument('-j', '--iJSON',  action='store_true', help='input is json')
-    groupI.add_argument('-x', '--iXML',   action='store_true', help='input is xml')
-
-    groupO = parser.add_mutually_exclusive_group(required=True)
-    groupO.add_argument('-E', '--oXLS',   action='store_true', help='output is excel')
-    groupO.add_argument('-J', '--oJSON',  action='store_true', help='output is json')
-    groupO.add_argument('-X', '--oXML',   action='store_true', help='output is xml', )
+    parser.add_argument('-i','--input',   action='store',      help='input file', required=True, metavar=','.join(suffix))
+    parser.add_argument('-o','--output',  action='store',      help='output file', required=True, metavar=','.join(suffix))
 
     args = parser.parse_args()
 
@@ -134,43 +126,32 @@ def main():
     global args, escape_orig
     args=argue()
 
-    if args.output:
-        output = open(args.output,'w')
-    else:
-        output = sys.stdout
-
-    if args.input:
-        input = open(args.input,'rb')
-    else:
-        input = sys.stdin
+    input = open(args.input,'rb')
         
-    if args.iXLS:
+    if args.input.lower().endswith('.xls') or args.input.lower().endswith('.xlsx'):
         js = xls2dict(input,verbose=args.verbose)
 
-    if args.iJSON:
+    if args.input.lower().endswith('.json'):
         js = json.load(input)
 
-    if args.iXML:
+    if args.input.lower().endswith('.xml'):
         js = xmltodict.parse(input,force_cdata=True)
 
-    if args.input:
-        input.close()
+    input.close()
     
-    if args.oXLS:
-        if args.output:
-            wb =dict2xls(js,verbose=args.verbose)
-            wb.save(args.output)
-        else:
-            sys.stderr.write('please specify -o output') 
+    output = open(args.output,'w')
 
-    if args.oJSON:
+    if args.output.lower().endswith('.xls') or args.output.lower().endswith('.xlsx'):
+        wb =dict2xls(js,verbose=args.verbose)
+        wb.save(args.output)
+
+    if args.output.lower().endswith('.json'):
         json.dump(js,output,indent=4)
 
-    if args.oXML:
+    if args.output.lower().endswith('.xml'):
         xmltodict.unparse(js,output=output,indent='    ',pretty=True)
 
-    if args.output:
-        output.close()
+    output.close()
         
     return
 

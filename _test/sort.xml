@@ -1,0 +1,4 @@
+<elbs>
+    <elb name="intelb-group-1-stg"> </elb>
+    <elb name="intelb-authentication-stg"> </elb>
+</elbs>
