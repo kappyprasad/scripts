@@ -12,6 +12,7 @@ def argue():
     
     parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
     parser.add_argument('-c','--cdata',   action='store_true', help='force cdata')
+    parser.add_argument('-f','--formula', action='store_true', help='use formulas')
     parser.add_argument('-i','--input',   action='store',      help='input file', required=True, metavar=','.join(suffix))
     parser.add_argument('-o','--output',  action='store',      help='output file', required=True, metavar=','.join(suffix))
 
@@ -24,7 +25,13 @@ def argue():
 
     return args
 
-def xls2dict(input,verbose=False):
+def escape_hacked(data, entities={}):
+    #print entities
+    if any(x in data for x in ['<', '>', '&']):
+        return '<![CDATA[%s]]>' % data
+    return escape_orig(data, entities)
+
+def xls2dict(input, verbose=False, formulas=False):
     js = {
         'workbook' : {
             'sheet' : []
@@ -57,15 +64,18 @@ def xls2dict(input,verbose=False):
             for c in range(s.ncols):
                 if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(c,s.cell(r,c)))
+                v = s.cell(r,c).value 
+                if formulas:
+                    v = s.cell(r,c).value
                 col = {
                     '@number' : '%d'%c,
-                    '#text' : '%s'%s.cell(r,c).value
+                    '#text' : '%s'%v
                 }
                 row['col'].append(col)
 
     return js
 
-def dict2xls(js,verbose=False):
+def dict2xls(js, verbose=False, formulas=False):
     if verbose:
         json.dump(js,sys.stderr,indent=4)
         sys.stderr.write('\n')
@@ -126,10 +136,14 @@ def main():
     global args, escape_orig
     args=argue()
 
+    if args.cdata:
+        escape_orig = xml.sax.saxutils.escape
+        xml.sax.saxutils.escape = escape_hacked
+
     input = open(args.input,'rb')
         
     if args.input.lower().endswith('.xls') or args.input.lower().endswith('.xlsx'):
-        js = xls2dict(input,verbose=args.verbose)
+        js = xls2dict(input, verbose=args.verbose, formulas=args.formula)
 
     if args.input.lower().endswith('.json'):
         js = json.load(input)
@@ -142,7 +156,7 @@ def main():
     output = open(args.output,'w')
 
     if args.output.lower().endswith('.xls') or args.output.lower().endswith('.xlsx'):
-        wb =dict2xls(js,verbose=args.verbose)
+        wb =dict2xls(js, verbose=args.verbose, formulas=args.formula)
         wb.save(args.output)
 
     if args.output.lower().endswith('.json'):
