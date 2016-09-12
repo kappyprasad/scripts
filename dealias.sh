@@ -11,9 +11,11 @@ fi
 b=$(alias "$a")
 #echo $b
 
+#everything after the first '
 c=${b#*\'}
 #echo $c
 
+#everything before the last '
 d=${c%\'*}
 echo $d
 
