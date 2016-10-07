@@ -56,6 +56,7 @@ def convert(source):
     vcard.add('fn')
     vcard.fn.value = populate(name,'c:FormattedName')
 
+    #print contact
     position = contact['c:contact']['c:PositionCollection']['c:Position']
     
     vcard.add('org')
@@ -113,8 +114,10 @@ def main():
         os.makedirs(args.output)
 
     for file in args.contacts:
-        convert(file)
-
+        try:
+            convert(file)
+        except:
+            sys.stderr.write('%s\n'%file)
     return
 
 if __name__ == '__main__': main()
