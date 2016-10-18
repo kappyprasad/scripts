@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 help="\
-usage: $(basename $0)\n\
+usage: $(basename $0) [dirs]\n\
 \n\
 -v         Verbose\n\
 -h         Help\n\
@@ -30,6 +30,19 @@ do
 done
 
 shift $((OPTIND-1))
+
+if [ $# \> 0 ]
+then
+    for d in "$@"
+    do
+        horizontal.pl =
+        pushd "$d" >/dev/null
+        echo ${d%/}
+        $0 $verbose $mkdtarget $clean -b "${backup_dir%/}/${d%/}/" 
+        popd > /dev/null
+    done
+    exit
+fi
 
 if [ -z "$backup_dir" ]
 then
