@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-
-
-
-
 import sys, os
 
 from Tools.colours import *

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 existing=0
-base="/Volumes/128GB/Repository"
+base="/Volumes/ORICO/Repository"
 user=$(whoami)
 host=localhost
 
@@ -55,7 +55,7 @@ $echo git init --bare
 popd
 
 function pushit {
-    $echo git remote add origin "$user@$host:$base/$repo.git"
+    $echo git remote add origin "$base/$repo.git"
     $echo git push origin master
     $echo git branch --set-upstream-to=origin/master master
     $echo gitpush.sh

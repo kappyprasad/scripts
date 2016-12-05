@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-
-
-
 ####################################################################################
 import sys,re,os,argparse
 
@@ -105,7 +102,7 @@ def main():
         output= sys.stdout
 
     input = StringIO.StringIO('%s\n'%dt.doc)
-    doParse(False,False,True,input,False,output,False,True)
+    doParse(input,output)
     input.close()
     output.close()
     return
