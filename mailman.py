@@ -13,8 +13,7 @@ def argue():
 
     parser.add_argument('-v','--verbose',   action='store_true', help='show detailed output')
     parser.add_argument('-e','--encrypt',   action='store_true', help='use ssl')
-    parser.add_argument('-d','--delete',
-                        action='store_true', help='delete after read')
+    parser.add_argument('-d','--delete',    action='store_true', help='delete after read')
     parser.add_argument('-S','--server',    action='store',      help='server name',        default='mail.tpg.com.au')
     parser.add_argument('-P','--outport',   action='store',      help='out port number',    default=25,     type=int)
     parser.add_argument('-N','--inport',    action='store',      help='in port number',     default=110,    type=int)
