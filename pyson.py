@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 
+'''
+An XPath for JSON
+ 
+A port of the Perl, and JavaScript versions of JSONPath
+see http://goessner.net/articles/JsonPath/
+ 
+Based on on JavaScript version by Stefan Goessner at:
+        http://code.google.com/p/jsonpath/
+and Perl version by Kate Rhodes at:
+        http://github.com/masukomi/jsonpath-perl/tree/master
+'''
 
-import sys,os,re
-import argparse
-import StringIO
-import json
+import sys,os,re, argparse, json, jsonpath
 
 from Tools.eddo import *
-from Tools.pyson import *
 from Tools.pretty import *
 
 horizon = buildHorizon()
@@ -23,12 +30,8 @@ parser.add_argument('-t','--text',    action='store_true', help='eval result as 
 parser.add_argument('-n','--name',    action='store_true', help='show file title')
 parser.add_argument('-f','--flat',    action='store_true', help='output flat with no indent')
 parser.add_argument('-o','--output',  action='store',      help='output file')
+parser.add_argument('-p','--path',    action='store',      help='evaluate a jsonpath')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
-
-group1 = parser.add_mutually_exclusive_group()
-group1.add_argument('-e','--eval',    action='store',      help='evaluate a JS eval',  metavar='\\[key\\[...')
-group1.add_argument('-d','--dots',    action='store',      help='evaluate a JS dots',  metavar='key.key...')
-group1.add_argument('-x','--xpath',   action='store',      help='evaluate a JS xpath', metavar='/key/key...')
 
 args = parser.parse_args()
 
@@ -41,17 +44,17 @@ inplace = args.inplace
 if inplace:
     colour = False
         
-def dump(object,output,colour):
+def dump(obj,output,colour):
     if args.text:
-        output.write('%s'%object)
+        output.write('%s'%obj)
     elif args.flat:
-        json.dump(object,output)
+        json.dump(obj,output)
     else:                    
-        prettyPrint(object,colour=colour,output=output,align=args.align)
+        prettyPrint(obj,colour=colour,output=output,align=args.align)
     return
 
 def main():
-    global colour, inplace, jpath
+    global colour, inplace
 
     if args.output:
         output = open(args.output,'a')
@@ -74,8 +77,10 @@ def main():
                 if args.bar:  sys.stderr.write('%s\n'%horizon)
                 if args.name: sys.stderr.write('%s\n'%f)
                 fp = open(f)
-            
-            object = query(fp,verbose=args.verbose,xpath=args.xpath,dots=args.dots,brackets=args.eval)
+
+            obj = json.load(fp)
+            if args.path:
+                obj = jsonpath.jsonpath(obj,args.path)
             fp.close()
 
             if inplace:
@@ -85,13 +90,15 @@ def main():
             else:
                 fo = sys.stdout
             
-            dump(object,fo,colour)
+            dump(obj,fo,colour)
 
             if inplace:
                 fo.close()
     else:
-        object = query(sys.stdin,verbose=args.verbose,xpath=args.xpath,dots=args.dots,brackets=args.eval)
-        dump(object,output,colour)
+        obj = json.load(sys.stdin)
+        if args.path:
+            obj = jsonpath.jsonpath(obj,args.path)
+        dump(obj,output,colour)
 
     if args.output:
         output.close()

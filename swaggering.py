@@ -8,19 +8,21 @@ from Tools.argue import Argue
 
 args = Argue()
 
+#____________________________________________________________________________________________________
 def argue():
     parser = argparse.ArgumentParser()
-
     group1 = parser.add_mutually_exclusive_group()
     group1.add_argument('-x', '--xml',       action='store_true',  help='xml output')
     group1.add_argument('-j', '--json',      action='store_true',  help='json output')
     group1.add_argument('-y', '--yaml',      action='store_true',  help='yaml output')
-    
     return args
 
-
+#____________________________________________________________________________________________________
 @args.command(name='swagger')
 class Swaggering(object):
+
+    @args.function(short='i')
+    def input(self): return
     
     @args.function(short='o')
     def output(self): return 
@@ -36,10 +38,11 @@ class Swaggering(object):
             self._output.close()
           
     @args.operation
-    def paths(self, path):                    
-        self.parser = SwaggerParser(swagger_path=path)
+    def paths(self):
+        self.parser = SwaggerParser(swagger_path=self.input())
         for path in self.parser.paths:
             self._output.write('%s\n'%path)
         return
     
+#____________________________________________________________________________________________________
 if __name__ == '__main__': args.execute()

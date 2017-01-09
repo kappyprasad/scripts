@@ -29,6 +29,7 @@ def argue():
     group1=parser.add_mutually_exclusive_group(required=True)
     group1.add_argument('-j','--jsonI',     action='store_true', help='json format for input')
     group1.add_argument('-e','--xlsI',      action='store_true', help='xls format for input')
+    
     group2=parser.add_mutually_exclusive_group(required=True)
     group2.add_argument('-J','--jsonO',     action='store_true', help='json format for output')
     group2.add_argument('-T','--textO',     action='store_true', help='text format for output')
@@ -57,6 +58,8 @@ def query(input,output,args):
 
     data={ 
         'jql': '%s'%jql,
+        'startAt' : 0,
+        'maxResults' : 1000
     }
 
     if args.verbose:
