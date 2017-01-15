@@ -46,7 +46,8 @@ if inplace:
         
 def dump(obj,output,colour):
     if args.text:
-        output.write('%s'%obj)
+        for o in obj:
+            output.write('%s'%o)
     elif args.flat:
         json.dump(obj,output)
     else:                    
