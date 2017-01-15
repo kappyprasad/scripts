@@ -6,8 +6,6 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 
-from Tools.Passwords import Passwords
-
 def argue():
     parser = argparse.ArgumentParser()
 
@@ -39,6 +37,8 @@ def argue():
         sys.stderr.write('args: %s\n'%json.dumps(vars(args),indent=4))
 
     return args
+    
+rudey = ['dick', 'cock', 'fuck', 'anal', 'lesbian', 'sex' ]
 
 def readPOP3():
     if args.encrypt:
@@ -52,13 +52,20 @@ def readPOP3():
     print('Number of messages = %d'%numMessages)
 
     for message in range(numMessages):
+        rude = False
+        subject = ''
         for stanza in poppy.retr(message+1)[1]:
             if stanza.startswith('Subject:'):
-                print (stanza)
+                subject = stanza
+                rude = any(x in stanza for x in rudey)
                 break
-        if args.delete:
+                
+        if rude or args.delete:
+            sys.stdout.write('%s\n'%(subject))
             poppy.dele(message+1)
-
+        else:
+            sys.stderr.write('%s\n'%(subject))
+        
     poppy.quit()
     return
 
