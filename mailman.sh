@@ -7,7 +7,7 @@ email='eddo888@tpg.com.au'
 
 if [ -z "$1" ]
 then
-    echo "usage: $(basename $0) [sr]"
+    echo "usage: $(basename $0) [srmd]"
     exit
 fi
 
@@ -26,7 +26,25 @@ fi
 if [ "$1" = "-r" ]
 then
     mailman.py \
+        -r \
+        -u "$username" \
+        -p "$password"
+
+fi
+
+if [ "$1" = "-m" ]
+then
+    mailman.py \
         -rm \
+        -u "$username" \
+        -p "$password"
+
+fi
+
+if [ "$1" = "-d" ]
+then
+    mailman.py \
+        -rd \
         -u "$username" \
         -p "$password"
 

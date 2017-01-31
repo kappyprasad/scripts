@@ -5,6 +5,7 @@ import sys,os,re,json,argparse,poplib,imaplib,smtplib
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
+from email.parser import Parser
 
 def argue():
     parser = argparse.ArgumentParser()
@@ -57,21 +58,21 @@ def readPOP3():
 
     for m in range(numMessages):
         message =  poppy.retr(m+1)
-        jm = dict(body=message[1][-2])
-        
-        for stanza in message[1]:
-            for key in keys:
-                s = '%s: '%key
-                if stanza.startswith(s):
-                    jm[key] = stanza.lstrip(s)
+        parser = Parser()
 
+        jm = parser.parsestr('\n'.join(message[1]))
+        
         if args.message:
-            print json.dumps(jm,indent=4)
+            jsm = dict(payload=str(jm._payload))
+            #print jm.keys()
+            for key in keys:
+                jsm[key] = jm.get(key)
+            print json.dumps(jsm,indent=4)
         else:
-            print jm['Subject']
+            print jm['Subject'], jm.get_payload()
             
         if args.delete:
-            poppy.dele(message+1)
+            poppy.dele(m+1)
             
     poppy.quit()
     return
