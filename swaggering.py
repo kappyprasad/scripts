@@ -28,6 +28,7 @@ class Swaggering(object):
     def output(self): return 
     
     def __init__(self):
+        self.parser = SwaggerParser(swagger_path=self.input())
         if self.output():
             self._output = open(self.output(),'w')
         else:
@@ -39,10 +40,17 @@ class Swaggering(object):
           
     @args.operation
     def paths(self):
-        self.parser = SwaggerParser(swagger_path=self.input())
         for path in self.parser.paths:
             self._output.write('%s\n'%path)
         return
     
+    @args.operation
+    def spec(self,path):
+        return self.parser.get_path_spec(path)
+        
 #____________________________________________________________________________________________________
-if __name__ == '__main__': args.execute()
+if __name__ == '__main__': 
+    results = args.execute()
+    if results:
+        json.dumps(results,sys.stdout,indent=4)
+        

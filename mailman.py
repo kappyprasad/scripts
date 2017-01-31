@@ -11,18 +11,22 @@ def argue():
 
     parser.add_argument('-v','--verbose',   action='store_true', help='show detailed output')
     parser.add_argument('-e','--encrypt',   action='store_true', help='use ssl')
-    parser.add_argument('-d','--delete',    action='store_true', help='delete after read')
+    parser.add_argument('-u','--username',  action='store',      help='username',           default='eddo8888')
+    parser.add_argument('-p','--password',  action='store',      help='password')
+
     parser.add_argument('-S','--server',    action='store',      help='server name',        default='mail.tpg.com.au')
     parser.add_argument('-P','--outport',   action='store',      help='out port number',    default=25,     type=int)
     parser.add_argument('-N','--inport',    action='store',      help='in port number',     default=110,    type=int)
     parser.add_argument('-T','--type',      action='store',      help='mailbox type',       default='POP3', choices=['IMAP','POP3'])
-    parser.add_argument('-u','--username',  action='store',      help='username',           default='eddo8888')
-    parser.add_argument('-p','--password',  action='store',      help='password')
 
+    parser.add_argument('-d','--delete',    action='store_true', help='delete after read')
+    parser.add_argument('-m','--message',   action='store_true', help='show message')
+    
     parser.add_argument('-a','--fromaddr',  action='store',      help='from email address', default='eddo888@tpg.com.au')
     parser.add_argument('-t','--recipient', action='store',      help='to email addresses', nargs='*')
     parser.add_argument('-j','--subject',   action='store',      help='subject')
     parser.add_argument('-b','--body',      action='store',      help='body')
+
     parser.add_argument('-o','--output',    action='store',      help='output file as body')
     parser.add_argument('-i','--input',     action='store',      help='input file as body')
     parser.add_argument('-f','--files',     action='store',      help='list of files',      nargs='*')
@@ -38,7 +42,7 @@ def argue():
 
     return args
     
-rudey = ['dick', 'cock', 'fuck', 'anal', 'lesbian', 'sex' ]
+keys = [ 'From', 'To', 'Subject', 'Date' ]
 
 def readPOP3():
     if args.encrypt:
@@ -51,21 +55,24 @@ def readPOP3():
     numMessages = len(poppy.list()[1])
     print('Number of messages = %d'%numMessages)
 
-    for message in range(numMessages):
-        rude = False
-        subject = ''
-        for stanza in poppy.retr(message+1)[1]:
-            if stanza.startswith('Subject:'):
-                subject = stanza
-                rude = any(x in stanza for x in rudey)
-                break
-                
-        if rude or args.delete:
-            sys.stdout.write('%s\n'%(subject))
-            poppy.dele(message+1)
-        else:
-            sys.stderr.write('%s\n'%(subject))
+    for m in range(numMessages):
+        message =  poppy.retr(m+1)
+        jm = dict(body=message[1][-2])
         
+        for stanza in message[1]:
+            for key in keys:
+                s = '%s: '%key
+                if stanza.startswith(s):
+                    jm[key] = stanza.lstrip(s)
+
+        if args.message:
+            print json.dumps(jm,indent=4)
+        else:
+            print jm['Subject']
+            
+        if args.delete:
+            poppy.dele(message+1)
+            
     poppy.quit()
     return
 

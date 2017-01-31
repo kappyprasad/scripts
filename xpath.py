@@ -4,7 +4,6 @@
 
 import sys, re, os,  argparse, StringIO
 
-from Tools.xpath import *
 from Tools.parser import *
 from Tools.pretty import *
 from Tools.eddo import *

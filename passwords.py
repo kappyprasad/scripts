@@ -26,7 +26,7 @@ def main():
         json.dump(vars(args),sys.stderr,indent=4)
         sys.stderr.write('\n')
     logging.basicConfig(level=level)
-
+    logging.disable('gnupg')
     password=args.password
 
     if args.generate:
