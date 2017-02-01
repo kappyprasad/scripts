@@ -7,160 +7,151 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.parser import Parser
 
-def argue():
-    parser = argparse.ArgumentParser()
+from Tools.argue import Argue
 
-    parser.add_argument('-v','--verbose',   action='store_true', help='show detailed output')
-    parser.add_argument('-e','--encrypt',   action='store_true', help='use ssl')
-    parser.add_argument('-u','--username',  action='store',      help='username',           default='eddo8888')
-    parser.add_argument('-p','--password',  action='store',      help='password')
+args = Argue()
 
-    parser.add_argument('-S','--server',    action='store',      help='server name',        default='mail.tpg.com.au')
-    parser.add_argument('-P','--outport',   action='store',      help='out port number',    default=25,     type=int)
-    parser.add_argument('-N','--inport',    action='store',      help='in port number',     default=110,    type=int)
-    parser.add_argument('-T','--type',      action='store',      help='mailbox type',       default='POP3', choices=['IMAP','POP3'])
+#=======================================================================================================================
+@args.command(single=True)
+class MailMan(object):
 
-    parser.add_argument('-d','--delete',    action='store_true', help='delete after read')
-    parser.add_argument('-m','--message',   action='store_true', help='show message')
+    @args.function(name='encrypt', short='e', flag=True)
+    def _encrypt(self): return False
+
+    @args.function(name='username', short='u')
+    def _username(self): return 'eddo8888'
+
+    @args.function(name='password', short='p')
+    def _password(self): return
+
+    @args.function(name='server', short='S')
+    def _server(self): return 'mail.tpg.com.au'
+
+    @args.function(name='outport', short='P', type=int)
+    def _outport(self): return 25
+
+    @args.function(name='inport', short='N', type=int)
+    def _inport(self): return 110
+
+    @args.function(name='type', short='T', choices=['IMAP','POP3'])
+    def _type(self): return 'POP3'
     
-    parser.add_argument('-a','--fromaddr',  action='store',      help='from email address', default='eddo888@tpg.com.au')
-    parser.add_argument('-t','--recipient', action='store',      help='to email addresses', nargs='*')
-    parser.add_argument('-j','--subject',   action='store',      help='subject')
-    parser.add_argument('-b','--body',      action='store',      help='body')
+    @args.function(name='output', short='o')
+    def _output(self): return
 
-    parser.add_argument('-o','--output',    action='store',      help='output file as body')
-    parser.add_argument('-i','--input',     action='store',      help='input file as body')
-    parser.add_argument('-f','--files',     action='store',      help='list of files',      nargs='*')
+    @args.function(name='input', short='i')
+    def _input(self): return
 
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('-r', '--read',      action='store_true', help='read email to directory')
-    group.add_argument('-s', '--send',      action='store_true', help='send email')
-
-    args = parser.parse_args()
-
-    if args.verbose:
-        sys.stderr.write('args: %s\n'%json.dumps(vars(args),indent=4))
-
-    return args
-    
-keys = [ 'From', 'To', 'Subject', 'Date' ]
-
-def readPOP3():
-    if args.encrypt:
-        poppy = poplib.POP3_SSL(args.server,args.inport)
-    else:
-        poppy = poplib.POP3(args.server,args.inport)
-
-    poppy.user(args.username)
-    poppy.pass_(password)
-    numMessages = len(poppy.list()[1])
-    print('Number of messages = %d'%numMessages)
-
-    for m in range(numMessages):
-        message =  poppy.retr(m+1)
-        parser = Parser()
-
-        jm = parser.parsestr('\n'.join(message[1]))
+    #-------------------------------------------------------------------------------------------------------------------
+    @args.operation(name='read')
+    def read(self, delete=False, show=False):
+        '''
+        read email from the server
+        :param delete boolean to delete after read
+        :param show boolean to show full message
+        :returns None
+        '''
         
-        if args.message:
-            jsm = dict(payload=str(jm._payload))
-            #print jm.keys()
-            for key in keys:
-                jsm[key] = jm.get(key)
-            print json.dumps(jsm,indent=4)
-        else:
-            print jm['Subject'], jm.get_payload()
+        if self._type() == 'POP3':
+
+            if self._encrypt():
+                poppy = poplib.POP3_SSL(_server(),_inport())
+            else:
+                poppy = poplib.POP3(self._server(),self._inport())
+
+            poppy.user(self._username())
+            poppy.pass_(self._password())
+            numMessages = len(poppy.list()[1])
+            print('Number of messages = %d'%numMessages)
+
+            for m in range(numMessages):
+                message =  poppy.retr(m+1)
+                parser = Parser()
+
+                jm = parser.parsestr('\n'.join(message[1]))
+
+                if message:
+                    jsm = dict(payload=str(jm._payload))
+                    for key in ['To','Date','From','Subject']:
+                        jsm[key] = jm.get(key)
+                        print json.dumps(jsm,indent=4)
+                else:
+                    print jm['Subject'], jm.get_payload()
+
+                if delete:
+                    poppy.dele(m+1)
+
+            poppy.quit()
+
+        if self._type() == 'IMAP':
             
-        if args.delete:
-            poppy.dele(m+1)
-            
-    poppy.quit()
-    return
+            if self._encrypt():
+                eye = imaplib.IMAP4_SSL(self._server(), self._inport())
+            else:
+                eye = imaplib.IMAP4(self._server(), self._inport())
 
-def readIMAP():
-    if args.encrypt:
-        eye = imaplib.IMAP4_SSL(args.server, args.inport)
-    else:
-        eye = imaplib.IMAP4(args.server, args.inport)
+            eye.login(self._username(),self._password())
 
-    eye.login(args.username,password)
+            if True:
+                print( eye.list())
 
-    if True:
-        print( eye.list())
-        
-    while False:
-        eye.select('inbox')
+            while False:
+                eye.select('inbox')
 
-        if args.fromaddr:
-            tipe, data = eye.search(None, 'FROM', '"%s"'%args.fromaddr)
-        else:
-            tipe, data = eye.search(None, 'ALL')
+                if self._fromaddr():
+                    tipe, data = eye.search(None, 'FROM', '"%s"'%self._fromaddr())
+                else:
+                    tipe, data = eye.search(None, 'ALL')
 
-        #print data
-        for num in data[0].split():
-            tipe, data = eye.fetch(num, '(RFC822)')
-            print (data[0][1])
+                #print data
+                for num in data[0].split():
+                    tipe, data = eye.fetch(num, '(RFC822)')
+                    print (data[0][1])
 
-    eye.close()
-    eye.logout()
-    
-    return
+            eye.close()
+            eye.logout()
 
-def send():
-    COMMASPACE = ', '
+        return
 
-    msg = MIMEMultipart()
-    msg['Subject'] = args.subject
-    msg['From'] = args.fromaddr
-    msg['To'] = COMMASPACE.join(args.recipient)
+    #-------------------------------------------------------------------------------------------------------------------
+    @args.operation(name='send')
+    def send(self, fromaddr, recipient, subject, body, file):
 
-    if args.input:
-        fp = open(args.input, 'rb')
-        body = MIMEText(fp.read())
-        fp.close()
-        msg.attach(body)
-    else:           
-        msg.preamble = args.body
+        COMMASPACE = ', '
 
-    if args.files:
-        # Assume we know that the image files are all in PNG format
-        for file in args.files:
+        msg = MIMEMultipart()
+        msg['Subject'] = subject
+        msg['From'] = fromaddr
+        msg['To'] = COMMASPACE.join(recipient)
+
+        if self._input():
+            fp = open(self._input(), 'rb')
+            body = MIMEText(fp.read())
+            fp.close()
+            msg.attach(body)
+        else:           
+            msg.preamble = body
+
+        if file:
+            # Assume we know that the image files are all in PNG format
             # Open the files in binary mode.  Let the MIMEImage class automatically
             # guess the specific image type.
             fp = open(file, 'rb')
             img = MIMEImage(fp.read())
             fp.close()
             msg.attach(img)
-    
-    # Send the email via our own SMTP server.
-    if args.encrypt:
-        s = smtplib.SMTP_SSL(args.server,args.outport)
-    else:
-        s = smtplib.SMTP(args.server,args.outport)
-    s.login(args.username, password)
-    s.sendmail(args.fromaddr, args.recipient, msg.as_string())
-    s.quit()
-    return
 
-def main():
-    global args,password
+        # Send the email via our own SMTP server.
+        if self._encrypt():
+            s = smtplib.SMTP_SSL(self._server(),self._outport())
+        else:
+            s = smtplib.SMTP(self._server(),self._outport())
+            s.login(self._username(), self._password())
+            s.sendmail(fromaddr, recipient, msg.as_string())
+            s.quit()
+            
+        return
 
-    args = argue()
+########################################################################################################################    
+if __name__ == '__main__': args.execute()
 
-    if args.password:
-        password = args.password
-    else:
-        passwords = Passwords(args.server, args.type, args.username, clear=False)
-        password = passwords.password
-
-    if args.read:
-        if args.type == 'POP3':
-            readPOP3()
-        if args.type == 'IMAP':
-            readIMAP()
-    if args.send:
-        send()
-
-    return
-
-if __name__ == '__main__': main()

@@ -14,38 +14,22 @@ fi
 if [ "$1" = "-s" ]
 then
     mailman.py \
-        -s \
-        -j "Test Subject at $(dateStamp.sh)" \
-        -b "Test Body" \
-        -t "$email" \
-        -f _test/DavidEdson-hand.jpeg \
         -u "$username" \
-        -p "$password"
+        -p "$password" \
+        send \
+        "$email" \
+        "$email" \
+        "Test Subject at $(dateStamp.sh)" \
+        "Test Body" \
+        _test/DavidEdson-hand.jpeg
 fi
 
 if [ "$1" = "-r" ]
 then
     mailman.py \
-        -r \
         -u "$username" \
-        -p "$password"
+        -p "$password" \
+        read
 
 fi
 
-if [ "$1" = "-m" ]
-then
-    mailman.py \
-        -rm \
-        -u "$username" \
-        -p "$password"
-
-fi
-
-if [ "$1" = "-d" ]
-then
-    mailman.py \
-        -rd \
-        -u "$username" \
-        -p "$password"
-
-fi
