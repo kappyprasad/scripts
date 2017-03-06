@@ -12,7 +12,7 @@ and Perl version by Kate Rhodes at:
         http://github.com/masukomi/jsonpath-perl/tree/master
 '''
 
-import sys,os,re, argparse, json, jsonpath
+import sys, os, re, argparse, json, jsonpath
 
 from Tools.eddo import *
 from Tools.pretty import *
@@ -79,9 +79,14 @@ def main():
                 if args.name: sys.stderr.write('%s\n'%f)
                 fp = open(f)
 
-            obj = json.load(fp)
-            if args.path:
-                obj = jsonpath.jsonpath(obj,args.path)
+            obj = None
+            try:
+                obj = json.load(fp)
+                if args.path:
+                    obj = jsonpath.jsonpath(obj,args.path)
+            except: 
+                sys.stderr.write('%s\n'%sys.exc_info()[1])
+                    
             fp.close()
 
             if inplace:
@@ -96,10 +101,13 @@ def main():
             if inplace:
                 fo.close()
     else:
-        obj = json.load(sys.stdin)
-        if args.path:
-            obj = jsonpath.jsonpath(obj,args.path)
-        dump(obj,output,colour)
+        try:
+            obj = json.load(sys.stdin)
+            if args.path:
+                obj = jsonpath.jsonpath(obj,args.path)
+            dump(obj,output,colour)
+        except:
+            sys.stderr.write('%s\n'%sys.exc_info()[1])
 
     if args.output:
         output.close()

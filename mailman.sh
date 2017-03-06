@@ -29,7 +29,6 @@ then
     mailman.py \
         -u "$username" \
         -p "$password" \
-        read
-
+        read 
 fi
 
