@@ -1,4 +1,4 @@
 #!/bin/bash
  
-emacsclient $* 1>/dev/null 2>/dev/null &
+emacsclient "$1" 1>/dev/null 2>/dev/null &
 
