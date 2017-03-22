@@ -41,7 +41,10 @@ sub processLine {
   s/(['"])([^'"]*)(['"])(\s*:\s*)/\1$libraries'colour{'Red'}\2$libraries'colour{'Off'}\3\4/g;
   
   # "value"
-  s/(['"])(\s*:\s*)([^,]*)/\1\2$libraries'colour{'Green'}\3$libraries'colour{'Off'}\4/g;
+  s/^([^:]*:\s*['"])([^'"]*)(['"],*\s*)/\1$libraries'colour{'Green'}\2$libraries'colour{'Off'}\3/g;
+
+  # "string"
+  s/^(\s*['"])([^'"]*)(['"])(,*\s*$)/\1$libraries'colour{'Green'}\2$libraries'colour{'Off'}\3\4/g;
 
   print "$_\n";
 
