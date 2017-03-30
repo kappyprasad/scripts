@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-import sys,os,re,json,argparse,poplib,imaplib,smtplib,mimetypes
+import sys, os, re, json, argparse, poplib, imaplib, smtplib, mimetypes
+
+from datetime import datetime, timedelta
 
 from email import encoders
 from email.message import Message
@@ -57,7 +59,7 @@ class MailMan(object):
         return credstash.get('%s:%s'%(self._server(),self._username()))
     
     #-------------------------------------------------------------------------------------------------------------------
-    def payload(self,part):
+    def payload(self,part,save=None):
         return {
             'filename' : part.get_filename(),
             'type'     : part.get_content_type(),
@@ -66,7 +68,7 @@ class MailMan(object):
 
     #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='read')
-    def read(self, delete=False, output=False):
+    def read(self, delete=False, output=False, save=None):
         '''
         read email from the server
 
@@ -79,8 +81,15 @@ class MailMan(object):
         :short output : j
         :flag  output : True
 
-        :returns None
+        :param save   : save email to this directory
+        :short save   : s
+        
+        :returns None:
+
         '''
+
+        dts = '%Y-%m-%d %H:%M:%S'
+        its = '%a, %d %b %Y %H:%M:%S'
         
         if self._type() == 'POP3':
 
@@ -119,19 +128,21 @@ class MailMan(object):
                     payload = list()
                     if jm.is_multipart():
                         for part in jm.get_payload():
-                            payload.append(self.payload(part))
+                            payload.append(self.payload(part,save=save))
                     else:
-                        payload.append(self.payload(jm.get_payload()))
+                        payload.append(self.payload(jm.get_payload(),save=save))
                         
                     jsm = dict(preamble=jm.preamble,payload=payload)
                     
-                    for key in ['To','From','Subject','Date']:
+                    for key in ['To','From','Subject']:
                         jsm[key] = jm.get(key)
 
+                    jsm['Date'] = datetime.strptime(jm['Date'].rstrip(' +1100'),its).strftime(dts)
+                    
                     if output:
                         print json.dumps(jsm,indent=4)
                     else:
-                        print '{:<30} {}'.format(jm['From'], jm['Subject'])
+                        print '{:<20} {:<30} {}'.format(jsm['Date'], jsm['From'], jsm['Subject'])
                 else:
                     print jm['Subject'], jm.get_payload()
 
