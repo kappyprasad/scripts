@@ -17,11 +17,11 @@ then
         -u "$username" \
         -p "$password" \
         send \
-        "$email" \
-        "$email" \
-        "Test Subject at $(dateStamp.sh)" \
-        "Test Body" \
-        _test/DavidEdson-hand.jpeg
+        -f "$email" \
+        -t "$email" \
+        -s "Test Subject at $(dateStamp.sh)" \
+        -b "Test Body" \
+        -a _test/DavidEdson-hand.jpeg
 fi
 
 if [ "$1" = "-r" ]
@@ -29,6 +29,6 @@ then
     mailman.py \
         -u "$username" \
         -p "$password" \
-        read 
+        read $2
 fi
 

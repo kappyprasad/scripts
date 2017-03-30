@@ -11,44 +11,66 @@ from Tools.argue import Argue
 
 args = Argue()
 
+@args.argument(short='v',flag=True)
+def verbose(): return
+
 #=======================================================================================================================
 @args.command(single=True)
 class MailMan(object):
 
-    @args.function(name='encrypt', short='e', flag=True)
+    @args.attribute(name='encrypt', short='e', flag=True)
     def _encrypt(self): return False
 
-    @args.function(name='username', short='u')
+    @args.attribute(name='username', short='u')
     def _username(self): return 'eddo8888'
 
-    @args.function(name='password', short='p')
+    @args.attribute(name='password', short='p')
     def _password(self): return
 
-    @args.function(name='server', short='S')
+    @args.attribute(name='server', short='S')
     def _server(self): return 'mail.tpg.com.au'
 
-    @args.function(name='outport', short='P', type=int)
+    @args.attribute(name='outport', short='P', type=int)
     def _outport(self): return 25
 
-    @args.function(name='inport', short='N', type=int)
+    @args.attribute(name='inport', short='N', type=int)
     def _inport(self): return 110
 
-    @args.function(name='type', short='T', choices=['IMAP','POP3'])
+    @args.attribute(name='type', short='T', choices=['IMAP','POP3'])
     def _type(self): return 'POP3'
     
-    @args.function(name='output', short='o')
+    @args.attribute(name='output', short='o')
     def _output(self): return
 
-    @args.function(name='input', short='i')
+    @args.attribute(name='input', short='i')
     def _input(self): return
 
     #-------------------------------------------------------------------------------------------------------------------
+    def payload(self,part):
+        return {
+            'filename' : part.get_filename(),
+            'type'     : part.get_content_type(),
+            'payload'  : part.get_payload()
+        }                    
+
+    #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='read')
-    def read(self, delete=False, show=False):
+    def read(self, delete=False, show=False, output=False):
         '''
         read email from the server
-        :param delete boolean to delete after read
-        :param show boolean to show full message
+
+        :param delete : delete after read
+        :short delete : d
+        :flag  delete : True
+
+        :param show   : show full message
+        :short show   : s
+        :flag  show   : True
+
+        :param output : output in json format
+        :short output : j
+        :flag  output : True
+
         :returns None
         '''
         
@@ -65,22 +87,45 @@ class MailMan(object):
             print('Number of messages = %d'%numMessages)
 
             for m in range(numMessages):
+                if delete:
+                    sys.stdout.write('\r%s'%(m+1))
+                    sys.stdout.flush()
+                    poppy.dele(m+1)
+                    continue
+                
                 message =  poppy.retr(m+1)
+
+                #print message
                 parser = Parser()
+
+                if verbose():
+                    print json.dumps(message,indent=4)
 
                 jm = parser.parsestr('\n'.join(message[1]))
 
-                if message:
-                    jsm = dict(payload=str(jm._payload))
-                    for key in ['To','Date','From','Subject']:
+
+                if jm:
+                    payload = list()
+                    if jm.is_multipart():
+                        for part in jm.get_payload():
+                            payload.append(self.payload(part))
+                    else:
+                        payload.append(self.payload(jm.get_payload()))
+                        
+                    jsm = dict(preamble=jm.preamble,payload=payload)
+                    
+                    for key in ['To','From','Subject','Date']:
                         jsm[key] = jm.get(key)
+
+                    if output:
                         print json.dumps(jsm,indent=4)
+                    else:
+                        print '{:<30} {}'.format(jm['From'], jm['Subject'])
                 else:
                     print jm['Subject'], jm.get_payload()
 
-                if delete:
-                    poppy.dele(m+1)
-
+                #del parser
+                
             poppy.quit()
 
         if self._type() == 'IMAP':
@@ -115,30 +160,57 @@ class MailMan(object):
 
     #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='send')
-    def send(self, fromaddr, recipient, subject, body, file):
+    def send(self, fromaddr=None, recipients=[], subject=None, body=None, files=[]):
+        '''
+        send an email
+ 
+        :param   fromaddr   : email sender address
+        :short   fromaddr   : f
+        :default fromaddr   : eddo888@tpg.com.au
+
+        :param   recipients : email recipient address
+        :short   recipients : t
+        :nargs   recipients : *
+
+        :param   subject    : email subject 
+        :short   subject    : s
+
+        :param   body       : email body
+        :short   body       : b
+
+        :param   files      : path to files (assuming IMAGE type)
+        :short   files      : a
+        :nargs   files      : *
+
+        '''
 
         COMMASPACE = ', '
 
         msg = MIMEMultipart()
+        
         msg['Subject'] = subject
         msg['From'] = fromaddr
-        msg['To'] = COMMASPACE.join(recipient)
+        msg['To'] = COMMASPACE.join(recipients)
 
+        msg.preamble = 'hello there from python'
+        
         if self._input():
             fp = open(self._input(), 'rb')
             body = MIMEText(fp.read())
             fp.close()
             msg.attach(body)
-        else:           
-            msg.preamble = body
+        else:
+            bt = MIMEText(body)
+            msg.attach(bt)
 
-        if file:
+        for file in files:
             # Assume we know that the image files are all in PNG format
             # Open the files in binary mode.  Let the MIMEImage class automatically
             # guess the specific image type.
             fp = open(file, 'rb')
             img = MIMEImage(fp.read())
             fp.close()
+            img.add_header('Content-Disposition', 'attachment', filename=file)
             msg.attach(img)
 
         # Send the email via our own SMTP server.
@@ -146,9 +218,10 @@ class MailMan(object):
             s = smtplib.SMTP_SSL(self._server(),self._outport())
         else:
             s = smtplib.SMTP(self._server(),self._outport())
-            s.login(self._username(), self._password())
-            s.sendmail(fromaddr, recipient, msg.as_string())
-            s.quit()
+
+        s.login(self._username(), self._password())
+        s.sendmail(fromaddr, msg['To'], msg.as_string())
+        s.quit()
             
         return
 
