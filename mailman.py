@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 
-import sys,os,re,json,argparse,poplib,imaplib,smtplib
+import sys,os,re,json,argparse,poplib,imaplib,smtplib,mimetypes
 
-from email.mime.text import MIMEText
+from email import encoders
+from email.message import Message
+from email.mime.audio import MIMEAudio
+from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from email.parser import Parser
 
+from Tools.credstash import CredStash
 from Tools.argue import Argue
 
+credstash = CredStash()
 args = Argue()
 
 @args.argument(short='v',flag=True)
@@ -45,6 +51,11 @@ class MailMan(object):
     @args.attribute(name='input', short='i')
     def _input(self): return
 
+    def password(self):
+        if self._password():
+            return self._password()
+        return credstash.get('%s:%s'%(self._server(),self._username()))
+    
     #-------------------------------------------------------------------------------------------------------------------
     def payload(self,part):
         return {
@@ -55,17 +66,13 @@ class MailMan(object):
 
     #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='read')
-    def read(self, delete=False, show=False, output=False):
+    def read(self, delete=False, output=False):
         '''
         read email from the server
 
         :param delete : delete after read
         :short delete : d
         :flag  delete : True
-
-        :param show   : show full message
-        :short show   : s
-        :flag  show   : True
 
         :param output : output in json format
         :short output : j
@@ -82,14 +89,17 @@ class MailMan(object):
                 poppy = poplib.POP3(self._server(),self._inport())
 
             poppy.user(self._username())
-            poppy.pass_(self._password())
+            poppy.pass_(self.password())
             numMessages = len(poppy.list()[1])
-            print('Number of messages = %d'%numMessages)
+            sys.stderr.write('Number of messages = %d\n'%numMessages)
 
+            if output:
+                print '['
+                
             for m in range(numMessages):
                 if delete:
-                    sys.stdout.write('\r%s'%(m+1))
-                    sys.stdout.flush()
+                    sys.stderr.write('\r%s'%(m+1))
+                    sys.stderr.flush()
                     poppy.dele(m+1)
                     continue
                 
@@ -124,7 +134,12 @@ class MailMan(object):
                 else:
                     print jm['Subject'], jm.get_payload()
 
-                #del parser
+                del parser
+
+                if output and m+1 < numMessages:
+                    print ','
+            if output:
+                print ']'
                 
             poppy.quit()
 
@@ -135,7 +150,7 @@ class MailMan(object):
             else:
                 eye = imaplib.IMAP4(self._server(), self._inport())
 
-            eye.login(self._username(),self._password())
+            eye.login(self._username(),self.password())
 
             if True:
                 print( eye.list())
@@ -160,27 +175,31 @@ class MailMan(object):
 
     #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='send')
-    def send(self, fromaddr=None, recipients=[], subject=None, body=None, files=[]):
+    def send(self, fromaddr=None, recipients=[], subject=None, body=None, preamble=None, files=[]):
         '''
         send an email
  
-        :param   fromaddr   : email sender address
-        :short   fromaddr   : f
-        :default fromaddr   : eddo888@tpg.com.au
+        :param    fromaddr   : email sender address
+        :short    fromaddr   : f
+        :default  fromaddr   : eddo888@tpg.com.au
 
-        :param   recipients : email recipient address
-        :short   recipients : t
-        :nargs   recipients : *
+        :param    recipients : email recipient address
+        :short    recipients : t
+        :nargs    recipients : *
+        :required recipients : True
 
-        :param   subject    : email subject 
-        :short   subject    : s
+        :param    subject    : email subject 
+        :short    subject    : s
 
-        :param   body       : email body
-        :short   body       : b
+        :param    body       : email body
+        :short    body       : b
 
-        :param   files      : path to files (assuming IMAGE type)
-        :short   files      : a
-        :nargs   files      : *
+        :param    preamble   : some leading text in lieu of a body
+        :short    preamble   : p
+
+        :param    files      : path to files (assuming IMAGE type)
+        :short    files      : a
+        :nargs    files      : *
 
         '''
 
@@ -192,7 +211,8 @@ class MailMan(object):
         msg['From'] = fromaddr
         msg['To'] = COMMASPACE.join(recipients)
 
-        msg.preamble = 'hello there from python'
+        if preamble:
+            msg.preamble = preamble
         
         if self._input():
             fp = open(self._input(), 'rb')
@@ -207,11 +227,32 @@ class MailMan(object):
             # Assume we know that the image files are all in PNG format
             # Open the files in binary mode.  Let the MIMEImage class automatically
             # guess the specific image type.
-            fp = open(file, 'rb')
-            img = MIMEImage(fp.read())
-            fp.close()
-            img.add_header('Content-Disposition', 'attachment', filename=file)
-            msg.attach(img)
+
+            ctype, encoding = mimetypes.guess_type(file)
+            if ctype is None or encoding is not None:
+                # No guess could be made, or the file is encoded (compressed), so
+                # use a generic bag-of-bits type.
+                ctype = 'application/octet-stream'
+            maintype, subtype = ctype.split('/', 1)
+            if maintype == 'text':
+                with open(file) as fp:
+                    # Note: we should handle calculating the charset
+                    atch = MIMEText(fp.read(), _subtype=subtype)
+            elif maintype == 'image':
+                with open(file, 'rb') as fp:
+                    atch = MIMEImage(fp.read(), _subtype=subtype)
+            elif maintype == 'audio':
+                with open(file, 'rb') as fp:
+                    atch = MIMEAudio(fp.read(), _subtype=subtype)
+            else:
+                with open(file, 'rb') as fp:
+                    atch = MIMEBase(maintype, subtype)
+                    atch.set_payload(fp.read())
+                    # Encode the payload using Base64
+                    encoders.encode_base64(atch)
+
+            atch.add_header('Content-Disposition', 'attachment', filename=file)
+            msg.attach(atch)
 
         # Send the email via our own SMTP server.
         if self._encrypt():
@@ -219,7 +260,7 @@ class MailMan(object):
         else:
             s = smtplib.SMTP(self._server(),self._outport())
 
-        s.login(self._username(), self._password())
+        s.login(self._username(), self.password())
         s.sendmail(fromaddr, msg['To'], msg.as_string())
         s.quit()
             
