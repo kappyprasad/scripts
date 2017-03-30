@@ -75,6 +75,7 @@ class MailMan(object):
         :flag  delete : True
 
         :param output : output in json format
+        :name  output : json
         :short output : j
         :flag  output : True
 
