@@ -3,6 +3,7 @@
 import sys, os, re, json, argparse, poplib, imaplib, smtplib, mimetypes
 
 from datetime import datetime, timedelta
+from dateutil import tz
 
 from email import encoders
 from email.message import Message
@@ -13,9 +14,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.parser import Parser
 
+from Tools.yokel import Yokel
 from Tools.credstash import CredStash
 from Tools.argue import Argue
 
+yokel = Yokel()
 credstash = CredStash()
 args = Argue()
 
@@ -30,29 +33,23 @@ class MailMan(object):
     def _encrypt(self): return False
 
     @args.attribute(name='username', short='u')
-    def _username(self): return 'eddo8888'
+    def _username(self): return
 
     @args.attribute(name='password', short='p')
     def _password(self): return
 
     @args.attribute(name='server', short='S')
-    def _server(self): return 'mail.tpg.com.au'
+    def _server(self): return
 
-    @args.attribute(name='outport', short='P', type=int)
-    def _outport(self): return 25
+    @args.attribute(name='outport', short='P', type=int, default=25)
+    def _outport(self): return
 
-    @args.attribute(name='inport', short='N', type=int)
-    def _inport(self): return 110
+    @args.attribute(name='inport', short='N', type=int, default=110)
+    def _inport(self): return
 
-    @args.attribute(name='type', short='T', choices=['IMAP','POP3'])
-    def _type(self): return 'POP3'
+    @args.attribute(name='type', short='T', choices=['IMAP','POP3'], default='POP3')
+    def _type(self): return
     
-    @args.attribute(name='output', short='o')
-    def _output(self): return
-
-    @args.attribute(name='input', short='i')
-    def _input(self): return
-
     def password(self):
         if self._password():
             return self._password()
@@ -60,12 +57,53 @@ class MailMan(object):
     
     #-------------------------------------------------------------------------------------------------------------------
     def payload(self,part,save=None):
-        return {
-            'filename' : part.get_filename(),
-            'type'     : part.get_content_type(),
-            'payload'  : part.get_payload()
-        }                    
+        return  dict(
+            payload=part.get_payload(),
+            filename=part.get_filename(),
+            type=part.get_content_type()
+        )
+    
+    #-------------------------------------------------------------------------------------------------------------------
+    def process(self, message, output=None, save=None):        
+        parser = Parser()
 
+        if verbose():
+            print json.dumps(message,indent=4)
+
+        jm = parser.parsestr(message)
+
+        if jm:
+            if verbose():
+                json.dump(jm.keys(),sys.stderr,indent=4)
+                
+            payload = list()
+            if jm.is_multipart():
+                for part in jm.get_payload():
+                    payload.append(self.payload(part,save=save))
+
+            jsm = dict(preamble=jm.preamble,payload=payload)
+
+            for key in ['To','From','Subject']:
+                jsm[key] = jm.get(key)
+
+            try:
+                dt = yokel.time(jm['Date'])
+                jsm['Date'] = dt.strftime(yokel.dts)
+            except:
+                jsm['Date'] = jm['Date']
+
+            if output:
+                print json.dumps(jsm,indent=4)
+            else:
+                print '{:<19} {:<20} -> {:<40}'.format(jsm['Date'][:19], jsm['From'][:20], jsm['Subject'][:40])
+
+        else:
+            sys.stderr.write('%s\n'%message)
+            
+        del parser
+
+        return
+    
     #-------------------------------------------------------------------------------------------------------------------
     @args.operation(name='read')
     def read(self, delete=False, output=False, save=None):
@@ -88,9 +126,6 @@ class MailMan(object):
 
         '''
 
-        dts = '%Y-%m-%d %H:%M:%S'
-        its = '%a, %d %b %Y %H:%M:%S'
-        
         if self._type() == 'POP3':
 
             if self._encrypt():
@@ -115,39 +150,8 @@ class MailMan(object):
                 
                 message =  poppy.retr(m+1)
 
-                #print message
-                parser = Parser()
-
-                if verbose():
-                    print json.dumps(message,indent=4)
-
-                jm = parser.parsestr('\n'.join(message[1]))
-
-
-                if jm:
-                    payload = list()
-                    if jm.is_multipart():
-                        for part in jm.get_payload():
-                            payload.append(self.payload(part,save=save))
-                    else:
-                        payload.append(self.payload(jm.get_payload(),save=save))
-                        
-                    jsm = dict(preamble=jm.preamble,payload=payload)
-                    
-                    for key in ['To','From','Subject']:
-                        jsm[key] = jm.get(key)
-
-                    jsm['Date'] = datetime.strptime(jm['Date'].rstrip(' +1100'),its).strftime(dts)
-                    
-                    if output:
-                        print json.dumps(jsm,indent=4)
-                    else:
-                        print '{:<20} {:<30} {}'.format(jsm['Date'], jsm['From'], jsm['Subject'])
-                else:
-                    print jm['Subject'], jm.get_payload()
-
-                del parser
-
+                self.process('\n'.join(message[1]), output=output, save=save)
+                
                 if output and m+1 < numMessages:
                     print ','
             if output:
@@ -164,21 +168,18 @@ class MailMan(object):
 
             eye.login(self._username(),self.password())
 
-            if True:
-                print( eye.list())
+            if verbose():
+                json.dump(eye.list(),sys.stderr,indent=4)
 
-            while False:
-                eye.select('inbox')
+            eye.select('inbox')
 
-                if self._fromaddr():
-                    tipe, data = eye.search(None, 'FROM', '"%s"'%self._fromaddr())
-                else:
-                    tipe, data = eye.search(None, 'ALL')
-
-                #print data
-                for num in data[0].split():
-                    tipe, data = eye.fetch(num, '(RFC822)')
-                    print (data[0][1])
+            tipe, data = eye.search(None, 'ALL')
+            
+            #print data
+            for num in data[0].split():
+                tipe, data = eye.fetch(num, '(RFC822)')
+                message = (data[0][1])
+                self.process(message, output=output, save=save)
 
             eye.close()
             eye.logout()
@@ -204,7 +205,7 @@ class MailMan(object):
         :short    subject    : s
         :required subject    : True
 
-        :param    body       : email body
+        :param    body       : email body, @file or @- for stdin
         :short    body       : b
         :required body       : True
 
@@ -228,11 +229,14 @@ class MailMan(object):
         if preamble:
             msg.preamble = preamble
         
-        if self._input():
-            fp = open(self._input(), 'rb')
-            body = MIMEText(fp.read())
-            fp.close()
-            msg.attach(body)
+        if body == '@-':
+            with sys.stdin as fp:
+                body = MIMEText(fp.read())
+                msg.attach(body)
+        elif body.startswith('@'):
+            with open(body[1:], 'r') as fp:
+                body = MIMEText(fp.read())
+                msg.attach(body)
         else:
             bt = MIMEText(body)
             msg.attach(bt)
