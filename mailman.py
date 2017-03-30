@@ -190,9 +190,11 @@ class MailMan(object):
 
         :param    subject    : email subject 
         :short    subject    : s
+        :required subject    : True
 
         :param    body       : email body
         :short    body       : b
+        :required body       : True
 
         :param    preamble   : some leading text in lieu of a body
         :short    preamble   : p
