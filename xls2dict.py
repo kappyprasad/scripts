@@ -8,7 +8,7 @@ from xlwt import Workbook
 def argue():
     parser = argparse.ArgumentParser('Excel processor input/output by suffix')
 
-    suffix=map(lambda x:'*.%s'%x, ['xls', 'xlsx', 'json', 'xml'])
+    suffix=map(lambda x:'*.%s'%x, ['xls', 'xlsx', 'json', 'xml', 'md'])
     
     parser.add_argument('-v','--verbose', action='store_true', help='show detailed output')
     parser.add_argument('-c','--cdata',   action='store_true', help='force cdata')
@@ -132,6 +132,57 @@ def dict2xls(js, verbose=False, formulas=False):
 
     return wb
 
+def dict2md(js):
+    sio = StringIO.StringIO()
+
+    sheets = js['workbook']['sheet']
+    if type(sheets) is not list:
+        sheets = [ sheets ]
+
+    for s in sheets:
+
+        if 'row' not in s.keys():
+            continue
+        rows = s['row']
+        if type(rows) is not list:
+            rows = [ rows ]
+
+        header = None
+        for row in range(len(rows)):
+            r = rows[row]
+            if '@number' in r.keys():
+                row = int(r['@number'])
+                
+            if 'col' not in r.keys():
+                continue
+            cols = r['col']
+            if type(cols) is not list:
+                cols = [ cols ]
+                
+            if not header:
+                header = cols
+            else:
+                while len(cols) < len(header):
+                    cols.append(' ')
+                    
+            m = '|'.join(
+                map(
+                    lambda x:\
+                        x['#text']\
+                            .replace('\r','')\
+                            .replace('\n',',')\
+                            .replace('*','\*')\
+                    ,
+                    cols
+                )
+            )
+            
+            sio.write('|%s|\n'%m)
+            if row == 0:
+                sio.write('|%s\n'%('-|'*len(cols)))
+            
+    return sio.getvalue()
+
 def main():
     global args, escape_orig
     args=argue()
@@ -165,6 +216,9 @@ def main():
     if args.output.lower().endswith('.xml'):
         xmltodict.unparse(js,output=output,indent='    ',pretty=True)
 
+    if args.output.lower().endswith('md'):
+        output.write(dict2md(js))
+        
     output.close()
         
     return
