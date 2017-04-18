@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import sys,os,re,argparse,json,StringIO,xml,xmltodict,collections
+import sys,os,re,argparse,json,datetime,StringIO,xml,xmltodict,collections,xlrd
 
-from xlrd import open_workbook
+from xlrd import open_workbook,xldate_as_tuple
 from xlwt import Workbook
 
 def argue():
@@ -30,6 +30,24 @@ def escape_hacked(data, entities={}):
     if any(x in data for x in ['<', '>', '&']):
         return '<![CDATA[%s]]>' % data
     return escape_orig(data, entities)
+
+def dateFixer(workbook,value):
+    dts = '%Y-%m-%d %H:%M:%S'
+    d = xldate_as_tuple(int(value), workbook.datemode)
+    dt = datetime.datetime(*d)
+    t = datetime.timedelta(days=(value-int(value)))
+    dt = dt + t
+    return dt
+
+cellTypes = {
+    xlrd.XL_CELL_BLANK : 'BLANK',
+    xlrd.XL_CELL_BOOLEAN : 'BOOLEAN',
+    xlrd.XL_CELL_DATE : 'DATE',
+    xlrd.XL_CELL_EMPTY : 'EMPTY',
+    xlrd.XL_CELL_ERROR : 'ERROR',
+    xlrd.XL_CELL_NUMBER : 'NUMBER',
+    xlrd.XL_CELL_TEXT : 'TEXT',
+}
 
 def xls2dict(input, verbose=False, formulas=False):
     js = {
@@ -64,13 +82,21 @@ def xls2dict(input, verbose=False, formulas=False):
             for c in range(s.ncols):
                 if verbose:
                     sys.stderr.write('\t\tcol=%0d = %s\n'%(c,s.cell(r,c)))
-                v = s.cell(r,c).value 
+
+                o = None
+                v = s.cell(r,c).value
+                t = cellTypes[s.cell(r,c).ctype]
+                if t == 3: #date
+                    v = dateFixer(wb,v)
                 if formulas:
                     v = s.cell(r,c).value
                 col = {
-                    '@number' : '%d'%c,
-                    '#text' : '%s'%v
+                    '@number'   : '%d'%c,
+                    '@type'     : '%s'%t,
+                    '#text'     : '%s'%v
                 }
+                if o:
+                    col['@origin'] = '%s'%o
                 row['col'].append(col)
 
     return js
