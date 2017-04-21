@@ -208,16 +208,17 @@ def dict2md(js):
                     if len(text) > lengths[num]:
                         lengths[num] = len(text)
                 values.append(value)
-                        
-        #print headers
-        fmt = '|'.join(map(lambda x: '{%s:<%d}'%(x,lengths[x]), sorted(lengths.keys())))
-        #print fmt
-        sio.write('|%s|\n'%fmt.format(**headers))
-        underlines = dict((x,'-'*lengths[x]) for x in lengths.keys())
-        #print underlines
-        sio.write('|%s|\n'%fmt.format(**underlines))
-        for value in values:
-            sio.write('|%s|\n'%fmt.format(**value))
+
+        if headers:
+            #print headers
+            fmt = '|'.join(map(lambda x: '{%s:<%d}'%(x,lengths[x]), sorted(lengths.keys())))
+            #print fmt
+            sio.write('|%s|\n'%fmt.format(**headers))
+            underlines = dict((x,'-'*lengths[x]) for x in lengths.keys())
+            #print underlines
+            sio.write('|%s|\n'%fmt.format(**underlines))
+            for value in values:
+                sio.write('|%s|\n'%fmt.format(**value))
             
     return sio.getvalue()
 
@@ -252,7 +253,7 @@ def main():
         json.dump(js,output,indent=4)
 
     if args.output.lower().endswith('.xml'):
-        xmltodict.unparse(js,output=output,indent='    ',pretty=True)
+        xmltodict.unparse(js,output=output,indent=' '*4,pretty=True)
 
     if args.output.lower().endswith('md'):
         output.write(dict2md(js))
