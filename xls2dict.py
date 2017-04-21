@@ -49,6 +49,13 @@ cellTypes = {
     xlrd.XL_CELL_TEXT : 'TEXT',
 }
 
+alignments = {
+    0: '<',
+    1: '<',
+    2: '^',
+    3: '>',
+}
+
 def xls2dict(input, verbose=False, formulas=False):
     js = {
         'workbook' : {
@@ -56,7 +63,9 @@ def xls2dict(input, verbose=False, formulas=False):
         }
     }
 
-    wb = open_workbook(file_contents=input.read())
+    # http://stackoverflow.com/questions/12540856/how-to-get-excel-cell-properties-in-python
+    
+    wb = open_workbook(file_contents=input.read(),formatting_info=True)
     if verbose:
         sys.stderr.write('%s\n'%wb)
 
@@ -86,6 +95,7 @@ def xls2dict(input, verbose=False, formulas=False):
                 o = None
                 v = s.cell(r,c).value
                 t = s.cell(r,c).ctype
+
                 if t == 3: #date
                     v = dateFixer(wb,v)
                 if formulas:
@@ -95,6 +105,12 @@ def xls2dict(input, verbose=False, formulas=False):
                     '@type'     : '%s'%cellTypes[t],
                     '#text'     : '%s'%v
                 }
+
+                xi = s.cell(r,c).xf_index
+                if xi:
+                    xf = wb.xf_list[xi]
+                    col['@alignment'] = xf.alignment.hor_align
+                
                 if o:
                     col['@origin'] = '%s'%o
                 row['col'].append(col)
@@ -177,6 +193,7 @@ def dict2md(js):
 
         headers = None
         lengths = None
+        aligns = None
         values = None
         
         for row in range(len(rows)):
@@ -193,17 +210,23 @@ def dict2md(js):
             if not headers:
                 headers = dict()
                 lengths = dict()
+                aligns = dict()
                 for col in cols:
+                    #print dir(col)
                     text = col['#text']
                     num = 'c%s'%col['@number']
                     headers[num] = text
                     lengths[num] = len(text)
+                    aligns[num] = alignments[col['@alignment']]
                 values = list()
             else:
                 value = dict.fromkeys(headers.keys())
                 for col in cols:
                     num = 'c%s'%col['@number']
-                    text = col['#text'].replace('\r','').replace('\n','<br/>').replace('*','\*')
+                    text = col['#text']\
+                           .replace('\r','')\
+                           .replace('\n','<br/>')\
+                           .replace('*','\*')
                     value[num] = text
                     if len(text) > lengths[num]:
                         lengths[num] = len(text)
@@ -211,10 +234,26 @@ def dict2md(js):
 
         if headers:
             #print headers
-            fmt = '|'.join(map(lambda x: '{%s:<%d}'%(x,lengths[x]), sorted(lengths.keys())))
+            fmt = '|'.join(
+                map(
+                    lambda x: '{%s:%s%d}'%(x,aligns[x],lengths[x]),
+                    sorted(lengths.keys())
+                )
+            )
             #print fmt
             sio.write('|%s|\n'%fmt.format(**headers))
-            underlines = dict((x,'-'*lengths[x]) for x in lengths.keys())
+            underlines = dict(
+                (x,'-'*lengths[x])
+                for x in lengths.keys()
+            )
+            for c in aligns.keys():
+                if aligns[c] == '<':
+                    underlines[c] = ':%s'%underlines[c][1:]
+                if aligns[c] == '^':
+                    underlines[c] = ':%s:'%underlines[c][1:-1]
+                if aligns[c] == '>':
+                    underlines[c] = '%s:'%underlines[c][:-1]
+                    
             #print underlines
             sio.write('|%s|\n'%fmt.format(**underlines))
             for value in values:
