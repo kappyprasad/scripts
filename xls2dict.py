@@ -85,14 +85,14 @@ def xls2dict(input, verbose=False, formulas=False):
 
                 o = None
                 v = s.cell(r,c).value
-                t = cellTypes[s.cell(r,c).ctype]
+                t = s.cell(r,c).ctype
                 if t == 3: #date
                     v = dateFixer(wb,v)
                 if formulas:
                     v = s.cell(r,c).value
                 col = {
                     '@number'   : '%d'%c,
-                    '@type'     : '%s'%t,
+                    '@type'     : '%s'%cellTypes[t],
                     '#text'     : '%s'%v
                 }
                 if o:
@@ -167,13 +167,18 @@ def dict2md(js):
 
     for s in sheets:
 
+        sio.write('\n# %s\n\n'%s['@name'])
+
         if 'row' not in s.keys():
             continue
         rows = s['row']
         if type(rows) is not list:
             rows = [ rows ]
 
-        header = None
+        headers = None
+        lengths = None
+        values = None
+        
         for row in range(len(rows)):
             r = rows[row]
             if '@number' in r.keys():
@@ -184,28 +189,35 @@ def dict2md(js):
             cols = r['col']
             if type(cols) is not list:
                 cols = [ cols ]
-                
-            if not header:
-                header = cols
+
+            if not headers:
+                headers = dict()
+                lengths = dict()
+                for col in cols:
+                    text = col['#text']
+                    num = 'c%s'%col['@number']
+                    headers[num] = text
+                    lengths[num] = len(text)
+                values = list()
             else:
-                while len(cols) < len(header):
-                    cols.append(' ')
-                    
-            m = '|'.join(
-                map(
-                    lambda x:\
-                        x['#text']\
-                            .replace('\r','')\
-                            .replace('\n',',')\
-                            .replace('*','\*')\
-                    ,
-                    cols
-                )
-            )
-            
-            sio.write('|%s|\n'%m)
-            if row == 0:
-                sio.write('|%s\n'%('-|'*len(cols)))
+                value = dict.fromkeys(headers.keys())
+                for col in cols:
+                    num = 'c%s'%col['@number']
+                    text = col['#text'].replace('\r','').replace('\n','<br/>').replace('*','\*')
+                    value[num] = text
+                    if len(text) > lengths[num]:
+                        lengths[num] = len(text)
+                values.append(value)
+                        
+        #print headers
+        fmt = '|'.join(map(lambda x: '{%s:<%d}'%(x,lengths[x]), sorted(lengths.keys())))
+        #print fmt
+        sio.write('|%s|\n'%fmt.format(**headers))
+        underlines = dict((x,'-'*lengths[x]) for x in lengths.keys())
+        #print underlines
+        sio.write('|%s|\n'%fmt.format(**underlines))
+        for value in values:
+            sio.write('|%s|\n'%fmt.format(**value))
             
     return sio.getvalue()
 
@@ -229,7 +241,7 @@ def main():
         js = xmltodict.parse(input,force_cdata=True)
 
     input.close()
-    
+
     output = open(args.output,'w')
 
     if args.output.lower().endswith('.xls') or args.output.lower().endswith('.xlsx'):
