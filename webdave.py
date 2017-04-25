@@ -13,7 +13,8 @@ usr = 'x-callback-key'
 key = keychain.get_password(app,usr)
 
 dts = '%Y-%m-%d %H:%M:%S'
-
+fmt = '{:<20} {:>7} {}'
+       
 args = Argue()
 
 @args.command(single=True)
@@ -60,26 +61,28 @@ class WebDave(object):
         l = list()
         for path in paths or ['.']:
             l = l + self.client.ls(path)
-            
-        if long:
-            fmt = '{:<30} {:>7} {:<20}'
-            for i in range(len(l)):
-                t = l[i].mtime
+      
+        for f in l:  
+            if f.isdir:
+                console.set_color(0,1,1)
+            else:
+                console.set_color(1,1,0)
+            if long:
+                t = f.mtime
                 if t != '':
                     t = aest(t).strftime(dts)
-                l[i] = fmt.format(
-                    l[i].name,
-                    l[i].size,
-                    t
-                )
-        else:
-            l = map(lambda x:x.name, l)
+                print fmt.format(t,f.size,f.name)
+            else:
+                print f.name
+                
+            console.set_color(1,1,1)
             
-        print '\n'.join(l)
         return
         
 if __name__ == '__main__':
     console.clear()
+    console.set_font('Menlo',10)
+    
     data = { 'key' : key, 'cmd' : 'start' }
     
     url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)
