@@ -44,18 +44,6 @@ class WebDave(object):
             )
         )
         return
-    
-    @args.operation
-    def start(self):
-        data = { 'key' : key, 'cmd' : 'start' }
-        
-        url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)
-        
-        def itemsHandler(parameters):
-            print json.dumps(parameters,indent=4)
-
-        x_callback_url.open_url(url,itemsHandler)
-        return
               
     @args.operation
     def ls(self,paths,all=False,long=False):
@@ -73,9 +61,20 @@ class WebDave(object):
         l = list()
         for path in paths or ['.']:
             l = l + self.client.ls(path)
-        return l
+        l = map(lambda x:x.name, l)
+        print '\n'.join(l)
+        
+        return
         
 if __name__ == '__main__':
-    results = args.execute()
-    if results:
-        json.dump(results,sys.stdout,indent=4)
+    data = { 'key' : key, 'cmd' : 'start' }
+    
+    url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)
+    
+    def callback(parameters):
+        args.execute()
+        
+    x_callback_url.open_url(url,callback)
+    
+    
+
