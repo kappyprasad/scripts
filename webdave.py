@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os,sys,re,json
+import os,sys,re,json,requests
 import console,keychain,x_callback_url
 
 from datetime import datetime
@@ -83,14 +83,15 @@ if __name__ == '__main__':
     console.clear()
     console.set_font('Menlo',10)
     
-    data = { 'key' : key, 'cmd' : 'start' }
-    
-    url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)
-    
     def callback(parameters):
-        args.execute()
+        args.execute()  
+    try:
+        callback(None)
+    except requests.exceptions.ConnectionError:
+        print sys.exc_info()
+        data = { 'key' : key, 'cmd' : 'start' }
+        url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)  
+        x_callback_url.open_url(url,callback)
         
-    x_callback_url.open_url(url,callback)
-    
     
 
