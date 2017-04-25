@@ -55,15 +55,25 @@ class WebDave(object):
             print json.dumps(parameters,indent=4)
 
         x_callback_url.open_url(url,itemsHandler)
-        
         return
               
     @args.operation
-    def ls(self,path):
+    def ls(self,paths,all=False,long=False):
         '''
-        :param path: list this remote path
+        :param paths: list these remote paths
+        :nargs paths: *
+        
+        :param all  : ls all files
+        :flag  all  : True
+        
+        :param long : show details
+        :flag  long : True
+        
         '''
-        return self.client.ls(path)
+        l = list()
+        for path in paths or ['.']:
+            l = l + self.client.ls(path)
+        return l
         
 if __name__ == '__main__':
     results = args.execute()
