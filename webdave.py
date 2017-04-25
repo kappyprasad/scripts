@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 
 import os,sys,re,json
-import keychain,x_callback_url
+import console,keychain,x_callback_url
 
-from threading import Event
-from time import sleep
 from datetime import datetime
 from requests.auth import HTTPDigestAuth
-from easywebdav import Client
+from easywebdav import Client, aest
 from Tools.argue import Argue
 
 app = 'workingcopy'
@@ -15,7 +13,6 @@ usr = 'x-callback-key'
 key = keychain.get_password(app,usr)
 
 dts = '%Y-%m-%d %H:%M:%S'
-lock = '.webdave'
 
 args = Argue()
 
@@ -52,21 +49,37 @@ class WebDave(object):
         :nargs paths: *
         
         :param all  : ls all files
+        :short all  : s
         :flag  all  : True
         
         :param long : show details
+        :short long : l
         :flag  long : True
         
         '''
         l = list()
         for path in paths or ['.']:
             l = l + self.client.ls(path)
-        l = map(lambda x:x.name, l)
+            
+        if long:
+            fmt = '{:<30} {:>7} {:<20}'
+            for i in range(len(l)):
+                t = l[i].mtime
+                if t != '':
+                    t = aest(t).strftime(dts)
+                l[i] = fmt.format(
+                    l[i].name,
+                    l[i].size,
+                    t
+                )
+        else:
+            l = map(lambda x:x.name, l)
+            
         print '\n'.join(l)
-        
         return
         
 if __name__ == '__main__':
+    console.clear()
     data = { 'key' : key, 'cmd' : 'start' }
     
     url='working-copy://x-callback-url/webdav/%s'%x_callback_url.params(data)
