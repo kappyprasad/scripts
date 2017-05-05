@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os,sys,re,json
+import os,sys,re,json,xmltodict
 
 import credstash
 
@@ -53,21 +53,57 @@ class Squirrel(object):
         return credstash.deleteSecrets(name=name, region=self.region(), table=self.table())
 
     @args.operation
-    def list(self):
+    def list(self, _format=None):
         '''
         list the KMS names
-        '''
-        secrets = credstash.listSecrets(region=self.region(), table=self.table())
-        return map(lambda x:x['name'], secrets)
 
+        @args.parameter(
+            param='_format',
+            name='format',
+            help='what type format do you want',
+            short=True,
+            flag=True,
+            oneof={
+                'json':'output as json',
+                'xml' :'output as xml',
+                'text':'output as text',
+            },
+            default='text'
+        )
+        '''
+        secrets = [{'name':'value'}] #credstash.listSecrets(region=self.region(), table=self.table())
+
+        print _format, type(_format)
+        if _format == 'json':
+            return secrets
+        if _format == 'xml':
+            return xmltodict.unparse({'items':{'item':secrets}}, indent=True)
+        if _format == 'text':
+            return '\n'.join(map(lambda x:x['name'], secrets))
+        return
+    
     @args.operation(name="export")
-    def exporter(self, _output):
+    def exporter(self, _output, _format=None):
         '''
         export the secrets in json name/value dict format
         
-        :param _output: the output file in json
-        :name  _output: output
-        
+        @args.parameter(
+            param='_output',
+            name='output',
+            help='the output file in json'
+        )
+
+        @args.parameter(
+            param='_format',
+            name='format',
+            help='what type format do you want',
+            short=True,
+            oneof={
+                'text':'output as text',
+                'json':'output as json',
+                'xml' :'output as xml'
+            }
+        )
         '''
         values = credstash.getAllSecrets(region=self.region(), table=self.table())
         with open(_output,'w') as fo:
@@ -93,7 +129,7 @@ class Squirrel(object):
 if __name__ == '__main__':
     result = args.execute()
     if result:
-        if type(result) == str:
+        if type(result) in [str,unicode]:
             print result
         else:
             json.dump(result,sys.stdout,indent=4)
