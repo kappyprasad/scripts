@@ -15,19 +15,19 @@ class Squirrel(object):
     @args.attribute(short='v',flag=True)
     def verbose(self): return False
 
-    @args.attribute(short='t')
+    @args.attribute(short='t',default='auth0_credstash')
     def table(self):
         '''
         the table name
         '''
-        return 'auth0_credstash'
+        return 
     
-    @args.attribute(short='r')
+    @args.attribute(short='r',default='ap-southeast-2')
     def region(self):
         '''
         define the AWS region
         '''
-        return 'ap-southeast-2'
+        return 
 
     @args.operation
     def get(self,name):
