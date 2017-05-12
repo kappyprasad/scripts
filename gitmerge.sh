@@ -6,6 +6,8 @@ usage: $(basename $0)
 -v verbose
 -h help
 -T trial run
+-y yes to ok
+-r refresh origin
 -i ignore uncommited
 -o origin       default=origin
 -f from branch  default=develop
@@ -14,16 +16,20 @@ usage: $(basename $0)
 EOF
 
 verbose=""
+yes=""
+refresh=""
 trial=""
 ignore=""
 origin="origin"
 from="develop"
 to="master"
 
-while getopts hvTio:f:t: opt
+while getopts hvyrTio:f:t: opt
 do
     case $opt in
         h) echo "$help"; exit 0;;
+        y) yes="-y";;
+        r) refresh="-r";;
         v) verbose="-v";;
         T) trial="echo ";;
         i) ignore="-i";;
@@ -35,12 +41,15 @@ done
 
 shift $((OPTIND-1))
 
-read -p "are you sure (yes/no) ? " sure
-
-if [ "$sure" != "yes" ]
+if [ "$yes" != "-y" ]
 then
-    echo "exiting"
-    exit 1
+    read -p "are you sure (yes/no) ? " sure
+
+    if [ "$sure" != "yes" ]
+    then
+        echo "exiting"
+        exit 1
+    fi
 fi
 
 if [ ! -d .git ]
@@ -59,14 +68,18 @@ then
 fi
 
 
-$trial git pull $origin $from
-$trial git push $origin $from
-
-$trial git pull $origin $to
-$trial git push $origin $to
+if [ "$refresh" == "-r" ]
+then
+    $trial git pull $origin $from
+    $trial git push $origin $from
+    
+    $trial git pull $origin $to
+    $trial git push $origin $to
+fi
 
 $trial git checkout $to
 $trial git merge $from
+$trial git checkout $from
 
 $trial git push -u $origin $to
 
