@@ -46,13 +46,18 @@ if inplace:
         
 def dump(obj,output,colour):
     if args.text:
-        for o in obj:
-            output.write('%s\n'%o)
+        output.write('%s\n'%','.join(obj))
     elif args.flat:
         json.dump(obj,output)
     else:                    
         prettyPrint(obj,colour=colour,output=output,align=args.align)
     return
+
+def parse(object,paths):
+    results = list()
+    for path in paths:
+        results.append(jsonpath.jsonpath(object,path)[0] or '')
+    return results
 
 def main():
     global colour, inplace
@@ -83,7 +88,7 @@ def main():
             try:
                 obj = json.load(fp)
                 if args.path:
-                    obj = jsonpath.jsonpath(obj,args.path)
+                    obj = parse(obj,args.path.split(','))
             except: 
                 sys.stderr.write('%s\n'%sys.exc_info()[1])
                     
@@ -104,7 +109,7 @@ def main():
         try:
             obj = json.load(sys.stdin)
             if args.path:
-                obj = jsonpath.jsonpath(obj,args.path)
+                obj = parse(obj,args.path.split(','))
             dump(obj,output,colour)
         except:
             sys.stderr.write('%s\n'%sys.exc_info()[1])
