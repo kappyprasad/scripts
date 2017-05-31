@@ -56,7 +56,10 @@ def dump(obj,output,colour):
 def parse(object,paths):
     results = list()
     for path in paths:
-        results.append(jsonpath.jsonpath(object,path)[0] or '')
+        result = jsonpath.jsonpath(object,path)
+        #sys.stderr.write('result=%s\n'%result)
+        if result and type(result) == list and len(result) > 0:
+            results.append('%s'%result[0])
     return results
 
 def main():
