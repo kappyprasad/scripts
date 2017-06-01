@@ -128,7 +128,7 @@ else
                             $echo git pull "$o" "$b"
                         fi
                     else
-                        echo "skipping folder with un commited changes"
+                        echo "skipping folder with un commited changes" | colourize.py -r "^.*$"
                         git status --porcelain
                     fi
                     
@@ -138,7 +138,7 @@ else
 
         horizontal.pl .
         # put back original branch
-        $echo git checkout "$original"
+        $echo git checkout "$original" > /dev/null
     fi
     
     popd >/dev/null
