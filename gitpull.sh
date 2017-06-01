@@ -105,6 +105,9 @@ else
                 branches=($branch)
             fi
         fi
+
+        # remember the original branch
+        original="$branch"
         
         for o in ${origins[@]}
         do
@@ -120,9 +123,9 @@ else
                     
                     if git status --porcelain | wc -l | grep "^\s*0$"
                     then
-                        if $echo git checkout $b
+                        if $echo git checkout "$b"
                         then
-                            $echo git pull $o $b
+                            $echo git pull "$o" "$b"
                         fi
                     else
                         echo "skipping folder with un commited changes"
@@ -132,6 +135,9 @@ else
                 done
             fi
         done
+
+        # put back original branch
+        $echo git checkout "$original"
     fi
     
     popd >/dev/null
