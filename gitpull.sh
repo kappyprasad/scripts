@@ -121,7 +121,7 @@ else
                         echo -e "\033[34m$o->$b\033[0m"
                     fi
                     
-                    if git status --porcelain | wc -l | grep "^\s*0$"
+                    if git status --porcelain | wc -l | grep "^\s*0$" > /dev/null
                     then
                         if $echo git checkout "$b"
                         then
