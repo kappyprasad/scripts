@@ -136,6 +136,7 @@ else
             fi
         done
 
+        horizontal.pl .
         # put back original branch
         $echo git checkout "$original"
     fi
