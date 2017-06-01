@@ -24,6 +24,27 @@ Each tool in python uses the argparse library and so supports the -h or -? comma
 * error.pl
 * xml.pl
 
+**GIT** vc helpers
+* gitadd.sh
+* gitcommit.sh
+* gitdiff.sh
+* gitget.sh
+* githubinit.sh
+* gitinit.sh
+* gitkey.sh
+* gitlist.sh
+* gitlog.py
+* gitmerge.sh
+* gitmove.sh
+* gitpull.sh
+* gitpush.sh
+* gitremove.sh
+* gitrepos.py
+* gitrevert.sh
+* gitstatus.sh
+* gittree.sh
+* gitupload.sh
+
 **SVN** prettifiers and helpers
 * svnlog.py
 * svnstatus.py
