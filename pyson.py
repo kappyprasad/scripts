@@ -29,8 +29,9 @@ parser.add_argument('-c','--colour',  action='store_true', help='show colour out
 parser.add_argument('-t','--text',    action='store_true', help='eval result as text')
 parser.add_argument('-n','--name',    action='store_true', help='show file title')
 parser.add_argument('-f','--flat',    action='store_true', help='output flat with no indent')
+parser.add_argument('-s','--sort',    action='store_true', help='sort array lists')
 parser.add_argument('-o','--output',  action='store',      help='output file')
-parser.add_argument('-p','--path',    action='store',      help='evaluate a jsonpath')
+parser.add_argument('-p','--path',    action='store',      help='evaluate comma seperated jsonpath')
 parser.add_argument('file',           action='store',      help='file to parse', nargs='*')
 
 args = parser.parse_args()
@@ -53,13 +54,21 @@ def dump(obj,output,colour):
         prettyPrint(obj,colour=colour,output=output,align=args.align)
     return
 
+def sort(object):
+    if type(object) == dict:
+        for key in object.keys():
+            if type(object[key]) == list:
+                object[key] = sorted(object[key])
+            else:
+                sort(object[key])
+    return
+
 def parse(object,paths):
-    results = list()
+    results = dict()
     for path in paths:
         result = jsonpath.jsonpath(object,path)
-        #sys.stderr.write('result=%s\n'%result)
         if result and type(result) == list and len(result) > 0:
-            results.append('%s'%result[0])
+            results[path] = result
     return results
 
 def main():
@@ -71,6 +80,7 @@ def main():
         output = sys.stdout
 
     if args.file and len(args.file) > 0:
+        
         for f in args.file:
             b='%s.bak'%f
 
@@ -90,6 +100,8 @@ def main():
             obj = None
             try:
                 obj = json.load(fp)
+                if args.sort:
+                    sort(obj)
                 if args.path:
                     obj = parse(obj,args.path.split(','))
             except: 
@@ -109,8 +121,11 @@ def main():
             if inplace:
                 fo.close()
     else:
+        
         try:
             obj = json.load(sys.stdin)
+            if args.sort:
+                sort(obj)
             if args.path:
                 obj = parse(obj,args.path.split(','))
             dump(obj,output,colour)
