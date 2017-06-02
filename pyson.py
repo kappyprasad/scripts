@@ -71,6 +71,8 @@ def parse(object,paths):
         result = jsonpath.jsonpath(object,path)
         if result and type(result) == list and len(result) > 0:
             results[path] = result
+    if len(paths) == 1:
+        return results[paths[0]]
     return results
 
 def main():
