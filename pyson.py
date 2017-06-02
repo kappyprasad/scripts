@@ -49,11 +49,11 @@ def dump(obj,output,colour):
     if args.text:
         output.write('%s\n'%','.join(obj))
     elif args.flat:
-        json.dump(obj,output)
+        json.dump(obj,output,sort_keys=args.sort)
     elif colour:
         prettyPrint(obj,colour=colour,output=output,align=args.align)
     else:
-        json.dump(obj,output,indent=4)
+        json.dump(obj,output,indent=4,sort_keys=args.sort)
     return
 
 def sort(object):
