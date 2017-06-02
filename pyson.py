@@ -50,8 +50,10 @@ def dump(obj,output,colour):
         output.write('%s\n'%','.join(obj))
     elif args.flat:
         json.dump(obj,output)
-    else:                    
+    elif colour:
         prettyPrint(obj,colour=colour,output=output,align=args.align)
+    else:
+        json.dump(obj,output,indent=4)
     return
 
 def sort(object):
