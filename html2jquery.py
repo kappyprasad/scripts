@@ -16,21 +16,25 @@ class HtmlTojQuery(object):
         if type(item) in [str,unicode]:
             output.write('%s.text("%s")\n'%(indent,item))
             return
-        if type(item) == list:
-            for child in item:
-                self.process(child,output,indent=indent+'  ')
-            return
         for key, value in item.iteritems():
             if key == '@class':
                 output.write('%s.addClass("%s")\n'%(indent,value));
             elif key.startswith('@'):
-                output.write('%s.attr("id","%s")\n'%(indent,value));
+                output.write('%s.attr("%s","%s")\n'%(indent,key.lstrip('@'),value));
             elif key == '#text':
                 output.write('%s.text("%s")\n'%(indent,value))
             else:
-                output.write('%s.append(\n%s$("<%s/>")\n'%(indent,indent+'  ',key));
-                self.process(value,output,indent=indent+'  '+'  ')
-                output.write('%s)\n'%indent);
+                if type(value) == list:
+                    for child in value:
+                        output.write('%s.append(\n'%indent)
+                        output.write('%s$("<%s/>")\n'%(indent+'  ',key));
+                        self.process(child,output,indent=indent+'  '+'  ')
+                        output.write('%s)\n'%indent);
+                else:
+                    output.write('%s.append(\n'%indent)
+                    output.write('%s$("<%s/>")\n'%(indent+'  ',key));
+                    self.process(value,output,indent=indent+'  '+'  ')
+                    output.write('%s)\n'%indent);
         if indent == '':
             output.write(';');
         return
