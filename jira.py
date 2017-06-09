@@ -12,7 +12,9 @@ from xlwt import Workbook,Formula,XFStyle
 from requests.auth import HTTPBasicAuth
 
 # git@github.com:eddo888/Tools.git
-from Tools.Passwords import *
+from Tools.Squirrel import Squirrel
+
+squirrel = Squirrel()
 
 urllib3.disable_warnings()
 
@@ -66,7 +68,7 @@ def query(input,output,args):
         json.dump(data,sys.stderr,indent=4)
         sys.stderr.write('\n')
 
-    password = Passwords(args.hostname,'jira',args.username).password
+    password = squirrel.get('%s:jira:%s'%(args.hostname,args.username))
     auth=HTTPBasicAuth(args.username,password)
 
     path='rest/api/2/search'
