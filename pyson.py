@@ -47,7 +47,13 @@ if inplace:
         
 def dump(obj,output,colour):
     if args.text:
-        output.write('%s\n'%','.join(obj))
+        if type(obj) == dict:
+            for row in range(len(obj[obj.keys()[0]])):
+                output.write('%s\n'%','.join(map(lambda x:obj[x][row] or '', obj.keys())))
+        elif type(obj) == list:
+            output.write('\n'.join(obj))
+        else:
+            output.write('%s\n'%obj)
     elif args.flat:
         json.dump(obj,output,sort_keys=args.sort)
     elif colour:

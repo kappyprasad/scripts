@@ -15,11 +15,11 @@ from email.mime.text import MIMEText
 from email.parser import Parser
 
 from Tools.yokel import Yokel
-from Tools.credstash import CredStash
+from Tools.Squirrel import Squirrel
 from Tools.argue import Argue
 
 yokel = Yokel()
-credstash = CredStash()
+squirrel = Squirrel()
 args = Argue()
 
 @args.argument(short='v',flag=True)
@@ -53,7 +53,7 @@ class MailMan(object):
     def password(self):
         if self._password():
             return self._password()
-        return credstash.get('%s:%s'%(self._server(),self._username()))
+        return squirrel.get('%s:%s'%(self._server(),self._username()))
     
     #-------------------------------------------------------------------------------------------------------------------
     def payload(self,part,save=None):
